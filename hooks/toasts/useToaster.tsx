@@ -1,5 +1,5 @@
-import { ToastType } from '../components/layout/ToastManager/Toast/types';
-import { useToastsStore } from './store/useToastStore';
+import { ToastType } from '../../components/Layout/ToastManager/Toast/types';
+import { useToastsStore } from './useToastStore';
 
 export const useToaster = () => {
   const addToast = useToastsStore((store) => store.addToast);

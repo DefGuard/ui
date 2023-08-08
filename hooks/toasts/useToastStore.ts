@@ -1,7 +1,7 @@
 import { sort } from 'radash';
 import { create } from 'zustand';
-import { ToastType } from '../../components/Layout/ToastManager/Toast/types';
 
+import { ToastType } from '../../components/Layout/ToastManager/Toast/types';
 
 export interface ToastOptions {
   id: number;

@@ -1,4 +1,6 @@
 import classNames from 'classnames';
+
+import SvgIconStatus from '../../svg/IconStatus';
 import { ActivityIconVariant } from './types';
 
 type Props = {
@@ -8,7 +10,7 @@ type Props = {
 export const ActivityIcon = ({ status }: Props) => {
   const cn = classNames(
     'activity-icon',
-    status ? `variant-${status.valueOf()}` : undefined
+    status ? `variant-${status.valueOf()}` : undefined,
   );
 
   return (
