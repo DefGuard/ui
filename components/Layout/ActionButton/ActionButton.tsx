@@ -7,8 +7,8 @@ import { useMemo, useState } from 'react';
 import SvgIconCopy from '../../svg/IconCopy';
 import SvgIconDownload from '../../svg/IconDownload';
 import SvgIconQr from '../../svg/IconQr';
-import { useTheme } from '../hooks/theme/useTheme';
 import { ActionButtonVariant } from './types';
+import { useTheme } from '../../../hooks/theme/useTheme';
 
 type Props = HTMLMotionProps<'button'> & {
   variant: ActionButtonVariant;

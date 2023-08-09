@@ -2,10 +2,9 @@ import './style.scss';
 
 import { clone, isUndefined } from 'lodash-es';
 import { ReactNode, useMemo } from 'react';
-
-import { Button } from '../Button/Button';
-import { ButtonSize, ButtonStyleVariant } from '../Button/types';
 import { Modal } from '../Modal/Modal';
+import { Button } from '../../Button/Button';
+import { ButtonSize, ButtonStyleVariant } from '../../Button/types';
 
 export enum ConfirmModalType {
   NORMAL = 'NORMAL',

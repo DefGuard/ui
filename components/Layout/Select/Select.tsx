@@ -15,12 +15,10 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { debounceTime, filter, Subject } from 'rxjs';
 import { useBreakpoint } from 'use-breakpoint';
 
-import { deviceBreakpoints } from '../../../constants';
 import { detectClickInside } from '../../../utils/detectClickOutside';
 import { isComparableWithStrictEquality } from '../../../utils/isComparable';
 import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
 import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
-import { useTheme } from '../hooks/theme/useTheme';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 import { Tag } from '../Tag/Tag';
 import { SelectOptionRow } from './components/SelectOptionRow/SelectOptionRow';
@@ -30,6 +28,8 @@ import {
   SelectProps,
   SelectSizeVariant,
 } from './types';
+import { deviceBreakpoints } from '../../../../constants';
+import { useTheme } from '../../../hooks/theme/useTheme';
 
 const compare = <T,>(v: T, other: T): boolean => {
   if (!isComparableWithStrictEquality(v)) {

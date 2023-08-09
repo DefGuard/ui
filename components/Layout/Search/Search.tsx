@@ -3,8 +3,7 @@ import './style.scss';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { debounceTime, Subject } from 'rxjs';
-
-import { buttonsBoxShadow, ColorsRGB, inactiveBoxShadow } from '../../../constants';
+import { buttonsBoxShadow, ColorsRGB, inactiveBoxShadow } from '../../../../constants';
 
 interface Props {
   containerMotionProps?: HTMLMotionProps<'div'>;

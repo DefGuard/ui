@@ -4,8 +4,7 @@ import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { ReactNode, useMemo } from 'react';
 import { useBreakpoint } from 'use-breakpoint';
-
-import { deviceBreakpoints } from '../../../constants';
+import { deviceBreakpoints } from '../../../../constants';
 
 interface Props extends HTMLMotionProps<'div'> {
   children?: ReactNode;

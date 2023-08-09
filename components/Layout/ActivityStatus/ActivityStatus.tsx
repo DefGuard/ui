@@ -1,8 +1,7 @@
+import { ActivityIcon } from '../../icons/ActivityIcon/ActivityIcon';
 import './style.scss';
 
 import { ComponentPropsWithoutRef, useMemo } from 'react';
-
-import { ActivityIcon } from '../ActivityIcon/ActivityIcon';
 
 interface Props extends ComponentPropsWithoutRef<'div'> {
   connectionStatus?: ActivityType;

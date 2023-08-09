@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import { motion, TargetAndTransition } from 'framer-motion';
 import { useMemo, useState } from 'react';
 
+import { useTheme } from '../../../../../hooks/theme/useTheme';
 import { CheckBox } from '../../../Checkbox/CheckBox';
-import { useTheme } from '../../../hooks/theme/useTheme';
 import { ToggleOptionProps } from '../../types';
 
 export const ToggleOption = <T,>({

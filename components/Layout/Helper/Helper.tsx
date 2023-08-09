@@ -6,11 +6,11 @@ import { ReactNode, useMemo, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { useBreakpoint } from 'use-breakpoint';
 
-import { deviceBreakpoints } from '../../../constants';
-import { IconInfo } from '../../svg';
 import { Button } from '../Button/Button';
 import { ButtonSize, ButtonStyleVariant } from '../Button/types';
-import { Modal } from '../Modal/Modal';
+import { deviceBreakpoints } from '../../../../constants';
+import IconInfo from '../../svg/IconInfo';
+import { Modal } from '../modals/Modal/Modal';
 
 interface PlacementMap {
   [key: string]: string;

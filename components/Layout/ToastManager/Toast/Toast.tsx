@@ -4,12 +4,12 @@ import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { useToastsStore } from '../../../../hooks/toasts/useToastStore';
-import SvgIconInfoError from '../../../svg/IconInfoError';
-import SvgIconInfoNormal from '../../../svg/IconInfoNormal';
-import SvgIconInfoSuccess from '../../../svg/IconInfoSuccess';
-import SvgIconInfoWarning from '../../../svg/IconInfoWarning';
 import { ToastProps, ToastType } from './types';
+import SvgIconInfoError from '../../../../../components/svg/IconInfoError';
+import SvgIconInfoNormal from '../../../../../components/svg/IconInfoNormal';
+import SvgIconInfoWarning from '../../../../../components/svg/IconInfoWarning';
+import { useToastsStore } from '../../../../hooks/toasts/useToastStore';
+import SvgIconInfoSuccess from '../../../svg/IconInfoSuccess';
 
 export const Toast = ({ data: { id, type, message, subMessage } }: ToastProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

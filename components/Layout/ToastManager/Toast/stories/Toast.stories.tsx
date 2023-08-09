@@ -2,7 +2,7 @@ import './demo.scss';
 
 import { Story } from '@ladle/react';
 
-import { ToastOptions } from '../../../../../hooks/store/useToastStore';
+import { ToastOptions } from '../../../../../hooks/toasts/useToastStore';
 import { Toast } from '../Toast';
 import { ToastType } from '../types';
 

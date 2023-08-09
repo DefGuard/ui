@@ -4,10 +4,9 @@ import classNames from 'classnames';
 import { motion, Variant, Variants } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
 import { ReactNode, useMemo, useState } from 'react';
-
-import { cardsShadow, inactiveBoxShadow } from '../../../constants';
-import SvgIconUserListExpanded from '../../svg/IconUserListExpanded';
-import SvgIconUserListHover from '../../svg/IconUserListHover';
+import SvgIconUserListExpanded from '../../../../components/svg/IconUserListExpanded';
+import SvgIconUserListHover from '../../../../components/svg/IconUserListHover';
+import { inactiveBoxShadow, cardsShadow } from '../../../../constants';
 
 interface Props {
   children?: ReactNode;
