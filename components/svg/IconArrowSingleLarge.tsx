@@ -9,7 +9,7 @@ const SvgIconArrowSingleLarge = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <mask
-      id="a"
+      id="icon-arrow-single-large_svg__a"
       width={22}
       height={22}
       x={0}
@@ -21,7 +21,7 @@ const SvgIconArrowSingleLarge = (props: SVGProps<SVGSVGElement>) => (
     >
       <path fill="#fff" d="M22 0H0v22h22V0Z" />
     </mask>
-    <g fill="#899CA8" mask="url(#a)">
+    <g fill="#899CA8" mask="url(#icon-arrow-single-large_svg__a)">
       <path d="m9.05 16.293 4.243-4.243a1 1 0 1 0-1.414-1.414l-4.243 4.243a1 1 0 1 0 1.414 1.414Z" />
       <path d="M13.292 10.293 9.049 6.05a1 1 0 1 0-1.414 1.414l4.243 4.243a1 1 0 0 0 1.414-1.414Z" />
     </g>

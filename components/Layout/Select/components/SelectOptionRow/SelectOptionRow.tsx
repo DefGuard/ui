@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { HTMLMotionProps, motion } from 'framer-motion';
+import { HTMLMotionProps, motion, TargetAndTransition } from 'framer-motion';
 import { useMemo, useState } from 'react';
 
 import { useTheme } from '../../../../../hooks/theme/useTheme';
@@ -33,8 +33,11 @@ export const SelectOptionRow = ({
   );
 
   const getAnimate = useMemo(() => {
-    const res = {
+    const res: TargetAndTransition = {
       color: colors.textBodySecondary,
+      transition: {
+        duration: 0.1,
+      },
     };
 
     if (createOption) {

@@ -18,6 +18,14 @@
   border: 1px solid var(--border-primary);
   cursor: pointer;
 
+  &.size-standard {
+    height: 50px;
+  }
+
+  &.size-small {
+    height: 40px;
+  }
+
   &.disabled {
     cursor: not-allowed;
     user-select: none;
@@ -191,7 +199,7 @@
 
       transition-property: color, opacity;
       transition-timing-function: ease-in-out;
-      transition-duration: 250ms;
+      transition-duration: 100ms;
 
       & > span {
         @include typography(app-modal-1);
