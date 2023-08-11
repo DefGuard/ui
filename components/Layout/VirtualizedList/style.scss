@@ -35,9 +35,10 @@
 
       & > span {
         user-select: none;
-        @include label-text;
 
-        color: var(--gray-light);
+        @include typography(app-modal-1);
+
+        color: var(--text-body-tertiary);
       }
 
       & > .floating-header-icon {
@@ -58,7 +59,7 @@
 
       &.active {
         & > span {
-          color: var(--text-main);
+          color: var(--text-body-primary);
         }
         & > .floating-header-icon {
           & > svg {

@@ -1,4 +1,4 @@
-@use '../../../scss/helpers' as *;
+@use '../../../../scss/helpers' as *;
 
 .modal-root {
   & > .modal-wrap {
@@ -56,7 +56,9 @@
             }
 
             & > .title {
-              @include modal-header;
+              @include typography(app-body-1);
+
+              color: var(--text-body-primary);
 
               @include media-breakpoint-up(lg) {
                 margin-bottom: 2rem;

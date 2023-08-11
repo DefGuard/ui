@@ -1,5 +1,4 @@
-@use '../../../scss/base/variables/' as v;
-@use '../../../scss/helpers/mixins' as mix;
+@use '../../../scss/helpers' as *;
 
 .network-speed {
   display: flex;
@@ -9,10 +8,18 @@
   justify-content: flex-start;
 
   & > .speed-value {
-    @include mix.typography-legacy(15px, 18px, medium);
+    font-family: 'Roboto';
+    font-size: 15;
+    line-height: 1.2;
+    font-weight: 500;
+    color: inherit;
 
     & > .measurement {
-      @include mix.typography-legacy(15px, 18px, medium);
+      font-family: 'Roboto';
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 500;
+      color: inherit;
 
       vertical-align: super;
       margin-left: 0.3rem;
@@ -22,20 +29,20 @@
 
   &.upload {
     & > .speed-value {
-      color: v.$error;
+      color: var(--text-alert);
 
       & > .measurement {
-        color: v.$error;
+        color: var(--text-alert);
       }
     }
   }
 
   &.download {
     & > .speed-value {
-      color: v.$primary;
+      color: var(--text-button-primary);
 
       & > .measurement {
-        color: v.$primary;
+        color: var(--text-button-primary);
       }
     }
   }

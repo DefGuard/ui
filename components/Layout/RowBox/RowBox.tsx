@@ -3,7 +3,8 @@ import './style.scss';
 import classNames from 'classnames';
 import { HTMLMotionProps, motion, TargetAndTransition } from 'framer-motion';
 import { ReactNode, useMemo, useState } from 'react';
-import { ColorsRGB, inactiveBoxShadow, buttonsBoxShadow } from '../../../../constants';
+
+import { buttonsBoxShadow, ColorsRGB, inactiveBoxShadow } from '../../../../constants';
 
 interface Props extends HTMLMotionProps<'div'> {
   children: ReactNode;

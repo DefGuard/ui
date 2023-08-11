@@ -3,15 +3,9 @@ import './style.scss';
 import classNames from 'classnames';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import React, { useMemo } from 'react';
-import { ColorsRGB } from '../../../../constants';
 
-export enum BadgeStyleVariant {
-  STANDARD = 'standard',
-  WARNING = 'warning',
-  INACTIVE = 'inactive',
-  SUCCESS = 'success',
-  PRIMARY = 'primary',
-}
+import { ColorsRGB } from '../../../../constants';
+import { BadgeStyleVariant } from './types';
 
 interface Props {
   text: string;

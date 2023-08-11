@@ -23,17 +23,21 @@
   width: 411px;
   z-index: 1;
 
-  & > p,
-  span {
-    @include small-text;
+  p,
+  span,
+  a {
+    @include typography(app-modal-1);
   }
 
-  & > a {
-    @include small-text;
+  p,
+  span {
+    color: var(--text-body-primary);
+  }
 
+  a {
     text-decoration: underline;
-    text-decoration-color: var(--gray-dark);
-    color: var(--gray-dark);
+    text-decoration-color: var(--text-body-secondary);
+    color: var(--text-body-secondary);
   }
 
   & > .arrow {
@@ -82,15 +86,18 @@
       span,
       a {
         text-align: center;
+        @include typography(app-modal-1);
+      }
 
-        @include regular-text;
-        @include text-weight(medium);
-
-        color: var(--text-main);
+      p,
+      span {
+        color: var(--text-body-primary);
       }
 
       a {
-        color: var(--gray-dark);
+        text-decoration: underline;
+        text-decoration-color: var(--text-body-secondary);
+        color: var(--text-body-secondary);
       }
 
       & > .btn {

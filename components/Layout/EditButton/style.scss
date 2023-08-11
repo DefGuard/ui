@@ -43,7 +43,7 @@ button {
     cursor: pointer;
     text-align: left;
 
-    @include small-text;
+    @include typography(app-modal-1);
 
     &:disabled {
       cursor: not-allowed;

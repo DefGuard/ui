@@ -1,8 +1,10 @@
+import './style.scss';
+
 import { isUndefined } from 'lodash-es';
 import { useId, useMemo } from 'react';
-import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+
 import { CheckBox, CheckBoxProps } from '../../Layout/Checkbox/CheckBox';
-import './style.scss';
 
 interface Props<T extends FieldValues> extends Partial<CheckBoxProps> {
   controller: UseControllerProps<T>;
@@ -36,7 +38,7 @@ export const FormCheckBox = <T extends FieldValues>({
 
   const renderLabel = useMemo(
     () => (label ? <label htmlFor={fieldId}>{label}</label> : null),
-    [],
+    [fieldId, label],
   );
 
   return (

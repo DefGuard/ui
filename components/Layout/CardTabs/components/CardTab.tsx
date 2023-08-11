@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import { motion, TargetAndTransition } from 'framer-motion';
 import { useMemo, useState } from 'react';
 
-import { CardTabProps } from '../types';
 import { ColorsRGB } from '../../../../../constants';
+import { CardTabProps } from '../types';
 
 export const CardTab = ({ onClick, content, active = false }: CardTabProps) => {
   const [hovered, setHovered] = useState(false);

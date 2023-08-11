@@ -1,8 +1,9 @@
 import { isUndefined } from 'lodash-es';
 import { useMemo } from 'react';
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+
 import { Input } from '../../Layout/Input/Input';
-import { InputProps, InputFloatingErrors } from '../../Layout/Input/types';
+import { InputFloatingErrors, InputProps } from '../../Layout/Input/types';
 
 interface Props<T extends FieldValues> extends Omit<InputProps, 'floatingErrors'> {
   controller: UseControllerProps<T>;

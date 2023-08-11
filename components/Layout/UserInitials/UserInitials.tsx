@@ -2,13 +2,10 @@ import './style.scss';
 
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import React from 'react';
+
 import { ColorsRGB } from '../../../../constants';
 import { extractInitials } from '../../../../utils/extractInitials';
-
-export enum UserInitialsType {
-  BIG = 'BIG',
-  SMALL = 'SMALL',
-}
+import { UserInitialsType } from './types';
 
 interface Props {
   first_name: string;

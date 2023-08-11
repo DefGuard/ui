@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { HTMLMotionProps, motion, TargetAndTransition } from 'framer-motion';
 import { useMemo, useState } from 'react';
 
+import { useTheme } from '../../../hooks/theme/useTheme';
 import SvgIconCopy from '../../svg/IconCopy';
 import SvgIconDownload from '../../svg/IconDownload';
 import SvgIconQr from '../../svg/IconQr';
 import { ActionButtonVariant } from './types';
-import { useTheme } from '../../../hooks/theme/useTheme';
 
 type Props = HTMLMotionProps<'button'> & {
   variant: ActionButtonVariant;

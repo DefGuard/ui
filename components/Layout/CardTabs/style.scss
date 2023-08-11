@@ -1,4 +1,4 @@
-@use '../../../../shared/scss/helpers' as *;
+@use '../../../scss/helpers' as *;
 
 .card-tabs {
   width: 100%;
@@ -73,7 +73,9 @@
       user-select: none;
       cursor: pointer;
 
-      @include typography(15px, 22.5px, medium, var(--gray-light), 'Poppins');
+      @include typography(modal-title);
+
+      color: var(--text-body-primary);
 
       & > * {
         display: block;

@@ -45,9 +45,9 @@
       user-select: none;
 
       & > span {
-        @include regular-text;
-        @include text-weight(medium);
+        @include typography(app-button-xl);
 
+        color: var(--text-body-primary);
         display: block;
       }
     }

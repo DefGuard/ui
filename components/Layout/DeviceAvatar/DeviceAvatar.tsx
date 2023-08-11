@@ -3,7 +3,6 @@ import './style.scss';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { useMemo } from 'react';
 
-import { getDeviceAvatar } from './utils/getDeviceAvatar';
 import SvgAvatar01Blue from '../../../../components/svg/Avatar01Blue';
 import SvgAvatar01Gray from '../../../../components/svg/Avatar01Gray';
 import SvgAvatar02Blue from '../../../../components/svg/Avatar02Blue';
@@ -29,11 +28,8 @@ import SvgAvatar11Gray from '../../../../components/svg/Avatar11Gray';
 import SvgAvatar12Blue from '../../../../components/svg/Avatar12Blue';
 import SvgAvatar12Gray from '../../../../components/svg/Avatar12Gray';
 import { ColorsRGB } from '../../../../constants';
-
-export enum DeviceAvatarVariants {
-  BLANK = 'blank',
-  GRAY_BOX = 'grayBox',
-}
+import { DeviceAvatarVariants } from './types';
+import { getDeviceAvatar } from './utils/getDeviceAvatar';
 
 interface Props extends HTMLMotionProps<'div'> {
   active?: boolean;

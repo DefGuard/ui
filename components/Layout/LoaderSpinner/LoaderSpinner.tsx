@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 
 type Props = {
   size?: number;
+  color?: string;
 };
 
-export const LoaderSpinner = ({ size = 20 }: Props) => {
+export const LoaderSpinner = ({ size = 20, color }: Props) => {
   return (
     <motion.div
       className="loader-spinner"
@@ -34,6 +35,7 @@ export const LoaderSpinner = ({ size = 20 }: Props) => {
         <motion.path
           d="M54,6 A48,48 0 0 1 54,102 A48,48 0 0 1 54,6 Z"
           fill="none"
+          stroke={color ?? undefined}
           strokeWidth="5"
           strokeDasharray="300"
           strokeDashoffset="100"

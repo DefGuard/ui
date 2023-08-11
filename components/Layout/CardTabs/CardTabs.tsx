@@ -3,9 +3,9 @@ import './style.scss';
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
+import SvgIconArrowSingle2 from '../../../../components/svg/IconArrowSingle2';
 import { CardTab } from './components/CardTab';
 import { CardTabProps } from './types';
-import SvgIconArrowSingle2 from '../../../../components/svg/IconArrowSingle2';
 
 type Props = {
   tabs: (CardTabProps & { key: string | number })[];

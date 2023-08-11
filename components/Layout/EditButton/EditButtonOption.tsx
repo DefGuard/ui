@@ -1,11 +1,8 @@
 import { HTMLMotionProps, motion, Variant, Variants } from 'framer-motion';
 import { useState } from 'react';
-import { ColorsRGB } from '../../../../constants';
 
-export enum EditButtonOptionStyleVariant {
-  STANDARD = 'STANDARD',
-  WARNING = 'WARNING',
-}
+import { ColorsRGB } from '../../../../constants';
+import { EditButtonOptionStyleVariant } from './types';
 
 interface EditButtonOptionProps extends HTMLMotionProps<'button'> {
   text: string;

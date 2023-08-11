@@ -1,4 +1,5 @@
 import { motion, SVGMotionProps } from 'framer-motion';
+
 import { ColorsRGB } from '../../../../constants';
 
 type Props = SVGMotionProps<SVGSVGElement>;

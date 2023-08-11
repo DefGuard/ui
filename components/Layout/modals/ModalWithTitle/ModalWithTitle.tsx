@@ -3,9 +3,9 @@ import './style.scss';
 import classNames from 'classnames';
 import { useMemo } from 'react';
 
+import SvgIconX from '../../../svg/IconX';
 import { Modal } from '../Modal/Modal';
 import { ModalProps } from '../Modal/types';
-import SvgIconX from '../../../svg/IconX';
 
 export interface ModalWithTitleProps extends ModalProps {
   title: string;

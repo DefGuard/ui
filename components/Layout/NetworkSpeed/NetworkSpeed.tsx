@@ -3,10 +3,7 @@ import './style.scss';
 import byteSize from 'byte-size';
 import { ComponentPropsWithoutRef, useMemo } from 'react';
 
-export enum NetworkDirection {
-  UPLOAD = 'upload',
-  DOWNLOAD = 'download',
-}
+import { NetworkDirection } from './types';
 
 interface Props extends ComponentPropsWithoutRef<'div'> {
   speedValue: number;

@@ -4,13 +4,14 @@ import { autoUpdate, offset, useFloating } from '@floating-ui/react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import classNames from 'classnames';
 import { detect } from 'detect-browser';
-import { Variants, motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
-import { Key, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useBreakpoint } from 'use-breakpoint';
 
+import { ColorsRGB, deviceBreakpoints } from '../../../../constants';
+import { ListHeader, ListSortDirection, VirtualizedListProps } from './types';
 import { VirtualizedListSortIcon } from './VirtualizedListSortIcon';
-import { deviceBreakpoints, ColorsRGB } from '../../../../constants';
 
 export const VirtualizedList = <T extends object>({
   className,
@@ -24,7 +25,7 @@ export const VirtualizedList = <T extends object>({
   padding,
   headerPadding,
   onDefaultRowClick,
-}: Props<T>) => {
+}: VirtualizedListProps<T>) => {
   const listRef = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
@@ -348,48 +349,3 @@ const headerSortIconVariants: Variants = {
     rotateZ: 0,
   },
 };
-
-export enum ListSortDirection {
-  ASC = 'ASC',
-  DESC = 'DESC',
-}
-
-export type ListHeader = {
-  text: string;
-  key: Key;
-  active?: boolean;
-  sortable?: boolean;
-  sortDirection?: ListSortDirection;
-  onClick?: () => void;
-};
-
-export type ListRowCell<T extends object> = {
-  key: string;
-  render: (context: T) => ReactNode;
-  onClick?: (context: T) => void;
-};
-
-export type ListPadding = {
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-interface Props<T extends object> {
-  rowSize: number;
-  data: T[];
-  headers?: ListHeader[];
-  cells?: ListRowCell<T>[];
-  customRowRender?: (context: T, index?: number) => ReactNode;
-  className?: string;
-  id?: string;
-  mobile?: {
-    enabled: boolean;
-    mobileRowSize: number;
-    renderer: (context: T, index?: number) => ReactNode;
-  };
-  padding?: ListPadding;
-  headerPadding?: ListPadding;
-  onDefaultRowClick?: (context: T) => void;
-}
