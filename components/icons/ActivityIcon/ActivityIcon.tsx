@@ -1,3 +1,5 @@
+import './style.scss';
+
 import classNames from 'classnames';
 
 import SvgIconStatus from '../../svg/IconStatus';

@@ -13,24 +13,30 @@
     fill: var(--surface-icon-primary);
     transition-property: fill;
     transition-timing-function: ease-in-out;
-    transition-duration: 200ms;
+    transition-duration: 100ms;
   }
 
   &.variant-connected {
     & > svg {
-      fill: var(--surface-positive-primary);
+      path {
+        fill: var(--surface-positive-primary);
+      }
     }
   }
 
   &.variant-disconnected {
     & > svg {
-      fill: var(--surface-surface-important);
+      path {
+        fill: var(--surface-important);
+      }
     }
   }
 
   &.variant-error {
     & > svg {
-      fill: var(--surface-alert-primary);
+      path {
+        fill: var(--surface-alert-primary);
+      }
     }
   }
 }

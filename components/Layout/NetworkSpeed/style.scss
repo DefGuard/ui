@@ -9,7 +9,7 @@
 
   & > .speed-value {
     font-family: 'Roboto';
-    font-size: 15;
+    font-size: 15px;
     line-height: 1.2;
     font-weight: 500;
     color: inherit;
@@ -39,10 +39,10 @@
 
   &.download {
     & > .speed-value {
-      color: var(--text-button-primary);
+      color: var(--surface-main-primary);
 
       & > .measurement {
-        color: var(--text-button-primary);
+        color: var(--surface-main-primary);
       }
     }
   }

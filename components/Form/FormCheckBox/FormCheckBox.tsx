@@ -26,24 +26,38 @@ export const FormCheckBox = <T extends FieldValues>({
   ...rest
 }: Props<T>) => {
   const fieldId = useId();
+
   const {
     field: { value, onChange },
   } = useController(controller);
+
   const checkBoxValue = useMemo(() => {
     if (customValue) {
       return customValue(value);
     }
+
     return value;
   }, [customValue, value]);
 
-  const renderLabel = useMemo(
-    () => (label ? <label htmlFor={fieldId}>{label}</label> : null),
-    [fieldId, label],
-  );
+  const renderLabel = () => {
+    if (label) {
+      return (
+        <label
+          htmlFor={fieldId}
+          onClick={() => {
+            onChange(!checkBoxValue);
+          }}
+        >
+          {label}
+        </label>
+      );
+    }
+    return null;
+  };
 
   return (
     <div className="form-checkbox">
-      {labelPlacement === 'left' && !isUndefined(label) && renderLabel}
+      {labelPlacement === 'left' && !isUndefined(label) && renderLabel()}
       <CheckBox
         id={fieldId}
         data-testid={`field-${controller.name}`}
@@ -57,7 +71,7 @@ export const FormCheckBox = <T extends FieldValues>({
           }
         }}
       />
-      {labelPlacement === 'right' && !isUndefined(label) && renderLabel}
+      {labelPlacement === 'right' && !isUndefined(label) && renderLabel()}
     </div>
   );
 };

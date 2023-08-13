@@ -10,19 +10,19 @@ import {
 } from '@floating-ui/react';
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { isUndefined, last } from 'lodash-es';
+import { isUndefined } from 'lodash-es';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
-import { debounceTime, filter, Subject } from 'rxjs';
+import { debounceTime, Subject } from 'rxjs';
 import { useBreakpoint } from 'use-breakpoint';
 
 import { deviceBreakpoints } from '../../../../constants';
-import { useTheme } from '../../../hooks/theme/useTheme';
 import { detectClickInside } from '../../../utils/detectClickOutside';
 import { isComparableWithStrictEquality } from '../../../utils/isComparable';
 import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
 import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 import { Tag } from '../Tag/Tag';
+import { ResizableInput } from './components/ResizableInput/ResizableInput';
 import { SelectOptionRow } from './components/SelectOptionRow/SelectOptionRow';
 import {
   SelectFloatingOption,
@@ -54,6 +54,7 @@ export const Select = <T,>({
   invalid,
   errorMessage,
   addOptionLabel,
+  renderSelected,
   searchable = false,
   loading = false,
   disabled = false,
@@ -66,7 +67,6 @@ export const Select = <T,>({
   'data-testid': testId,
 }: SelectProps<T>) => {
   const { breakpoint } = useBreakpoint(deviceBreakpoints);
-  const { colors } = useTheme();
   const selectId = useId();
   const [open, setOpen] = useState(false);
   // used value for filtering options
@@ -74,7 +74,6 @@ export const Select = <T,>({
   // only for display
   const [searchDisplayValue, setSearchDisplayValue] = useState<string | undefined>();
   const searchRef = useRef<HTMLInputElement | null>(null);
-  const searchPushRef = useRef<HTMLSpanElement | null>(null);
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchSubject] = useState<Subject<string | undefined>>(new Subject());
   const extendable = useMemo(() => !isUndefined(onCreate), [onCreate]);
@@ -180,50 +179,35 @@ export const Select = <T,>({
     return true;
   }, [searchValue, selected]);
 
-  const getSearchInputLength = useMemo(() => {
-    const searchLength = searchValue?.length ?? 0;
-    if (searchLength > 0) {
-      return searchLength * 8;
-    }
-    if (placeholder) {
-      return placeholder.length * 8 || 2;
-    }
-    return 2;
-  }, [searchValue?.length, placeholder]);
-
   const renderTags = useMemo(() => {
     if (isUndefined(selected) && !Array.isArray(selected) && !multi) {
       return null;
     }
-    if (Array.isArray(selected) && selected.length) {
-      let selectedOptions: SelectOption<T>[] = [];
 
-      if (isComparableWithStrictEquality(selected[0]) && !identify) {
-        selectedOptions = selected.map(
-          (v) => options.find((o) => o.value === v) as SelectOption<T>,
+    if (Array.isArray(selected) && selected.length) {
+      if (isUndefined(renderSelected)) {
+        throw Error(
+          'renderSelected prop cannot be undefined if selected value is an Array.',
         );
-      } else {
-        if (identify) {
-          selectedOptions = selected.map(
-            (v) =>
-              options.find((o) => identify(o.value) === identify(v)) as SelectOption<T>,
-          );
-        }
       }
 
-      return selectedOptions.map((option) => (
-        <Tag
-          key={option.key}
-          text={option.label}
-          disposable
-          onDispose={() => {
-            onRemove?.(option.value);
-          }}
-        />
-      ));
+      return selected.map((val) => {
+        const data = renderSelected(val);
+        return (
+          <Tag
+            key={data.key}
+            text={data.displayValue}
+            disposable={!isUndefined(onRemove)}
+            onDispose={() => {
+              onRemove?.(val, selected);
+            }}
+          />
+        );
+      });
     }
+
     return null;
-  }, [identify, multi, onRemove, options, selected]);
+  }, [multi, onRemove, selected, renderSelected]);
 
   const renderInner = useMemo(() => {
     if (searchFocused) return null;
@@ -300,13 +284,7 @@ export const Select = <T,>({
   // search sub
   useEffect(() => {
     const sub = searchSubject
-      .pipe(
-        debounceTime(searchDebounce),
-        filter(
-          (searchValue) =>
-            !isUndefined(searchValue) && searchValue.length >= searchMinLength,
-        ),
-      )
+      .pipe(debounceTime(searchDebounce))
       .subscribe((searchValue) => {
         if (onSearch) {
           onSearch(searchValue);
@@ -370,54 +348,26 @@ export const Select = <T,>({
           <div className="content-frame">
             {renderTags}
             {searchable && (
-              <div className="search-frame">
-                <span className="input-push" ref={searchPushRef}>
-                  {!isUndefined(searchDisplayValue) &&
-                    searchDisplayValue.length > 0 &&
-                    searchDisplayValue.replace(' ', '&nbsp;')}
-                  {showSelectInnerPlaceholder ? placeholder : null}
-                </span>
-                <input
-                  type="text"
-                  className="select-search"
-                  value={searchValue}
-                  onFocus={() => setSearchFocused(true)}
-                  onBlur={() => setSearchFocused(false)}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter') {
-                      event.preventDefault();
-                      event.stopPropagation();
-                    }
-                    if (multi) {
-                      if (event.key === 'Backspace' && searchValue?.length === 0) {
-                        if (Array.isArray(selected)) {
-                          const lastSelected = last(selected);
-                          if (lastSelected) {
-                            handleSelect(lastSelected);
-                          }
-                        }
-                      }
-                    }
-                  }}
-                  onChange={(event) => {
-                    const searchValue = event.target.value;
-                    setSearchDisplayValue(searchValue);
-                    searchSubject.next(searchValue);
-                    if (!searchValue || searchValue.length === 0) {
-                      // clear search / set to default list
-                      if (onSearch) {
-                        onSearch(undefined);
-                      }
-                    }
-                  }}
-                  ref={searchRef}
-                  placeholder={showSelectInnerPlaceholder ? placeholder : undefined}
-                  style={{
-                    width: `${getSearchInputLength}px`,
-                    color: searchFocused ? colors.textBodyPrimary : 'transparent',
-                  }}
-                />
-              </div>
+              <ResizableInput
+                type="text"
+                className="select-search"
+                value={searchDisplayValue}
+                onFocus={() => setSearchFocused(true)}
+                onBlur={() => setSearchFocused(false)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                }}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  const searchValue = event.target.value;
+                  setSearchDisplayValue(searchValue);
+                  searchSubject.next(searchValue);
+                }}
+                ref={searchRef}
+                placeholder={showSelectInnerPlaceholder ? placeholder : undefined}
+              />
             )}
           </div>
           <div className="side">
@@ -425,7 +375,7 @@ export const Select = <T,>({
               <LoaderSpinner size={22} />
             ) : (
               <ArrowSingle
-                size={ArrowSingleSize.SMALL}
+                size={ArrowSingleSize.LARGE}
                 direction={ArrowSingleDirection.DOWN}
               />
             )}

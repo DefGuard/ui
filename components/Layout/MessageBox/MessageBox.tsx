@@ -2,7 +2,7 @@ import './style.scss';
 
 import classNames from 'classnames';
 import { isUndefined } from 'lodash-es';
-import { ComponentPropsWithoutRef, ReactNode, useEffect, useMemo, useState } from 'react';
+import { HTMLProps, ReactNode, useEffect, useMemo, useState } from 'react';
 
 import SvgIconInfo from '../../svg/IconInfo';
 import SvgIconInfoSuccess from '../../svg/IconInfoSuccess';
@@ -11,10 +11,11 @@ import SvgIconX from '../../svg/IconX';
 import { MessageBoxType } from './types';
 import { readMessageBoxVisibility, writeMessageBoxVisibility } from './utils';
 
-interface Props extends ComponentPropsWithoutRef<'div'> {
+interface Props extends HTMLProps<HTMLDivElement> {
   message?: string | ReactNode;
   type?: MessageBoxType;
   dismissId?: string;
+  children?: ReactNode;
 }
 
 /**
@@ -24,6 +25,7 @@ export const MessageBox = ({
   message,
   className,
   dismissId,
+  children,
   type = MessageBoxType.INFO,
   ...props
 }: Props) => {
@@ -49,11 +51,14 @@ export const MessageBox = ({
   }, [type]);
 
   const renderMessage = useMemo(() => {
+    if (!isUndefined(children)) {
+      return children;
+    }
     if (typeof message === 'string') {
       return <p>{message}</p>;
     }
     return message;
-  }, [message]);
+  }, [message, children]);
 
   useEffect(() => {
     if (dismissId && dismissId.length) {

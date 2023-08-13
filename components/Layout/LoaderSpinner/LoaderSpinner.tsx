@@ -35,10 +35,12 @@ export const LoaderSpinner = ({ size = 20, color }: Props) => {
         <motion.path
           d="M54,6 A48,48 0 0 1 54,102 A48,48 0 0 1 54,6 Z"
           fill="none"
-          stroke={color ?? undefined}
           strokeWidth="5"
           strokeDasharray="300"
           strokeDashoffset="100"
+          style={{
+            stroke: color ?? undefined,
+          }}
           animate={{
             strokeDashoffset: [100, 0, 100],
           }}

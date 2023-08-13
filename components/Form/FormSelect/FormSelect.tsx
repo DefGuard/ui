@@ -1,22 +1,19 @@
 import { isUndefined } from 'lodash-es';
 import { useMemo } from 'react';
-import {
-  FieldValues,
-  Path,
-  PathValue,
-  useController,
-  UseControllerProps,
-} from 'react-hook-form';
+import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
 import { Select } from '../../Layout/Select/Select';
 import { SelectProps } from '../../Layout/Select/types';
 
-interface Props<T extends FieldValues>
-  extends Omit<SelectProps<PathValue<T, Path<T>>>, 'onChange'> {
+interface Props<T extends FieldValues, Y> extends SelectProps<Y> {
   controller: UseControllerProps<T>;
 }
 
-export const FormSelect = <T extends FieldValues>({ controller, ...rest }: Props<T>) => {
+export const FormSelect = <T extends FieldValues, Y>({
+  controller,
+  onRemove,
+  ...rest
+}: Props<T, Y>) => {
   const {
     field,
     fieldState: { isDirty, isTouched, error },
@@ -36,12 +33,17 @@ export const FormSelect = <T extends FieldValues>({ controller, ...rest }: Props
   return (
     <Select
       {...rest}
+      inForm={true}
       selected={field.value}
       invalid={isInvalid}
       errorMessage={error?.message}
       onChangeSingle={(res) => field.onChange(res)}
       onChangeArray={(res) => field.onChange(res)}
-      inForm={true}
+      onRemove={(res, selected) => {
+        if (onRemove) {
+          field.onChange(onRemove(res, selected));
+        }
+      }}
     />
   );
 };

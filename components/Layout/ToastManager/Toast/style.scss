@@ -10,7 +10,7 @@
   background-color: var(--surface-default-modal);
   gap: 1rem;
   max-width: 100%;
-  min-width: 216px;
+  min-width: 200px;
   min-height: 60px;
   border: 1px solid var(--border-primary);
   padding: 0 2rem;
@@ -19,13 +19,13 @@
   cursor: pointer;
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
 
-  & > p {
+  .message {
     margin: 0;
     padding: 0;
     text-align: left;
     user-select: none;
 
-    @include typography(modal-1);
+    @include typography(app-modal-1);
 
     color: var(--text-body-primary);
 

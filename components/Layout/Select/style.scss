@@ -17,6 +17,7 @@
   position: relative;
   border: 1px solid var(--border-primary);
   cursor: pointer;
+  box-sizing: border-box;
 
   &.size-standard {
     height: 50px;
@@ -99,42 +100,22 @@
       justify-content: flex-start;
       box-sizing: border-box;
 
-      & > .search-frame {
-        display: inline-grid;
-        width: auto;
-        position: relative;
+      & > .select-search {
+        cursor: pointer;
+        height: 30px;
+        border: 0 solid transparent;
+        padding: 0;
+        margin: 0;
+        min-width: 100px;
+        max-width: 99.99%;
+        outline: none;
+        box-sizing: content-box;
+        background-color: var(--transparent);
+        width: min-content;
 
-        & > .input-push {
-          visibility: hidden;
-          white-space: pre-wrap;
-          grid-area: 1/2;
-          height: 30px;
-          min-width: 2px;
+        @include typography(app-modal-1);
 
-          @include typography(app-modal-1);
-
-          color: var(--text-body-main);
-        }
-
-        & > .select-search {
-          cursor: pointer;
-          position: absolute;
-          left: 0;
-          top: 0;
-          grid-area: 1/2;
-          height: 30px;
-          border: 0 solid transparent;
-          padding: 0;
-          margin: 0;
-          outline: none;
-          box-sizing: content-box;
-          background-color: var(--transparent);
-          max-width: 100%;
-
-          @include typography(app-modal-1);
-
-          color: var(--text-body-main);
-        }
+        color: var(--text-body-main);
       }
 
       & > .search-frame > .select-search::placeholder,

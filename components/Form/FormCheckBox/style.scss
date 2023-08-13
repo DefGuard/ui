@@ -11,5 +11,6 @@
     @include typography(app-modal-1);
 
     color: var(--text-body-secondary);
+    cursor: pointer;
   }
 }

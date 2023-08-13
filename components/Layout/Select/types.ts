@@ -14,6 +14,11 @@ export enum SelectSizeVariant {
   SMALL = 'SMALL',
 }
 
+export type SelectSelectedValue = {
+  key: string | number;
+  displayValue: string;
+};
+
 export interface SelectProps<T> {
   options: SelectOption<T>[];
   onChangeSingle?: (result: T) => void;
@@ -21,13 +26,15 @@ export interface SelectProps<T> {
   // needs to be provided when T is an object, should return value that is unique so option can be indentify
   identify?: (val: T) => string | number;
   selected?: T | T[];
-  // this is only informative, remove action will still trigger on change
-  onRemove?: (removedValue: T) => void;
+  // used to filter out values in form, can be used to trigger side effects
+  onRemove?: (removedValue: T, selected: T[]) => T[] | void;
   // optional, designed to use when API calls are needed in order to search for new options
   onSearch?: (value?: string) => void;
   // used before onSearch fires to filter out options that are present it is requied if searchable flag is present
   searchFilter?: (searchValue: string, options: SelectOption<T>[]) => SelectOption<T>[];
   onCreate?: () => void;
+  // Function that translates value into displayable object for rendering tags inside multi select.
+  renderSelected?: (value: T) => SelectSelectedValue;
   invalid?: boolean;
   errorMessage?: string;
   searchMinLength?: number;
