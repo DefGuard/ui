@@ -17,16 +17,25 @@
     color: var(--text-alert);
   }
 
-  & > .input-label {
-    @include typography(app-wizard-1);
-
-    color: var(--text-body-tertiary);
-    padding: 0;
-    margin: 0;
+  & > .top {
+    display: flex;
+    flex-flow: row nowrap;
     margin-bottom: 10px;
-    display: block;
-    user-select: none;
-    cursor: pointer;
+    column-gap: 10px;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+
+    & > .input-label {
+      @include typography(app-wizard-1);
+
+      color: var(--text-body-tertiary);
+      padding: 0;
+      margin: 0;
+      display: block;
+      user-select: none;
+      cursor: pointer;
+    }
   }
 
   & > .input-container {

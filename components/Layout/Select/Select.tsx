@@ -51,6 +51,7 @@ export const Select = <T,>({
   placeholder,
   selected,
   label,
+  labelExtras,
   invalid,
   errorMessage,
   addOptionLabel,
@@ -318,11 +319,16 @@ export const Select = <T,>({
 
   return (
     <div className="select" data-testid={testId}>
-      {label && label.length > 0 && (
-        <label className="select-label" htmlFor={selectId}>
-          {label}
-          {!disableLabelColon && ':'}
-        </label>
+      {(!isUndefined(label) || !isUndefined(labelExtras)) && (
+        <div className="top">
+          {!isUndefined(label) && (
+            <label className="select-label" htmlFor={selectId}>
+              {label}
+              {!disableLabelColon && ':'}
+            </label>
+          )}
+          {!isUndefined(labelExtras) && labelExtras}
+        </div>
       )}
       <motion.div
         ref={refs.setReference}

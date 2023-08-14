@@ -1,4 +1,4 @@
-import { Key } from 'react';
+import { Key, ReactNode } from 'react';
 
 export interface SelectOption<T> {
   value: T;
@@ -44,6 +44,7 @@ export interface SelectProps<T> {
   loading?: boolean;
   disabled?: boolean;
   label?: string;
+  labelExtras?: ReactNode;
   disableLabelColon?: boolean;
   inForm?: boolean;
   disableOpen?: boolean;

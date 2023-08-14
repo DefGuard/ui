@@ -7,6 +7,7 @@ export type InputFloatingErrors = {
 };
 
 export interface InputProps extends HTMLMotionProps<'input'> {
+  labelExtras?: ReactNode;
   required?: boolean;
   invalid?: boolean;
   label?: string | ReactNode;

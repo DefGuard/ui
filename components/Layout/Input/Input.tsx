@@ -10,6 +10,7 @@ import {
 } from '@floating-ui/react';
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
+import { isUndefined } from 'lodash-es';
 import React, { ReactNode, useEffect, useId, useMemo, useRef, useState } from 'react';
 
 import SvgIconAsterix from '../../svg/IconAsterix';
@@ -33,6 +34,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       label,
       disableOuterLabelColon,
       floatingErrors,
+      labelExtras,
       ...props
     },
     forwardedRef,
@@ -114,20 +116,25 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className="input">
-        {label && (
-          <motion.label
-            className="input-label"
-            htmlFor={inputId}
-            initial={false}
-            onClick={() => {
-              if (innerInputRef) {
-                innerInputRef.current?.focus();
-              }
-            }}
-          >
-            {label}
-            {!disableOuterLabelColon && ':'}
-          </motion.label>
+        {(!isUndefined(label) || !isUndefined(labelExtras)) && (
+          <div className="top">
+            {!isUndefined(label) && (
+              <motion.label
+                className="input-label"
+                htmlFor={inputId}
+                initial={false}
+                onClick={() => {
+                  if (innerInputRef) {
+                    innerInputRef.current?.focus();
+                  }
+                }}
+              >
+                {label}
+                {!disableOuterLabelColon && ':'}
+              </motion.label>
+            )}
+            {!isUndefined(labelExtras) && labelExtras}
+          </div>
         )}
         <motion.div
           ref={setReference}
