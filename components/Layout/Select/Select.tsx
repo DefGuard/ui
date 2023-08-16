@@ -213,22 +213,17 @@ export const Select = <T,>({
   const renderInner = useMemo(() => {
     if (searchFocused) return null;
 
-    if (
-      !searchable &&
-      (!selected || (selected && Array.isArray(selected) && selected.length === 0))
-    ) {
-      return <motion.span className="placeholder">{placeholder}</motion.span>;
+    if (!isUndefined(selected) && !isUndefined(placeholder)) {
+      return <span className="placeholder">{placeholder}</span>;
     }
 
-    if (selected && !Array.isArray(selected) && !searchFocused) {
-      const option = options.find((o) => o.value === selected);
-      return (
-        <motion.span className="selected-option">
-          {option?.label ?? String(option?.value)}
-        </motion.span>
-      );
+    if (!isUndefined(selected) && !Array.isArray(selected)) {
+      const displayValue = renderSelected(selected).displayValue;
+      return <span className="placeholder">{displayValue}</span>;
     }
-  }, [options, placeholder, searchFocused, searchable, selected]);
+
+    return null;
+  }, [placeholder, searchFocused, selected, renderSelected]);
 
   // options in float are only for presentation
   const floatingOptions = useMemo((): SelectFloatingOption<T>[] => {

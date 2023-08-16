@@ -21,7 +21,11 @@ export type SelectSelectedValue = {
 
 export interface SelectProps<T> {
   options: SelectOption<T>[];
+  // Function that translates value into displayable object, because options are separated from selected value
+  renderSelected: (value: T) => SelectSelectedValue;
+  // When in single mode emits change
   onChangeSingle?: (result: T) => void;
+  // When in multi mode emits change
   onChangeArray?: (result: T[]) => void;
   // needs to be provided when T is an object, should return value that is unique so option can be indentify
   identify?: (val: T) => string | number;
@@ -33,8 +37,6 @@ export interface SelectProps<T> {
   // used before onSearch fires to filter out options that are present it is requied if searchable flag is present
   searchFilter?: (searchValue: string, options: SelectOption<T>[]) => SelectOption<T>[];
   onCreate?: () => void;
-  // Function that translates value into displayable object for rendering tags inside multi select.
-  renderSelected?: (value: T) => SelectSelectedValue;
   invalid?: boolean;
   errorMessage?: string;
   searchMinLength?: number;
