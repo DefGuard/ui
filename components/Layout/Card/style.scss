@@ -4,6 +4,10 @@
   background-color: var(--surface-default-modal);
   box-sizing: border-box;
 
+  &.bordered {
+    border: 1px solid var(--border-primary);
+  }
+
   &.shaded {
     box-shadow: var(--box-shadow);
   }

@@ -1,14 +1,9 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { HTMLProps, useMemo } from 'react';
+import { useMemo } from 'react';
 
-export interface CheckBoxProps
-  extends Omit<HTMLProps<HTMLDivElement>, 'onChange' | 'value'> {
-  value: boolean;
-  disabled?: boolean;
-  onChange?: (value: boolean) => void;
-}
+import { CheckBoxProps } from './types';
 
 export const CheckBox = ({
   value,

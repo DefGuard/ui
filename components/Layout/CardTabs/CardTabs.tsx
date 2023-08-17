@@ -5,10 +5,10 @@ import Skeleton from 'react-loading-skeleton';
 
 import SvgIconArrowSingle2 from '../../../../components/svg/IconArrowSingle2';
 import { CardTab } from './components/CardTab';
-import { CardTabProps } from './types';
+import { CardTabsData } from './types';
 
 type Props = {
-  tabs: (CardTabProps & { key: string | number })[];
+  tabs: CardTabsData[];
   onCreate?: () => void;
   createContent?: ReactNode | string;
   loading?: boolean;
