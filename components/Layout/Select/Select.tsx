@@ -373,7 +373,9 @@ export const Select = <T,>({
           </div>
           <div className="side">
             {loading ? (
-              <LoaderSpinner size={22} />
+              <LoaderSpinner
+                size={sizeVariant === SelectSizeVariant.STANDARD ? 22 : 18}
+              />
             ) : (
               <ArrowSingle
                 size={ArrowSingleSize.LARGE}

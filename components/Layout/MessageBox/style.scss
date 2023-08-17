@@ -47,6 +47,7 @@
   }
 
   .message {
+    user-select: none;
     box-sizing: border-box;
     padding: 17px 0;
     p,
@@ -94,18 +95,18 @@
 
   &.warning {
     background-color: var(--surface-important-accent);
+
     .message {
       color: var(--text-important);
     }
-    & > .icon-container {
-      & > svg {
-        & > g {
-          & > circle {
-            fill: var(--surface-important);
-          }
-          & > rect {
-            fill: var(--surface-important-accent);
-          }
+
+    .icon-container {
+      svg {
+        circle {
+          fill: var(--surface-important);
+        }
+        path {
+          fill: var(--surface-important-accent);
         }
       }
     }
