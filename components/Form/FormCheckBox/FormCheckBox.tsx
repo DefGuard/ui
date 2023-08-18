@@ -4,7 +4,8 @@ import { isUndefined } from 'lodash-es';
 import { useId, useMemo } from 'react';
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
-import { CheckBox, CheckBoxProps } from '../../Layout/Checkbox/CheckBox';
+import { CheckBox } from '../../Layout/Checkbox/CheckBox';
+import { CheckBoxProps } from '../../Layout/Checkbox/types';
 
 interface Props<T extends FieldValues> extends Partial<CheckBoxProps> {
   controller: UseControllerProps<T>;
