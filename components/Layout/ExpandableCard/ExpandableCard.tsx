@@ -17,6 +17,8 @@ interface Props {
   onChange?: () => void;
   disableExpand?: boolean;
   topExtras?: ReactNode;
+  id?: string;
+  className?: string;
 }
 
 export const ExpandableCard = ({
@@ -26,14 +28,16 @@ export const ExpandableCard = ({
   onChange,
   expanded,
   topExtras,
+  id,
+  className,
   disableExpand = false,
 }: Props) => {
   const cn = useMemo(
     () =>
-      classNames('expandable-card', {
+      classNames('expandable-card', className, {
         expanded,
       }),
-    [expanded],
+    [expanded, className],
   );
 
   const controlledOutside = useMemo(() => !isUndefined(expanded), [expanded]);
@@ -43,6 +47,7 @@ export const ExpandableCard = ({
 
   return (
     <motion.div
+      id={id}
       className={cn}
       variants={containerVariants}
       custom={{ hovered }}

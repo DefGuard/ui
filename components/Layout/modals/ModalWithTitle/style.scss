@@ -135,11 +135,10 @@
                 column-gap: 1rem;
                 flex-flow: column-reverse;
                 box-sizing: border-box;
-                margin-top: 1.5rem;
+                margin-top: 15px;
 
                 @include media-breakpoint-up(lg) {
                   flex-flow: row nowrap;
-                  margin-top: calc(6.6rem - 2.5rem);
                 }
 
                 & > .btn {

@@ -97,6 +97,11 @@ export const Modal = ({
 
   const cn = useMemo(() => classNames('modal', className), [className]);
 
+  const contentClassName = useMemo(
+    () => classNames('modal-content', !isUndefined(currentStep) && `step-${currentStep}`),
+    [currentStep],
+  );
+
   const stepsEnabled = useMemo(
     () => !isUndefined(steps) && !isUndefined(currentStep),
     [currentStep, steps],
@@ -144,7 +149,7 @@ export const Modal = ({
             <motion.div className={cn}>
               <motion.div
                 id={id}
-                className="modal-content"
+                className={contentClassName}
                 role="dialog"
                 ref={contentRef}
                 initial={{
@@ -161,7 +166,7 @@ export const Modal = ({
               >
                 {children}
                 {stepsEnabled && steps && !isUndefined(step) ? (
-                  <div className={`step-content step-${step}`}>{steps[step]}</div>
+                  <div className="step-content">{steps[step]}</div>
                 ) : null}
               </motion.div>
             </motion.div>
