@@ -11,7 +11,7 @@ import {
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { debounceTime, Subject } from 'rxjs';
 import { useBreakpoint } from 'use-breakpoint';
 
@@ -65,6 +65,7 @@ export const Select = <T,>({
   inForm = false,
   disableOpen = false,
   sizeVariant = SelectSizeVariant.STANDARD,
+  disposable = true,
   'data-testid': testId,
 }: SelectProps<T>) => {
   const { breakpoint } = useBreakpoint(deviceBreakpoints);
@@ -107,45 +108,48 @@ export const Select = <T,>({
       autoUpdate(refElement, floatingElement, updateFunc),
   });
 
-  const handleSelect = (value: T): void => {
-    if (Array.isArray(selected)) {
-      if (!onChangeArray) {
-        throw Error('onChangeArray was not suplited when selected is an array');
-      }
-      if (selected.length) {
-        if (isComparableWithStrictEquality(value) && !identify) {
-          const includes = selected.includes(value);
-          if (includes) {
-            onChangeArray(selected.filter((v) => v !== value));
+  const handleSelect = useCallback(
+    (value: T): void => {
+      if (Array.isArray(selected)) {
+        if (!onChangeArray) {
+          throw Error('onChangeArray was not suplited when selected is an array');
+        }
+        if (selected.length) {
+          if (isComparableWithStrictEquality(value) && !identify) {
+            const includes = selected.includes(value);
+            if (includes) {
+              onChangeArray(selected.filter((v) => v !== value));
+            } else {
+              onChangeArray([...selected, value]);
+            }
           } else {
-            onChangeArray([...selected, value]);
+            if (!identify) {
+              throw Error('Select component needs identify method for comparing Objects');
+            }
+            const includes = selected
+              .map((v) => identify(v))
+              .find((v) => v === identify(value));
+            if (includes) {
+              onChangeArray(selected.filter((v) => identify(v) !== identify(value)));
+            } else {
+              onChangeArray([...selected, value]);
+            }
           }
         } else {
-          if (!identify) {
-            throw Error('Select component needs identify method for comparing Objects');
-          }
-          const includes = selected
-            .map((v) => identify(v))
-            .find((v) => v === identify(value));
-          if (includes) {
-            onChangeArray(selected.filter((v) => identify(v) !== identify(value)));
-          } else {
-            onChangeArray([...selected, value]);
-          }
+          onChangeArray?.([value]);
         }
       } else {
-        onChangeArray?.([value]);
+        setOpen(false);
+        if (!onChangeSingle) {
+          throw Error(
+            'onChangeSingle was not suplied when selected value was not an array',
+          );
+        }
+        onChangeSingle(value);
       }
-    } else {
-      setOpen(false);
-      if (!onChangeSingle) {
-        throw Error(
-          'onChangeSingle was not suplied when selected value was not an array',
-        );
-      }
-      onChangeSingle(value);
-    }
-  };
+    },
+    [onChangeArray, onChangeSingle, selected, identify],
+  );
 
   const getClassName = useMemo(() => {
     return classNames(
@@ -198,9 +202,12 @@ export const Select = <T,>({
           <Tag
             key={data.key}
             text={data.displayValue}
-            disposable={!isUndefined(onRemove)}
+            disposable={disposable}
             onDispose={() => {
-              onRemove?.(val, selected);
+              if (onRemove) {
+                onRemove(val);
+              }
+              handleSelect(val);
             }}
           />
         );
@@ -208,7 +215,7 @@ export const Select = <T,>({
     }
 
     return null;
-  }, [multi, onRemove, selected, renderSelected]);
+  }, [multi, onRemove, selected, renderSelected, handleSelect, disposable]);
 
   const renderInner = useMemo(() => {
     if (searchFocused) return null;

@@ -30,8 +30,11 @@ export interface SelectProps<T> {
   // needs to be provided when T is an object, should return value that is unique so option can be indentify
   identify?: (val: T) => string | number;
   selected?: T | T[];
-  // used to filter out values in form, can be used to trigger side effects
-  onRemove?: (removedValue: T, selected: T[]) => T[] | void;
+  // called before removing selected value. Only available in multi mode.
+  onRemove?: (removedValue: T) => void;
+  // Multi mode flag, tells if selected values can be removed ( does not affect options )
+  // @defaultValue `true`
+  disposable?: boolean;
   // optional, designed to use when API calls are needed in order to search for new options
   onSearch?: (value?: string) => void;
   // used before onSearch fires to filter out options that are present it is requied if searchable flag is present
