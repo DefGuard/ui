@@ -220,10 +220,12 @@ export const Select = <T,>({
   const renderInner = useMemo(() => {
     if (searchFocused) return null;
 
-    if (!isUndefined(selected) && !isUndefined(placeholder)) {
+    // render placeholder when selected is undefined
+    if (isUndefined(selected) && !isUndefined(placeholder)) {
       return <span className="placeholder">{placeholder}</span>;
     }
 
+    // render selected value for single mode
     if (!isUndefined(selected) && !Array.isArray(selected)) {
       const displayValue = renderSelected(selected).displayValue;
       return <span className="placeholder">{displayValue}</span>;

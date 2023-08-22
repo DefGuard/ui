@@ -1,7 +1,7 @@
 import './style.scss';
 
 import { isUndefined } from 'lodash-es';
-import { useId, useMemo } from 'react';
+import { useId } from 'react';
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
 import { CheckBox } from '../../Layout/Checkbox/CheckBox';
@@ -9,19 +9,12 @@ import { CheckBoxProps } from '../../Layout/Checkbox/types';
 
 interface Props<T extends FieldValues> extends Partial<CheckBoxProps> {
   controller: UseControllerProps<T>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  customValue?: (context: any) => boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  customOnChange?: (context: any) => unknown;
-
   label?: string;
   labelPlacement?: 'left' | 'right';
 }
 
 export const FormCheckBox = <T extends FieldValues>({
   controller,
-  customValue,
-  customOnChange,
   label,
   labelPlacement,
   ...rest
@@ -32,21 +25,13 @@ export const FormCheckBox = <T extends FieldValues>({
     field: { value, onChange },
   } = useController(controller);
 
-  const checkBoxValue = useMemo(() => {
-    if (customValue) {
-      return customValue(value);
-    }
-
-    return value;
-  }, [customValue, value]);
-
   const renderLabel = () => {
     if (label) {
       return (
         <label
           htmlFor={fieldId}
           onClick={() => {
-            onChange(!checkBoxValue);
+            onChange(!value);
           }}
         >
           {label}
@@ -63,13 +48,9 @@ export const FormCheckBox = <T extends FieldValues>({
         id={fieldId}
         data-testid={`field-${controller.name}`}
         {...rest}
-        value={checkBoxValue}
-        onChange={(e) => {
-          if (customOnChange) {
-            onChange(customOnChange(value));
-          } else {
-            onChange(e);
-          }
+        value={value}
+        onChange={(val) => {
+          onChange(val);
         }}
       />
       {labelPlacement === 'right' && !isUndefined(label) && renderLabel()}
