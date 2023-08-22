@@ -1,5 +1,5 @@
 import { isUndefined } from 'lodash-es';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
 import { Input } from '../../Layout/Input/Input';
@@ -54,8 +54,6 @@ export const FormInput = <T extends FieldValues>({
     }
     return undefined;
   }, [error, floatingErrors, isInvalid]);
-
-  useEffect(() => console.log(error), [error]);
 
   return (
     <Input
