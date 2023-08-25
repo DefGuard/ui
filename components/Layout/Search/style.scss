@@ -1,52 +1,59 @@
-@use '@shared/scss/base/variables' as v;
-@use '@shared/scss/helpers/mixins' as mix;
+@use '../../../../scss/helpers' as *;
 
 .search {
-  position: relative;
-  display: inline-flex;
   min-height: 40px;
   min-width: 100px;
-  width: auto;
-  height: auto;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 14px;
+  box-sizing: border-box;
+  padding: 1px 15px;
+  background-color: var(--surface-frame-bg);
+  border: 1px solid var(--border-primary);
+  border-radius: 10px;
+  overflow: hidden;
+  align-items: center;
+
+  transition-duration: 100ms;
+  transition-timing-function: ease-in-out;
+  transition-property: background-color;
 
   & > input {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    background-color: v.$bg-light;
-    border: 1px solid v.$gray-border-dark;
-    border-radius: 1rem;
+    padding: 0;
     margin: 0;
-    display: flex;
-    flex: 1 0 auto;
-    padding: 1.3rem;
-    box-sizing: border-box;
-    font-size: 1.2rem;
-    font-family: Roboto;
-    @include mix.text-weight(medium);
+    max-width: 100%;
+    overflow: hidden;
+    border: 0 solid transparent;
+    background-color: transparent;
 
-    color: v.$text-main;
-    line-height: 1.4;
-    padding-right: 3.2rem;
+    @include typography(app-input);
+
+    color: var(--text-body-primary);
 
     &::placeholder {
-      font-size: 1.2rem;
-      font-family: Roboto;
-      @include mix.text-weight(medium);
+      @include typography(app-modal-1);
 
-      color: v.$gray-dark;
-      line-height: 1.4;
+      color: var(--text-body-tertiary);
     }
   }
 
   & > svg {
-    position: absolute;
-    right: 0.8rem;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    pointer-events: none;
+    width: 14px;
+    height: 14px;
+    path {
+      transition-duration: 100ms;
+      transition-timing-function: ease-in-out;
+      transition-property: fill;
+      fill: var(--surface-icon-primary);
+    }
+  }
+
+  &:focus-within {
+    background-color: var(--surface-default-modal);
+    & > svg {
+      path {
+        fill: var(--surface-main-primary);
+      }
+    }
   }
 }

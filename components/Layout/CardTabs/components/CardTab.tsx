@@ -2,10 +2,11 @@ import classNames from 'classnames';
 import { motion, TargetAndTransition } from 'framer-motion';
 import { useMemo, useState } from 'react';
 
-import { ColorsRGB } from '../../../../../constants';
+import { useTheme } from '../../../../hooks/theme/useTheme';
 import { CardTabProps } from '../types';
 
 export const CardTab = ({ onClick, content, active = false }: CardTabProps) => {
+  const { colors } = useTheme();
   const [hovered, setHovered] = useState(false);
   const cn = useMemo(
     () => classNames('card-tab', { active, hovered }),
@@ -22,18 +23,17 @@ export const CardTab = ({ onClick, content, active = false }: CardTabProps) => {
   const getAnimate = useMemo((): TargetAndTransition => {
     const res: TargetAndTransition = {
       height: 32,
-      backgroundColor: ColorsRGB.GrayLighter,
-      color: ColorsRGB.GrayLight,
+      backgroundColor: colors.surfaceTagModal,
+      color: colors.textBodyPrimary,
     };
 
     if (active || hovered) {
       res.height = 42;
-      res.color = ColorsRGB.TextMain;
-      res.backgroundColor = ColorsRGB.White;
+      res.backgroundColor = colors.surfaceDefaultModal;
     }
 
     return res;
-  }, [active, hovered]);
+  }, [active, hovered, colors]);
 
   return (
     <motion.button

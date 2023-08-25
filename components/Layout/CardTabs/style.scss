@@ -64,7 +64,7 @@
       border: 0 solid transparent;
       border-radius: 10px 10px 0 0;
       padding: 0 20px;
-      background-color: var(--gray-lighter);
+      background-color: var(--surface-tag-modal);
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
@@ -89,8 +89,7 @@
       &.active,
       &.hovered {
         height: 43px;
-        color: var(--text-main);
-        background-color: var(--white);
+        background-color: var(--surface-default-modal);
       }
     }
   }

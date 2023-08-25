@@ -26,7 +26,7 @@ const baseClass = 'modal middle confirm';
 /**
  * Reusable modal configuration for modals confirming an action.
  */
-const ConfirmModal = ({
+export const ConfirmModal = ({
   isOpen,
   setIsOpen,
   type,
@@ -79,5 +79,3 @@ const ConfirmModal = ({
     </Modal>
   );
 };
-
-export default ConfirmModal;

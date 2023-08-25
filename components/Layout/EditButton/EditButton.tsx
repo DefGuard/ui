@@ -14,7 +14,7 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import { ReactNode, useMemo, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
-import { EditButtonIcon } from './EditButtonIcon';
+import SvgIconSettings from '../../svg/IconSettings';
 
 interface EditButtonProps extends HTMLMotionProps<'button'> {
   disabled?: boolean;
@@ -43,8 +43,9 @@ export const EditButton = ({
     () =>
       classNames('edit-button', className, {
         visible: visible,
+        active: hovered || open,
       }),
-    [className, visible],
+    [className, visible, open, hovered],
   );
   const { x, y, refs, strategy, placement, middlewareData } = useFloating({
     placement: 'left',
@@ -55,21 +56,6 @@ export const EditButton = ({
     whileElementsMounted: (refElement, floatingElement, updateFunc) =>
       autoUpdate(refElement, floatingElement, updateFunc),
   });
-
-  const getIconVariant = useMemo(() => {
-    if (open && !disabled) {
-      return 'hover';
-    }
-    if (!visible) {
-      return 'hidden';
-    }
-    if (!disabled) {
-      if (hovered || open) {
-        return 'hover';
-      }
-    }
-    return 'idle';
-  }, [disabled, hovered, open, visible]);
 
   const staticSide: string = useMemo(() => {
     const mapping: PlacementMap = {
@@ -86,7 +72,10 @@ export const EditButton = ({
     <>
       <motion.button
         {...rest}
+        type="button"
+        ref={refs.setReference}
         className={cn}
+        disabled={disabled}
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
         onClick={(ev) => {
@@ -96,10 +85,8 @@ export const EditButton = ({
             setOpen((state) => !state);
           }
         }}
-        disabled={disabled}
-        type="button"
       >
-        <EditButtonIcon ref={refs.setReference} animate={getIconVariant} />
+        <SvgIconSettings />
       </motion.button>
       <FloatingPortal>
         {open && (

@@ -1,5 +1,4 @@
-@use '@shared/scss/base/variables' as v;
-@use '@shared/scss/helpers/mixins' as mix;
+@use '../../../../scss/helpers' as *;
 
 .user-initials-box {
   display: flex;
@@ -7,25 +6,20 @@
   align-items: center;
   justify-content: center;
   border: 0 solid transparent;
-  border-radius: 1rem;
-  cursor: pointer;
+  border-radius: 10px;
+  user-select: none;
+  height: 40px;
+  width: 40px;
+  overflow: none;
+  background-color: var(--surface-main-primary);
 
-  &.small {
-    @include mix.text-weight(semiBold);
-    @include mix.poppins;
+  span {
+    display: block;
 
-    height: 3rem;
-    width: 3rem;
-    font-size: 1.2rem;
-    line-height: 1.4;
-  }
+    @include typography(app-body-1);
 
-  &.big {
-    @include mix.text-weight(semiBold);
-    @include mix.poppins;
+    color: var(--surface-icon-secondary);
 
-    height: 4rem;
-    width: 4rem;
-    font-size: 1.5rem;
+    font-size: 17px;
   }
 }
