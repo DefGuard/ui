@@ -2,9 +2,9 @@ import './style.scss';
 
 import classNames from 'classnames';
 import { HTMLMotionProps, motion, TargetAndTransition } from 'framer-motion';
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useMemo } from 'react';
 
-import { buttonsBoxShadow, ColorsRGB, inactiveBoxShadow } from '../../../../constants';
+import { useTheme } from '../../../hooks/theme/useTheme';
 
 interface Props extends HTMLMotionProps<'div'> {
   children: ReactNode;
@@ -20,7 +20,7 @@ export const RowBox = ({
   disabled = false,
   ...rest
 }: Props) => {
-  const [hovered, setHovered] = useState(false);
+  const { colors } = useTheme();
   const cn = useMemo(
     () =>
       classNames('row-box', className, {
@@ -31,31 +31,20 @@ export const RowBox = ({
 
   const getAnimate = useMemo((): TargetAndTransition => {
     let res: TargetAndTransition = {
-      borderColor: ColorsRGB.GrayBorder,
-      boxShadow: inactiveBoxShadow,
+      borderColor: colors.borderPrimary,
       opacity: 1,
     };
     if (disabled) {
       res.opacity = 0.8;
     }
-    if (hovered) {
-      res.boxShadow = buttonsBoxShadow;
-    }
     if (customAnimate) {
       res = { ...res, ...customAnimate };
     }
     return res;
-  }, [disabled, hovered, customAnimate]);
+  }, [disabled, customAnimate, colors.borderPrimary]);
 
   return (
-    <motion.div
-      className={cn}
-      initial={false}
-      animate={getAnimate}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      {...rest}
-    >
+    <motion.div className={cn} initial={false} animate={getAnimate} {...rest}>
       {children}
     </motion.div>
   );

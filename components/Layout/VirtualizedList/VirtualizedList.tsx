@@ -9,7 +9,7 @@ import { isUndefined } from 'lodash-es';
 import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useBreakpoint } from 'use-breakpoint';
 
-import { ColorsRGB, deviceBreakpoints } from '../../../../constants';
+import { deviceBreakpoints } from '../../../../constants';
 import { ListHeader, ListSortDirection, VirtualizedListProps } from './types';
 import { VirtualizedListSortIcon } from './VirtualizedListSortIcon';
 
@@ -267,13 +267,7 @@ const ListHeader = ({
         }
       }}
     >
-      <motion.span
-        ref={refs.setReference}
-        variants={headerSpanVariants}
-        animate={active ? 'active' : 'idle'}
-      >
-        {text}
-      </motion.span>
+      <span ref={refs.setReference}>{text}</span>
       <div
         className="floating-header-icon"
         ref={refs.setFloating}
@@ -323,15 +317,6 @@ const defaultRowContainerVariants: Variants = {
   },
   hovered: {
     boxShadow: '5px 10px 20px rgba(0,0,0,0.1)',
-  },
-};
-
-const headerSpanVariants: Variants = {
-  idle: {
-    color: ColorsRGB.GrayLight,
-  },
-  active: {
-    color: ColorsRGB.TextMain,
   },
 };
 

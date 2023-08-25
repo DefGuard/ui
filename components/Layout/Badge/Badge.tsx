@@ -1,63 +1,29 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { HTMLMotionProps, motion, Variants } from 'framer-motion';
-import React, { useMemo } from 'react';
+import { HTMLProps, useMemo } from 'react';
 
-import { ColorsRGB } from '../../../../constants';
 import { BadgeStyleVariant } from './types';
 
-interface Props {
+type Props = HTMLProps<HTMLDivElement> & {
   text: string;
   styleVariant?: BadgeStyleVariant;
-}
+};
 
-const Badge: React.FC<Props & HTMLMotionProps<'span'>> = ({
+export const Badge = ({
   text,
-  styleVariant = BadgeStyleVariant.STANDARD,
   className,
+  styleVariant = BadgeStyleVariant.STANDARD,
   ...rest
-}) => {
+}: Props) => {
   const cn = useMemo(
     () => classNames('badge', className, styleVariant.valueOf()),
     [className, styleVariant],
   );
 
-  const currentVariant = useMemo(() => styleVariant, [styleVariant]);
-
   return (
-    <motion.span
-      className={cn}
-      {...rest}
-      variants={badgeVariants}
-      animate={currentVariant}
-      initial={false}
-    >
-      {text}
-    </motion.span>
+    <div className={cn} {...rest}>
+      <span>{text}</span>
+    </div>
   );
-};
-export default Badge;
-
-const badgeVariants: Variants = {
-  primary: {
-    backgroundColor: ColorsRGB.Primary,
-    color: ColorsRGB.White,
-  },
-  standard: {
-    backgroundColor: ColorsRGB.BgLight,
-    color: ColorsRGB.GrayLight,
-  },
-  warning: {
-    backgroundColor: ColorsRGB.LightRedBg,
-    color: ColorsRGB.Error,
-  },
-  inactive: {
-    backgroundColor: ColorsRGB.GrayLight,
-    color: ColorsRGB.White,
-  },
-  success: {
-    backgroundColor: ColorsRGB.SuccessDark,
-    color: ColorsRGB.White,
-  },
 };

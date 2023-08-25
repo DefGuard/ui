@@ -1,7 +1,6 @@
-import { HTMLMotionProps, motion, Variant, Variants } from 'framer-motion';
-import { useState } from 'react';
+import classNames from 'classnames';
+import { HTMLMotionProps, motion } from 'framer-motion';
 
-import { ColorsRGB } from '../../../../constants';
 import { EditButtonOptionStyleVariant } from './types';
 
 interface EditButtonOptionProps extends HTMLMotionProps<'button'> {
@@ -12,64 +11,14 @@ interface EditButtonOptionProps extends HTMLMotionProps<'button'> {
 export const EditButtonOption = ({
   text,
   disabled,
+  className,
   styleVariant = EditButtonOptionStyleVariant.STANDARD,
   ...rest
 }: EditButtonOptionProps) => {
-  const [hovered, setHovered] = useState(false);
+  const cn = classNames(`variant-${styleVariant.valueOf().toLowerCase()}`, className);
   return (
-    <motion.button
-      disabled={disabled}
-      variants={editButtonOptionVariants}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      animate={hovered ? 'optionHover' : 'optionIdle'}
-      initial="optionIdle"
-      custom={{ styleVariant, disabled }}
-      {...rest}
-    >
+    <motion.button disabled={disabled} className={cn} {...rest}>
       {text}
     </motion.button>
   );
-};
-
-interface EditButtonOptionVariantCustom {
-  styleVariant: EditButtonOptionStyleVariant;
-  disabled?: boolean;
-}
-
-const disabledVariant: Variant = {
-  color: ColorsRGB.GrayDark,
-  backgroundColor: ColorsRGB.White,
-  opacity: 0.8,
-};
-
-const editButtonOptionVariants: Variants = {
-  optionIdle: ({ styleVariant, disabled }: EditButtonOptionVariantCustom) => {
-    if (disabled) {
-      return disabledVariant;
-    }
-    const res = {
-      color: ColorsRGB.GrayDark,
-      backgroundColor: ColorsRGB.White,
-      opacity: 1,
-    };
-    if (styleVariant === EditButtonOptionStyleVariant.WARNING) {
-      res.color = ColorsRGB.Error;
-    }
-    return res;
-  },
-  optionHover: ({ styleVariant, disabled }: EditButtonOptionVariantCustom) => {
-    if (disabled) {
-      return disabledVariant;
-    }
-    const res = {
-      color: ColorsRGB.TextMain,
-      backgroundColor: ColorsRGB.BgLight,
-      opacity: 1,
-    };
-    if (styleVariant === EditButtonOptionStyleVariant.WARNING) {
-      res.color = ColorsRGB.ErrorDark;
-    }
-    return res;
-  },
 };

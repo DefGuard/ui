@@ -1,68 +1,51 @@
 import './style.scss';
 
-import { ComponentPropsWithoutRef, useMemo } from 'react';
+import classNames from 'classnames';
+import { HTMLProps, useMemo } from 'react';
 
 import { ActivityIcon } from '../../icons/ActivityIcon/ActivityIcon';
 import { ActivityIconVariant } from '../../icons/ActivityIcon/types';
 import { ActivityType } from './types';
 
-interface Props extends ComponentPropsWithoutRef<'div'> {
+type Props = HTMLProps<HTMLDivElement> & {
   connectionStatus?: ActivityType;
-  customMessage?: string;
-}
+  message?: string;
+  // reverse order of elements
+  reversed?: boolean;
+};
 
-/**
- * Displays styled information about connection status of an device or user.
- */
+// styled status info, name was part of old design
 export const ActivityStatus = ({
-  connectionStatus = ActivityType.CONNECTED,
-  customMessage,
+  connectionStatus = ActivityType.SUCCESS,
+  message,
   className,
+  reversed = false,
   ...rest
 }: Props) => {
-  const getText = useMemo(() => {
-    switch (connectionStatus) {
-      case ActivityType.CONNECTED:
-        return 'Connected';
-      case ActivityType.ADDED:
-        return 'New device';
-      case ActivityType.ALERT:
-        return 'Heavy usage alert';
-      case ActivityType.DISCONNECTED:
-        return 'Disconnected';
-      case ActivityType.REMOVED:
-        return 'Removed device';
-    }
-  }, [connectionStatus]);
-
   const getIconType = useMemo((): ActivityIconVariant => {
     switch (connectionStatus) {
-      case ActivityType.CONNECTED:
+      case ActivityType.SUCCESS:
         return ActivityIconVariant.CONNECTED;
-      case ActivityType.ADDED:
-        return ActivityIconVariant.CONNECTED;
-      case ActivityType.ALERT:
+      case ActivityType.ERROR:
         return ActivityIconVariant.ERROR;
-      case ActivityType.DISCONNECTED:
+      case ActivityType.WARNING:
         return ActivityIconVariant.DISCONNECTED;
-      case ActivityType.REMOVED:
-        return ActivityIconVariant.ERROR;
     }
   }, [connectionStatus]);
 
-  const getClassName = useMemo(() => {
-    const res = ['activity-status'];
-    res.push(connectionStatus.valueOf());
-    if (className) {
-      res.push(className);
-    }
-    return res.join(' ');
-  }, [className, connectionStatus]);
+  const cn = classNames(
+    'activity-status',
+    className,
+    `variant-${connectionStatus.valueOf()}`,
+    {
+      reversed: reversed,
+    },
+  );
 
   return (
-    <div className={getClassName} {...rest}>
+    <div className={cn} {...rest}>
       <ActivityIcon status={getIconType} />
-      <span>{customMessage || getText}</span>
+      {message && message.length > 0 && <p className="message">{message}</p>}
     </div>
   );
 };

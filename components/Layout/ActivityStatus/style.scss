@@ -1,44 +1,43 @@
-@use '@shared/scss/base/variables' as v;
-@use '@shared/scss/helpers/mixins' as mix;
+@use '../../../scss/helpers' as *;
 
 .activity-status {
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
+  column-gap: 5px;
   align-items: center;
   justify-content: flex-start;
-  width: auto;
-  height: auto;
-  column-gap: 5px;
 
-  span {
-    font-size: 1.2rem;
-    line-height: 1.4rem;
-    font-family: Roboto;
-    @include mix.text-weight(medium);
+  & > .message {
+    order: 1;
+    display: block;
+
+    @include typography(app-modal-3);
+    color: inherit;
   }
 
-  &.connected {
-    span {
-      color: v.$success;
+  & > .activity-icon {
+    order: 2;
+  }
+
+  &.variant-success {
+    color: var(--text-positive);
+  }
+
+  &.variant-error {
+    color: var(--text-alert);
+  }
+
+  &.variant-warning {
+    color: var(--text-important);
+  }
+
+  &.reversed {
+    & > .message {
+      order: 2;
     }
-  }
 
-  &.disconnected {
-    span {
-      color: v.$gray-light;
-    }
-  }
-
-  &.added {
-    span {
-      color: v.$primary;
-    }
-  }
-
-  &.removed,
-  &.alert {
-    span {
-      color: v.$error;
+    & > .activity-icon {
+      order: 1;
     }
   }
 }

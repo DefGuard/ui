@@ -1,6 +1,7 @@
 import './style.scss';
 
-import { HTMLMotionProps, motion, Variants } from 'framer-motion';
+import classNames from 'classnames';
+import { HTMLMotionProps, motion } from 'framer-motion';
 import { useMemo } from 'react';
 
 import SvgAvatar01Blue from '../../../../components/svg/Avatar01Blue';
@@ -27,13 +28,10 @@ import SvgAvatar11Blue from '../../../../components/svg/Avatar11Blue';
 import SvgAvatar11Gray from '../../../../components/svg/Avatar11Gray';
 import SvgAvatar12Blue from '../../../../components/svg/Avatar12Blue';
 import SvgAvatar12Gray from '../../../../components/svg/Avatar12Gray';
-import { ColorsRGB } from '../../../../constants';
-import { DeviceAvatarVariants } from './types';
 import { getDeviceAvatar } from './utils/getDeviceAvatar';
 
 interface Props extends HTMLMotionProps<'div'> {
   active?: boolean;
-  styleVariant?: DeviceAvatarVariants;
   deviceId?: number;
 }
 
@@ -74,12 +72,7 @@ const gray: JSX.Element[] = [
  * Displays avatar for user devices.
  * @param active Determinate style variant.
  */
-export const DeviceAvatar = ({
-  active = true,
-  styleVariant = DeviceAvatarVariants.BLANK,
-  deviceId,
-  ...props
-}: Props) => {
+export const DeviceAvatar = ({ className, deviceId, active = true, ...props }: Props) => {
   const deviceAvatar = useMemo(() => {
     if (deviceId) {
       const elements = getDeviceAvatar(deviceId);
@@ -104,39 +97,17 @@ export const DeviceAvatar = ({
     }
   }, [active, deviceAvatar, deviceId]);
 
-  const getClassName = useMemo(() => {
-    const res = ['avatar-icon'];
-    if (active) {
-      res.push('active');
-    }
-    res.push(styleVariant.valueOf());
-    return res.join(' ');
-  }, [active, styleVariant]);
-
-  const getAnimate = useMemo(() => {
-    return styleVariant.valueOf();
-  }, [styleVariant]);
+  const cn = classNames(
+    'avatar-icon',
+    {
+      active,
+    },
+    className,
+  );
 
   return (
-    <motion.div
-      {...props}
-      variants={containerVariants}
-      className={getClassName}
-      initial={false}
-      animate={getAnimate}
-    >
+    <motion.div {...props} className={cn}>
       {avatar}
     </motion.div>
   );
-};
-
-const containerVariants: Variants = {
-  blank: {
-    backgroundColor: 'transparent',
-    borderRadius: '0px',
-  },
-  grayBox: {
-    backgroundColor: ColorsRGB.BgLight,
-    borderRadius: '10px',
-  },
 };
