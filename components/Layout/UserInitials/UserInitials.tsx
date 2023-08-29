@@ -2,8 +2,7 @@ import './style.scss';
 
 import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
-
-import { extractInitials } from '../../../../utils/extractInitials';
+import { useMemo } from 'react';
 
 type Props = HTMLMotionProps<'div'> & {
   first_name: string;
@@ -12,14 +11,18 @@ type Props = HTMLMotionProps<'div'> & {
 
 /**
  * Displays styled semi avatar box with user initials as a content.
- * @param first_name first name from User type
- * @param last_name last name from User type
  */
 export const UserInitials = ({ first_name, last_name, className, ...rest }: Props) => {
   const cn = classNames('user-initials-box', className);
+
+  const initials = useMemo(
+    () => `${first_name[0].toUpperCase()} ${last_name[0].toUpperCase()}`,
+    [first_name, last_name],
+  );
+
   return (
     <motion.span className={cn} {...rest}>
-      <motion.span>{extractInitials(`${first_name} ${last_name}`)}</motion.span>
+      <motion.span>{initials}</motion.span>
     </motion.span>
   );
 };

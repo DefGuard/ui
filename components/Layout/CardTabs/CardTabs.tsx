@@ -3,7 +3,8 @@ import './style.scss';
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import SvgIconArrowSingle2 from '../../../../components/svg/IconArrowSingle2';
+import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
+import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
 import { CardTab } from './components/CardTab';
 import { CardTabsData } from './types';
 
@@ -80,11 +81,17 @@ export const CardTabs = ({ tabs, onCreate, createContent, loading = false }: Pro
       </div>
       {showScrollControlls && (
         <div className="scroll-controls">
-          <button>
-            <SvgIconArrowSingle2 onClick={() => handleScroll('left')} />
+          <button onClick={() => handleScroll('left')}>
+            <ArrowSingle
+              direction={ArrowSingleDirection.LEFT}
+              size={ArrowSingleSize.LARGE}
+            />
           </button>
-          <button>
-            <SvgIconArrowSingle2 onClick={() => handleScroll('right')} />
+          <button onClick={() => handleScroll('right')}>
+            <ArrowSingle
+              direction={ArrowSingleDirection.RIGHT}
+              size={ArrowSingleSize.LARGE}
+            />
           </button>
         </div>
       )}

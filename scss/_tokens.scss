@@ -38,10 +38,12 @@
 @use './primitives' as *;
 
 html[data-theme='light'] {
+  --surface-scroll-inactive: #{$greyscale-30};
   --border-secondary: #{$greyscale-20};
   --surface-info-modal: #{$greyscale-10};
   --surface-icon-secondary: #{$greyscale-0};
   --surface-default-modal: #{$greyscale-0};
+  --surface-scroll-active: #{$greyscale-50};
   --border-separator: #{$greyscale-40};
   --surface-nav-bg: #{$greyscale-0};
   --surface-frame-bg: #{$greyscale-10};
@@ -75,10 +77,12 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'] {
+  --surface-scroll-inactive: #{$greyscale-30};
   --border-secondary: #{$greyscale-20};
   --surface-info-modal: #{$greyscale-70};
   --surface-icon-secondary: #{$greyscale-0};
   --surface-default-modal: #{$greyscale-80};
+  --surface-scroll-active: #{$greyscale-50};
   --border-separator: #{$greyscale-70};
   --surface-nav-bg: #{$greyscale-80};
   --surface-frame-bg: #{$greyscale-90};

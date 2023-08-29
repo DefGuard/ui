@@ -40,6 +40,12 @@
       margin: 0;
       user-select: none;
 
+      & > svg {
+        path {
+          fill: var(--surface-icon-primary);
+        }
+      }
+
       & > span {
         @include typography(app-button-xl);
 
@@ -58,6 +64,18 @@
 
       & > * {
         grid-row: 1;
+      }
+    }
+
+    &.expanded {
+      & > .top {
+        & > .expand-button {
+          & > svg {
+            path {
+              fill: var(--surface-main-primary);
+            }
+          }
+        }
       }
     }
   }

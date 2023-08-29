@@ -1,13 +1,11 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { motion, Variant, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
 import { ReactNode, useMemo, useState } from 'react';
 
-import SvgIconUserListExpanded from '../../../../components/svg/IconUserListExpanded';
-import SvgIconUserListHover from '../../../../components/svg/IconUserListHover';
-import { cardsShadow, inactiveBoxShadow } from '../../../../constants';
+import SvgIconHamburgerDotted from '../../svg/IconHamburgerDotted';
 
 interface Props {
   children?: ReactNode;
@@ -43,18 +41,9 @@ export const ExpandableCard = ({
   const controlledOutside = useMemo(() => !isUndefined(expanded), [expanded]);
 
   const [localExpanded, setLocalExpanded] = useState(false);
-  const [hovered, setHovered] = useState(false);
 
   return (
-    <motion.div
-      id={id}
-      className={cn}
-      variants={containerVariants}
-      custom={{ hovered }}
-      animate={expanded ? 'expanded' : 'idle'}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-    >
+    <motion.div id={id} className={cn}>
       <div className="top">
         <button
           type="button"
@@ -68,7 +57,7 @@ export const ExpandableCard = ({
           }}
           className="expand-button"
         >
-          {expanded ? <SvgIconUserListExpanded /> : <SvgIconUserListHover />}
+          <SvgIconHamburgerDotted />
           <span>{title}</span>
         </button>
         {!isUndefined(topExtras) && <div className="extras">{topExtras}</div>}
@@ -79,25 +68,4 @@ export const ExpandableCard = ({
       ) : null}
     </motion.div>
   );
-};
-
-type ContainerCustom = {
-  hovered?: boolean;
-};
-
-const containerVariants: Variants = {
-  idle: ({ hovered }: ContainerCustom) => {
-    const res: Variant = {
-      boxShadow: inactiveBoxShadow,
-    };
-
-    if (hovered) {
-      res.boxShadow = cardsShadow;
-    }
-
-    return res;
-  },
-  expanded: {
-    boxShadow: cardsShadow,
-  },
 };

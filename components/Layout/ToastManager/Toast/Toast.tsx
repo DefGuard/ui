@@ -4,11 +4,10 @@ import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import SvgIconInfoError from '../../../../../components/svg/IconInfoError';
-import SvgIconInfoNormal from '../../../../../components/svg/IconInfoNormal';
-import SvgIconInfoWarning from '../../../../../components/svg/IconInfoWarning';
 import { useToastsStore } from '../../../../hooks/toasts/useToastStore';
+import SvgIconInfo from '../../../svg/IconInfo';
 import SvgIconInfoSuccess from '../../../svg/IconInfoSuccess';
+import SvgIconWarning from '../../../svg/IconWarning';
 import { ToastProps, ToastType } from './types';
 
 export const Toast = ({ data: { id, type, message, subMessage } }: ToastProps) => {
@@ -21,13 +20,13 @@ export const Toast = ({ data: { id, type, message, subMessage } }: ToastProps) =
 
   const getIcon = useMemo(() => {
     if (type === ToastType.INFO && !subMessage) {
-      return <SvgIconInfoNormal />;
+      return <SvgIconInfo />;
     }
     if (type === ToastType.ERROR) {
-      return <SvgIconInfoError />;
+      return <SvgIconWarning />;
     }
     if (type === ToastType.WARNING) {
-      return <SvgIconInfoWarning />;
+      return <SvgIconInfo />;
     }
     if (type === ToastType.SUCCESS) {
       return <SvgIconInfoSuccess />;
