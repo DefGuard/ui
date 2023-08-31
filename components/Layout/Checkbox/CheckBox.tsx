@@ -3,6 +3,8 @@ import './style.scss';
 import classNames from 'classnames';
 import { useMemo } from 'react';
 
+import SvgCheckboxChecked from '../../svg/CheckboxChecked';
+import SvgCheckboxUnchecked from '../../svg/CheckboxUnchecked';
 import { CheckBoxProps } from './types';
 
 export const CheckBox = ({
@@ -17,6 +19,7 @@ export const CheckBox = ({
     () =>
       classNames('checkbox', {
         checked: checked,
+        unchecked: !checked,
         disabled: disabled,
       }),
     [checked, disabled],
@@ -32,7 +35,11 @@ export const CheckBox = ({
         }
       }}
     >
-      <div className="box"></div>
+      {checked ? (
+        <SvgCheckboxChecked className="checked" />
+      ) : (
+        <SvgCheckboxUnchecked className="unchecked" />
+      )}
     </div>
   );
 };
