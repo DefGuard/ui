@@ -3,6 +3,7 @@ import './style.scss';
 import classNames from 'classnames';
 
 import SvgIconStatus from '../../svg/IconStatus';
+import SvgIconStatusBlank from '../../svg/IconStatusBlank';
 import { ActivityIconVariant } from './types';
 
 type Props = {
@@ -17,7 +18,8 @@ export const ActivityIcon = ({ status }: Props) => {
 
   return (
     <div className={cn}>
-      <SvgIconStatus />
+      {status !== ActivityIconVariant.BLANK && <SvgIconStatus />}
+      {status === ActivityIconVariant.BLANK && <SvgIconStatusBlank />}
     </div>
   );
 };

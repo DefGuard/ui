@@ -39,4 +39,12 @@
       }
     }
   }
+
+  &.variant-blank {
+    & > svg {
+      circle {
+        fill: var(--surface-icon-primary);
+      }
+    }
+  }
 }
