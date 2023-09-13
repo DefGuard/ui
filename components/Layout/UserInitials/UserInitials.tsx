@@ -16,7 +16,7 @@ export const UserInitials = ({ first_name, last_name, className, ...rest }: Prop
   const cn = classNames('user-initials-box', className);
 
   const initials = useMemo(
-    () => `${first_name[0].toUpperCase()} ${last_name[0].toUpperCase()}`,
+    () => `${first_name[0].toUpperCase()}${last_name[0].toUpperCase()}`,
     [first_name, last_name],
   );
 

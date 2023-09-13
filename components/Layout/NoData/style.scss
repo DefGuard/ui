@@ -1,15 +1,8 @@
-@use '@shared/scss/base/variables' as v;
-@use '@shared/scss/helpers/mixins' as mix;
+@use '@scssutils' as *;
 
 .no-data {
-  font-size: 1.2rem;
-  color: v.$gray-dark;
-  @include mix.poppins;
+  @include typography(app-body-2);
 
-  width: 100%;
-  text-align: center;
+  color: var(--text-body-tertiary);
   user-select: none;
-  & > * {
-    user-select: none;
-  }
 }
