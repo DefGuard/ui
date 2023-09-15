@@ -11,15 +11,15 @@
     }
 
     .modal-content {
-      border-radius: 1.5rem;
+      border-radius: 15px;
       @include media-breakpoint-down(md) {
         width: calc(100% - 40px);
         box-sizing: border-box;
-        padding: 3rem 2rem 4rem;
+        padding: 30px 20px 40px;
         align-self: center;
       }
       @include media-breakpoint-up(md) {
-        padding: 4rem 3rem;
+        padding: 40px 30px;
         width: 503px;
       }
 
