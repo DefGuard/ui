@@ -1,18 +1,13 @@
-import { motion, SVGMotionProps } from "framer-motion";
+import { motion, SVGMotionProps } from 'framer-motion';
 
-import { useTheme } from "../../../hooks/theme/useTheme";
+import { useTheme } from '../../../hooks/theme/useTheme';
 
 type Props = SVGMotionProps<SVGSVGElement>;
 
 export const VirtualizedListSortIcon = (props: Props) => {
   const { colors } = useTheme();
   return (
-    <motion.svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={22}
-      height={22}
-      {...props}
-    >
+    <motion.svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} {...props}>
       <motion.g transform="rotate(-90 11 11)">
         <rect
           width={8}
