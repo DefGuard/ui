@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { clone, isUndefined } from 'lodash-es';
+import classNames from 'classnames';
 import { ReactNode, useMemo } from 'react';
 
 import { Button } from '../../Button/Button';
@@ -10,14 +10,16 @@ import { ConfirmModalType } from './types';
 
 interface Props {
   isOpen: boolean;
-  setIsOpen: (v: boolean) => void;
-  onSubmit: () => void;
   title: string;
   submitText: string;
   type?: ConfirmModalType;
   subTitle?: string | ReactNode;
   cancelText?: string;
   loading?: boolean;
+  onSubmit: () => void;
+  setIsOpen?: (v: boolean) => void;
+  onClose?: () => void;
+  afterClose?: () => void;
   onCancel?: () => void;
 }
 
@@ -29,6 +31,8 @@ const baseClass = 'modal middle confirm';
 export const ConfirmModal = ({
   isOpen,
   setIsOpen,
+  onClose,
+  afterClose,
   type,
   title,
   loading,
@@ -38,16 +42,23 @@ export const ConfirmModal = ({
   subTitle,
   onCancel,
 }: Props) => {
-  const getMainClass = useMemo(() => {
-    let res = clone(baseClass);
-    if (type === ConfirmModalType.WARNING) {
-      res = res + ' warning';
-    }
-    return res;
-  }, [type]);
+  const cn = useMemo(
+    () =>
+      classNames(baseClass, {
+        warning: type === ConfirmModalType.WARNING,
+      }),
+    [type],
+  );
 
   return (
-    <Modal backdrop isOpen={isOpen} setIsOpen={setIsOpen} className={getMainClass}>
+    <Modal
+      backdrop
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      className={cn}
+      onClose={onClose}
+      afterClose={afterClose}
+    >
       <p className="title">{title}</p>
       <p className="subtitle">{subTitle}</p>
       <section className="controls">
@@ -56,11 +67,9 @@ export const ConfirmModal = ({
           className="cancel"
           text={cancelText ?? 'Cancel'}
           onClick={() => {
-            if (!isUndefined(onCancel)) {
-              onCancel();
-            } else {
-              setIsOpen(false);
-            }
+            onCancel?.();
+            setIsOpen?.(false);
+            onClose?.();
           }}
         />
         <Button
@@ -70,7 +79,6 @@ export const ConfirmModal = ({
               ? ButtonStyleVariant.DELETE
               : ButtonStyleVariant.CONFIRM
           }
-          disabled={loading}
           loading={loading}
           onClick={onSubmit}
           text={submitText}
