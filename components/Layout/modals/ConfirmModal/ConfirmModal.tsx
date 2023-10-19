@@ -58,13 +58,13 @@ export const ConfirmModal = ({
       className={cn}
       onClose={onClose}
       afterClose={afterClose}
+      disableClose={loading}
     >
       <p className="title">{title}</p>
       <p className="subtitle">{subTitle}</p>
       <section className="controls">
         <Button
           size={ButtonSize.LARGE}
-          className="cancel"
           text={cancelText ?? 'Cancel'}
           onClick={() => {
             onCancel?.();
@@ -77,7 +77,7 @@ export const ConfirmModal = ({
           styleVariant={
             type === ConfirmModalType.WARNING
               ? ButtonStyleVariant.DELETE
-              : ButtonStyleVariant.CONFIRM
+              : ButtonStyleVariant.PRIMARY
           }
           loading={loading}
           onClick={onSubmit}
