@@ -29,7 +29,7 @@ export const MessageBox = ({
   type = MessageBoxType.INFO,
   ...props
 }: Props) => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState<boolean>(isUndefined(dismissId) ? true : false);
 
   const dismissable = !isUndefined(dismissId);
 
@@ -63,9 +63,7 @@ export const MessageBox = ({
   useEffect(() => {
     if (dismissId && dismissId.length) {
       const visibility = readMessageBoxVisibility(dismissId);
-      if (visible !== visibility) {
-        setVisible(visibility);
-      }
+      setVisible(visibility);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
