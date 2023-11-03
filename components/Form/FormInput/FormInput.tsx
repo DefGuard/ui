@@ -15,6 +15,7 @@ interface Props<T extends FieldValues> extends Omit<InputProps, 'floatingErrors'
 export const FormInput = <T extends FieldValues>({
   controller,
   floatingErrors,
+  disabled,
   ...rest
 }: Props<T>) => {
   const {
@@ -24,6 +25,7 @@ export const FormInput = <T extends FieldValues>({
   } = useController(controller);
 
   const isInvalid = useMemo(() => {
+    if (disabled) return false;
     if (
       (!isUndefined(error) && (isDirty || isTouched)) ||
       (!isUndefined(error) && isSubmitted)
@@ -31,7 +33,7 @@ export const FormInput = <T extends FieldValues>({
       return true;
     }
     return false;
-  }, [error, isDirty, isSubmitted, isTouched]);
+  }, [error, isDirty, isSubmitted, isTouched, disabled]);
 
   const floatingErrorsData = useMemo((): InputFloatingErrors | undefined => {
     if (floatingErrors && floatingErrors.title && error && error.types && isInvalid) {
