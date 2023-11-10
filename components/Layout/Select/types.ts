@@ -1,10 +1,10 @@
-import { Key, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export interface SelectOption<T> {
   value: T;
   label: string;
   disabled?: boolean;
-  key: Key;
+  key: string | number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   meta?: any;
 }
