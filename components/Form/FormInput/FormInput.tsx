@@ -5,7 +5,8 @@ import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 import { Input } from '../../Layout/Input/Input';
 import { InputFloatingErrors, InputProps } from '../../Layout/Input/types';
 
-interface Props<T extends FieldValues> extends Omit<InputProps, 'floatingErrors'> {
+interface Props<T extends FieldValues>
+  extends Omit<InputProps, 'floatingErrors' | 'onPaste'> {
   controller: UseControllerProps<T>;
   floatingErrors?: {
     title?: string;
@@ -65,6 +66,7 @@ export const FormInput = <T extends FieldValues>({
       invalid={isInvalid}
       errorMessage={error?.message}
       floatingErrors={floatingErrorsData}
+      disabled={disabled}
     />
   );
 };
