@@ -14,6 +14,7 @@ export const Toggle = <T,>({
   options,
   onChange,
   disabled = false,
+  className,
 }: ToggleProps<T>) => {
   const activeOptions = useMemo((): number[] => {
     const checkEqual = (first: T, second: T): boolean => {
@@ -43,11 +44,16 @@ export const Toggle = <T,>({
 
   const cn = useMemo(
     () =>
-      classNames('toggle', {
-        disabled,
-      }),
-    [disabled],
+      classNames(
+        'toggle',
+        {
+          disabled,
+        },
+        className,
+      ),
+    [disabled, className],
   );
+
   return (
     <motion.div className={cn}>
       {options.map((o, index) => (

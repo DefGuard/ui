@@ -17,7 +17,7 @@
   background-color: var(--surface-default-modal);
   border: 1px solid var(--border-primary);
   border-radius: 10px;
-  padding: 2.8rem 4rem;
+  padding: 28px 40px;
   min-height: 108px;
   max-width: 411px;
   width: 411px;
@@ -70,17 +70,17 @@
     grid-template-rows: auto;
     align-items: center;
     box-sizing: border-box;
-    padding: 2rem;
+    padding: 20px;
 
     & > .modal-content {
       grid-row: 1;
       grid-column: 1;
       box-sizing: border-box;
-      padding: 3rem 2rem 4rem;
+      padding: 30px 20px 40px;
       border-radius: 15px;
       display: flex;
       flex-flow: column;
-      row-gap: 1.5rem;
+      row-gap: 15px;
 
       p,
       span,
@@ -101,7 +101,7 @@
       }
 
       & > .btn {
-        margin-top: 1.5rem;
+        margin-top: 15px;
         width: 100%;
       }
     }

@@ -14,4 +14,5 @@ export interface ToggleProps<T> {
   options: ToggleOption<T>[];
   onChange: (v: T) => void;
   disabled?: boolean;
+  className?: string;
 }

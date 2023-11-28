@@ -2,6 +2,7 @@ import './style.scss';
 
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { isUndefined } from 'lodash-es';
 import { ReactNode, useMemo, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { useBreakpoint } from 'use-breakpoint';
@@ -19,9 +20,10 @@ interface PlacementMap {
 interface Props {
   children?: ReactNode;
   initialPlacement?: 'left' | 'right';
+  icon?: ReactNode;
 }
 
-export const Helper = ({ children, initialPlacement = 'right' }: Props) => {
+export const Helper = ({ children, initialPlacement = 'right', icon }: Props) => {
   const { breakpoint } = useBreakpoint(deviceBreakpoints);
   const [floatOpen, setFloatOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -61,7 +63,8 @@ export const Helper = ({ children, initialPlacement = 'right' }: Props) => {
         }}
         ref={refs.setReference}
       >
-        <IconInfo />
+        {icon}
+        {isUndefined(icon) && <IconInfo />}
       </button>
       <Modal
         className="helper"
