@@ -74,13 +74,13 @@
       @include text-overflow-dots;
       @include typography(app-modal-1);
 
-      color: var(--text-body-main);
+      color: var(--text-body-primary);
       user-select: none;
 
       & > span {
         @include typography(app-modal-1);
 
-        color: var(--text-body-main);
+        color: var(--text-body-primary);
         user-select: none;
       }
     }
@@ -92,7 +92,7 @@
 
       @include typography(app-modal-1);
 
-      color: var(--text-body-main);
+      color: var(--text-body-primary);
     }
 
     & > .content-frame {
@@ -124,14 +124,14 @@
 
         @include typography(app-modal-1);
 
-        color: var(--text-body-main);
+        color: var(--text-body-primary);
       }
 
       & > .search-frame > .select-search::placeholder,
       & > .placeholder {
         @include typography(app-modal-1);
 
-        color: var(--text-body-main);
+        color: var(--text-body-primary);
       }
     }
 
