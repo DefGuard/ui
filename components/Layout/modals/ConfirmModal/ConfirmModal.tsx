@@ -12,6 +12,7 @@ interface Props {
   isOpen: boolean;
   title: string;
   submitText: string;
+  id?: string;
   type?: ConfirmModalType;
   subTitle?: string | ReactNode;
   cancelText?: string;
@@ -29,6 +30,7 @@ const baseClass = 'modal middle confirm';
  * Reusable modal configuration for modals confirming an action.
  */
 export const ConfirmModal = ({
+  id,
   isOpen,
   setIsOpen,
   onClose,
@@ -52,6 +54,7 @@ export const ConfirmModal = ({
 
   return (
     <Modal
+      id={id}
       backdrop
       isOpen={isOpen}
       setIsOpen={setIsOpen}

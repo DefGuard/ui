@@ -31,19 +31,18 @@ export const ModalWithTitle = ({
       disableClose={disableClose}
       {...rest}
     >
+      <button
+        disabled={disableClose}
+        className="close"
+        onClick={() => {
+          onClose && onClose();
+          setIsOpen && setIsOpen(false);
+        }}
+      >
+        <SvgIconX />
+      </button>
       <div className="header">
         <p className="title">{title}</p>
-        {!disableClose && (
-          <button
-            className="close"
-            onClick={() => {
-              onClose && onClose();
-              setIsOpen && setIsOpen(false);
-            }}
-          >
-            <SvgIconX />
-          </button>
-        )}
       </div>
       {children && <div className="content">{children}</div>}
     </Modal>

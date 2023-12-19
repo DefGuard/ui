@@ -129,6 +129,21 @@ export const Modal = ({
     <AnimatePresence mode="wait">
       {isOpen && (
         <motion.div className="modal-root">
+          {backdrop && (
+            <motion.div
+              className="backdrop"
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 0.5,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+              }}
+            ></motion.div>
+          )}
           <motion.div
             className="modal-wrap"
             role="dialog"
@@ -171,21 +186,6 @@ export const Modal = ({
               </motion.div>
             </motion.div>
           </motion.div>
-          {backdrop && (
-            <motion.div
-              className="backdrop"
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 0.5,
-                y: 0,
-              }}
-              exit={{
-                opacity: 0,
-              }}
-            ></motion.div>
-          )}
         </motion.div>
       )}
     </AnimatePresence>,
