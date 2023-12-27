@@ -16,6 +16,7 @@ interface Props {
   subTitle?: string | ReactNode;
   cancelText?: string;
   loading?: boolean;
+  id?: string;
   onSubmit: () => void;
   setIsOpen?: (v: boolean) => void;
   onClose?: () => void;
@@ -41,6 +42,7 @@ export const ConfirmModal = ({
   onSubmit,
   subTitle,
   onCancel,
+  id,
 }: Props) => {
   const cn = useMemo(
     () =>
@@ -52,6 +54,7 @@ export const ConfirmModal = ({
 
   return (
     <Modal
+      id={id}
       backdrop
       isOpen={isOpen}
       setIsOpen={setIsOpen}
