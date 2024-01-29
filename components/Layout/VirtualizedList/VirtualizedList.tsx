@@ -157,9 +157,13 @@ export const VirtualizedList = <T extends object>({
               (shouldAddScrollPadding ? 4 : 0),
           }}
         >
-          {headers.map((header) => (
-            <ListHeader {...header} key={header.key} />
-          ))}
+          {headers.map((header) =>
+            header.customRender ? (
+              header.customRender()
+            ) : (
+              <ListHeader {...header} key={header.key} />
+            ),
+          )}
         </div>
       )}
       <div

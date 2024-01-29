@@ -12,6 +12,7 @@ export type ListHeader = {
   sortable?: boolean;
   sortDirection?: ListSortDirection;
   onClick?: () => void;
+  customRender?: () => ReactNode;
 };
 
 export type ListRowCell<T extends object> = {
