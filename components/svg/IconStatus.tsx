@@ -11,7 +11,7 @@ const SvgIconStatus = (props: SVGProps<SVGSVGElement>) => (
     <path
       fill="#CB3F3F"
       fillRule="evenodd"
-      d="M4 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+      d="M4 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8m0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4"
       clipRule="evenodd"
     />
   </svg>

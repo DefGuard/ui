@@ -19,7 +19,7 @@ const SvgIconConnection = (props: SVGProps<SVGSVGElement>) => (
         maskType: 'luminance',
       }}
     >
-      <path fill="#fff" d="M24 0H0v24.002h24V0Z" />
+      <path fill="#fff" d="M24 0H0v24.002h24z" />
     </mask>
     <g mask="url(#icon-connection_svg__a)">
       <path

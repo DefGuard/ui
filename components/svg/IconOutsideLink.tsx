@@ -11,7 +11,7 @@ const SvgIconOutsideLink = (props: SVGProps<SVGSVGElement>) => (
     <path
       fill="#000"
       fillRule="evenodd"
-      d="M.5.18h4v1.333H1.833v9.334h9.334V8.18H12.5v4H.5v-12Zm9.724 1.333H8.278V.18H12.5v4.222h-1.333V2.456L6.97 6.651 6.03 5.71l4.195-4.196Z"
+      d="M.5.18h4v1.333H1.833v9.334h9.334V8.18H12.5v4H.5zm9.724 1.333H8.278V.18H12.5v4.222h-1.333V2.456L6.97 6.651 6.03 5.71z"
       clipRule="evenodd"
     />
   </svg>
