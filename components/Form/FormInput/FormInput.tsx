@@ -1,5 +1,5 @@
-import { isUndefined } from 'lodash-es';
-import { useMemo } from 'react';
+import { isUndefined, toNumber } from 'lodash-es';
+import { ChangeEvent, useCallback, useMemo } from 'react';
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
 import { Input } from '../../Layout/Input/Input';
@@ -17,10 +17,11 @@ export const FormInput = <T extends FieldValues>({
   controller,
   floatingErrors,
   disabled,
+  type,
   ...rest
 }: Props<T>) => {
   const {
-    field,
+    field: { onChange, ...restField },
     fieldState: { isDirty, isTouched, error },
     formState: { isSubmitted },
   } = useController(controller);
@@ -58,15 +59,36 @@ export const FormInput = <T extends FieldValues>({
     return undefined;
   }, [error, floatingErrors, isInvalid]);
 
+  const handleInputChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      if (type === 'number') {
+        if (value === '') {
+          onChange('');
+          return;
+        }
+        const parsed = toNumber(value);
+        if (!isNaN(parsed)) {
+          onChange(parsed);
+        }
+      } else {
+        onChange(value);
+      }
+    },
+    [onChange, type],
+  );
+
   return (
     <Input
       data-testid={`field-${controller.name}`}
       {...rest}
-      {...field}
+      {...restField}
       invalid={isInvalid}
       errorMessage={error?.message}
       floatingErrors={floatingErrorsData}
       disabled={disabled}
+      onChange={handleInputChange}
+      type="text"
     />
   );
 };
