@@ -35,6 +35,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disableOuterLabelColon,
       floatingErrors,
       labelExtras,
+      className,
       ...props
     },
     forwardedRef,
@@ -70,12 +71,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     });
 
     const getInputContainerClassName = useMemo(() => {
-      return classNames('input-container', {
+      return classNames('input-container', className, {
         invalid,
         disabled,
         disposable: disposable && !disabled,
       });
-    }, [disabled, disposable, invalid]);
+    }, [className, disabled, disposable, invalid]);
 
     const getInputIcon: ReactNode = useMemo(() => {
       if (disabled) {

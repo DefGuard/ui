@@ -19,8 +19,10 @@
   transition-duration: 100ms;
   transition-timing-function: ease-in-out;
 
-  &:hover {
-    border-color: var(--border-primary);
+  &:not(.highlight) {
+    &:hover {
+      border-color: var(--border-primary);
+    }
   }
 
   & > .content {
@@ -28,6 +30,15 @@
 
     * {
       user-select: none;
+    }
+  }
+
+  &.highlight {
+    border-color: var(--border-primary);
+
+    &.active,
+    &:hover {
+      border-color: var(--surface-main-primary);
     }
   }
 }
