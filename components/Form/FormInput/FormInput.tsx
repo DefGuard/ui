@@ -78,6 +78,13 @@ export const FormInput = <T extends FieldValues>({
     [onChange, type],
   );
 
+  const getInputType = useMemo(() => {
+    if (type === 'number') {
+      return 'text';
+    }
+    return type;
+  }, [type]);
+
   return (
     <Input
       data-testid={`field-${controller.name}`}
@@ -88,7 +95,7 @@ export const FormInput = <T extends FieldValues>({
       floatingErrors={floatingErrorsData}
       disabled={disabled}
       onChange={handleInputChange}
-      type="text"
+      type={getInputType}
     />
   );
 };
