@@ -74,7 +74,7 @@ export const Select = <T,>({
   // used value for filtering options
   const [searchValue, setSearchValue] = useState<string | undefined>();
   // only for display
-  const [searchDisplayValue, setSearchDisplayValue] = useState<string | undefined>();
+  const [searchDisplayValue, setSearchDisplayValue] = useState<string>('');
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchSubject] = useState<Subject<string | undefined>>(new Subject());
@@ -112,7 +112,7 @@ export const Select = <T,>({
     (value: T): void => {
       if (Array.isArray(selected)) {
         if (!onChangeArray) {
-          throw Error('onChangeArray was not suplited when selected is an array');
+          throw Error('onChangeArray was not supplied when selected is an array');
         }
         if (selected.length) {
           if (isComparableWithStrictEquality(value) && !identify) {
@@ -142,13 +142,19 @@ export const Select = <T,>({
         setOpen(false);
         if (!onChangeSingle) {
           throw Error(
-            'onChangeSingle was not suplied when selected value was not an array',
+            'onChangeSingle was not supplied when selected value was not an array',
           );
         }
         onChangeSingle(value);
       }
+      if (searchable) {
+        // reset search
+        onSearch?.('');
+        setSearchValue('');
+        setSearchDisplayValue('');
+      }
     },
-    [onChangeArray, onChangeSingle, selected, identify],
+    [selected, searchable, onChangeArray, identify, onChangeSingle, onSearch],
   );
 
   const getClassName = useMemo(() => {
@@ -464,6 +470,9 @@ export const Select = <T,>({
                         e.preventDefault();
                         e.stopPropagation();
                         handleSelect(option.value);
+                        if (searchable) {
+                          focusSearch();
+                        }
                       }}
                       selected={option.selected}
                     />
