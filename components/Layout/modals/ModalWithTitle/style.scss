@@ -18,7 +18,7 @@
         }
 
         .modal-content {
-          min-height: 100vh;
+          min-height: 100dvh;
           width: 100%;
           display: block;
           background-color: var(--surface-default-modal);
@@ -59,6 +59,7 @@
             svg {
               cursor: pointer;
               user-select: none;
+
               & > g {
                 g {
                   fill: var(--surface-icon-primary);
@@ -109,6 +110,7 @@
             & > .message-box {
               min-height: 70px;
               margin-bottom: 25px;
+
               @include media-breakpoint-up(lg) {
                 margin: 0 30px;
                 width: calc(100% - 30px * 2);

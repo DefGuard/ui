@@ -8,7 +8,7 @@ import { Modal } from '../Modal/Modal';
 import { ModalProps } from '../Modal/types';
 
 export interface ModalWithTitleProps extends ModalProps {
-  title: string;
+  title?: string;
 }
 
 export const ModalWithTitle = ({
@@ -41,9 +41,11 @@ export const ModalWithTitle = ({
       >
         <SvgIconX />
       </button>
-      <div className="header">
-        <p className="title">{title}</p>
-      </div>
+      {title && title.length > 0 && (
+        <div className="header">
+          <p className="title">{title}</p>
+        </div>
+      )}
       {children && <div className="content">{children}</div>}
     </Modal>
   );
