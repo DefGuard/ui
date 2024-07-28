@@ -1,25 +1,17 @@
 import './style.scss';
 
-import { useClipboard } from '../../../../hooks/useClipboard';
-
 type Props = {
   text: string;
-  disableCopy?: boolean;
+  onClick?: (
+    val: string,
+    event?: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
+  ) => void;
 };
 
-/**This will crop text to it's parent container and enable copy of given value on click */
-export const TextContainer = ({ text, disableCopy = false }: Props) => {
-  const { writeToClipboard } = useClipboard();
-
+/** Limits text block to a parent container.*/
+export const TextContainer = ({ text, onClick }: Props) => {
   return (
-    <p
-      className="text-container"
-      onClick={() => {
-        if (!disableCopy) {
-          writeToClipboard(text);
-        }
-      }}
-    >
+    <p className="text-container" onClick={(e) => onClick?.(text, e)}>
       {text}
     </p>
   );
