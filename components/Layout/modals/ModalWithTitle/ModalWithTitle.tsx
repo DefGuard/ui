@@ -31,16 +31,17 @@ export const ModalWithTitle = ({
       disableClose={disableClose}
       {...rest}
     >
-      <button
-        disabled={disableClose}
-        className="close"
-        onClick={() => {
-          onClose && onClose();
-          setIsOpen && setIsOpen(false);
-        }}
-      >
-        <SvgIconX />
-      </button>
+      {!disableClose && (
+        <button
+          className="close"
+          onClick={() => {
+            onClose && onClose();
+            setIsOpen && setIsOpen(false);
+          }}
+        >
+          <SvgIconX />
+        </button>
+      )}
       {title && title.length > 0 && (
         <div className="header">
           <p className="title">{title}</p>
