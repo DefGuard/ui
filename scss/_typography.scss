@@ -268,4 +268,11 @@
     line-height: normal;
     font-weight: 600;
   }
+
+  @if $value ==infobox-message {
+    font-family: 'Poppins';
+    font-size: 15px;
+    line-height: 23px;
+    font-weight: 400;
+  }
 }
