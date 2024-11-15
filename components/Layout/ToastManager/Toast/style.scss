@@ -33,4 +33,16 @@
       user-select: none;
     }
   }
+
+  &.warning {
+    svg {
+      circle {
+        fill: var(--surface-important);
+      }
+
+      path {
+        fill: var(--surface-default-modal);
+      }
+    }
+  }
 }

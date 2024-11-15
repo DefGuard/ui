@@ -10,11 +10,16 @@ import SvgIconInfoSuccess from '../../../svg/IconInfoSuccess';
 import SvgIconWarning from '../../../svg/IconWarning';
 import { ToastProps, ToastType } from './types';
 
-export const Toast = ({ data: { id, type, message, subMessage } }: ToastProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const timer = useRef(5);
+// in seconds
+const defaultLifeTime = 5;
+
+export const Toast = ({
+  data: { id, type, message, subMessage, lifetime },
+}: ToastProps) => {
+  const timer = useRef(lifetime ?? defaultLifeTime);
   const timerTick = useRef<number | null>(null);
-  const [timerControl, setTimerControl] = useState(true);
+  const timeControlDisabled = useState(lifetime !== undefined && lifetime < 0);
+  const [timerControl, setTimerControl] = useState(!timeControlDisabled);
   const cn = useMemo(() => classNames('toast', type.valueOf()), [type]);
   const removeToast = useToastsStore((store) => store.removeToast);
 
@@ -34,14 +39,19 @@ export const Toast = ({ data: { id, type, message, subMessage } }: ToastProps) =
     return null;
   }, [type, subMessage]);
 
+  // auto hide at lifetime end.
   useEffect(() => {
-    if (timerControl) {
+    if (timerControl && !timeControlDisabled) {
       timerTick.current = window.setInterval(() => {
         if (timer.current !== 0) {
           timer.current -= 1;
         }
         if (timer.current === 0) {
           removeToast(id);
+          if (timerTick.current) {
+            window.clearInterval(timerTick.current);
+            timerTick.current = null;
+          }
         }
       }, 1000);
     } else {
@@ -56,13 +66,21 @@ export const Toast = ({ data: { id, type, message, subMessage } }: ToastProps) =
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timerControl]);
+  }, [timerControl, timeControlDisabled]);
 
   return (
     <motion.div
       className={cn}
-      onHoverStart={() => setTimerControl(false)}
-      onHoverEnd={() => setTimerControl(true)}
+      onHoverStart={() => {
+        if (!timeControlDisabled) {
+          setTimerControl(false);
+        }
+      }}
+      onHoverEnd={() => {
+        if (!timeControlDisabled) {
+          setTimerControl(true);
+        }
+      }}
       onClick={() => removeToast(id)}
     >
       {getIcon}

@@ -8,7 +8,10 @@ export interface ToastOptions {
   message: string;
   type: ToastType;
   subMessage?: string;
+  // int in seconds, defaults to 5 if not set, set to negative to make toast permanent until clicked by user
+  lifetime?: number;
 }
+
 export interface ToastStore {
   toasts: ToastOptions[];
   addToast: (props: Omit<ToastOptions, 'id'>) => void;
