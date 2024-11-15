@@ -18,7 +18,10 @@ export const Toast = ({
 }: ToastProps) => {
   const timer = useRef(lifetime ?? defaultLifeTime);
   const timerTick = useRef<number | null>(null);
-  const timeControlDisabled = useState(lifetime !== undefined && lifetime < 0);
+  const timeControlDisabled = useMemo(
+    () => lifetime !== undefined && lifetime < 0,
+    [lifetime],
+  );
   const [timerControl, setTimerControl] = useState(!timeControlDisabled);
   const cn = useMemo(() => classNames('toast', type.valueOf()), [type]);
   const removeToast = useToastsStore((store) => store.removeToast);
