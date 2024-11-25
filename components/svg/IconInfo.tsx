@@ -8,10 +8,10 @@ const SvgIconInfo = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 18 18"
     {...props}
   >
-    <circle cx={9} cy={9} r={9} style={{ fill: 'var(--surface-icon-primary)' }} />
+    <circle cx={9} cy={9} r={9} style={{ fill: '#899ca8' }} />
     <path
       d="M8 8a1 1 0 0 1 2 0v5a1 1 0 1 1-2 0zM8 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0"
-      style={{ fill: 'var(--surface-icon-secondary)' }}
+      style={{ fill: '#fff' }}
     />
   </svg>
 );

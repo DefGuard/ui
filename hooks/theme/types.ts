@@ -1,4 +1,4 @@
-export const avaliableThemes: ThemeKey[] = ['light', 'dark'];
+export const availableThemes: ThemeKey[] = ['light', 'dark'];
 export type ThemeKey = 'light' | 'dark';
 
 export type ThemeColors = {

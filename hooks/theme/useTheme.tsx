@@ -7,8 +7,9 @@ export const useTheme = () => {
     document.documentElement.dataset.theme as ThemeKey,
   );
 
-  const changeTheme = useCallback((newTheme: string) => {
+  const changeTheme = useCallback((newTheme: ThemeKey) => {
     document.documentElement.dataset.theme = newTheme;
+    setTheme(newTheme);
   }, []);
 
   const colors = useMemo(() => {

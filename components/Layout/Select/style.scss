@@ -41,7 +41,7 @@
   }
 
   &.in-form {
-    margin-bottom: 2.5rem;
+    margin-bottom: 25px;
   }
 
   .side {
@@ -51,6 +51,7 @@
     align-items: center;
     justify-content: center;
   }
+
   & > .inner-frame {
     height: 100%;
     display: inline-grid;
@@ -176,6 +177,7 @@
     max-height: calc(50px * 6);
     display: flex;
     flex-flow: column;
+
     & > .select-option {
       text-align: left;
       padding: 5px 12px;
