@@ -1,20 +1,16 @@
 import { sort } from 'radash';
+import { ComponentType } from 'react';
 import { createWithEqualityFn } from 'zustand/traditional';
 
-import { ToastType } from '../../components/Layout/ToastManager/Toast/types';
+import { ToastOptions } from '../../components/Layout/ToastManager/Toast/types';
 
-export interface ToastOptions {
-  id: number;
-  message: string;
-  type: ToastType;
-  subMessage?: string;
-  // int in seconds, defaults to 5 if not set, set to negative to make toast permanent until clicked by user
-  lifetime?: number;
-}
+export type ToastManagerItem = ToastOptions & {
+  customComponent?: ComponentType<ToastOptions>;
+};
 
 export interface ToastStore {
-  toasts: ToastOptions[];
-  addToast: (props: Omit<ToastOptions, 'id'>) => void;
+  toasts: ToastManagerItem[];
+  addToast: (props: Omit<ToastManagerItem, 'id'>) => void;
   removeToast: (id: number) => void;
 }
 

@@ -39,7 +39,7 @@ export const Toast = ({
     if (type === ToastType.SUCCESS) {
       return <SvgIconInfoSuccess />;
     }
-    return null;
+    return <SvgIconInfo />;
   }, [type, subMessage]);
 
   // auto hide at lifetime end.

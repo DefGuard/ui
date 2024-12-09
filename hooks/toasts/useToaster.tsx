@@ -1,4 +1,9 @@
-import { ToastType } from '../../components/Layout/ToastManager/Toast/types';
+import { ComponentType } from 'react';
+
+import {
+  ToastOptions,
+  ToastType,
+} from '../../components/Layout/ToastManager/Toast/types';
 import { useToastsStore } from './useToastStore';
 
 type ToastConfig = {
@@ -8,11 +13,14 @@ type ToastConfig = {
 
 type ToastHookMethod = (message: string, config?: ToastConfig) => void;
 
+type CustomToastHookMethod = (Component: ComponentType<ToastOptions>) => void;
+
 type UseToaster = {
   success: ToastHookMethod;
   info: ToastHookMethod;
   warning: ToastHookMethod;
   error: ToastHookMethod;
+  custom: CustomToastHookMethod;
 };
 
 export const useToaster = (): UseToaster => {
@@ -50,5 +58,12 @@ export const useToaster = (): UseToaster => {
       lifetime: config?.lifetime,
     });
 
-  return { success, info, warning, error };
+  const custom: CustomToastHookMethod = (Component) =>
+    addToast({
+      type: ToastType.INFO,
+      message: '',
+      customComponent: Component,
+    });
+
+  return { success, info, warning, error, custom };
 };
