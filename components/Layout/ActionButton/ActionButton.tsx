@@ -8,6 +8,7 @@ import { useTheme } from '../../../hooks/theme/useTheme';
 import SvgIconCopy from '../../svg/IconCopy';
 import SvgIconDownload from '../../svg/IconDownload';
 import SvgIconQr from '../../svg/IconQr';
+import { ActionIconConfig } from './icons/ActionIconConfig';
 import { ActionButtonVariant } from './types';
 
 type Props = HTMLMotionProps<'button'> & {
@@ -39,6 +40,8 @@ export const ActionButton = ({
         return <SvgIconQr />;
       case ActionButtonVariant.DOWNLOAD:
         return <SvgIconDownload />;
+      case ActionButtonVariant.CONFIG:
+        return <ActionIconConfig />;
     }
   }, [variant]);
 

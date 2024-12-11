@@ -25,6 +25,14 @@
     }
   }
 
+  &.variant-config {
+    & > svg {
+      path {
+        stroke: var(--surface-icon-primary);
+      }
+    }
+  }
+
   &.variant-qrcode {
     & > svg {
       & > path {
@@ -43,6 +51,14 @@
     svg {
       path {
         fill: var(--surface-icon-secondary);
+      }
+    }
+
+    &.variant-config {
+      & > svg {
+        path {
+          stroke: var(--surface-icon-secondary);
+        }
       }
     }
 
