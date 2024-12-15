@@ -161,7 +161,7 @@ export const VirtualizedList = <T extends object>({
             header.customRender ? (
               header.customRender()
             ) : (
-              <ListHeader {...header} key={header.key} />
+              <ListHeaderComponent {...header} key={header.key} />
             ),
           )}
         </div>
@@ -207,7 +207,7 @@ export const VirtualizedList = <T extends object>({
   );
 };
 
-const ListHeader = ({
+const ListHeaderComponent = ({
   text,
   onClick,
   sortDirection,
@@ -217,8 +217,7 @@ const ListHeader = ({
   const { x, y, strategy, refs, update } = useFloating({
     placement: 'right',
     middleware: [offset(5)],
-    whileElementsMounted: (refElement, floatingElement, updateFunc) =>
-      autoUpdate(refElement, floatingElement, updateFunc),
+    whileElementsMounted: autoUpdate,
   });
 
   const getIconAnimate = useMemo(() => {
