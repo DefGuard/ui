@@ -10,7 +10,8 @@ import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useBreakpoint } from 'use-breakpoint';
 
 import { deviceBreakpoints } from '../../../../constants';
-import { ListHeader, ListSortDirection, VirtualizedListProps } from './types';
+import type { ListHeader } from './types';
+import { ListSortDirection, VirtualizedListProps } from './types';
 import { VirtualizedListSortIcon } from './VirtualizedListSortIcon';
 
 export const VirtualizedList = <T extends object>({
