@@ -11,6 +11,8 @@ interface Props<T extends FieldValues, Y> extends SelectProps<Y> {
 
 export const FormSelect = <T extends FieldValues, Y>({
   controller,
+  onChangeSingle,
+  onChangeArray,
   ...rest
 }: Props<T, Y>) => {
   const {
@@ -36,8 +38,14 @@ export const FormSelect = <T extends FieldValues, Y>({
       selected={field.value}
       invalid={isInvalid}
       errorMessage={error?.message}
-      onChangeSingle={(res) => field.onChange(res)}
-      onChangeArray={(res) => field.onChange(res)}
+      onChangeSingle={(res) => {
+        field.onChange(res);
+        onChangeSingle?.(res);
+      }}
+      onChangeArray={(res) => {
+        field.onChange(res);
+        onChangeArray?.(res);
+      }}
     />
   );
 };
