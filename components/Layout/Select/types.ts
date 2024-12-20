@@ -22,7 +22,7 @@ export type SelectSelectedValue = {
 export interface SelectProps<T> {
   options: SelectOption<T>[];
   // Function that translates value into displayable object, because options are separated from selected value
-  renderSelected: (value: T) => SelectSelectedValue;
+  renderSelected?: (value: T) => SelectSelectedValue;
   // When in single mode emits change
   onChangeSingle?: (result: T) => void;
   // When in multi mode emits change

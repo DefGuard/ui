@@ -25,6 +25,9 @@
   border: 1px solid var(--border-primary);
   cursor: pointer;
   box-sizing: border-box;
+  opacity: 1;
+  transition-property: opacity;
+  @include transition(standard);
 
   &.size-standard {
     height: 50px;
@@ -37,7 +40,7 @@
   &.disabled {
     cursor: not-allowed;
     user-select: none;
-    pointer-events: none;
+    opacity: 0.5;
   }
 
   &.in-form {

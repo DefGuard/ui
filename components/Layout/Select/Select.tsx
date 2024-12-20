@@ -226,19 +226,32 @@ export const Select = <T,>({
   const renderInner = useMemo(() => {
     if (searchFocused) return null;
 
+    let display: string = '';
+
     // render placeholder when selected is undefined
     if (isUndefined(selected) && !isUndefined(placeholder)) {
-      return <span className="placeholder">{placeholder}</span>;
+      display = placeholder;
     }
 
-    // render selected value for single mode
-    if (!isUndefined(selected) && !Array.isArray(selected)) {
-      const displayValue = renderSelected(selected).displayValue;
-      return <span className="placeholder">{displayValue}</span>;
+    if (!isUndefined(selected)) {
+      // render selected value for single mode
+      if (!Array.isArray(selected)) {
+        if (!isUndefined(renderSelected)) {
+          const displayValue = renderSelected(selected).displayValue;
+          display = displayValue;
+        } else {
+          if (options) {
+            const found = options.find((o) => o.value === selected);
+            if (found) {
+              display = found?.label;
+            }
+          }
+        }
+      }
     }
 
-    return null;
-  }, [placeholder, searchFocused, selected, renderSelected]);
+    return <span className="placeholder">{display}</span>;
+  }, [searchFocused, selected, placeholder, renderSelected, options]);
 
   // options in float are only for presentation
   const floatingOptions = useMemo((): SelectFloatingOption<T>[] => {
@@ -246,7 +259,7 @@ export const Select = <T,>({
 
     if (searchable && searchValue && searchValue.length) {
       if (!searchFilter) {
-        throw Error('Select needs to be suplied with searchFilter when searchable');
+        throw Error('Select needs to be supplied with searchFilter when searchable');
       }
       availableOptions = searchFilter(searchValue, options);
     }
