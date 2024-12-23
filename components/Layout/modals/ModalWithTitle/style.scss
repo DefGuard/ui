@@ -173,11 +173,20 @@
   }
 }
 
+.modal-root .modal-wrap .modal.titled.default-styles .modal-content {
+  width: 100%;
+  max-width: 920px;
+}
+
 .modal-root .modal-wrap .modal.titled.default-styles .modal-content .content {
   padding: 0 20px;
 
   @include media-breakpoint-up(lg) {
     padding: 0 30px;
+  }
+
+  .message-box {
+    margin-bottom: 30px;
   }
 
   .controls {
