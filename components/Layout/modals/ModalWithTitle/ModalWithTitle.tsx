@@ -1,7 +1,6 @@
 import './style.scss';
 
-import classNames from 'classnames';
-import { useMemo } from 'react';
+import clsx from 'clsx';
 
 import SvgIconX from '../../../svg/IconX';
 import { Modal } from '../Modal/Modal';
@@ -9,6 +8,7 @@ import { ModalProps } from '../Modal/types';
 
 export interface ModalWithTitleProps extends ModalProps {
   title?: string;
+  includeDefaultStyles?: boolean;
 }
 
 export const ModalWithTitle = ({
@@ -19,14 +19,16 @@ export const ModalWithTitle = ({
   onClose,
   setIsOpen,
   disableClose = false,
+  includeDefaultStyles = false,
   ...rest
 }: ModalWithTitleProps) => {
-  const cn = useMemo(() => classNames('titled', className), [className]);
   return (
     <Modal
       onClose={onClose}
       setIsOpen={setIsOpen}
-      className={cn}
+      className={clsx('titled', className, {
+        'default-styles': includeDefaultStyles,
+      })}
       isOpen={isOpen}
       disableClose={disableClose}
       {...rest}

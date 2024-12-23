@@ -172,3 +172,48 @@
     }
   }
 }
+
+.modal-root .modal-wrap .modal.titled.default-styles .modal-content .content {
+  padding: 0 20px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 30px;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 20px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    &:not(.solo) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &.solo {
+      grid-template-columns: 1fr;
+      justify-items: center;
+
+      & > .btn {
+        max-width: 75%;
+
+        @include media-breakpoint-up(lg) {
+          max-width: 50%;
+        }
+      }
+    }
+
+    .btn {
+      width: 100%;
+      height: 47px;
+    }
+  }
+}
