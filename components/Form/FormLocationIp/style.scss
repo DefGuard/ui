@@ -1,0 +1,139 @@
+.form-location-ip {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  row-gap: 10px;
+  box-sizing: border-box;
+  padding-bottom: 30px;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+
+  & > .label {
+    max-width: 100%;
+    overflow: hidden;
+
+    label {
+      padding: 0;
+      margin: 0;
+      display: block;
+      user-select: none;
+      cursor: pointer;
+      max-width: 100%;
+      @include typography(app-wizard-1);
+      @include text-overflow-dots;
+
+      & {
+        color: var(--text-body-tertiary);
+      }
+    }
+  }
+
+  & > .card {
+    height: 50px;
+    border-radius: 10px;
+    opacity: 1;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0 20px;
+    border: 1px solid var(--border-primary);
+    margin: 0;
+    background-color: var(--surface-frame-bg);
+
+    transition-timing-function: ease-in-out;
+    transition-duration: 250ms;
+    transition-property: border-color, background-color, opacity;
+
+    &.invalid {
+      border-color: var(--border-alert);
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    & > .track {
+      display: inline-grid;
+      grid-template-columns: min-content min-content min-content;
+      grid-template-rows: 1fr;
+      max-width: 100%;
+      overflow-x: auto;
+      width: 100%;
+      overflow: hidden;
+      column-gap: 2px;
+      align-items: center;
+      height: 100%;
+
+      span,
+      input {
+        @include typography(app-input);
+      }
+
+      input {
+        color: var(--text-body-primary);
+        background-color: transparent;
+        width: min-content;
+        border: none;
+        padding: 0;
+        margin: 0;
+        min-height: 100%;
+
+        &:focus-visible {
+          outline: none;
+        }
+      }
+
+      span {
+        color: var(--text-body-tertiary);
+        user-select: none;
+        opacity: 0.75;
+      }
+
+      .input-sizer {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        align-self: center;
+        position: relative;
+        min-height: 100%;
+
+        & > * {
+          grid-row: 1;
+          grid-column: 1 / 2;
+        }
+
+        & > span {
+          color: transparent;
+          user-select: none;
+          pointer-events: none;
+          display: block;
+          width: min-content;
+        }
+      }
+    }
+  }
+}
+
+.form-location-ip > .error-message {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  height: 20px;
+  max-width: 100%;
+  overflow: hidden;
+
+  p {
+    max-width: 100%;
+    @include typography(app-wizard-1);
+    @include text-overflow-dots;
+
+    & {
+      color: var(--text-alert);
+    }
+  }
+}
