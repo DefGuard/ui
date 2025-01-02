@@ -9,6 +9,7 @@ import {
   useFloating,
 } from '@floating-ui/react';
 import classNames from 'classnames';
+import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
@@ -374,7 +375,11 @@ export const Select = <T,>({
       >
         <div className="inner-frame">
           {renderInner}
-          <div className="content-frame">
+          <div
+            className={clsx('content-frame', {
+              multi: multi,
+            })}
+          >
             {renderTags}
             {searchable && (
               <ResizableInput
