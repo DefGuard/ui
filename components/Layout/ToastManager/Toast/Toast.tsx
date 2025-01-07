@@ -62,7 +62,6 @@ export const Toast = ({
         window.clearInterval(timerTick.current);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => {
       if (timerTick.current) {
         window.clearInterval(timerTick.current);

@@ -45,8 +45,8 @@ export const Helper = ({ children, initialPlacement = 'right', icon }: Props) =>
       bottom: 'top',
       left: 'right',
     };
-    const basePlacement = placement.split('-')[0] as string;
-    return mapping[basePlacement] as string;
+    const basePlacement = placement.split('-')[0];
+    return mapping[basePlacement];
   }, [placement]);
 
   return (

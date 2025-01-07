@@ -11,6 +11,7 @@ import {
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
+import mergeRefs from 'merge-refs';
 import React, { ReactNode, useEffect, useId, useMemo, useRef, useState } from 'react';
 
 import SvgIconAsterix from '../../svg/IconAsterix';
@@ -40,7 +41,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     forwardedRef,
   ) => {
-    const innerInputRef = useRef<HTMLInputElement | null>(null);
+    const innerInputRef = useRef<HTMLInputElement>(null);
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
 
@@ -161,16 +162,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           }}
         >
           <motion.input
-            ref={(r) => {
-              innerInputRef.current = r;
-              if (typeof forwardedRef === 'function') {
-                forwardedRef(r);
-              } else {
-                if (forwardedRef) {
-                  forwardedRef.current = r;
-                }
-              }
-            }}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            ref={mergeRefs(innerInputRef, forwardedRef)}
             {...props}
             value={value}
             placeholder={placeholder}

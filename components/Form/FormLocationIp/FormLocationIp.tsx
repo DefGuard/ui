@@ -60,7 +60,6 @@ export const FormLocationIp = <T extends FieldValues>({
       return `${res}px`;
     }
     return '1px';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shadowSizing]);
 
   return (

@@ -18,7 +18,7 @@ import SvgAvatar11 from '../../svg/Avatar11';
 import SvgAvatar12 from '../../svg/Avatar12';
 import { getDeviceAvatar } from './utils/getDeviceAvatar';
 
-interface Props extends HTMLMotionProps<'div'> {
+interface Props extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   active?: boolean;
   deviceId?: number;
 }
@@ -50,7 +50,7 @@ export const DeviceAvatar = ({ className, deviceId, active = true, ...props }: P
           return true;
         }
       });
-      return result as JSX.Element[];
+      return result;
     }
     return avatarParts;
   }, [deviceId]);

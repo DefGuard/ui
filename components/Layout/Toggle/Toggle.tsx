@@ -36,7 +36,7 @@ export const Toggle = <T,>({
           }
           return undefined;
         })
-        .filter((index) => !isUndefined(index)) as number[];
+        .filter((index) => !isUndefined(index));
     } else {
       return [options.findIndex((option) => checkEqual(option.value, selected))];
     }

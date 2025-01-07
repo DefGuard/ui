@@ -27,8 +27,8 @@ const arrowBase = 8;
 export const FloatingArrow = forwardRef<HTMLDivElement, Props>(
   ({ placement, data }, ref) => {
     const currentSide = useMemo(() => {
-      const basePlacement = placement.split('-')[0] as string;
-      return mapping[basePlacement] as Side;
+      const basePlacement = placement.split('-')[0];
+      return mapping[basePlacement];
     }, [placement]);
 
     const calcX = useMemo(() => {

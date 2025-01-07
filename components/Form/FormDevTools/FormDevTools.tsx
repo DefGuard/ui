@@ -9,7 +9,7 @@ interface Props {
   control: Control<any, object>;
 }
 
-export const DevTools: React.FC<Props> = ({ control }) => {
+export const DevTools: React.FC<Props> = ({ control }: Props) => {
   const element = document.querySelector('#root');
   if (!element) return null;
   return ReactDOM.createPortal(

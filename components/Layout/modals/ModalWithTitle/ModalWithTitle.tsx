@@ -37,8 +37,8 @@ export const ModalWithTitle = ({
         <button
           className="close"
           onClick={() => {
-            onClose && onClose();
-            setIsOpen && setIsOpen(false);
+            onClose?.();
+            setIsOpen?.(false);
           }}
         >
           <SvgIconX />
