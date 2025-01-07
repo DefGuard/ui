@@ -6,8 +6,8 @@ import mergeRefs from 'merge-refs';
 import { useId, useMemo, useRef, useState } from 'react';
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
-import { useElementSize } from '../../../../hooks/useSize';
-import { isPresent } from '../../../../utils/isPresent';
+import { useElementSize } from '../../../hooks/useSize';
+import { isPresent } from '../../../utils/isPresent';
 import { FormLocationIpData } from './type';
 
 interface Props<T extends FieldValues> {
