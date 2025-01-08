@@ -18,7 +18,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({
   loading = false,
-  size = ButtonSize.SMALL,
+  size = ButtonSize.STANDARD,
   styleVariant = ButtonStyleVariant.STANDARD,
   text,
   icon,

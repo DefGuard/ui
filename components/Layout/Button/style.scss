@@ -50,6 +50,18 @@
     }
   }
 
+  &.standard {
+    min-height: 47px;
+    column-gap: 10px;
+    grid-template-columns: auto;
+    grid-template-rows: 36px;
+    padding: 0 20px;
+
+    .text {
+      @include typography(app-button-l);
+    }
+  }
+
   &.small {
     height: 40px;
     min-height: 18px;
@@ -76,6 +88,7 @@
   &.variant-primary {
     background-color: var(--surface-main-primary);
     color: var(--text-button-secondary);
+
     &.hovered {
       background-color: var(--surface-main-secondary);
       box-shadow: var(--drop-shadow-blue);
@@ -107,7 +120,7 @@
   }
 
   &.variant-standard {
-    background-color: var(--surface-default-modal);
+    background-color: var(--surface-button);
     border: 1px solid var(--border-primary);
     color: var(--text-button-primary);
 
@@ -115,6 +128,7 @@
       box-shadow: var(--button-shadow-light);
       border-color: var(--border-secondary);
     }
+
     .loader-spinner {
       path {
         stroke: var(--text-button-primary);
@@ -142,6 +156,7 @@
   &.variant-delete {
     background-color: var(--surface-alert-primary);
     color: var(--text-button-secondary);
+
     &.hovered {
       background-color: var(--surface-alert-secondary);
       box-shadow: var(--button-shadow-red);
@@ -163,6 +178,7 @@
   &.variant-save {
     background-color: var(--surface-positive-primary);
     color: var(--text-button-secondary);
+
     &.hovered {
       background-color: var(--surface-positive-secondary);
       box-shadow: var(--button-shadow-green);

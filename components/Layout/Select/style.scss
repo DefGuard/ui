@@ -1,5 +1,5 @@
 .select {
-  & > .top {
+  &>.top {
     display: flex;
     flex-flow: row nowrap;
     margin-bottom: 10px;
@@ -8,7 +8,7 @@
     align-content: center;
     justify-content: flex-start;
 
-    & > .select-label {
+    &>.select-label {
       @include typography(app-wizard-1);
 
       color: var(--text-body-tertiary);
@@ -54,7 +54,7 @@
     justify-content: center;
   }
 
-  & > .inner-frame {
+  &>.inner-frame {
     display: inline-grid;
     grid-template-columns: 1fr 22px;
     grid-template-rows: 1fr;
@@ -67,7 +67,7 @@
     width: 100%;
     min-height: inherit;
 
-    & > .selected-option {
+    &>.selected-option {
       grid-column: 1;
       grid-row: 1;
       overflow: hidden;
@@ -78,7 +78,7 @@
       color: var(--text-body-primary);
       user-select: none;
 
-      & > span {
+      &>span {
         @include typography(app-modal-1);
 
         color: var(--text-body-primary);
@@ -86,7 +86,7 @@
       }
     }
 
-    & > .placeholder {
+    &>.placeholder {
       grid-row: 1;
       grid-column: 1;
       width: 100%;
@@ -96,7 +96,7 @@
       color: var(--text-body-primary);
     }
 
-    & > .content-frame {
+    &>.content-frame {
       height: 100%;
       grid-column: 1;
       grid-row: 1;
@@ -114,7 +114,7 @@
         padding: 5px 0;
       }
 
-      & > .select-search {
+      &>.select-search {
         cursor: pointer;
         height: 30px;
         border: 0 solid transparent;
@@ -132,24 +132,24 @@
         color: var(--text-body-primary);
       }
 
-      & > .search-frame > .select-search::placeholder,
-      & > .placeholder {
+      &>.search-frame>.select-search::placeholder,
+      &>.placeholder {
         @include typography(app-modal-1);
 
         color: var(--text-body-primary);
       }
     }
 
-    & > .side {
+    &>.side {
       grid-column: 2;
       grid-row: 1;
     }
   }
 
   &.selected {
-    & > .inner-frame {
-      & > .content-frame {
-        & > .search-frame {
+    &>.inner-frame {
+      &>.content-frame {
+        &>.search-frame {
           padding-left: 10px;
         }
       }
@@ -157,9 +157,9 @@
   }
 
   &:focus-within {
-    & > .inner-frame {
-      & > .content-frame {
-        & > .selected-option {
+    &>.inner-frame {
+      &>.content-frame {
+        &>.selected-option {
           display: none;
         }
       }
@@ -177,14 +177,14 @@
   box-shadow: 0 6px 20px #0000001a;
   z-index: 5;
 
-  & > .options-container {
+  &>.options-container {
     overflow-x: hidden;
     overflow-y: auto;
     max-height: calc(50px * 6);
     display: flex;
     flex-flow: column;
 
-    & > .select-option {
+    &>.select-option {
       text-align: left;
       padding: 5px 12px;
       display: block;
@@ -197,7 +197,7 @@
       transition-timing-function: ease-in-out;
       transition-duration: 100ms;
 
-      & > span {
+      &>span {
         @include typography(app-modal-1);
 
         color: inherit;
@@ -221,7 +221,7 @@
 }
 
 #floating-ui-root {
-  & > .select-floating-ui {
+  &>.select-floating-ui {
     z-index: 5;
   }
 }
