@@ -15,6 +15,10 @@
 
 .text-limited-floating {
   box-shadow: var(--box-shadow);
-  width: 100%;
   max-width: 500px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: normal;
+  word-break: break-word;
 }

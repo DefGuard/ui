@@ -3,6 +3,7 @@ import './style.scss';
 import {
   autoUpdate,
   FloatingPortal,
+  safePolygon,
   useFloating,
   useHover,
   useInteractions,
@@ -19,9 +20,16 @@ type Props = {
   className?: string;
   floatingClassName?: string;
   testId?: string;
+  otherContent?: React.ReactNode;
 };
 
-export const LimitedText = ({ text, className, floatingClassName, testId }: Props) => {
+export const LimitedText = ({
+  text,
+  className,
+  floatingClassName,
+  testId,
+  otherContent,
+}: Props) => {
   const [enabled, setEnabled] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const { refs, floatingStyles, context } = useFloating({
@@ -33,6 +41,9 @@ export const LimitedText = ({ text, className, floatingClassName, testId }: Prop
   const hover = useHover(context, {
     restMs: 500,
     enabled: enabled,
+    handleClose: safePolygon({
+      requireIntent: false,
+    }),
   });
   const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
   const estimatedWidth = getTextWidth(text);
@@ -72,6 +83,7 @@ export const LimitedText = ({ text, className, floatingClassName, testId }: Prop
               {...getFloatingProps()}
             >
               <p>{text}</p>
+              {otherContent}
             </FloatingBox>
           </FloatingPortal>
         )}
