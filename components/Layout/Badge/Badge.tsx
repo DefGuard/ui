@@ -6,7 +6,8 @@ import { HTMLProps, useMemo } from 'react';
 import { BadgeStyleVariant } from './types';
 
 type Props = HTMLProps<HTMLDivElement> & {
-  text: string;
+  text?: string;
+  icon?: React.ReactNode;
   styleVariant?: BadgeStyleVariant;
 };
 
@@ -14,6 +15,7 @@ export const Badge = ({
   text,
   className,
   styleVariant = BadgeStyleVariant.STANDARD,
+  icon,
   ...rest
 }: Props) => {
   const cn = useMemo(
@@ -23,7 +25,8 @@ export const Badge = ({
 
   return (
     <div className={cn} {...rest}>
-      <span>{text}</span>
+      {icon}
+      {text && <span>{text}</span>}
     </div>
   );
 };

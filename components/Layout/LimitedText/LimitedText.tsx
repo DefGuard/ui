@@ -18,9 +18,10 @@ type Props = {
   text: string;
   className?: string;
   floatingClassName?: string;
+  testId?: string;
 };
 
-export const LimitedText = ({ text, className, floatingClassName }: Props) => {
+export const LimitedText = ({ text, className, floatingClassName, testId }: Props) => {
   const [enabled, setEnabled] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const { refs, floatingStyles, context } = useFloating({
@@ -53,7 +54,9 @@ export const LimitedText = ({ text, className, floatingClassName }: Props) => {
         ref={refs.setReference}
         {...getReferenceProps()}
       >
-        <p className="text">{text}</p>
+        <p className="text" data-testid={testId}>
+          {text}
+        </p>
       </div>
       <AnimatePresence mode="wait">
         {isOpen && (
