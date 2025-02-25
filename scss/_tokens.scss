@@ -74,6 +74,7 @@ html[data-theme='light'] {
   --surface-important: #{$brand-default-warning};
   --text-body-tertiary: #{$greyscale-50};
   --surface-main-primary: #{$brand-default-main};
+  --surface-icon-on-dark: #{$greyscale-10};
 }
 
 html[data-theme='dark'] {
@@ -113,4 +114,5 @@ html[data-theme='dark'] {
   --surface-important: #{$brand-default-warning};
   --text-body-tertiary: #{$greyscale-50};
   --surface-main-primary: #{$brand-default-main};
+  --surface-icon-on-dark: #{$greyscale-90};
 }

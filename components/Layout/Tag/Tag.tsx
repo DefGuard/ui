@@ -1,7 +1,7 @@
 import './style.scss';
 
-import classNames from 'classnames';
-import { HTMLProps, useMemo } from 'react';
+import clsx from 'clsx';
+import { HTMLProps } from 'react';
 
 import SvgIconCancel from '../../svg/IconCancel';
 
@@ -12,13 +12,13 @@ interface Props extends HTMLProps<HTMLDivElement> {
 }
 
 export const Tag = ({ onDispose, disposable, text, className, ...rest }: Props) => {
-  const cn = useMemo(
-    () => classNames('tag', { disposable: disposable }, className),
-    [disposable, className],
-  );
-
   return (
-    <div className={cn} {...rest}>
+    <div
+      className={clsx('tag', className, {
+        disposable: disposable,
+      })}
+      {...rest}
+    >
       <span>{text}</span>
       {disposable && (
         <button

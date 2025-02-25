@@ -16,6 +16,11 @@
     transition-duration: 100ms;
   }
 
+  &.variant-error-filled {
+    width: 16px;
+    height: 16px;
+  }
+
   &.variant-connected {
     & > svg {
       path {

@@ -72,6 +72,13 @@
     font-weight: 600;
   }
 
+  @if $value ==app-button-xs {
+    font-family: 'Roboto';
+    font-size: 10px;
+    line-height: normal;
+    font-weight: 400;
+  }
+
   @if $value ==app-button-l {
     font-family: 'Poppins';
     font-size: 15px;

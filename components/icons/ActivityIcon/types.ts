@@ -3,4 +3,5 @@ export enum ActivityIconVariant {
   DISCONNECTED = 'disconnected',
   ERROR = 'error',
   BLANK = 'blank',
+  ERROR_FILLED = 'error-filled',
 }
