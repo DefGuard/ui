@@ -4,3 +4,8 @@ export enum MessageBoxType {
   SUCCESS = 'success',
   ERROR = 'error',
 }
+
+export enum MessageBoxStyleVariant {
+  FILLED = 'filled',
+  OUTLINED = 'outlined',
+}

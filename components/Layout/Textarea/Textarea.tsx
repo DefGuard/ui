@@ -1,33 +1,87 @@
-import { useEffect, useRef } from 'react';
+import './style.scss';
 
+import { useDrag } from '@use-gesture/react';
+import clsx from 'clsx';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
+
+import { isPresent } from '../../../utils/isPresent';
 import { TextareaProps } from './types';
 
-export const Textarea = (props: TextareaProps) => {
-  const ref = useRef<HTMLTextAreaElement | null>(null);
+const defaultHeight = 200;
 
-  useEffect(() => {
-    if (ref && ref.current !== null) {
-      const handler = () => handleResize(ref.current as HTMLTextAreaElement);
-      ref.current?.addEventListener('input', handler);
-      ref.current?.addEventListener('drop', handler);
-      ref.current?.addEventListener('paste', handler);
-      // init resize
-      setTimeout(() => handleResize(ref.current as HTMLTextAreaElement), 100);
-      return () => {
-        if (ref && ref.current) {
-          ref.current.removeEventListener('input', handler);
-          ref.current.removeEventListener('drop', handler);
-          //eslint-disable-next-line
-          ref.current.removeEventListener('paste', handler);
-        }
-      };
-    }
-  }, []);
+export const Textarea = ({ onChange, value, errorMessage, label }: TextareaProps) => {
+  const [height, setHeight] = useState(defaultHeight);
+  const bindDrag = useDrag(({ delta: [, dy] }) => {
+    setHeight((current) => {
+      const next = current + dy;
+      if (next >= 200) {
+        return next;
+      }
+      return current;
+    });
+  });
 
-  return <textarea {...props} ref={ref} />;
-};
-
-const handleResize = (el: HTMLTextAreaElement) => {
-  el.style.height = 'auto';
-  el.style.height = `${el.scrollHeight}px`;
+  return (
+    <div className="textarea-spacer spacer">
+      <div className="textarea">
+        {isPresent(label) && <p className="label">{label}:</p>}
+        <div
+          className={clsx('inner', {
+            error: isPresent(errorMessage),
+          })}
+        >
+          <textarea
+            style={{ height: height }}
+            value={value}
+            onChange={(e) => {
+              onChange(e.target.value);
+            }}
+          />
+          <div {...bindDrag()} className="resize-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+            >
+              <path d="M21 10.6465L10.6465 21" stroke="#899CA8" strokeLinecap="round" />
+              <path
+                d="M20.9099 14.6978L14.6978 20.9099"
+                stroke="#899CA8"
+                strokeLinecap="round"
+              />
+              <path
+                d="M20.8199 18.7495L18.7492 20.8202"
+                stroke="#899CA8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <AnimatePresence>
+            {isPresent(errorMessage) && (
+              <motion.p
+                className="error"
+                initial={{
+                  x: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  x: 20,
+                  opacity: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  x: 0,
+                }}
+              >
+                {errorMessage}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
 };

@@ -1,0 +1,67 @@
+.textarea {
+  & > .error {
+    position: absolute;
+    @include typography(app-wizard-1);
+    @include text-overflow-dots;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    bottom: 5px;
+
+    color: var(--text-alert);
+  }
+
+  & > .label {
+    @include typography(app-wizard-1);
+
+    color: var(--text-body-tertiary);
+    padding: 0;
+    margin: 0;
+    display: block;
+    user-select: none;
+    cursor: pointer;
+    padding-bottom: var(--spacing-xs);
+  }
+
+  .inner {
+    border-radius: 10px;
+    background-color: var(--surface-frame-bg);
+    border: 1px solid var(--border-primary);
+    width: 100%;
+    position: relative;
+    height: fit-content;
+    padding: var(--spacing-s) var(--spacing-xs) var(--spacing-s) var(--spacing-s);
+    box-sizing: border-box;
+
+    textarea {
+      width: 100%;
+      resize: vertical;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: 200px;
+      border: none;
+      border-radius: 10px;
+      background-color: transparent;
+      box-sizing: border-box;
+      scrollbar-gutter: stable;
+      padding-right: var(--spacing-xs);
+
+      @include typography(app-input);
+
+      &::-webkit-resizer {
+        display: none;
+      }
+    }
+
+    .resize-icon {
+      opacity: 1;
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 22px;
+      height: 22px;
+      user-select: none;
+      cursor: row-resize;
+    }
+  }
+}
