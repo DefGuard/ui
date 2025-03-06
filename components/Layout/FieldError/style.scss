@@ -1,0 +1,10 @@
+.field-error {
+  @include typography(app-wizard-1);
+  @include text-overflow-dots;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  bottom: 5px;
+  color: var(--text-alert);
+  position: absolute;
+}

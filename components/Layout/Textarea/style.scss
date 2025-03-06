@@ -33,6 +33,13 @@
     padding: var(--spacing-s) var(--spacing-xs) var(--spacing-s) var(--spacing-s);
     box-sizing: border-box;
 
+    @include animate-field;
+    transition-property: border-color, opacity;
+
+    &.error {
+      border-color: var(--border-alert);
+    }
+
     textarea {
       width: 100%;
       resize: vertical;

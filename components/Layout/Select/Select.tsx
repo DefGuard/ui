@@ -31,6 +31,7 @@ import {
   SelectProps,
   SelectSizeVariant,
 } from './types';
+import { isPresent } from '../../../utils/isPresent';
 
 const compare = <T,>(v: T, other: T): boolean => {
   if (!isComparableWithStrictEquality(v)) {
@@ -191,6 +192,12 @@ export const Select = <T,>({
     return true;
   }, [searchValue, selected]);
 
+  useEffect(() => {
+    console.log({
+      showSelectInnerPlaceholder,
+    });
+  }, [showSelectInnerPlaceholder]);
+
   const renderTags = useMemo(() => {
     if (isUndefined(selected) && !Array.isArray(selected) && !multi) {
       return null;
@@ -248,6 +255,11 @@ export const Select = <T,>({
             }
           }
         }
+      } else {
+        // Display placeholder if multi select has no selected values
+        if (selected.length === 0 && isPresent(placeholder)) {
+          display = placeholder;
+        }
       }
     }
 
@@ -290,7 +302,7 @@ export const Select = <T,>({
         } else {
           if (!identify) {
             throw Error(
-              'Select needs to be suplied with identify method when values are objects',
+              'Select needs to be supplied with identify method when values are objects',
             );
           }
 
