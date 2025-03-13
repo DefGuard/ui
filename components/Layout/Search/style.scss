@@ -3,7 +3,7 @@
   min-width: 100px;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 1fr 14px;
+  grid-template-columns: 1fr 24px;
   box-sizing: border-box;
   padding: 1px 15px;
   background-color: var(--surface-frame-bg);
@@ -35,23 +35,38 @@
     }
   }
 
-  & > svg {
-    width: 14px;
-    height: 14px;
-    path {
-      transition-duration: 100ms;
-      transition-timing-function: ease-in-out;
-      transition-property: fill;
-      fill: var(--surface-icon-primary);
+  .clear-value {
+    visibility: visible;
+
+    &.hide {
+      visibility: hidden;
     }
+
+    svg {
+      path {
+        @include animate-standard;
+        transition-property: fill;
+        fill: var(--border-separator);
+      }
+    }
+
+    &.hover {
+      svg {
+        path {
+          fill: var(--border-alert);
+        }
+      }
+    }
+  }
+
+  & > .icon {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
   }
 
   &:focus-within {
     background-color: var(--surface-default-modal);
-    & > svg {
-      path {
-        fill: var(--surface-main-primary);
-      }
-    }
   }
 }

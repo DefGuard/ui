@@ -19,6 +19,7 @@ import { useBreakpoint } from 'use-breakpoint';
 import { deviceBreakpoints } from '../../../../constants';
 import { detectClickInside } from '../../../utils/detectClickOutside';
 import { isComparableWithStrictEquality } from '../../../utils/isComparable';
+import { isPresent } from '../../../utils/isPresent';
 import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
 import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
@@ -31,7 +32,6 @@ import {
   SelectProps,
   SelectSizeVariant,
 } from './types';
-import { isPresent } from '../../../utils/isPresent';
 
 const compare = <T,>(v: T, other: T): boolean => {
   if (!isComparableWithStrictEquality(v)) {
@@ -191,12 +191,6 @@ export const Select = <T,>({
     }
     return true;
   }, [searchValue, selected]);
-
-  useEffect(() => {
-    console.log({
-      showSelectInnerPlaceholder,
-    });
-  }, [showSelectInnerPlaceholder]);
 
   const renderTags = useMemo(() => {
     if (isUndefined(selected) && !Array.isArray(selected) && !multi) {
