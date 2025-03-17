@@ -3,4 +3,9 @@
 
   color: var(--text-body-tertiary);
   user-select: none;
+
+  &.message-position-center {
+    width: 100%;
+    text-align: center;
+  }
 }
