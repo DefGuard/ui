@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { isPresent } from '../../../utils/isPresent';
