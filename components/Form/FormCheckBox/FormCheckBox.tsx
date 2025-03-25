@@ -31,7 +31,9 @@ export const FormCheckBox = <T extends FieldValues>({
         <label
           htmlFor={fieldId}
           onClick={() => {
-            onChange(!value);
+            if (!rest.disabled) {
+              onChange(!value);
+            }
           }}
         >
           {label}
