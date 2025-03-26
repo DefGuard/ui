@@ -1,15 +1,5 @@
 .textarea {
-  & > .error {
-    position: absolute;
-    @include typography(app-wizard-1);
-    @include text-overflow-dots;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    bottom: 5px;
-
-    color: var(--text-alert);
-  }
+  position: relative;
 
   & > .label {
     @include typography(app-wizard-1);
@@ -32,6 +22,7 @@
     height: fit-content;
     padding: var(--spacing-s) var(--spacing-xs) var(--spacing-s) var(--spacing-s);
     box-sizing: border-box;
+    opacity: 1;
 
     @include animate-field;
     transition-property: border-color, opacity;
@@ -40,18 +31,23 @@
       border-color: var(--border-alert);
     }
 
+    &.disabled {
+      opacity: 0.5;
+    }
+
     textarea {
       width: 100%;
-      resize: vertical;
+      resize: none;
       overflow-x: hidden;
       overflow-y: auto;
       min-height: 200px;
       border: none;
-      border-radius: 10px;
       background-color: transparent;
       box-sizing: border-box;
       scrollbar-gutter: stable;
+      padding: 0;
       padding-right: var(--spacing-xs);
+      position: relative;
 
       @include typography(app-input);
 
@@ -69,6 +65,19 @@
       height: 22px;
       user-select: none;
       cursor: row-resize;
+      touch-action: none;
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+
+      textarea {
+        cursor: not-allowed;
+      }
+
+      .resize-icon {
+        cursor: not-allowed;
+      }
     }
   }
 }

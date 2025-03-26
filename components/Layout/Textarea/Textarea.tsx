@@ -10,17 +10,28 @@ import { TextareaProps } from './types';
 
 const defaultHeight = 200;
 
-export const Textarea = ({ onChange, value, errorMessage, label }: TextareaProps) => {
+export const Textarea = ({
+  onChange,
+  value,
+  errorMessage,
+  label,
+  disabled = false,
+}: TextareaProps) => {
   const [height, setHeight] = useState(defaultHeight);
-  const bindDrag = useDrag(({ delta: [, dy] }) => {
-    setHeight((current) => {
-      const next = current + dy;
-      if (next >= 200) {
-        return next;
-      }
-      return current;
-    });
-  });
+  const bindDrag = useDrag(
+    ({ delta: [, dy] }) => {
+      setHeight((current) => {
+        const next = current + dy;
+        if (next >= 200) {
+          return next;
+        }
+        return current;
+      });
+    },
+    {
+      enabled: !disabled,
+    },
+  );
 
   return (
     <div className="textarea-spacer spacer">
@@ -29,6 +40,7 @@ export const Textarea = ({ onChange, value, errorMessage, label }: TextareaProps
         <div
           className={clsx('inner', {
             error: isPresent(errorMessage),
+            disabled: disabled,
           })}
         >
           <textarea
@@ -37,6 +49,7 @@ export const Textarea = ({ onChange, value, errorMessage, label }: TextareaProps
             onChange={(e) => {
               onChange(e.target.value);
             }}
+            disabled={disabled}
           />
           <div {...bindDrag()} className="resize-icon">
             <svg
@@ -59,8 +72,8 @@ export const Textarea = ({ onChange, value, errorMessage, label }: TextareaProps
               />
             </svg>
           </div>
-          <FieldError errorMessage={errorMessage} />
         </div>
+        <FieldError errorMessage={errorMessage} />
       </div>
     </div>
   );
