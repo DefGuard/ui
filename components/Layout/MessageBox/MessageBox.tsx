@@ -42,7 +42,7 @@ export const MessageBox = ({
       case MessageBoxType.SUCCESS:
         return <SvgIconInfoSuccess />;
       case MessageBoxType.WARNING:
-        return <SvgIconInfo />;
+        return <SvgIconWarning />;
       case MessageBoxType.ERROR:
         return <SvgIconWarning />;
     }
