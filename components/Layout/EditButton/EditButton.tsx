@@ -7,12 +7,13 @@ import {
   FloatingPortal,
   offset,
   shift,
+  useDismiss,
   useFloating,
+  useInteractions,
 } from '@floating-ui/react';
 import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { ReactNode, useMemo, useRef, useState } from 'react';
-import ClickAwayListener from 'react-click-away-listener';
 
 import SvgIconSettings from '../../svg/IconSettings';
 
@@ -47,7 +48,7 @@ export const EditButton = ({
       }),
     [className, visible, open, hovered],
   );
-  const { x, y, refs, strategy, placement, middlewareData } = useFloating({
+  const { x, y, refs, strategy, placement, middlewareData, context } = useFloating({
     placement: 'left',
     strategy: 'fixed',
     middleware: [offset(12), flip(), shift(), arrow({ element: arrowRef })],
@@ -56,6 +57,10 @@ export const EditButton = ({
     whileElementsMounted: (refElement, floatingElement, updateFunc) =>
       autoUpdate(refElement, floatingElement, updateFunc),
   });
+
+  const dismiss = useDismiss(context, { outsidePress: true, ancestorScroll: true });
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 
   const staticSide: string = useMemo(() => {
     const mapping: PlacementMap = {
@@ -85,42 +90,42 @@ export const EditButton = ({
             setOpen((state) => !state);
           }
         }}
+        {...getReferenceProps()}
       >
         <SvgIconSettings />
       </motion.button>
       <FloatingPortal>
         {open && (
-          <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <motion.div
+            className="edit-button-floating-ui"
+            ref={refs.setFloating}
+            style={{
+              position: strategy,
+              top: y ?? 0,
+              left: x ?? 0,
+              zIndex: 3,
+            }}
+            onClick={(env) => {
+              env.stopPropagation();
+              env.preventDefault();
+              setOpen(false);
+            }}
+            {...getFloatingProps()}
+          >
+            {children}
             <motion.div
-              className="edit-button-floating-ui"
-              ref={refs.setFloating}
+              className="arrow"
+              data-placement={placement}
+              ref={arrowRef}
               style={{
-                position: strategy,
-                top: y ?? 0,
-                left: x ?? 0,
-                zIndex: 3,
+                left: middlewareData?.arrow?.x ? `${middlewareData.arrow.x}px` : '',
+                top: middlewareData?.arrow?.y ? `${middlewareData.arrow.y}px` : '',
+                right: '',
+                bottom: '',
+                [staticSide]: '-8px',
               }}
-              onClick={(env) => {
-                env.stopPropagation();
-                env.preventDefault();
-                setOpen(false);
-              }}
-            >
-              {children}
-              <motion.div
-                className="arrow"
-                data-placement={placement}
-                ref={arrowRef}
-                style={{
-                  left: middlewareData?.arrow?.x ? `${middlewareData.arrow.x}px` : '',
-                  top: middlewareData?.arrow?.y ? `${middlewareData.arrow.y}px` : '',
-                  right: '',
-                  bottom: '',
-                  [staticSide]: '-8px',
-                }}
-              />
-            </motion.div>
-          </ClickAwayListener>
+            />
+          </motion.div>
         )}
       </FloatingPortal>
     </>
