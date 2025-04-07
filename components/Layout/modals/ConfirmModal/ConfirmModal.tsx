@@ -1,28 +1,29 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { ReactNode, useMemo } from 'react';
+import { PropsWithChildren, ReactNode, useMemo } from 'react';
 
+import { isPresent } from '../../../../utils/isPresent';
 import { Button } from '../../Button/Button';
 import { ButtonSize, ButtonStyleVariant } from '../../Button/types';
 import { Modal } from '../Modal/Modal';
 import { ConfirmModalType } from './types';
 
-interface Props {
+type Props = {
   isOpen: boolean;
-  title: string;
-  submitText: string;
+  title?: string;
+  submitText?: string;
   type?: ConfirmModalType;
   subTitle?: string | ReactNode;
   cancelText?: string;
   loading?: boolean;
   id?: string;
-  onSubmit: () => void;
+  onSubmit?: () => void;
   setIsOpen?: (v: boolean) => void;
   onClose?: () => void;
   afterClose?: () => void;
   onCancel?: () => void;
-}
+} & PropsWithChildren;
 
 const baseClass = 'modal middle confirm';
 
@@ -43,6 +44,7 @@ export const ConfirmModal = ({
   onSubmit,
   subTitle,
   onCancel,
+  children,
 }: Props) => {
   const cn = useMemo(
     () =>
@@ -63,8 +65,9 @@ export const ConfirmModal = ({
       afterClose={afterClose}
       disableClose={loading}
     >
-      <p className="title">{title}</p>
-      <p className="subtitle">{subTitle}</p>
+      {isPresent(title) && <p className="title">{title}</p>}
+      {isPresent(subTitle) && <p className="subtitle">{subTitle}</p>}
+      {children}
       <section className="controls">
         <Button
           size={ButtonSize.LARGE}
@@ -75,17 +78,19 @@ export const ConfirmModal = ({
             onClose?.();
           }}
         />
-        <Button
-          size={ButtonSize.LARGE}
-          styleVariant={
-            type === ConfirmModalType.WARNING
-              ? ButtonStyleVariant.DELETE
-              : ButtonStyleVariant.PRIMARY
-          }
-          loading={loading}
-          onClick={onSubmit}
-          text={submitText}
-        />
+        {isPresent(onSubmit) && isPresent(submitText) && (
+          <Button
+            size={ButtonSize.LARGE}
+            styleVariant={
+              type === ConfirmModalType.WARNING
+                ? ButtonStyleVariant.DELETE
+                : ButtonStyleVariant.PRIMARY
+            }
+            loading={loading}
+            onClick={onSubmit}
+            text={submitText}
+          />
+        )}
       </section>
     </Modal>
   );
