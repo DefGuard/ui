@@ -448,9 +448,9 @@ export const Select = <T,>({
           ) : null}
         </AnimatePresence>
       </motion.div>
-      <FloatingPortal>
-        <AnimatePresence mode="wait">
-          {open && options && (floatingOptions.length > 0 || extendable) && (
+      <AnimatePresence mode="wait">
+        {open && options && (floatingOptions.length > 0 || extendable) && (
+          <FloatingPortal>
             <motion.div
               className="select-floating-ui"
               ref={refs.setFloating}
@@ -516,9 +516,9 @@ export const Select = <T,>({
                 )}
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </FloatingPortal>
+          </FloatingPortal>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

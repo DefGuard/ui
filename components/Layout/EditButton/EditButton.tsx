@@ -94,8 +94,8 @@ export const EditButton = ({
       >
         <SvgIconSettings />
       </motion.button>
-      <FloatingPortal>
-        {open && (
+      {open && (
+        <FloatingPortal>
           <motion.div
             className="edit-button-floating-ui"
             ref={refs.setFloating}
@@ -126,8 +126,8 @@ export const EditButton = ({
               }}
             />
           </motion.div>
-        )}
-      </FloatingPortal>
+        </FloatingPortal>
+      )}
     </>
   );
 };
