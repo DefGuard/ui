@@ -15,6 +15,13 @@ export const FloatingMenu = React.forwardRef<
   const context = useFloatingMenuContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
+  const arrowY = () => {
+    if (context.placement.startsWith('bottom')) {
+      return '0';
+    }
+    return context.middlewareData.arrow?.y;
+  };
+
   if (!context.open) return null;
 
   return (
@@ -35,7 +42,7 @@ export const FloatingMenu = React.forwardRef<
           style={{
             position: 'absolute',
             left: context.middlewareData.arrow?.x,
-            top: context.middlewareData.arrow?.y,
+            top: arrowY(),
           }}
         >
           <FloatingMenuArrow placement={context.placement} />

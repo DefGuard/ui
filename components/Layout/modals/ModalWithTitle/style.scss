@@ -2,11 +2,13 @@
   & > .modal-wrap {
     & > .modal {
       &.titled {
+        --modal-padding: var(--spacing-s);
         min-height: 100%;
         padding: 0;
         display: flex;
 
         @include media-breakpoint-up(lg) {
+          --modal-padding: var(--spacing-m);
           display: flex;
           flex-flow: row nowrap;
           align-content: center;
@@ -78,13 +80,13 @@
             align-items: center;
             justify-content: flex-start;
             position: relative;
-            padding: 0 20px;
             border-bottom: 1px solid var(--border-primary);
+            padding: 0 var(--modal-padding);
 
             @include media-breakpoint-up(lg) {
               height: min-content;
-              padding: 40px 30px 30px;
               border-color: transparent;
+              padding: var(--modal-padding) var(--modal-padding) 0;
             }
 
             & > .title {
@@ -98,9 +100,9 @@
           & > .step-content {
             display: block;
             box-sizing: border-box;
-            padding: var(--spacing-l);
             max-height: calc(100% - 70px);
             overflow-y: auto;
+            padding: var(--modal-padding);
 
             @include media-breakpoint-up(lg) {
               max-height: none;
@@ -134,10 +136,6 @@
                 width: 100%;
               }
 
-              @include media-breakpoint-up(lg) {
-                padding: 0 30px;
-              }
-
               & > .controls {
                 width: 100%;
                 display: flex;
@@ -145,7 +143,7 @@
                 column-gap: 10px;
                 flex-flow: column-reverse;
                 box-sizing: border-box;
-                margin-top: 15px;
+                padding-top: 20px;
 
                 @include media-breakpoint-up(lg) {
                   flex-flow: row nowrap;
@@ -178,14 +176,8 @@
 }
 
 .modal-root .modal-wrap .modal.titled.default-styles .modal-content .content {
-  padding: 0 20px;
-
-  @include media-breakpoint-up(lg) {
-    padding: 0 30px;
-  }
-
-  .message-box {
-    margin-bottom: 30px;
+  .message-box-spacer {
+    padding-bottom: var(--spacing-m);
   }
 
   .controls {
@@ -194,7 +186,6 @@
     align-items: center;
     gap: 20px;
     padding-top: 25px;
-    padding-bottom: 20px;
     width: 100%;
 
     @include media-breakpoint-up(lg) {

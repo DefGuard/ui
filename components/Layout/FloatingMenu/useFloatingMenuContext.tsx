@@ -34,7 +34,7 @@ export const useFloatingMenu = ({
     onOpenChange: openChange,
     whileElementsMounted: autoUpdate,
     middleware: [
-      offset(2),
+      offset(10),
       flip({
         crossAxis: placement.includes('-'),
         fallbackAxisSideDirection: 'start',
@@ -43,7 +43,7 @@ export const useFloatingMenu = ({
       shift({ padding: 5 }),
       arrow({
         element: arrowRef,
-        padding: 6,
+        padding: 10,
       }),
     ],
   });

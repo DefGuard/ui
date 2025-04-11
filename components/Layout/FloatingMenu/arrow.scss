@@ -7,10 +7,11 @@
     transform: translateX(8px);
   }
 
-  //TODO
   &.placement--top {
+    transform: translateY(-14px) rotate(-90deg);
   }
 
   &.placement--bottom {
+    transform: translateY(-7px) rotate(90deg);
   }
 }

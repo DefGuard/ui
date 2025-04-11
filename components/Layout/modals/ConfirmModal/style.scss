@@ -26,6 +26,8 @@
 
       p {
         width: 100%;
+        max-width: 100%;
+        text-wrap: wrap;
         text-align: center;
         user-select: none;
       }
