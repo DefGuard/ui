@@ -22,6 +22,7 @@ export const useFloatingMenu = ({
   onOpenChange,
   open: controlledOpen,
   placement = 'right',
+  disabled,
 }: FloatingMenuContextOptions) => {
   const arrowRef = useRef(null);
   const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen ?? false);
@@ -30,7 +31,7 @@ export const useFloatingMenu = ({
 
   const data = useFloating({
     placement,
-    open: isOpen,
+    open: !disabled && isOpen,
     onOpenChange: openChange,
     whileElementsMounted: autoUpdate,
     middleware: [
@@ -52,7 +53,7 @@ export const useFloatingMenu = ({
 
   const hover = useHover(floatingContext, {
     move: false,
-    enabled: controlledOpen == null,
+    enabled: controlledOpen == null && !disabled,
     mouseOnly: true,
     restMs: 350,
     handleClose: safePolygon(),
@@ -60,6 +61,7 @@ export const useFloatingMenu = ({
 
   const click = useClick(floatingContext, {
     ignoreMouse: true,
+    enabled: !disabled,
   });
   const focus = useFocus(floatingContext, {
     enabled: controlledOpen == null,

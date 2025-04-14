@@ -7,6 +7,7 @@ export type FloatingMenuContextOptions = {
   placement?: Placement;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  disabled?: boolean;
 };
 
 export type FloatingMenuContextType = ReturnType<typeof useFloatingMenu> | null;

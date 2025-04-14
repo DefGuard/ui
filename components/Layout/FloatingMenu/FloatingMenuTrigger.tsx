@@ -10,7 +10,7 @@ import { useFloatingMenuContext } from './useFloatingMenuContext';
 export const FloatingMenuTrigger = React.forwardRef<
   HTMLElement,
   React.HTMLProps<HTMLElement> & { asChild?: boolean }
->(function TooltipTrigger({ children, asChild = false, ...props }, propRef) {
+>(function TooltipTrigger({ children, asChild = true, ...props }, propRef) {
   const context = useFloatingMenuContext();
   const childrenRef = (children as any).ref;
   const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
