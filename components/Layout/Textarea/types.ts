@@ -1,3 +1,7 @@
-import { HTMLProps } from 'react';
-
-export type TextareaProps = HTMLProps<HTMLTextAreaElement>;
+export type TextareaProps = {
+  value: string;
+  onChange: (value: string) => void;
+  errorMessage?: string;
+  label?: string;
+  disabled?: boolean;
+};

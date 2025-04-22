@@ -19,6 +19,7 @@ import { useBreakpoint } from 'use-breakpoint';
 import { deviceBreakpoints } from '../../../../constants';
 import { detectClickInside } from '../../../utils/detectClickOutside';
 import { isComparableWithStrictEquality } from '../../../utils/isComparable';
+import { isPresent } from '../../../utils/isPresent';
 import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
 import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
@@ -248,6 +249,11 @@ export const Select = <T,>({
             }
           }
         }
+      } else {
+        // Display placeholder if multi select has no selected values
+        if (selected.length === 0 && isPresent(placeholder)) {
+          display = placeholder;
+        }
       }
     }
 
@@ -290,7 +296,7 @@ export const Select = <T,>({
         } else {
           if (!identify) {
             throw Error(
-              'Select needs to be suplied with identify method when values are objects',
+              'Select needs to be supplied with identify method when values are objects',
             );
           }
 
@@ -442,9 +448,9 @@ export const Select = <T,>({
           ) : null}
         </AnimatePresence>
       </motion.div>
-      <FloatingPortal>
-        <AnimatePresence mode="wait">
-          {open && options && (floatingOptions.length > 0 || extendable) && (
+      <AnimatePresence mode="wait">
+        {open && options && (floatingOptions.length > 0 || extendable) && (
+          <FloatingPortal>
             <motion.div
               className="select-floating-ui"
               ref={refs.setFloating}
@@ -510,9 +516,9 @@ export const Select = <T,>({
                 )}
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </FloatingPortal>
+          </FloatingPortal>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

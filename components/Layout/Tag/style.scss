@@ -14,7 +14,6 @@
 
   &.disposable {
     padding: 0 5px 0 10px;
-    min-width: 80px;
   }
 
   & > .dispose {
@@ -22,7 +21,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    align-content: center;
+    justify-content: center;
     background-color: transparent;
     cursor: pointer;
     border: 0 solid transparent;
@@ -34,6 +33,7 @@
     & > svg {
       height: 12px;
       width: 12px;
+
       & > path {
         fill: var(--border-separator);
         transition-duration: 250ms;

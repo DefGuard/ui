@@ -17,7 +17,7 @@ type Props = {
 
 export const CardTabs = ({ tabs, onCreate, createContent, loading = false }: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [showScrollControlls, setShowScrollControlls] = useState(false);
+  const [showScrollControls, setShowScrollControls] = useState(false);
 
   const checkOverflow = useCallback(() => {
     if (containerRef.current) {
@@ -30,10 +30,10 @@ export const CardTabs = ({ tabs, onCreate, createContent, loading = false }: Pro
   useEffect(() => {
     setTimeout(() => {
       if (checkOverflow()) {
-        setShowScrollControlls(true);
+        setShowScrollControls(true);
       } else {
-        if (showScrollControlls) {
-          setShowScrollControlls(false);
+        if (showScrollControls) {
+          setShowScrollControls(false);
         }
       }
     }, 500);
@@ -79,7 +79,7 @@ export const CardTabs = ({ tabs, onCreate, createContent, loading = false }: Pro
           <CardTab onClick={() => onCreate()} content={createContent} />
         )}
       </div>
-      {showScrollControlls && (
+      {showScrollControls && (
         <div className="scroll-controls">
           <button onClick={() => handleScroll('left')}>
             <ArrowSingle

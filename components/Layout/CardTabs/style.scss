@@ -3,10 +3,8 @@
   max-width: 100%;
   overflow: hidden;
   box-sizing: border-box;
-  padding: 0 12px 0 0;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 85px;
   column-gap: 10px;
 
   & > .scroll-controls {

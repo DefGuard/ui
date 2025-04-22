@@ -205,9 +205,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             </motion.span>
           )}
         </AnimatePresence>
-        <FloatingPortal>
-          <AnimatePresence mode="wait">
-            {floatingErrorsOpen && floatingErrors && (
+        <AnimatePresence mode="wait">
+          {floatingErrorsOpen && floatingErrors && (
+            <FloatingPortal>
               <FloatingBox
                 className="floating-input-errors"
                 ref={setFloating}
@@ -237,9 +237,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                   data={middlewareData.arrow}
                 />
               </FloatingBox>
-            )}
-          </AnimatePresence>
-        </FloatingPortal>
+            </FloatingPortal>
+          )}
+        </AnimatePresence>
       </div>
     );
   },

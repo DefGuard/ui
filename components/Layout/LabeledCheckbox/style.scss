@@ -17,7 +17,7 @@
     display: block;
 
     @include typography(app-modal-1);
-    color: var(--text-body-secondary);
+    color: var(--text-body-tertiary);
   }
 
   &.disabled {

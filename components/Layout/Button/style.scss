@@ -75,6 +75,16 @@
     }
   }
 
+  &.tiny {
+    height: unset;
+    min-height: 32px;
+    padding: 10px;
+
+    .text {
+      @include typography(app-button-xs);
+    }
+  }
+
   // variants
   &.variant-icon {
     height: auto;

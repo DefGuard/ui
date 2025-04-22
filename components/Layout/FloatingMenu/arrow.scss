@@ -1,0 +1,17 @@
+.floating-menu-arrow {
+  &.placement--left {
+    transform: translateX(-8px) rotate(-180deg);
+  }
+
+  &.placement--right {
+    transform: translateX(8px);
+  }
+
+  &.placement--top {
+    transform: translateY(-14px) rotate(-90deg);
+  }
+
+  &.placement--bottom {
+    transform: translateY(-7px) rotate(90deg);
+  }
+}
