@@ -2,7 +2,7 @@ import './floating.scss';
 
 import { FloatingPortal, useMergeRefs } from '@floating-ui/react';
 import clsx from 'clsx';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { FloatingMenuArrow } from './FloatingMenuArrow';
 import { useFloatingMenuContext } from './useFloatingMenuContext';
@@ -15,12 +15,22 @@ export const FloatingMenu = React.forwardRef<
   const context = useFloatingMenuContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
-  const arrowY = () => {
+  const arrowY = useMemo(() => {
     if (context.placement.startsWith('bottom')) {
-      return '0';
+      return 0;
     }
     return context.middlewareData.arrow?.y;
-  };
+  }, [context.middlewareData.arrow?.y, context.placement]);
+
+  const arrowX = useMemo(() => {
+    if (context.placement.startsWith('left')) {
+      return '100%';
+    }
+    if (context.placement.startsWith('right')) {
+      return 0;
+    }
+    return context.middlewareData.arrow?.x;
+  }, [context.middlewareData.arrow?.x, context.placement]);
 
   if (!context.open) return null;
 
@@ -41,8 +51,8 @@ export const FloatingMenu = React.forwardRef<
           ref={context.arrowRef}
           style={{
             position: 'absolute',
-            left: context.middlewareData.arrow?.x,
-            top: arrowY(),
+            left: arrowX,
+            top: arrowY,
           }}
         >
           <FloatingMenuArrow placement={context.placement} />

@@ -111,10 +111,6 @@
             & > .message-box-spacer {
               padding-bottom: 25px;
 
-              @include media-breakpoint-up(lg) {
-                padding: 0 30px 25px;
-              }
-
               & > .message-box {
                 p {
                   max-width: 434px;

@@ -3,7 +3,7 @@ import './style.scss';
 import classNames from 'classnames';
 import clsx from 'clsx';
 import { HTMLMotionProps, motion } from 'framer-motion';
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { debounceTime, Subject } from 'rxjs';
 
 import SvgIconLoupe from '../../svg/IconLoupe';
@@ -30,7 +30,7 @@ export const Search = ({
   placeholder,
   initialValue = '',
 }: Props) => {
-  const containerRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [inputValue, setInputValue] = useState(initialValue);
   const [changeSubject, setChangeSubject] = useState<Subject<string> | undefined>();
