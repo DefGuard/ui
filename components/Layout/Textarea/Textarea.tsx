@@ -15,6 +15,7 @@ export const Textarea = ({
   value,
   errorMessage,
   label,
+  placeholder,
   disabled = false,
 }: TextareaProps) => {
   const [height, setHeight] = useState(defaultHeight);
@@ -46,6 +47,7 @@ export const Textarea = ({
           <textarea
             style={{ height: height }}
             value={value}
+            placeholder={placeholder}
             onChange={(e) => {
               onChange(e.target.value);
             }}

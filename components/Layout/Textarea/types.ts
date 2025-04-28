@@ -3,5 +3,6 @@ export type TextareaProps = {
   onChange: (value: string) => void;
   errorMessage?: string;
   label?: string;
+  placeholder?: string;
   disabled?: boolean;
 };
