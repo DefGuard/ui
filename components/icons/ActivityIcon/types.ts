@@ -4,4 +4,5 @@ export enum ActivityIconVariant {
   ERROR = 'error',
   BLANK = 'blank',
   ERROR_FILLED = 'error-filled',
+  DISABLED = 'disabled',
 }
