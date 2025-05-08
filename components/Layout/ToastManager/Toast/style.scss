@@ -37,11 +37,11 @@
   &.warning {
     svg {
       circle {
-        fill: var(--surface-important);
+        fill: var(--surface-important) !important;
       }
 
       path {
-        fill: var(--surface-default-modal);
+        fill: var(--surface-default-modal) !important;
       }
     }
   }
