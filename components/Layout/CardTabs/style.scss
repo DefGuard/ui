@@ -11,6 +11,7 @@
     display: flex;
     flex-flow: row nowrap;
     column-gap: 5px;
+
     & > button {
       width: 40px;
       height: 40px;
@@ -31,6 +32,7 @@
   }
 
   & > .tabs-container {
+    min-height: 42px;
     height: 100%;
     width: 100%;
     max-width: 100%;
