@@ -1,8 +1,8 @@
 import { Key, ReactNode } from 'react';
 
 export enum ListSortDirection {
-  ASC = 'ASC',
-  DESC = 'DESC',
+  ASC = 'asc',
+  DESC = 'desc',
 }
 
 export type ListHeader = {
