@@ -42,9 +42,11 @@ export const Modal = ({
     if (mouseObserver && contentRef && isOpen) {
       const sub = mouseObserver.subscribe(({ press, release }) => {
         if (release && press) {
+          const target = press.target as Element;
+          const validParent = target.closest('#modals-root');
           const checkPress = checkEventOutside(press);
           const checkRelease = checkEventOutside(release);
-          if (checkPress && checkRelease && !disableClose) {
+          if (checkPress && checkRelease && !disableClose && validParent !== null) {
             onClose?.();
             setIsOpen?.(false);
           }
