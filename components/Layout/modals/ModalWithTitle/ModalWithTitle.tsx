@@ -1,6 +1,7 @@
 import './style.scss';
 
 import clsx from 'clsx';
+import { useEffect } from 'react';
 
 import SvgIconX from '../../../svg/IconX';
 import { Modal } from '../Modal/Modal';
@@ -22,6 +23,13 @@ export const ModalWithTitle = ({
   includeDefaultStyles = false,
   ...rest
 }: ModalWithTitleProps) => {
+  useEffect(() => {
+    return () => {
+      rest.afterClose?.();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Modal
       onClose={onClose}
