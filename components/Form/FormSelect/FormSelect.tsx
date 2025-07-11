@@ -1,9 +1,13 @@
 import { isUndefined } from 'lodash-es';
 import { useMemo } from 'react';
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import {
+  type FieldValues,
+  type UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
 import { Select } from '../../Layout/Select/Select';
-import { SelectProps } from '../../Layout/Select/types';
+import type { SelectProps } from '../../Layout/Select/types';
 
 interface Props<T extends FieldValues, Y> extends SelectProps<Y> {
   controller: UseControllerProps<T>;

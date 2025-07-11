@@ -3,8 +3,8 @@ import './style.scss';
 import {
   arrow,
   autoUpdate,
-  flip,
   FloatingPortal,
+  flip,
   offset,
   shift,
   useDismiss,
@@ -12,8 +12,8 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import classNames from 'classnames';
-import { HTMLMotionProps, motion } from 'framer-motion';
-import { ReactNode, useMemo, useRef, useState } from 'react';
+import { type HTMLMotionProps, motion } from 'framer-motion';
+import { type ReactNode, useMemo, useRef, useState } from 'react';
 
 import SvgIconSettings from '../../svg/IconSettings';
 

@@ -1,6 +1,6 @@
 import './arrow.scss';
 
-import { Placement } from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 import clsx from 'clsx';
 import { useMemo } from 'react';
 

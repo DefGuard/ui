@@ -2,10 +2,14 @@ import './style.scss';
 
 import { isUndefined } from 'lodash-es';
 import { useId } from 'react';
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import {
+  type FieldValues,
+  type UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
 import { CheckBox } from '../../Layout/Checkbox/CheckBox';
-import { CheckBoxProps } from '../../Layout/Checkbox/types';
+import type { CheckBoxProps } from '../../Layout/Checkbox/types';
 
 interface Props<T extends FieldValues> extends Partial<CheckBoxProps> {
   controller: UseControllerProps<T>;

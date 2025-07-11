@@ -8,7 +8,7 @@ import { useToastsStore } from '../../../../hooks/toasts/useToastStore';
 import SvgIconInfo from '../../../svg/IconInfo';
 import SvgIconInfoSuccess from '../../../svg/IconInfoSuccess';
 import SvgIconWarning from '../../../svg/IconWarning';
-import { ToastProps, ToastType } from './types';
+import { type ToastProps, ToastType } from './types';
 
 // in seconds
 const defaultLifeTime = 5;
@@ -88,9 +88,7 @@ export const Toast = ({
       {getIcon}
       <p className="message">
         {message}
-        {subMessage && subMessage.length && (
-          <span className="sub-message">{subMessage}</span>
-        )}
+        {subMessage?.length && <span className="sub-message">{subMessage}</span>}
       </p>
     </motion.div>
   );

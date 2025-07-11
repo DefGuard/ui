@@ -1,4 +1,4 @@
-import { Key, ReactNode } from 'react';
+import type { Key, ReactNode } from 'react';
 
 export enum ListSortDirection {
   ASC = 'asc',

@@ -4,11 +4,15 @@ import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import mergeRefs from 'merge-refs';
 import { useId, useMemo, useRef, useState } from 'react';
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import {
+  type FieldValues,
+  type UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
 import { useElementSize } from '../../../hooks/useSize';
 import { isPresent } from '../../../utils/isPresent';
-import { FormLocationIpData } from './type';
+import type { FormLocationIpData } from './type';
 
 interface Props<T extends FieldValues> {
   controller: UseControllerProps<T>;

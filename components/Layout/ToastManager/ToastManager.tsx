@@ -11,16 +11,14 @@ export const ToastManager = () => {
   const toasts = useToastsStore((store) => store.toasts);
   if (element === null) return null;
   return ReactDOM.createPortal(
-    <>
-      {toasts.map((toast) => {
-        if (toast.customComponent) {
-          const { customComponent: Component, id, ...rest } = toast;
-          return <Component key={id} id={id} {...rest} />;
-        } else {
-          return <Toast key={toast.id} data={toast} />;
-        }
-      })}
-    </>,
+    toasts.map((toast) => {
+      if (toast.customComponent) {
+        const { customComponent: Component, id, ...rest } = toast;
+        return <Component key={id} id={id} {...rest} />;
+      } else {
+        return <Toast key={toast.id} data={toast} />;
+      }
+    }),
     element,
   );
 };

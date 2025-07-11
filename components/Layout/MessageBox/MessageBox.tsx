@@ -2,7 +2,7 @@ import './style.scss';
 
 import clsx from 'clsx';
 import { isUndefined } from 'lodash-es';
-import { HTMLProps, ReactNode, useEffect, useMemo, useState } from 'react';
+import { type HTMLProps, type ReactNode, useEffect, useMemo, useState } from 'react';
 
 import SvgIconInfo from '../../svg/IconInfo';
 import SvgIconInfoSuccess from '../../svg/IconInfoSuccess';
@@ -31,7 +31,7 @@ export const MessageBox = ({
   styleVariant = MessageBoxStyleVariant.FILLED,
   ...props
 }: Props) => {
-  const [visible, setVisible] = useState<boolean>(isUndefined(dismissId) ? true : false);
+  const [visible, setVisible] = useState<boolean>(!!isUndefined(dismissId));
 
   const dismissible = !isUndefined(dismissId);
 
@@ -59,7 +59,7 @@ export const MessageBox = ({
   }, [message, children]);
 
   useEffect(() => {
-    if (dismissId && dismissId.length) {
+    if (dismissId?.length) {
       const visibility = readMessageBoxVisibility(dismissId);
       setVisible(visibility);
     }

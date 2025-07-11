@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 import SvgIconX from '../../../svg/IconX';
 import { Modal } from '../Modal/Modal';
-import { ModalProps } from '../Modal/types';
+import type { ModalProps } from '../Modal/types';
 
 export interface ModalWithTitleProps extends ModalProps {
   title?: string;

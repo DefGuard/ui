@@ -2,7 +2,7 @@ import './style.scss';
 
 import { DevTool } from '@hookform/devtools';
 import ReactDOM from 'react-dom';
-import { Control } from 'react-hook-form';
+import type { Control } from 'react-hook-form';
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

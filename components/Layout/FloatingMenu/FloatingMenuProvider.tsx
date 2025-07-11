@@ -1,4 +1,4 @@
-import { FloatingMenuContextOptions } from './types';
+import type { FloatingMenuContextOptions } from './types';
 import { FloatingMenuContext, useFloatingMenu } from './useFloatingMenuContext';
 
 export function FloatingMenuProvider({

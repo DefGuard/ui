@@ -1,7 +1,7 @@
-import { ComponentType } from 'react';
+import type { ComponentType } from 'react';
 
 import {
-  ToastOptions,
+  type ToastOptions,
   ToastType,
 } from '../../components/Layout/ToastManager/Toast/types';
 import { useToastsStore } from './useToastStore';

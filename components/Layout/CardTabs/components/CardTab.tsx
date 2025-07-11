@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import { motion, TargetAndTransition } from 'framer-motion';
+import { motion, type TargetAndTransition } from 'framer-motion';
 import { useMemo, useState } from 'react';
 
 import { useTheme } from '../../../../hooks/theme/useTheme';
-import { CardTabProps } from '../types';
+import type { CardTabProps } from '../types';
 
 export const CardTab = ({ onClick, content, active = false }: CardTabProps) => {
   const { colors } = useTheme();

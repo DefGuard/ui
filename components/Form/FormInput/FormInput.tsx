@@ -1,9 +1,13 @@
 import { isUndefined, toNumber } from 'lodash-es';
-import { ChangeEvent, useCallback, useMemo } from 'react';
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import { type ChangeEvent, useCallback, useMemo } from 'react';
+import {
+  type FieldValues,
+  type UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
 import { Input } from '../../Layout/Input/Input';
-import { InputFloatingErrors, InputProps } from '../../Layout/Input/types';
+import type { InputFloatingErrors, InputProps } from '../../Layout/Input/types';
 
 interface Props<T extends FieldValues>
   extends Omit<InputProps, 'floatingErrors' | 'onPaste'> {
@@ -39,7 +43,7 @@ export const FormInput = <T extends FieldValues>({
   }, [error, isDirty, isSubmitted, isTouched, disabled]);
 
   const floatingErrorsData = useMemo((): InputFloatingErrors | undefined => {
-    if (floatingErrors && floatingErrors.title && error && error.types && isInvalid) {
+    if (floatingErrors?.title && error && error.types && isInvalid) {
       let errors: string[] = [];
       for (const val of Object.values(error.types)) {
         if (typeof val === 'string') {
@@ -49,7 +53,7 @@ export const FormInput = <T extends FieldValues>({
           errors = [...errors, ...val];
         }
       }
-      if (floatingErrors.errorMessages && floatingErrors.errorMessages.length) {
+      if (floatingErrors.errorMessages?.length) {
         errors = [...errors, ...floatingErrors.errorMessages];
       }
       return {
@@ -69,7 +73,7 @@ export const FormInput = <T extends FieldValues>({
           return;
         }
         const parsed = toNumber(value);
-        if (!isNaN(parsed)) {
+        if (!Number.isNaN(parsed)) {
           onChange(parsed);
         }
       } else {
