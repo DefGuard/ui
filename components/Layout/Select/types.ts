@@ -5,7 +5,7 @@ export interface SelectOption<T> {
   label: string;
   disabled?: boolean;
   key: string | number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: Meta an be any object it needs to be
   meta?: any;
 }
 
@@ -27,7 +27,7 @@ export interface SelectProps<T> {
   onChangeSingle?: (result: T) => void;
   // When in multi mode emits change
   onChangeArray?: (result: T[]) => void;
-  // needs to be provided when T is an object, should return value that is unique so option can be indentify
+  // needs to be provided when T is an object, should return value that is unique so option can be identify
   identify?: (val: T) => string | number;
   selected?: T | T[];
   // called before removing selected value. Only available in multi mode.
@@ -37,12 +37,11 @@ export interface SelectProps<T> {
   disposable?: boolean;
   // optional, designed to use when API calls are needed in order to search for new options
   onSearch?: (value?: string) => void;
-  // used before onSearch fires to filter out options that are present it is requied if searchable flag is present
+  // used before onSearch fires to filter out options that are present it is required if searchable flag is present
   searchFilter?: (searchValue: string, options: SelectOption<T>[]) => SelectOption<T>[];
   onCreate?: () => void;
   invalid?: boolean;
   errorMessage?: string;
-  searchMinLength?: number;
   searchDebounce?: number;
   searchable?: boolean;
   placeholder?: string;

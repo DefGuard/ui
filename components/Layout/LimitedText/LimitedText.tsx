@@ -48,6 +48,7 @@ export const LimitedText = ({
   const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
   const estimatedWidth = getTextWidth(text);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Runs check only on mount
   useEffect(() => {
     if (refs.reference.current) {
       const refWidth = refs.reference.current.getBoundingClientRect().width;
@@ -55,7 +56,6 @@ export const LimitedText = ({
         setEnabled(true);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs.reference]);
 
   return (

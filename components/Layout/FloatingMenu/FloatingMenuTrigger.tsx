@@ -12,6 +12,7 @@ export const FloatingMenuTrigger = React.forwardRef<
   React.HTMLProps<HTMLElement> & { asChild?: boolean }
 >(function TooltipTrigger({ children, asChild = true, ...props }, propRef) {
   const context = useFloatingMenuContext();
+  // biome-ignore lint/suspicious/noExplicitAny: Can be anything
   const childrenRef = (children as any).ref;
   const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
 

@@ -40,6 +40,7 @@ export const Search = ({
 
   const showClear = inputValue.length > 0 && inputFocus;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: RxjsSub
   useEffect(() => {
     if (changeSubject) {
       const sub = changeSubject.pipe(debounceTime(debounceTiming)).subscribe((value) => {
@@ -52,7 +53,7 @@ export const Search = ({
       setChangeSubject(new Subject());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changeSubject]);
+  }, [changeSubject, onDebounce]);
 
   return (
     <motion.div

@@ -1,8 +1,8 @@
 import './style.scss';
 
-import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-
+import useEffectOnce from '../../../../hooks/api/utils';
 import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
 import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
 import { CardTab } from './components/CardTab';
@@ -27,7 +27,7 @@ export const CardTabs = ({ tabs, onCreate, createContent, loading = false }: Pro
   }, []);
 
   // check overflow on component mount
-  useEffect(() => {
+  useEffectOnce(() => {
     setTimeout(() => {
       if (checkOverflow()) {
         setShowScrollControls(true);
@@ -37,8 +37,7 @@ export const CardTabs = ({ tabs, onCreate, createContent, loading = false }: Pro
         }
       }
     }, 500);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef, containerRef.current]);
+  });
 
   if (loading) {
     return (

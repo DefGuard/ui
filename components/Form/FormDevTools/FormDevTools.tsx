@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import type { Control } from 'react-hook-form';
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: It's devtools
   control: Control<any, object>;
 }
 
