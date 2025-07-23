@@ -43,6 +43,7 @@ export const Toast = ({
   }, [type, subMessage]);
 
   // auto hide at lifetime end.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
   useEffect(() => {
     if (timerControl && !timeControlDisabled) {
       timerTick.current = window.setInterval(() => {

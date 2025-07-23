@@ -58,6 +58,7 @@ export const MessageBox = ({
     return message;
   }, [message, children]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
   useEffect(() => {
     if (dismissId?.length) {
       const visibility = readMessageBoxVisibility(dismissId);

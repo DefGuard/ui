@@ -103,6 +103,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }, [disabled, disposable, focused, hovered, invalid, required]);
 
     // control floatingErrors while typing
+    // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
     useEffect(() => {
       if (
         focused &&

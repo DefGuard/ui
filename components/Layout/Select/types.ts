@@ -42,7 +42,6 @@ export interface SelectProps<T> {
   onCreate?: () => void;
   invalid?: boolean;
   errorMessage?: string;
-  searchMinLength?: number;
   searchDebounce?: number;
   searchable?: boolean;
   placeholder?: string;

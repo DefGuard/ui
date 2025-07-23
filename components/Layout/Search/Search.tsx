@@ -40,6 +40,7 @@ export const Search = ({
 
   const showClear = inputValue.length > 0 && inputFocus;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
   useEffect(() => {
     if (changeSubject) {
       const sub = changeSubject.pipe(debounceTime(debounceTiming)).subscribe((value) => {

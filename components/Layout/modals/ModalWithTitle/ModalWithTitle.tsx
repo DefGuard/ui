@@ -23,6 +23,7 @@ export const ModalWithTitle = ({
   includeDefaultStyles = false,
   ...rest
 }: ModalWithTitleProps) => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
   useEffect(() => {
     return () => {
       rest.afterClose?.();

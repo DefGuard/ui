@@ -48,6 +48,7 @@ export const LimitedText = ({
   const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
   const estimatedWidth = getTextWidth(text);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
   useEffect(() => {
     if (refs.reference.current) {
       const refWidth = refs.reference.current.getBoundingClientRect().width;

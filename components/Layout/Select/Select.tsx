@@ -62,7 +62,6 @@ export const Select = <T,>({
   loading = false,
   disabled = false,
   searchDebounce = 500,
-  searchMinLength = 1,
   disableLabelColon = false,
   inForm = false,
   disableOpen = false,
@@ -321,7 +320,7 @@ export const Select = <T,>({
         setSearchValue(searchValue);
       });
     return () => sub.unsubscribe();
-  }, [onSearch, searchDebounce, searchMinLength, searchSubject]);
+  }, [onSearch, searchDebounce, searchSubject]);
 
   // check click outside
   useEffect(() => {

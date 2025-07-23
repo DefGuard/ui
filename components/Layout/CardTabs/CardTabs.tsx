@@ -27,6 +27,7 @@ export const CardTabs = ({ tabs, onCreate, createContent, loading = false }: Pro
   }, []);
 
   // check overflow on component mount
+  // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
   useEffect(() => {
     setTimeout(() => {
       if (checkOverflow()) {

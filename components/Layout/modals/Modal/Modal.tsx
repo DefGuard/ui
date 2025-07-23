@@ -39,6 +39,35 @@ export const Modal = ({
 
   const [mouseObserver] = useState(new BehaviorSubject<MouseObserverState>({}));
 
+  /**
+   * WORKAROUND
+   *
+   * Close modal if mouse at click event was outside of modal content box.
+   *
+   * ClickOutside does not work with react Portals or just in this case, resulting in onClickOutside running when clicked anywhere on the page.
+   */
+  const checkEventOutside = useCallback(
+    (event: React.MouseEvent<HTMLDivElement, MouseEvent>): boolean => {
+      const domRect = contentRef.current?.getBoundingClientRect();
+      if (domRect) {
+        const start_x = domRect?.x;
+        const start_y = domRect?.y;
+        const end_x = start_x + domRect?.width;
+        const end_y = start_y + domRect.height;
+        if (
+          event.clientX < start_x ||
+          event.clientX > end_x ||
+          event.clientY < start_y ||
+          event.clientY > end_y
+        ) {
+          return true;
+        }
+      }
+      return false;
+    },
+    [],
+  );
+
   useEffect(() => {
     if (mouseObserver && contentRef && isOpen) {
       const sub = mouseObserver.subscribe(({ press, release }) => {
@@ -57,7 +86,7 @@ export const Modal = ({
         sub.unsubscribe();
       };
     }
-  }, [disableClose, isOpen, mouseObserver, onClose, setIsOpen]);
+  }, [disableClose, isOpen, mouseObserver, onClose, setIsOpen, checkEventOutside]);
 
   useEffect(() => {
     // clear observer after closing modal
@@ -69,34 +98,6 @@ export const Modal = ({
   useEffect(() => {
     openRef.current = isOpen;
   }, [isOpen]);
-
-  /**
-   * WORKAROUND
-   *
-   * Close modal if mouse at click event was outside of modal content box.
-   *
-   * ClickOutside does not work with react Portals or just in this case, resulting in onClickOutside running when clicked anywhere on the page.
-   */
-  const checkEventOutside = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ): boolean => {
-    const domRect = contentRef.current?.getBoundingClientRect();
-    if (domRect) {
-      const start_x = domRect?.x;
-      const start_y = domRect?.y;
-      const end_x = start_x + domRect?.width;
-      const end_y = start_y + domRect.height;
-      if (
-        event.clientX < start_x ||
-        event.clientX > end_x ||
-        event.clientY < start_y ||
-        event.clientY > end_y
-      ) {
-        return true;
-      }
-    }
-    return false;
-  };
 
   const cn = useMemo(() => classNames('modal', className), [className]);
 
@@ -119,6 +120,7 @@ export const Modal = ({
   }, [afterClose]);
 
   // This will be used for determining animation direction of modal-content
+  // biome-ignore lint/correctness/useExhaustiveDependencies: migration, checkMeLater
   useEffect(() => {
     if (steps && !isUndefined(currentStep) && currentStep <= steps?.length) {
       setStep(currentStep);
