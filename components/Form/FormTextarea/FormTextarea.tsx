@@ -1,8 +1,12 @@
 import { useMemo } from 'react';
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import {
+  type FieldValues,
+  type UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
 import { Textarea } from '../../Layout/Textarea/Textarea';
-import { TextareaProps } from '../../Layout/Textarea/types';
+import type { TextareaProps } from '../../Layout/Textarea/types';
 
 type Props<T extends FieldValues> = {
   controller: UseControllerProps<T>;

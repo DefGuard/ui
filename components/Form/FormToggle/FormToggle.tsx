@@ -1,7 +1,11 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import {
+  type FieldValues,
+  type UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
 import { Toggle } from '../../Layout/Toggle/Toggle';
-import { ToggleProps } from '../../Layout/Toggle/types';
+import type { ToggleProps } from '../../Layout/Toggle/types';
 
 interface Props<T extends FieldValues, D>
   extends Omit<ToggleProps<D>, 'onChange' | 'selected'> {

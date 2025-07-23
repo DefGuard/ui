@@ -3,11 +3,12 @@ import './style.scss';
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BehaviorSubject } from 'rxjs';
 
-import { ModalProps } from './types';
+import type { ModalProps } from './types';
 
 type MouseObserverState = {
   press?: React.MouseEvent<HTMLDivElement, MouseEvent>;

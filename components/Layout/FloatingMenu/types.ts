@@ -1,6 +1,6 @@
-import { Placement } from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 
-import { useFloatingMenu } from './useFloatingMenuContext';
+import type { useFloatingMenu } from './useFloatingMenuContext';
 
 export type FloatingMenuContextOptions = {
   initialOpen?: boolean;

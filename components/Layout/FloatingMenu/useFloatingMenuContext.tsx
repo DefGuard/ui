@@ -15,7 +15,7 @@ import {
 } from '@floating-ui/react';
 import React, { useRef, useState } from 'react';
 
-import { FloatingMenuContextOptions, FloatingMenuContextType } from './types';
+import type { FloatingMenuContextOptions, FloatingMenuContextType } from './types';
 
 export const useFloatingMenu = ({
   initialOpen,

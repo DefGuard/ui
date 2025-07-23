@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { ResizableTextareaProps } from './types';
+import type { ResizableTextareaProps } from './types';
 
 export const TextareaAutoResizable = (props: ResizableTextareaProps) => {
   const ref = useRef<HTMLTextAreaElement | null>(null);
@@ -14,7 +14,7 @@ export const TextareaAutoResizable = (props: ResizableTextareaProps) => {
       // init resize
       setTimeout(() => handleResize(ref.current as HTMLTextAreaElement), 100);
       return () => {
-        if (ref && ref.current) {
+        if (ref?.current) {
           ref.current.removeEventListener('input', handler);
           ref.current.removeEventListener('drop', handler);
           //eslint-disable-next-line

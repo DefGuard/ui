@@ -4,14 +4,14 @@ import { autoUpdate, offset, useFloating } from '@floating-ui/react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import classNames from 'classnames';
 import { detect } from 'detect-browser';
-import { motion, Variants } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useBreakpoint } from 'use-breakpoint';
 
 import { deviceBreakpoints } from '../../../../constants';
 import type { ListHeader } from './types';
-import { ListSortDirection, VirtualizedListProps } from './types';
+import { ListSortDirection, type VirtualizedListProps } from './types';
 import { VirtualizedListSortIcon } from './VirtualizedListSortIcon';
 
 export const VirtualizedList = <T extends object>({

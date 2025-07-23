@@ -1,4 +1,4 @@
-import { Key, ReactNode } from 'react';
+import type { Key, ReactNode } from 'react';
 
 export type CardTabProps = {
   content: ReactNode;

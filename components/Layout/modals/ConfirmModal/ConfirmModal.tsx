@@ -1,7 +1,7 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { PropsWithChildren, ReactNode, useMemo } from 'react';
+import { type PropsWithChildren, type ReactNode, useMemo } from 'react';
 
 import { isPresent } from '../../../../utils/isPresent';
 import { Button } from '../../Button/Button';

@@ -1,4 +1,10 @@
-import { forwardRef, HTMLProps, useEffect, useImperativeHandle, useRef } from 'react';
+import {
+  forwardRef,
+  type HTMLProps,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
 type Props = HTMLProps<HTMLInputElement>;
 
@@ -18,7 +24,7 @@ export const ResizableInput = forwardRef<CastdownHandle, Props>((props: Props, r
   }));
 
   useEffect(() => {
-    if (internalRef && internalRef.current) {
+    if (internalRef?.current) {
       const resizableHandler = () => {
         if (internalRef.current) {
           internalRef.current.style.width = `${

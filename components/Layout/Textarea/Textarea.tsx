@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { isPresent } from '../../../utils/isPresent';
 import { FieldError } from '../FieldError/FieldError';
-import { TextareaProps } from './types';
+import type { TextareaProps } from './types';
 
 const defaultHeight = 200;
 

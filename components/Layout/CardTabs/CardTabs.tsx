@@ -1,12 +1,12 @@
 import './style.scss';
 
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
 import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
 import { CardTab } from './components/CardTab';
-import { CardTabsData } from './types';
+import type { CardTabsData } from './types';
 
 type Props = {
   tabs: CardTabsData[];

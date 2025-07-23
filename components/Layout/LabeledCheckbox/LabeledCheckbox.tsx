@@ -3,7 +3,7 @@ import './style.scss';
 import classNames from 'classnames';
 
 import { CheckBox } from '../Checkbox/CheckBox';
-import { CheckBoxProps } from '../Checkbox/types';
+import type { CheckBoxProps } from '../Checkbox/types';
 
 type Props = CheckBoxProps & {
   label: string;

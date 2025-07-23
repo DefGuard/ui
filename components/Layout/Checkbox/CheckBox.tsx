@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 
 import SvgCheckboxChecked from '../../svg/CheckboxChecked';
 import SvgCheckboxUnchecked from '../../svg/CheckboxUnchecked';
-import { CheckBoxProps } from './types';
+import type { CheckBoxProps } from './types';
 
 export const CheckBox = ({
   value,
@@ -13,7 +13,7 @@ export const CheckBox = ({
   disabled = false,
   ...rest
 }: CheckBoxProps) => {
-  const checked = useMemo(() => (Number(value) ? true : false), [value]);
+  const checked = useMemo(() => !!Number(value), [value]);
 
   const cn = useMemo(
     () =>

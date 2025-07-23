@@ -1,4 +1,4 @@
-import { motion, SVGMotionProps } from 'framer-motion';
+import { motion, type SVGMotionProps } from 'framer-motion';
 
 import { useTheme } from '../../../hooks/theme/useTheme';
 

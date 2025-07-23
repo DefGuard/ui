@@ -1,8 +1,8 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { HTMLMotionProps, motion } from 'framer-motion';
-import { ReactNode, useMemo } from 'react';
+import { type HTMLMotionProps, motion } from 'framer-motion';
+import { type ReactNode, useMemo } from 'react';
 
 export interface AvatarBoxProps extends HTMLMotionProps<'div'> {
   children?: ReactNode;

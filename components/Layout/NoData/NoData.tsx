@@ -16,7 +16,7 @@ interface Props {
 export const NoData = ({ customMessage, messagePosition = 'left' }: Props) => {
   return (
     <p className={clsx('no-data', `message-position-${messagePosition}`)}>
-      {customMessage && customMessage.length ? customMessage : 'No data'}
+      {customMessage?.length ? customMessage : 'No data'}
     </p>
   );
 };

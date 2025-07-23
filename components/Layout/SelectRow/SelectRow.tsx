@@ -1,7 +1,7 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { ReactNode, useMemo } from 'react';
+import { type ReactNode, useMemo } from 'react';
 
 import { CheckBox } from '../Checkbox/CheckBox';
 import { RadioButton } from '../RadioButton/Radiobutton';

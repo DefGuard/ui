@@ -1,7 +1,7 @@
 import './style.scss';
 
 import clsx from 'clsx';
-import { HTMLProps } from 'react';
+import type { HTMLProps } from 'react';
 
 import SvgIconCancel from '../../svg/IconCancel';
 

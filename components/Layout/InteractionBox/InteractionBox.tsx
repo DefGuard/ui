@@ -1,7 +1,7 @@
 import './style.scss';
 
 import clsx from 'clsx';
-import { PropsWithChildren, useState } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 
 type Props = {
   onClick: () => void;

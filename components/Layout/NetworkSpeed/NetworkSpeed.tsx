@@ -1,7 +1,7 @@
 import './style.scss';
 
 import byteSize from 'byte-size';
-import { ComponentPropsWithoutRef, useMemo } from 'react';
+import { type ComponentPropsWithoutRef, useMemo } from 'react';
 
 import { NetworkDirection } from './types';
 

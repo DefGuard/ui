@@ -1,8 +1,8 @@
 import { sort } from 'radash';
-import { ComponentType } from 'react';
+import type { ComponentType } from 'react';
 import { createWithEqualityFn } from 'zustand/traditional';
 
-import { ToastOptions } from '../../components/Layout/ToastManager/Toast/types';
+import type { ToastOptions } from '../../components/Layout/ToastManager/Toast/types';
 
 export type ToastManagerItem = ToastOptions & {
   customComponent?: ComponentType<ToastOptions>;
