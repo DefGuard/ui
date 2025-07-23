@@ -2,7 +2,7 @@ import './style.scss';
 
 import { type ReactNode, useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import useEffectOnce from '../../../../hooks/api/utils';
+import useEffectOnce from '../../../utils/useEffectOnce';
 import { ArrowSingle } from '../../icons/ArrowSingle/ArrowSingle';
 import { ArrowSingleDirection, ArrowSingleSize } from '../../icons/ArrowSingle/types';
 import { CardTab } from './components/CardTab';

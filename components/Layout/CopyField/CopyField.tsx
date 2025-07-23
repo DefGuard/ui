@@ -1,9 +1,9 @@
 import './style.scss';
 
-import { ListCellText } from '../../../../components/Layout/ListCellText/ListCellText';
 import { isPresent } from '../../../utils/isPresent';
 import SvgIconCopy from '../../svg/IconCopy';
 import { InteractionBox } from '../InteractionBox/InteractionBox';
+import { ListCellText } from '../ListCellText/ListCellText';
 
 type Props = {
   label?: string;

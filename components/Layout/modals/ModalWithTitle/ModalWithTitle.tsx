@@ -1,7 +1,7 @@
 import './style.scss';
 
 import clsx from 'clsx';
-import useEffectOnce from '../../../../../hooks/api/utils';
+import useEffectOnce from '../../../../utils/useEffectOnce';
 import SvgIconX from '../../../svg/IconX';
 import { Modal } from '../Modal/Modal';
 import type { ModalProps } from '../Modal/types';

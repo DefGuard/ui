@@ -3,7 +3,7 @@ import './style.scss';
 import clsx from 'clsx';
 import { isUndefined } from 'lodash-es';
 import { type HTMLProps, type ReactNode, useMemo, useState } from 'react';
-import useEffectOnce from '../../../../hooks/api/utils';
+import useEffectOnce from '../../../utils/useEffectOnce';
 import SvgIconInfo from '../../svg/IconInfo';
 import SvgIconInfoSuccess from '../../svg/IconInfoSuccess';
 import SvgIconWarning from '../../svg/IconWarning';
