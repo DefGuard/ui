@@ -120,8 +120,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       ) {
         setFloatingErrorsOpen(false);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [floatingErrors, floatingErrorsOpen]);
+    }, [floatingErrors, floatingErrorsOpen, focused]);
 
     return (
       <div className="input">
