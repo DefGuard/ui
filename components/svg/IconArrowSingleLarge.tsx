@@ -12,7 +12,7 @@ const SvgIconArrowSingleLarge = (props: SVGProps<SVGSVGElement>) => {
       {...props}
     >
       <mask
-        id="icon-arrow-single-large_svg__a"
+        id={id}
         width={22}
         height={22}
         x={0}
