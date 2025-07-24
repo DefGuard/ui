@@ -18,3 +18,8 @@
     color: #fff;
   }
 }
+
+// allows wrapping Button with a without braking text style inside Button
+a:has(.btn) {
+  text-decoration: none;
+}
