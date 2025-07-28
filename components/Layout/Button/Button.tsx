@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { isUndefined } from 'lodash-es';
 import type React from 'react';
 import { type ButtonHTMLAttributes, useEffect, useMemo, useState } from 'react';
-
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 import { ButtonSize, ButtonStyleVariant } from './types';
 
@@ -91,14 +90,12 @@ export const Button = ({
       className={getClassName}
       disabled={isDisabled}
       onClick={(e) => {
-        if (!disabled && !loading && (onClick || type !== 'button')) {
-          if (onClick) {
-            onClick(e);
-          }
-        } else {
+        if (disabled || loading) {
           e.preventDefault();
           e.stopPropagation();
+          return;
         }
+        onClick?.(e);
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
