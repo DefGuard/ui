@@ -14,10 +14,20 @@ import { FloatingMenuTrigger } from '../FloatingMenu/FloatingMenuTrigger';
 type Props = {
   text: string;
   withCopy?: boolean;
+  className?: string;
   placement?: Placement;
+  as?: React.ElementType;
+  testId?: string;
 };
 
-export const ListCellText = ({ text, withCopy, placement = 'left' }: Props) => {
+export const ListCellText = ({
+  text,
+  withCopy,
+  testId,
+  className,
+  as: Cmp = 'p',
+  placement = 'left',
+}: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [overflows, setOverflows] = useState(false);
 
@@ -33,13 +43,15 @@ export const ListCellText = ({ text, withCopy, placement = 'left' }: Props) => {
   return (
     <FloatingMenuProvider disabled={!overflows} placement={placement}>
       <div
-        className={clsx('list-cell-text', {
+        className={clsx('list-cell-text', className, {
           overflows,
         })}
         ref={containerRef}
       >
         <FloatingMenuTrigger asChild>
-          <p>{text}</p>
+          <Cmp className="display-element" data-testid={testId}>
+            {text}
+          </Cmp>
         </FloatingMenuTrigger>
       </div>
       <FloatingMenu

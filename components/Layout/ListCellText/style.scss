@@ -3,7 +3,8 @@
   max-width: 100%;
   overflow: hidden;
 
-  p {
+  p,
+  .display-element {
     display: inline-block;
     text-wrap: nowrap;
     text-overflow: ellipsis;
