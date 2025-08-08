@@ -1,8 +1,8 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
+import { AnimatePresence, motion } from 'motion/react';
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';

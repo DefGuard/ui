@@ -1,7 +1,7 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useToastsStore } from '../../../../hooks/toasts/useToastStore';
