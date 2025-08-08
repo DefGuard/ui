@@ -7,13 +7,14 @@ import { type ButtonHTMLAttributes, useEffect, useMemo, useState } from 'react';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 import { ButtonSize, ButtonStyleVariant } from './types';
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> {
   loading?: boolean;
   size?: ButtonSize;
   styleVariant?: ButtonStyleVariant;
   text?: string;
   icon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  onClick?: () => void;
 }
 
 export const Button = ({
@@ -89,13 +90,11 @@ export const Button = ({
       type={type}
       className={getClassName}
       disabled={isDisabled}
-      onClick={(e) => {
+      onClick={() => {
         if (disabled || loading) {
-          e.preventDefault();
-          e.stopPropagation();
           return;
         }
-        onClick?.(e);
+        onClick?.();
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
