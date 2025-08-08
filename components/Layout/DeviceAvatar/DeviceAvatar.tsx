@@ -1,8 +1,8 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { type HTMLMotionProps, motion } from 'framer-motion';
-import { useMemo } from 'react';
+import { type HTMLMotionProps, motion } from 'motion/react';
+import { type JSX, useMemo } from 'react';
 
 import SvgAvatar01 from '../../svg/Avatar01';
 import SvgAvatar02 from '../../svg/Avatar02';

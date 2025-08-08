@@ -9,9 +9,9 @@ import {
   useFloating,
 } from '@floating-ui/react';
 import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
 import mergeRefs from 'merge-refs';
+import { AnimatePresence, motion } from 'motion/react';
 import React, {
   type ReactNode,
   useEffect,

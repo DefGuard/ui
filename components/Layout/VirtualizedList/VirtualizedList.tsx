@@ -4,8 +4,8 @@ import { autoUpdate, offset, useFloating } from '@floating-ui/react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import classNames from 'classnames';
 import { detect } from 'detect-browser';
-import { motion, type Variants } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
+import { motion, type Variants } from 'motion/react';
 import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useBreakpoint } from 'use-breakpoint';
 

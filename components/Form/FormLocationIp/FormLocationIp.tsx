@@ -1,8 +1,8 @@
 import './style.scss';
 
 import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
 import mergeRefs from 'merge-refs';
+import { AnimatePresence, motion } from 'motion/react';
 import { useId, useMemo, useRef, useState } from 'react';
 import {
   type FieldValues,
@@ -28,8 +28,8 @@ export const FormLocationIp = <T extends FieldValues>({
   label,
 }: Props<T>) => {
   const fieldId = useId();
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const shadowRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const shadowRef = useRef<HTMLDivElement>(null);
   const shadowSizing = useElementSize(shadowRef);
   const [focused, setFocus] = useState(false);
   const {

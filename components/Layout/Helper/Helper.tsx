@@ -1,8 +1,8 @@
 import './style.scss';
 
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
+import { AnimatePresence, motion } from 'motion/react';
 import { type ReactNode, useMemo, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { useBreakpoint } from 'use-breakpoint';

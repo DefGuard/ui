@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/** biome-ignore-all lint/suspicious/noExplicitAny: child can be anything */
 import { useMergeRefs } from '@floating-ui/react';
 import React from 'react';
 
@@ -12,9 +9,10 @@ export const FloatingMenuTrigger = React.forwardRef<
   React.HTMLProps<HTMLElement> & { asChild?: boolean }
 >(function TooltipTrigger({ children, asChild = true, ...props }, propRef) {
   const context = useFloatingMenuContext();
-  // biome-ignore lint/suspicious/noExplicitAny: Can be anything
   const childrenRef = (children as any).ref;
   const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
+
+  const isValidChild = React.isValidElement(children);
 
   // `asChild` allows the user to pass any element as the anchor
   if (asChild && React.isValidElement(children)) {
@@ -23,7 +21,7 @@ export const FloatingMenuTrigger = React.forwardRef<
       context.getReferenceProps({
         ref,
         ...props,
-        ...children.props,
+        ...(isValidChild ? (children as any).props : {}),
         'data-state': context.open ? 'open' : 'closed',
       }),
     );

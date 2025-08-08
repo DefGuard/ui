@@ -1,7 +1,6 @@
 import './style.scss';
 
 import clsx from 'clsx';
-import useEffectOnce from '../../../../utils/useEffectOnce';
 import SvgIconX from '../../../svg/IconX';
 import { Modal } from '../Modal/Modal';
 import type { ModalProps } from '../Modal/types';
@@ -22,12 +21,6 @@ export const ModalWithTitle = ({
   includeDefaultStyles = false,
   ...rest
 }: ModalWithTitleProps) => {
-  useEffectOnce(() => {
-    return () => {
-      rest.afterClose?.();
-    };
-  });
-
   return (
     <Modal
       onClose={onClose}

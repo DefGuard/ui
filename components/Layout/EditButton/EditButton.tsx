@@ -12,7 +12,7 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import classNames from 'classnames';
-import { type HTMLMotionProps, motion } from 'framer-motion';
+import { type HTMLMotionProps, motion } from 'motion/react';
 import { type ReactNode, useMemo, useRef, useState } from 'react';
 
 import SvgIconSettings from '../../svg/IconSettings';
