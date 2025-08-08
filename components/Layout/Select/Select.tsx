@@ -10,8 +10,8 @@ import {
 } from '@floating-ui/react';
 import classNames from 'classnames';
 import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
+import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { debounceTime, Subject } from 'rxjs';
 import { useBreakpoint } from 'use-breakpoint';

@@ -1,8 +1,8 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
 import { isUndefined } from 'lodash-es';
+import { motion } from 'motion/react';
 import { type ReactNode, useMemo, useState } from 'react';
 
 import SvgIconHamburgerDotted from '../../svg/IconHamburgerDotted';

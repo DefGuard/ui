@@ -9,8 +9,8 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import clsx from 'clsx';
-import { AnimatePresence } from 'framer-motion';
 import { getTextWidth } from 'get-text-width';
+import { AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 import { FloatingBox } from '../FloatingBox/FloatingBox';

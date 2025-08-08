@@ -1,7 +1,7 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import { type HTMLMotionProps, motion, type TargetAndTransition } from 'framer-motion';
+import { type HTMLMotionProps, motion, type TargetAndTransition } from 'motion/react';
 import { type ReactNode, useMemo } from 'react';
 
 import { useTheme } from '../../../hooks/theme/useTheme';
