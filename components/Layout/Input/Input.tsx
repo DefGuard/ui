@@ -169,7 +169,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         >
           <motion.input
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            //@ts-ignore
+            //@ts-expect-error
             ref={mergeRefs(innerInputRef, forwardedRef)}
             {...props}
             value={value}
