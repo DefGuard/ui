@@ -14,7 +14,7 @@ type Props = HTMLProps<HTMLDivElement> & {
 export const Badge = ({
   text,
   className,
-  type: styleVariant = BadgeStyleVariant.STANDARD,
+  styleVariant = BadgeStyleVariant.STANDARD,
   icon,
   ...rest
 }: Props) => {
