@@ -49,6 +49,7 @@ export const DeviceAvatar = ({ className, deviceId, active = true, ...props }: P
         if (!elements.includes(Number(el.key))) {
           return true;
         }
+        return false;
       });
       return result;
     }
