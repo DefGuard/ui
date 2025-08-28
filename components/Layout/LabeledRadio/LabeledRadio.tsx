@@ -7,16 +7,28 @@ type Props = {
   onClick?: () => void;
   label?: string;
   reverseOrder?: boolean;
+  disabled?: boolean;
 };
 
-export const LabeledRadio = ({ active, label, onClick, reverseOrder = false }: Props) => {
+export const LabeledRadio = ({
+  active,
+  label,
+  onClick,
+  reverseOrder = false,
+  disabled = false,
+}: Props) => {
   return (
     <div className="labeled-radio spacer">
       <div
         className={clsx('inner', {
           reverse: reverseOrder,
+          disabled,
         })}
-        onClick={onClick}
+        onClick={() => {
+          if (!disabled) {
+            onClick?.();
+          }
+        }}
       >
         <div className="icon">
           {active && <ActiveIcon />}
