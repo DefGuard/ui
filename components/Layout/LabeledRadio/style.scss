@@ -1,0 +1,25 @@
+.labeled-radio > .inner {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 1;
+  column-gap: var(--spacing-xs);
+
+  .icon {
+    height: 18px;
+    width: 18px;
+
+    svg {
+      height: inherit;
+      width: inherit;
+    }
+  }
+
+  & > p {
+    color: var(--text-body-secondary);
+    @include typography(app-modal-1);
+  }
+}
