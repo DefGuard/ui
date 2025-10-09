@@ -1,9 +1,0 @@
-@mixin animate-field {
-  transition-timing-function: ease-in-out;
-  transition-duration: 250ms;
-}
-
-@mixin animate-standard {
-  transition-timing-function: ease-in-out;
-  transition-duration: 125ms;
-}
