@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import './style.scss';
-import { motionTransitionStandard } from '../../../consts';
+import { motionTransitionStandard } from '../../consts';
 import { isPresent } from '../../utils/isPresent';
 
 type Props = {

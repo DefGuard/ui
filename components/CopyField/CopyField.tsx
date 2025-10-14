@@ -2,7 +2,7 @@ import './style.scss';
 import { autoUpdate, FloatingPortal, offset, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 import { type HTMLAttributes, type Ref, useEffect, useState } from 'react';
-import { useClipboard } from '../../../hooks/useClipboard';
+import { useClipboard } from '../../hooks/useClipboard';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip/Tooltip';
 

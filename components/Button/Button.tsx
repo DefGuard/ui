@@ -1,7 +1,7 @@
 import './style.scss';
 import { clsx } from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
-import { motionTransitionStandard } from '../../../consts';
+import { motionTransitionStandard } from '../../consts';
 import { isPresent } from '../../utils/isPresent';
 import { Icon } from '../Icon';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
