@@ -20,7 +20,14 @@ export type InputProps = {
 
 export type FormInputProps = Pick<
   InputProps,
-  'name' | 'placeholder' | 'disabled' | 'required' | 'label' | 'autocomplete' | 'type'
+  | 'name'
+  | 'placeholder'
+  | 'disabled'
+  | 'required'
+  | 'label'
+  | 'autocomplete'
+  | 'type'
+  | 'size'
 > & {
   mapError?: (error: string) => string | undefined;
 };
