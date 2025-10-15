@@ -13,7 +13,7 @@ export const FormInput = ({ mapError, ...props }: FormInputProps) => {
   // allows field to show error even if isPristine is true, this is needed in cases as input required or checkbox checked but user just clicked submit
   const wasSubmittedWithFailure = useStore(
     form.store,
-    (store) => !store.isSubmitSuccessful,
+    (store) => !store.isSubmitSuccessful && store.submissionAttempts > 0,
   );
 
   const isPristine = useStore(field.store, (state) => state.meta.isPristine);

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { BehaviorSubject } from 'rxjs';
-import { motionTransitionStandard } from '../../../consts';
+import { motionTransitionStandard } from '../../consts';
 import { isPresent } from '../../utils/isPresent';
 import { IconButton } from '../IconButton/IconButton';
 import type { ModalProps } from './types';
