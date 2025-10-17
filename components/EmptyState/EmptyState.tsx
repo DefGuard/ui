@@ -1,19 +1,18 @@
-import type { Ref } from 'react';
+import { type Ref, useMemo } from 'react';
 import './style.scss';
 import clsx from 'clsx';
 import { ThemeSpacing } from '../../types';
 import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
 import type { ButtonProps } from '../Button/types';
-import { Icon } from '../Icon';
-import type { IconKindValue } from '../Icon/icon-types';
 import { SizedBox } from '../SizedBox/SizedBox';
+import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 
 type Props = {
   ref?: Ref<HTMLDivElement>;
   title?: string;
   subtitle?: string;
-  icon?: IconKindValue;
+  icon?: 'apps';
   className?: string;
   testId?: string;
   id?: string;
@@ -22,7 +21,10 @@ type Props = {
   secondaryActionText?: string;
 };
 
-//TODO: icon is incompatible, remove it when this will be needed
+const Empty = () => {
+  return null;
+};
+
 export const EmptyState = ({
   ref,
   icon,
@@ -35,6 +37,14 @@ export const EmptyState = ({
   id,
   testId,
 }: Props) => {
+  const RenderIcon = useMemo(() => {
+    if (!icon) return Empty;
+    switch (icon) {
+      case 'apps':
+        return EmptyStateIconApps;
+    }
+  }, [icon]);
+
   return (
     <div
       ref={ref}
@@ -44,9 +54,7 @@ export const EmptyState = ({
     >
       {isPresent(icon) && (
         <>
-          <div className="empty-icon">
-            <Icon icon={icon} size={24} />
-          </div>
+          <RenderIcon />
           <SizedBox height={ThemeSpacing.Lg} />
         </>
       )}

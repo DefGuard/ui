@@ -8,7 +8,7 @@ type Props = {
   orientation?: OrientationValue;
 };
 
-export const Divider = ({ text, orientation }: Props) => {
+export const Divider = ({ text, orientation = 'horizontal' }: Props) => {
   const textPresent = isPresent(text) && text.length > 0;
 
   return (

@@ -25,7 +25,9 @@ import { IconHide } from './icons/IconHide';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
 import { IconLockOpen } from './icons/IconLock';
+import { IconMail } from './icons/IconMail';
 import { IconMobile } from './icons/IconMobile';
+import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPlus } from './icons/IconPlus';
 import { IconShow } from './icons/IconShow';
@@ -203,7 +205,7 @@ export const Icon = <T extends IconKindValue>({
       case 'logout':
         return EmptyIcon;
       case 'mail':
-        return EmptyIcon;
+        return IconMail;
       case 'manage-keys':
         return EmptyIcon;
       case 'menu':
@@ -217,7 +219,7 @@ export const Icon = <T extends IconKindValue>({
       case 'notification':
         return EmptyIcon;
       case 'one-time-password':
-        return EmptyIcon;
+        return IconOneTimePassword;
       case 'openid':
         return EmptyIcon;
       case 'pdf':

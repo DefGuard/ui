@@ -4,10 +4,6 @@
   --icon-color: var(--color);
 
   border-radius: var(--badge-border-radius);
-  display: grid;
-  grid-template-columns: 20px auto;
-  grid-template-rows: 1fr;
-  align-items: center;
   box-sizing: border-box;
   padding: calc(var(--badge-spacing) / 2) var(--badge-spacing);
   column-gap: var(--badge-gap);
@@ -16,6 +12,20 @@
   user-select: none;
 
   @include animate(background-color);
+
+  &:not(.icon) {
+    display: inline-flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.icon {
+    display: grid;
+    grid-template-columns: 20px auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+  }
 
   &.variant-neutral {
     --color: var(--fg-neutral);

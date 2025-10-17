@@ -1,0 +1,65 @@
+.tabs {
+  width: 100%;
+
+  & > .track {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    & > .line {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: var(--border-default);
+      content: ' ';
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+
+.tabs .tab {
+  --color: var(--fg-faded);
+  --line-color: var(--border-default);
+  --line-height: 1px;
+
+  box-sizing: border-box;
+  padding: var(--spacing-sm) var(--spacing-2xl);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    --line-color: var(--fg-faded);
+    --line-height: 2px;
+  }
+
+  &.active {
+    --line-height: 2px;
+    --line-color: var(--fg-action);
+    --color: var(--fg-action);
+  }
+
+  .title {
+    font: var(--t-body-sm-500);
+    color: var(--color);
+    text-align: center;
+
+    @include animate(color);
+  }
+
+  .line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--line-height);
+    background-color: var(--line-color);
+
+    @include animate(background-color, height);
+  }
+}

@@ -11,6 +11,7 @@ type Props = {
   className?: string;
   testId?: string;
   ref?: Ref<HTMLDivElement>;
+  icon?: boolean;
 };
 
 export const Badge = ({
@@ -18,6 +19,7 @@ export const Badge = ({
   className,
   testId,
   ref,
+  icon = false,
   background = false,
   variant = 'neutral',
 }: Props) => {
@@ -27,10 +29,11 @@ export const Badge = ({
       data-variant={variant}
       className={clsx('badge', className, `variant-${variant}`, {
         bg: background,
+        icon,
       })}
       ref={ref}
     >
-      <Icon icon="status-simple" size={20} />
+      {icon && <Icon icon="status-simple" size={20} />}
       <span>{text}</span>
     </div>
   );
