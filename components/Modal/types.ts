@@ -6,7 +6,7 @@ export interface ModalProps {
   isOpen: boolean;
   hideBackdrop?: boolean;
   size?: 'small' | 'primary';
-  onClose?: () => void;
+  onClose?: (() => void) | null;
   afterClose?: () => void;
   id?: string;
   positionerClassName?: string;

@@ -1,16 +1,17 @@
 import './style.scss';
 import clsx from 'clsx';
-import { useId } from 'react';
+import { type HtmlHTMLAttributes, type Ref, useId } from 'react';
 import type { AvatarSizeValue } from './types';
 
 type Props = {
   size?: AvatarSizeValue;
   name?: string;
-};
+  ref?: Ref<HTMLDivElement>;
+} & HtmlHTMLAttributes<HTMLDivElement>;
 
-export const Avatar = ({ size = 'default' }: Props) => {
+export const Avatar = ({ ref, size = 'default', className, ...divProps }: Props) => {
   return (
-    <div className={clsx('avatar', `size-${size}`)}>
+    <div className={clsx('avatar', `size-${size}`, className)} ref={ref} {...divProps}>
       <div className="inner">
         <EmptyIcon />
       </div>

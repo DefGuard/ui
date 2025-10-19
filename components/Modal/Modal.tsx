@@ -146,11 +146,7 @@ export const Modal = ({
             >
               <div className="modal-header">
                 <p className="title">{title}</p>
-                <IconButton
-                  icon="close"
-                  onClick={onClose}
-                  disabled={!isPresent(onClose)}
-                />
+                {isPresent(onClose) && <IconButton icon="close" onClick={onClose} />}
               </div>
               <div className="modal-content">{children}</div>
             </motion.div>

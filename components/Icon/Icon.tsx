@@ -25,6 +25,7 @@ import { IconHide } from './icons/IconHide';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
 import { IconLockOpen } from './icons/IconLock';
+import { IconLogout } from './icons/IconLogout';
 import { IconMail } from './icons/IconMail';
 import { IconMobile } from './icons/IconMobile';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
@@ -203,7 +204,7 @@ export const Icon = <T extends IconKindValue>({
       case 'location-tracking':
         return EmptyIcon;
       case 'logout':
-        return EmptyIcon;
+        return IconLogout;
       case 'mail':
         return IconMail;
       case 'manage-keys':
