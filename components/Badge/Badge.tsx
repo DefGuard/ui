@@ -6,7 +6,7 @@ import type { BadgeVariantValue } from './types';
 
 type Props = {
   text: string;
-  background?: boolean;
+  removeBackground?: boolean;
   variant?: BadgeVariantValue;
   className?: string;
   testId?: string;
@@ -20,7 +20,7 @@ export const Badge = ({
   testId,
   ref,
   icon = false,
-  background = false,
+  removeBackground: background = false,
   variant = 'neutral',
 }: Props) => {
   return (

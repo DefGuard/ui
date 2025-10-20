@@ -3,6 +3,7 @@ import './style.scss';
 import { useHover } from '@uidotdev/usehooks';
 import { useId, useMemo } from 'react';
 import { isPresent } from '../../utils/isPresent';
+import { FieldError } from '../FieldError/FieldError';
 
 type Props = {
   canError?: boolean;
@@ -17,7 +18,6 @@ type Props = {
 export const Checkbox = ({
   text,
   error,
-  canError = false,
   active = false,
   disabled = false,
   onClick,
@@ -47,7 +47,6 @@ export const Checkbox = ({
     <div
       className={clsx('checkbox', {
         error: hasError,
-        'can-error': canError,
         text: isPresent(text),
       })}
       onClick={onClick}
@@ -56,8 +55,11 @@ export const Checkbox = ({
       tabIndex={disabled ? -1 : 0}
       data-active={active}
     >
-      <ContentRender />
-      {isPresent(text) && <span>{text}</span>}
+      <div className="track">
+        <ContentRender />
+        {isPresent(text) && <span>{text}</span>}
+      </div>
+      {isPresent(error) && error.length > 0 && <FieldError error={error} />}
     </div>
   );
 };
