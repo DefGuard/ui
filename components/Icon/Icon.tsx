@@ -27,6 +27,7 @@ import { IconLoader } from './icons/IconLoader';
 import { IconLockOpen } from './icons/IconLock';
 import { IconLogout } from './icons/IconLogout';
 import { IconMail } from './icons/IconMail';
+import { IconMenu } from './icons/IconMenu';
 import { IconMobile } from './icons/IconMobile';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
@@ -210,7 +211,7 @@ export const Icon = <T extends IconKindValue>({
       case 'manage-keys':
         return EmptyIcon;
       case 'menu':
-        return EmptyIcon;
+        return IconMenu;
       case 'minus-circle':
         return EmptyIcon;
       case 'navigation-collapse':
