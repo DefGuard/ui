@@ -137,8 +137,8 @@ export const Modal = ({
               exit={{
                 opacity: 0,
               }}
-              onAnimationComplete={() => {
-                if (!openRef.current) {
+              onAnimationComplete={(target: { opacity: number }) => {
+                if (!openRef.current && target.opacity === 0) {
                   afterClose?.();
                 }
               }}
