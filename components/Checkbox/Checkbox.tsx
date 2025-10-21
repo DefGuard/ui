@@ -4,24 +4,16 @@ import { useHover } from '@uidotdev/usehooks';
 import { useId, useMemo } from 'react';
 import { isPresent } from '../../utils/isPresent';
 import { FieldError } from '../FieldError/FieldError';
+import type { CheckboxProps } from './types';
 
-type Props = {
-  canError?: boolean;
-  active?: boolean;
-  error?: string;
-  disabled?: boolean;
-  text?: string;
-  onClick?: () => void;
-};
-
-// todo: Include error text when it will be needed
 export const Checkbox = ({
   text,
   error,
+  testId,
   active = false,
   disabled = false,
   onClick,
-}: Props) => {
+}: CheckboxProps) => {
   const hasError = isPresent(error);
 
   const [ref, hover] = useHover();
@@ -45,17 +37,19 @@ export const Checkbox = ({
 
   return (
     <div
-      className={clsx('checkbox', {
-        error: hasError,
-        text: isPresent(text),
-      })}
+      data-testid={testId}
+      className="checkbox"
       onClick={onClick}
       ref={ref}
       role="button"
       tabIndex={disabled ? -1 : 0}
       data-active={active}
     >
-      <div className="track">
+      <div
+        className={clsx('track', {
+          text: isPresent(text),
+        })}
+      >
         <ContentRender />
         {isPresent(text) && <span>{text}</span>}
       </div>

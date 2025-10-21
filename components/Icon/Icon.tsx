@@ -17,6 +17,7 @@ import { IconCopy } from './icons/IconCopy';
 import { IconDebian } from './icons/IconDebian';
 import { IconDesktop } from './icons/IconDesktop';
 import { IconDisabled } from './icons/IconDisabled';
+import { IconDownload } from './icons/IconDownload';
 import { IconEmptyPoint } from './icons/IconEmptyPoint';
 import { IconFile } from './icons/IconFile';
 import { IconGlobe } from './icons/IconGlobe';
@@ -175,7 +176,7 @@ export const Icon = <T extends IconKindValue>({
       case 'devices-active':
         return EmptyIcon;
       case 'download':
-        return EmptyIcon;
+        return IconDownload;
       case 'edit':
         return EmptyIcon;
       case 'enter':
