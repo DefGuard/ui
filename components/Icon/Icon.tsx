@@ -9,12 +9,14 @@ import { IconAppStore } from './icons/IconAppstore';
 import { IconArchLinux } from './icons/IconArchLinux';
 import { IconArrowBig } from './icons/IconArrowBig';
 import { IconArrowSmall } from './icons/IconArrowSmall';
+import { IconCheck } from './icons/IconCheck';
 import { IconCheckCircle } from './icons/IconCheckCircle';
 import { IconCheckFilled } from './icons/IconCheckFilled';
 import { IconClose } from './icons/IconClose';
 import { IconConfig } from './icons/IconConfig';
 import { IconCopy } from './icons/IconCopy';
 import { IconDebian } from './icons/IconDebian';
+import { IconDelete } from './icons/IconDelete';
 import { IconDesktop } from './icons/IconDesktop';
 import { IconDisabled } from './icons/IconDisabled';
 import { IconDownload } from './icons/IconDownload';
@@ -29,10 +31,12 @@ import { IconLockOpen } from './icons/IconLock';
 import { IconLogout } from './icons/IconLogout';
 import { IconMail } from './icons/IconMail';
 import { IconMenu } from './icons/IconMenu';
+import { IconMinusCircle } from './icons/IconMinusCircle';
 import { IconMobile } from './icons/IconMobile';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPlus } from './icons/IconPlus';
+import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconShow } from './icons/IconShow';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconUbuntu } from './icons/IconUbuntu';
@@ -156,7 +160,7 @@ export const Icon = <T extends IconKindValue>({
       case 'attention':
         return EmptyIcon;
       case 'check':
-        return EmptyIcon;
+        return IconCheck;
       case 'clear':
         return EmptyIcon;
       case 'code':
@@ -168,7 +172,7 @@ export const Icon = <T extends IconKindValue>({
       case 'date':
         return EmptyIcon;
       case 'delete':
-        return EmptyIcon;
+        return IconDelete;
       case 'deploy':
         return EmptyIcon;
       case 'devices':
@@ -214,7 +218,7 @@ export const Icon = <T extends IconKindValue>({
       case 'menu':
         return IconMenu;
       case 'minus-circle':
-        return EmptyIcon;
+        return IconMinusCircle;
       case 'navigation-collapse':
         return EmptyIcon;
       case 'navigation-uncollapse':
@@ -230,7 +234,7 @@ export const Icon = <T extends IconKindValue>({
       case 'pie-chart':
         return EmptyIcon;
       case 'plus-circle':
-        return EmptyIcon;
+        return IconPlusCircle;
       case 'profile':
         return EmptyIcon;
       case 'protection':

@@ -1,6 +1,8 @@
 import './style.scss';
 import clsx from 'clsx';
-import type { HTMLAttributes, PropsWithChildren, Ref } from 'react';
+import { type MotionProps, motion } from 'motion/react';
+import type { HTMLProps, PropsWithChildren, Ref } from 'react';
+import { motionTransitionStandard } from '../../consts';
 
 export const Tooltip = ({
   ref,
@@ -9,10 +11,19 @@ export const Tooltip = ({
   ...rest
 }: PropsWithChildren & {
   ref?: Ref<HTMLDivElement>;
-} & HTMLAttributes<HTMLDivElement>) => {
+} & HTMLProps<HTMLDivElement> &
+  MotionProps) => {
   return (
-    <div className={clsx('tooltip', className)} ref={ref} {...rest}>
+    <motion.div
+      className={clsx('tooltip', className)}
+      ref={ref}
+      transition={motionTransitionStandard}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      {...rest}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 };
