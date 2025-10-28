@@ -1,0 +1,44 @@
+/* stylelint-disable no-descending-specificity */
+.table-row-container {
+  display: grid;
+  box-sizing: border-box;
+
+  &.variant-default {
+    background-color: var(--bg-default);
+
+    .table-cell {
+      border-bottom: var(--border-1) solid var(--border-disabled);
+    }
+  }
+
+  &.variant-sub-header {
+    background-color: var(--bg-action-muted);
+    user-select: none;
+
+    .table-cell {
+      min-height: 36px;
+
+      span {
+        font: var(--t-body-xs-600);
+        color: var(--fg-action-emphasis);
+      }
+    }
+  }
+
+  &.last {
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+
+    .table-cell {
+      border-bottom: var(--border-1) solid var(--border-disabled);
+
+      &:first-child {
+        border-bottom-left-radius: var(--radius-md);
+      }
+
+      &:last-child {
+        border-bottom-right-radius: var(--radius-md);
+      }
+    }
+  }
+}

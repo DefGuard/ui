@@ -1,0 +1,27 @@
+.table {
+  box-sizing: border-box;
+  padding: var(--spacing-xl);
+  padding-top: 0;
+  width: 100%;
+}
+
+.table-virtual-body {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+
+  & > .header-row {
+    position: sticky;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .virtual-row.expanded {
+    & > .table-row-container:last-child {
+      & > .table-cell {
+        border-bottom: var(--border-1) solid var(--border-emphasis);
+      }
+    }
+  }
+}

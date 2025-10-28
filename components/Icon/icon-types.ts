@@ -64,6 +64,7 @@ export const IconKind = {
   Gift: 'gift',
   Hamburger: 'hamburger',
   Sort: 'sort',
+  Sortable: 'sortable',
   Gateway: 'gateway',
   EmptyPoint: 'empty-point',
   DevicesActive: 'devices-active',
@@ -91,6 +92,7 @@ export const IconKind = {
   ArchLinux: 'arch-linux',
   Debian: 'debian',
   Ubuntu: 'ubuntu',
+  AddDevice: 'add-device',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

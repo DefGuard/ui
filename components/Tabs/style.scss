@@ -34,8 +34,9 @@
   cursor: pointer;
 
   &:hover {
-    --line-color: var(--fg-faded);
+    --line-color: var(--border-emphasis);
     --line-height: 2px;
+    --color: var(--fg-faded);
   }
 
   &.active {

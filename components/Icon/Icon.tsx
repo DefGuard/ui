@@ -3,6 +3,7 @@ import type { IconKindValue } from './icon-types';
 import './style.scss';
 import type { Direction } from '../../types';
 import { IconAccessSettings } from './icons/IconAccessSettings';
+import { IconAddDevice } from './icons/IconAddDevice';
 import { IconAndroid } from './icons/IconAndroid';
 import { IconApple } from './icons/IconApple';
 import { IconAppStore } from './icons/IconAppstore';
@@ -21,6 +22,7 @@ import { IconDesktop } from './icons/IconDesktop';
 import { IconDisabled } from './icons/IconDisabled';
 import { IconDownload } from './icons/IconDownload';
 import { IconEmptyPoint } from './icons/IconEmptyPoint';
+import { IconEnter } from './icons/IconEnter';
 import { IconFile } from './icons/IconFile';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconHelp } from './icons/IconHelp';
@@ -38,6 +40,7 @@ import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconShow } from './icons/IconShow';
+import { IconSortable } from './icons/IconSortable';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconUbuntu } from './icons/IconUbuntu';
 import { IconWarning } from './icons/IconWarning';
@@ -85,6 +88,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'add-device':
+        return IconAddDevice;
       case 'warning':
         return IconWarning;
       case 'ubuntu':
@@ -184,7 +189,7 @@ export const Icon = <T extends IconKindValue>({
       case 'edit':
         return EmptyIcon;
       case 'enter':
-        return EmptyIcon;
+        return IconEnter;
       case 'expand':
         return EmptyIcon;
       case 'filter':
@@ -249,6 +254,8 @@ export const Icon = <T extends IconKindValue>({
         return EmptyIcon;
       case 'sort':
         return EmptyIcon;
+      case 'sortable':
+        return IconSortable;
       case 'status-attention':
         return EmptyIcon;
       case 'status-available':
