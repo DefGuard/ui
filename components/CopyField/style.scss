@@ -24,6 +24,7 @@
       align-items: center;
       overflow: hidden;
       border-radius: var(--input-border-radius);
+      background-color: var(--bg-disabled);
 
       p {
         font: var(--t-input-text-primary);

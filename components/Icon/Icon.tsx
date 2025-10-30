@@ -21,6 +21,7 @@ import { IconDelete } from './icons/IconDelete';
 import { IconDesktop } from './icons/IconDesktop';
 import { IconDisabled } from './icons/IconDisabled';
 import { IconDownload } from './icons/IconDownload';
+import { IconEdit } from './icons/IconEdit';
 import { IconEmptyPoint } from './icons/IconEmptyPoint';
 import { IconEnter } from './icons/IconEnter';
 import { IconFile } from './icons/IconFile';
@@ -39,6 +40,7 @@ import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
+import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
 import { IconStatusSimple } from './icons/IconStatusSimple';
@@ -187,7 +189,7 @@ export const Icon = <T extends IconKindValue>({
       case 'download':
         return IconDownload;
       case 'edit':
-        return EmptyIcon;
+        return IconEdit;
       case 'enter':
         return IconEnter;
       case 'expand':
@@ -251,7 +253,7 @@ export const Icon = <T extends IconKindValue>({
       case 'servers':
         return EmptyIcon;
       case 'settings':
-        return EmptyIcon;
+        return IconSettings;
       case 'sort':
         return EmptyIcon;
       case 'sortable':

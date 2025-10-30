@@ -3,15 +3,10 @@ import { useHover } from '@uidotdev/usehooks';
 import clsx from 'clsx';
 import { useMemo } from 'react';
 import { isPresent } from '../../utils/isPresent';
+import { FieldError } from '../FieldError/FieldError';
+import type { RadioProps } from './types';
 
-type Props = {
-  text?: string;
-  active?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-};
-
-export const Radio = ({ text, active, disabled, onClick }: Props) => {
+export const Radio = ({ text, testId, active, disabled, error, onClick }: RadioProps) => {
   const [ref, hover] = useHover();
 
   const RenderIcon = useMemo(() => {
@@ -32,20 +27,26 @@ export const Radio = ({ text, active, disabled, onClick }: Props) => {
 
   return (
     <div
-      ref={ref}
-      onClick={onClick}
-      data-active={active}
-      data-disabled={disabled}
-      role="button"
-      aria-disabled={disabled}
-      tabIndex={disabled ? -1 : 0}
       className={clsx('radio', {
         text: isPresent(text),
         disabled,
       })}
     >
-      <RenderIcon />
-      {isPresent(text) && <span>{text}</span>}
+      <div
+        ref={ref}
+        onClick={onClick}
+        data-testid={testId}
+        data-active={active}
+        data-disabled={disabled}
+        role="button"
+        aria-disabled={disabled}
+        tabIndex={disabled ? -1 : 0}
+        className="inner"
+      >
+        <RenderIcon />
+        {isPresent(text) && <span>{text}</span>}
+      </div>
+      <FieldError error={error} />
     </div>
   );
 };

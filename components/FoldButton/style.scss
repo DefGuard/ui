@@ -1,0 +1,25 @@
+.fold-button {
+  display: flex;
+  flex-flow: row nowrap;
+  flex: none;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  column-gap: var(--spacing-sm);
+}
+
+.fold-button.variant-settings {
+  .icon {
+    path {
+      fill: var(--fg-action);
+    }
+  }
+
+  span {
+    font: var(--t-body-sm-400);
+    color: var(--fg-action);
+  }
+}

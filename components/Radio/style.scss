@@ -1,20 +1,29 @@
 .radio {
   user-select: none;
-  cursor: pointer;
 
-  &.disabled {
-    cursor: not-allowed;
-  }
-
-  &.text {
-    display: grid;
-    grid-template-columns: 24px auto;
-    grid-template-rows: 1fr;
+  & > .inner {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    flex: none;
     column-gap: var(--spacing-sm);
-  }
 
-  span {
-    font: var(--t-body-sm-400);
+    &.disabled {
+      cursor: not-allowed;
+    }
+
+    &.text {
+      display: grid;
+      grid-template-columns: 24px auto;
+      grid-template-rows: 1fr;
+      column-gap: var(--spacing-sm);
+    }
+
+    span {
+      font: var(--t-body-sm-400);
+    }
   }
 }
 
