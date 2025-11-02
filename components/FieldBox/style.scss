@@ -78,7 +78,8 @@
       --border-color: var(--border-emphasis);
     }
 
-    &:focus-within {
+    &:focus-within,
+    &.focus {
       --border-colo: var(--border-default);
       --outline-width: 2px;
     }

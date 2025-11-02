@@ -7,7 +7,7 @@ export type SelectOption<T> = {
   meta?: unknown;
 };
 
-export type SelectSingleValue<T> = SelectOption<T> | null;
+export type SelectSingleValue<T> = SelectOption<T>;
 export type SelectMultiValue<T> = readonly SelectOption<T>[];
 
 type BaseProps<T> = {
@@ -16,19 +16,18 @@ type BaseProps<T> = {
   placeholder?: string;
   disabled?: boolean;
   className?: string;
+  label?: string;
 } & Pick<FieldBoxProps, 'size'>;
 
 export type SelectSingleProps<T> = BaseProps<T> & {
   multiple?: false | undefined;
   value: SelectSingleValue<T>;
-  defaultValue?: SelectSingleValue<T>;
   onChange: (v: SelectSingleValue<T>) => void;
 };
 
 export type SelectMultiProps<T> = BaseProps<T> & {
   multiple: true;
   value: SelectMultiValue<T>;
-  defaultValue?: SelectMultiValue<T>;
   onChange: (v: SelectMultiValue<T>) => void;
 };
 

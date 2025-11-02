@@ -5,19 +5,26 @@ import { Icon } from '../Icon';
 
 type Props = {
   open: boolean;
-  text: (value: boolean) => string;
+  textOpen: string;
+  textClose: string;
   onChange: (value: boolean) => void;
   variant?: 'settings';
 } & Omit<HTMLProps<HTMLButtonElement>, 'onChange'>;
 
-export const FoldButton = ({ variant = 'settings', open, text, onChange }: Props) => {
+export const FoldButton = ({
+  variant = 'settings',
+  open,
+  textOpen,
+  textClose,
+  onChange,
+}: Props) => {
   return (
     <button
       className={clsx('fold-button', `variant-${variant}`)}
       onClick={() => onChange(!open)}
     >
       {variant === 'settings' && <Icon icon="settings" />}
-      <span>{text(open)}</span>
+      <span>{open ? textClose : textOpen}</span>
     </button>
   );
 };

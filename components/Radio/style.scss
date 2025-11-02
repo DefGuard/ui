@@ -1,13 +1,15 @@
 .radio {
   user-select: none;
+  display: flex;
+  flex-flow: row nowrap;
 
   & > .inner {
     cursor: pointer;
     display: flex;
+    flex: 0 1 auto;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-start;
-    flex: none;
     column-gap: var(--spacing-sm);
 
     &.disabled {

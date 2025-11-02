@@ -1,3 +1,4 @@
+import './style.scss';
 import {
   autoUpdate,
   FloatingPortal,
@@ -11,10 +12,11 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import clsx from 'clsx';
-import { type JSX, type Key, useCallback, useMemo, useState } from 'react';
+import { type JSX, type Key, useCallback, useId, useMemo, useState } from 'react';
 import { isPresent } from '../../utils/isPresent';
 import { FieldBox } from '../FieldBox/FieldBox';
 import { FieldError } from '../FieldError/FieldError';
+import { FieldLabel } from '../FieldLabel/FieldLabel';
 import type {
   SelectMultiProps,
   SelectOption,
@@ -26,7 +28,17 @@ export function Select<T>(props: SelectSingleProps<T>): JSX.Element;
 export function Select<T>(props: SelectMultiProps<T>): JSX.Element;
 
 export function Select<T>(props: SelectProps<T, boolean>) {
-  const { options, className, size, placeholder, testId, disabled = false } = props;
+  const id = useId();
+
+  const {
+    label,
+    options,
+    className,
+    placeholder,
+    testId,
+    size = 'default',
+    disabled = false,
+  } = props;
 
   const [floatingOpen, setFloatingOpen] = useState(false);
 
@@ -48,7 +60,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     whileElementsMounted: autoUpdate,
   });
 
-  const isMulti = !!(props as SelectMultiProps<T>).multiple;
+  const isMulti = props.multiple;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: tack only value
   const selectedLabel = useMemo(() => {
@@ -56,21 +68,17 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     return (props as SelectSingleProps<T>).value?.label ?? null;
   }, [isMulti, props.value]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: value
   const selectedKeys = useMemo((): Array<Key> => {
     if (isMulti) return [];
-    return (props as SelectMultiProps<T>).value.map((option) => option.key);
+    return [props.value.key];
   }, [isMulti, props.value]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: onChange
   const handleChange = useCallback(
     (option: SelectOption<T>, isSelected: boolean) => {
       if (isMulti) return;
-      if (isSelected) {
-        (props as SelectSingleProps<T>).onChange(null);
-      } else {
-        (props as SelectSingleProps<T>).onChange(option);
-      }
+      if (isSelected) return;
+      (props as SelectSingleProps<T>).onChange(option);
       setFloatingOpen(false);
     },
     [isMulti, props.onChange, setFloatingOpen],
@@ -93,13 +101,16 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     <>
       <div className="select spacer">
         <div className="inner">
-          <p className="label"></p>
+          {isPresent(label) && <FieldLabel htmlFor={id} text={label} />}
           <FieldBox
             className={className}
             disabled={disabled}
             size={size}
             boxRef={refs.setReference}
             data-testid={testId}
+            iconRight="arrow-small"
+            id={id}
+            forceFocusState={floatingOpen}
             {...getReferenceProps()}
           >
             <div className="box-track">
@@ -115,6 +126,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
       {floatingOpen && (
         <FloatingPortal>
           <div
+            role="list"
             className="select-floating"
             ref={refs.setFloating}
             style={{
@@ -134,6 +146,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
                   onClick={() => {
                     handleChange(option, isSelected);
                   }}
+                  role="listitem"
                 >
                   <span>{option.label}</span>
                 </div>

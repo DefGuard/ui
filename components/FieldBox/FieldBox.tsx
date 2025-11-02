@@ -16,6 +16,7 @@ export const FieldBox = ({
   iconLeft,
   iconRight,
   size,
+  forceFocusState,
   onInteractionClick,
   ...rest
 }: FieldBoxProps) => {
@@ -28,9 +29,11 @@ export const FieldBox = ({
         'grid-left': hasIconLeft && !hasIconRight,
         'grid-right': hasIconRight && !hasIconLeft,
         'grid-both': hasIconLeft && hasIconRight,
+        focus: forceFocusState,
         disabled,
         error,
       })}
+      ref={boxRef}
       {...rest}
     >
       {hasIconLeft && <Icon icon={iconLeft} size={20} />}
@@ -42,6 +45,7 @@ export const FieldBox = ({
           icon={iconRight}
           onClick={onInteractionClick}
           tabIndex={-1}
+          ref={interactionRef}
         />
       )}
     </div>

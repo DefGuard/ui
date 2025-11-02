@@ -1,0 +1,87 @@
+.select > .inner {
+  .field-box {
+    .box-track {
+      .placeholder,
+      .value {
+        user-select: none;
+      }
+    }
+
+    .box-track .placeholder {
+      color: var(--fg-muted);
+    }
+
+    &.size-default {
+      .box-track {
+        .value,
+        .placeholder {
+          font: var(--t-input-text-primary);
+        }
+      }
+    }
+
+    &.size-lg {
+      .box-track {
+        .value,
+        .placeholder {
+          font: var(--t-input-text-big);
+        }
+      }
+    }
+  }
+
+  .icon {
+    transform: rotate(90deg);
+  }
+}
+
+.select-floating {
+  z-index: 5;
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: var(--menu-padding-sides);
+  border: var(--border-1) solid var(--border-disabled);
+  border-radius: var(--menu-border-radius-group);
+  background-color: var(--bg-default);
+  row-gap: var(--spacing-xs);
+
+  .select-option {
+    --color: var(--fg-default);
+    --bg-color: var(--bg-default);
+
+    display: flex;
+    flex-flow: row nowrap;
+    box-sizing: border-box;
+    padding: 0 var(--spacing-sm);
+    user-select: none;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--bg-color);
+    width: 100%;
+    height: var(--menu-height);
+    border-radius: var(--menu-border-radius-item);
+    cursor: pointer;
+
+    @include animate(background-color);
+
+    &:hover {
+      --bg-color: var(--bg-muted);
+    }
+
+    &.selected {
+      --bg-color: var(--bg-action-muted);
+      --color: var(--fg-action);
+    }
+
+    span {
+      font: var(--t-menu-text);
+      color: var(--color);
+
+      @include animate(color);
+    }
+  }
+}

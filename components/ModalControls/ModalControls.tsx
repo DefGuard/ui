@@ -1,17 +1,14 @@
 import './style.scss';
 import clsx from 'clsx';
-import type { ReactNode } from 'react';
 import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
-import type { ButtonProps } from '../Button/types';
+import type { ModalControlsProps } from './types';
 
-type Props = {
-  submitProps?: ButtonProps;
-  cancelProps?: ButtonProps;
-  children?: ReactNode;
-};
-
-export const ModalControls = ({ submitProps, cancelProps, children }: Props) => {
+export const ModalControls = ({
+  submitProps,
+  cancelProps,
+  children,
+}: ModalControlsProps) => {
   return (
     <div
       className={clsx('modal-controls', {
