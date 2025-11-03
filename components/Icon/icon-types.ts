@@ -1,4 +1,6 @@
 export const IconKind = {
+  Key: 'key',
+  Biometric: 'biometric',
   Hide: 'hide',
   ArrowBig: 'arrow-big',
   ArrowSmall: 'arrow-small',

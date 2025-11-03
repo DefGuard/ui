@@ -1,25 +1,13 @@
-import { type Ref, useMemo } from 'react';
+import { useMemo } from 'react';
 import './style.scss';
 import clsx from 'clsx';
 import { ThemeSpacing } from '../../types';
 import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
-import type { ButtonProps } from '../Button/types';
 import { SizedBox } from '../SizedBox/SizedBox';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
-
-type Props = {
-  ref?: Ref<HTMLDivElement>;
-  title?: string;
-  subtitle?: string;
-  icon?: 'apps';
-  className?: string;
-  testId?: string;
-  id?: string;
-  primaryAction?: ButtonProps;
-  secondaryAction?: () => void;
-  secondaryActionText?: string;
-};
+import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
+import type { EmptyStateProps } from './types';
 
 const Empty = () => {
   return null;
@@ -36,12 +24,14 @@ export const EmptyState = ({
   className,
   id,
   testId,
-}: Props) => {
+}: EmptyStateProps) => {
   const RenderIcon = useMemo(() => {
     if (!icon) return Empty;
     switch (icon) {
       case 'apps':
         return EmptyStateIconApps;
+      case 'authentication':
+        return EmptyStateIconAuthentication;
     }
   }, [icon]);
 

@@ -48,6 +48,7 @@
   border-radius: var(--menu-border-radius-group);
   background-color: var(--bg-default);
   row-gap: var(--spacing-xs);
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 7%);
 
   .select-option {
     --color: var(--fg-default);

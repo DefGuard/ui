@@ -10,6 +10,7 @@ import { IconAppStore } from './icons/IconAppstore';
 import { IconArchLinux } from './icons/IconArchLinux';
 import { IconArrowBig } from './icons/IconArrowBig';
 import { IconArrowSmall } from './icons/IconArrowSmall';
+import { IconBiometric } from './icons/IconBiometric';
 import { IconCheck } from './icons/IconCheck';
 import { IconCheckCircle } from './icons/IconCheckCircle';
 import { IconCheckFilled } from './icons/IconCheckFilled';
@@ -28,6 +29,7 @@ import { IconFile } from './icons/IconFile';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconHelp } from './icons/IconHelp';
 import { IconHide } from './icons/IconHide';
+import { IconKey } from './icons/IconKey';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
 import { IconLockOpen } from './icons/IconLock';
@@ -90,6 +92,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'key':
+        return IconKey;
       case 'add-device':
         return IconAddDevice;
       case 'warning':
@@ -278,6 +282,8 @@ export const Icon = <T extends IconKindValue>({
         return EmptyIcon;
       case 'yubi-keys':
         return EmptyIcon;
+      case 'biometric':
+        return IconBiometric;
     }
   }, [iconKind]);
 
