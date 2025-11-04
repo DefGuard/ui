@@ -22,6 +22,24 @@
     }
   }
 
+  .initials {
+    width: inherit;
+    height: inherit;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-action);
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    overflow: hidden;
+
+    span {
+      font: var(--t-body-xxs-500);
+      color: var(--fg-white);
+    }
+  }
+
   svg {
     height: inherit;
     width: inherit;

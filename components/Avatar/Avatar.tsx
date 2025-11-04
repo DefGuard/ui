@@ -1,19 +1,47 @@
 import './style.scss';
 import clsx from 'clsx';
-import { type HtmlHTMLAttributes, type Ref, useId } from 'react';
+import { type HtmlHTMLAttributes, type Ref, useId, useMemo } from 'react';
+import { isPresent } from '../../utils/isPresent';
 import type { AvatarSizeValue } from './types';
 
 type Props = {
   size?: AvatarSizeValue;
-  name?: string;
   ref?: Ref<HTMLDivElement>;
+  variant?: 'empty' | 'initials';
+  firstName?: string;
+  lastName?: string;
 } & HtmlHTMLAttributes<HTMLDivElement>;
 
-export const Avatar = ({ ref, size = 'default', className, ...divProps }: Props) => {
+export const Avatar = ({
+  ref,
+  size = 'default',
+  variant = 'empty',
+  firstName,
+  lastName,
+  className,
+  ...divProps
+}: Props) => {
+  const initials = useMemo(() => {
+    if (!isPresent(firstName) || !isPresent(lastName)) return '';
+    const first = firstName.trim()[0];
+    const last = lastName.trim()[0];
+    if (size === 'small') return first.toUpperCase();
+    return (first + last).toUpperCase();
+  }, [firstName, lastName, size]);
+
   return (
-    <div className={clsx('avatar', `size-${size}`, className)} ref={ref} {...divProps}>
+    <div
+      className={clsx('avatar', `size-${size}`, `variant-${variant}`, className)}
+      ref={ref}
+      {...divProps}
+    >
       <div className="inner">
-        <EmptyIcon />
+        {variant === 'empty' && <EmptyIcon />}
+        {variant === 'initials' && (
+          <div className="initials">
+            <span>{initials}</span>
+          </div>
+        )}
       </div>
     </div>
   );

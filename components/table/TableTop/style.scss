@@ -1,0 +1,25 @@
+.table-top {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-md);
+  padding-bottom: var(--spacing-xl);
+  box-sizing: border-box;
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
+
+  & > .title {
+    font: var(--t-title-h4);
+    color: var(--fg-default);
+  }
+
+  & > .right {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    column-gap: var(--spacing-md);
+  }
+}

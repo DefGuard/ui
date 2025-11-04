@@ -11,7 +11,7 @@ type Props<TData> = {
 };
 
 export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) => {
-  const isSortable = header.column.getCanSort();
+  const isSortable = header.column.columnDef.enableSorting;
 
   const headerSorting = header.column.getIsSorted();
 
