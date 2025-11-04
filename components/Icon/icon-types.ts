@@ -1,4 +1,5 @@
 export const IconKind = {
+  AddToken: 'add-token',
   Key: 'key',
   Biometric: 'biometric',
   Hide: 'hide',

@@ -5,6 +5,7 @@ import { ThemeSpacing } from '../../types';
 import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
 import { SizedBox } from '../SizedBox/SizedBox';
+import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
 import type { EmptyStateProps } from './types';
@@ -32,6 +33,8 @@ export const EmptyState = ({
         return EmptyStateIconApps;
       case 'authentication':
         return EmptyStateIconAuthentication;
+      case 'api-token':
+        return EmptyStateIconApiToken;
     }
   }, [icon]);
 

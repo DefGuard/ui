@@ -4,6 +4,7 @@ import './style.scss';
 import type { Direction } from '../../types';
 import { IconAccessSettings } from './icons/IconAccessSettings';
 import { IconAddDevice } from './icons/IconAddDevice';
+import { IconAddToken } from './icons/IconAddToken';
 import { IconAndroid } from './icons/IconAndroid';
 import { IconApple } from './icons/IconApple';
 import { IconAppStore } from './icons/IconAppstore';
@@ -92,6 +93,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'add-token':
+        return IconAddToken;
       case 'key':
         return IconKey;
       case 'add-device':
