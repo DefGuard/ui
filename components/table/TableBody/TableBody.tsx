@@ -8,7 +8,7 @@ import {
   type CSSProperties,
   Fragment,
   type HTMLProps,
-  type ReactElement,
+  type ReactNode,
   type RefObject,
   useMemo,
   useRef,
@@ -45,7 +45,7 @@ type Props<TData> = {
     row: Row<TData>,
     rowStyle: CSSProperties,
     isLast?: boolean,
-  ) => ReactElement;
+  ) => ReactNode;
 } & HTMLProps<HTMLDivElement>;
 
 export const TableBody = <T extends object>({

@@ -1,7 +1,6 @@
 import { IconButton } from '../../IconButton/IconButton';
 import './style.scss';
 import type { Row } from '@tanstack/react-table';
-import { Icon } from '../../Icon';
 import { TableCell } from '../TableCell/TableCell';
 
 type Props<T extends object> = {
@@ -12,7 +11,7 @@ export const TableExpandCell = <T extends object>({ row }: Props<T>) => {
   const expanded = row.getIsExpanded();
   const canExpand = row.getCanExpand();
   return (
-    <TableCell className="table-expand-cell" noPadding>
+    <TableCell className="table-expand-cell" noPadding empty={!canExpand}>
       {canExpand && (
         <IconButton
           icon="arrow-small"
@@ -22,7 +21,6 @@ export const TableExpandCell = <T extends object>({ row }: Props<T>) => {
           }}
         />
       )}
-      {!canExpand && <Icon icon="enter" />}
     </TableCell>
   );
 };

@@ -47,7 +47,7 @@
     justify-content: center;
   }
 
-  span {
+  & > span {
     font: var(--t-body-sm-400);
     color: var(--fg-default);
     overflow: hidden;
