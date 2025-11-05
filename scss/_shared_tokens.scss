@@ -196,8 +196,8 @@ $source-code-pro:
   --badge-border-radius: var(--radius-md);
   --badge-spacing: var(--spacing-sm);
   --badge-gap: var(--spacing-xs);
-  --t-badge: normal 500 12px / 16px #{$geist};
-  --t-badge-spacing: 0.3px;
+  --t-badge: var(--t-body-xs-500);
+  --badge-height: 24px;
 
   // Inputs
   --t-input-title: normal 500 12px / 16px #{$geist};

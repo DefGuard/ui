@@ -5,6 +5,7 @@ import type { Direction } from '../../types';
 import { IconAccessSettings } from './icons/IconAccessSettings';
 import { IconAddDevice } from './icons/IconAddDevice';
 import { IconAddToken } from './icons/IconAddToken';
+import { IconAddUser } from './icons/IconAddUser';
 import { IconAndroid } from './icons/IconAndroid';
 import { IconApple } from './icons/IconApple';
 import { IconAppStore } from './icons/IconAppstore';
@@ -167,7 +168,7 @@ export const Icon = <T extends IconKindValue>({
       case 'activity-notes':
         return EmptyIcon;
       case 'add-user':
-        return EmptyIcon;
+        return IconAddUser;
       case 'analytics':
         return EmptyIcon;
       case 'archive':
