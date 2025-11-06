@@ -10,6 +10,7 @@ export const Checkbox = ({
   text,
   error,
   testId,
+  forceHover,
   active = false,
   disabled = false,
   onClick,
@@ -19,6 +20,7 @@ export const Checkbox = ({
   const [ref, hover] = useHover();
 
   const ContentRender = useMemo(() => {
+    const isHovered = forceHover || hover;
     if (disabled) {
       if (!active) return StateDefaultDisabled;
       return StateSelectedDisabled;
@@ -29,11 +31,11 @@ export const Checkbox = ({
     if (hasError) {
       return StateError;
     }
-    if (hover) {
+    if (isHovered) {
       return StateHover;
     }
     return StateDefault;
-  }, [hover, active, hasError, disabled]);
+  }, [hover, active, hasError, disabled, forceHover]);
 
   return (
     <div

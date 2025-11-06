@@ -1,18 +1,7 @@
 import './style.scss';
 import clsx from 'clsx';
-import type { Ref } from 'react';
 import { Icon } from '../Icon';
-import type { BadgeVariantValue } from './types';
-
-type Props = {
-  text: string;
-  removeBackground?: boolean;
-  variant?: BadgeVariantValue;
-  className?: string;
-  testId?: string;
-  ref?: Ref<HTMLDivElement>;
-  icon?: boolean;
-};
+import type { BadgeProps } from './types';
 
 export const Badge = ({
   text,
@@ -22,7 +11,7 @@ export const Badge = ({
   icon = false,
   removeBackground: background = false,
   variant = 'neutral',
-}: Props) => {
+}: BadgeProps) => {
   return (
     <div
       data-testid={testId}

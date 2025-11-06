@@ -15,7 +15,8 @@
   &:not(.disabled) {
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &.active {
       --icon-color: var(--fg-neutral);
 
       background-color: var(--bg-emphasis);

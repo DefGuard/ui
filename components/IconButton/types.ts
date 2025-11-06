@@ -7,5 +7,6 @@ export type IconButtonProps = {
   iconRotation?: Direction;
   disabled?: boolean;
   ref?: Ref<HTMLDivElement>;
+  className?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
 };

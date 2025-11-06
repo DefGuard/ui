@@ -4,5 +4,6 @@ export interface CheckboxProps {
   error?: string;
   disabled?: boolean;
   text?: string;
+  forceHover?: boolean;
   onClick?: () => void;
 }

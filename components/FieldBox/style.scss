@@ -16,6 +16,7 @@
   padding: var(--input-spacing-sm) var(--input-spacing-lg);
   outline: var(--outline-width) solid var(--border-action);
   outline-offset: -2px;
+  background-color: var(--background-color);
 
   @include animate(border-color, background-color);
 

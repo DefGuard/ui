@@ -1,0 +1,107 @@
+import { type HTMLProps, type Ref, useMemo } from 'react';
+import './style.scss';
+import { useHover } from '@uidotdev/usehooks';
+import clsx from 'clsx';
+import { isPresent } from '../../utils/isPresent';
+import { mergeRefs } from '../../utils/mergeRefs';
+import { Badge } from '../Badge/Badge';
+import type { BadgeProps } from '../Badge/types';
+import { Checkbox } from '../Checkbox/Checkbox';
+import { Icon } from '../Icon';
+import behavior from './assets/behavior.png';
+import customSettings from './assets/custom-settings.png';
+import customization from './assets/customization.png';
+import gatewayNotifications from './assets/gateway-notifications.png';
+import integrations from './assets/integrations.png';
+import manualSetup from './assets/manual-setup.png';
+import manualUser from './assets/manual-user.png';
+import providers from './assets/providers.png';
+import remoteActivation from './assets/remote-activation.png';
+import selfEnrollment from './assets/self-enrollment.png';
+import smtp from './assets/smtp.png';
+import tokenChat from './assets/token-chat.png';
+import tokenEmail from './assets/token-email.png';
+import type { SectionSelectImageValue } from './types';
+
+type Props = HTMLProps<HTMLDivElement> & {
+  title: string;
+  content: string;
+  image: SectionSelectImageValue;
+  ref?: Ref<HTMLDivElement>;
+  checkbox?: boolean;
+  selected?: boolean;
+  badgeProps?: BadgeProps;
+};
+
+export const SectionSelect = ({
+  image,
+  ref: propsRef,
+  className,
+  checkbox,
+  selected,
+  badgeProps,
+  title,
+  content,
+  ...rest
+}: Props) => {
+  const [ref, hover] = useHover();
+
+  const imageSource = useMemo(() => {
+    switch (image) {
+      case 'smtp':
+        return smtp;
+      case 'gateway-notifications':
+        return gatewayNotifications;
+      case 'remote-activation':
+        return remoteActivation;
+      case 'manual-setup':
+        return manualSetup;
+      case 'token-email':
+        return tokenEmail;
+      case 'customization':
+        return customization;
+      case 'behavior':
+        return behavior;
+      case 'integrations':
+        return integrations;
+      case 'id-providers':
+        return providers;
+      case 'custom-settings':
+        return customSettings;
+      case 'self-enrollment':
+        return selfEnrollment;
+      case 'manual-user':
+        return manualUser;
+      case 'token-chat':
+        return tokenChat;
+    }
+  }, [image]);
+
+  return (
+    <div
+      className={clsx('section-select', {
+        selected,
+        hover,
+      })}
+      ref={mergeRefs([ref, propsRef])}
+      {...rest}
+    >
+      <div className="track">
+        <div className="section-icon">
+          <img src={imageSource} loading="lazy" />
+        </div>
+        <div className="content">
+          <div className="header">
+            <p>{title}</p>
+            {isPresent(badgeProps) && <Badge {...badgeProps} />}
+          </div>
+          <p>{content}</p>
+        </div>
+        <div className="extra">
+          {!checkbox && <Icon icon="arrow-small" rotationDirection="right" />}
+          {checkbox && <Checkbox active={selected} forceHover={hover} />}
+        </div>
+      </div>
+    </div>
+  );
+};

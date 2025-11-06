@@ -7,13 +7,14 @@ export const IconButton = ({
   icon,
   ref,
   iconRotation,
+  className,
   disabled = false,
   onClick,
 }: IconButtonProps) => {
   return (
     <div
       ref={ref}
-      className={clsx('icon-button', {
+      className={clsx('icon-button', className, {
         disabled,
       })}
       onClick={(e) => {
