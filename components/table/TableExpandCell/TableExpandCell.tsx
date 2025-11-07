@@ -1,6 +1,7 @@
 import { IconButton } from '../../IconButton/IconButton';
 import './style.scss';
 import type { Row } from '@tanstack/react-table';
+import clsx from 'clsx';
 import { TableCell } from '../TableCell/TableCell';
 
 type Props<T extends object> = {
@@ -14,6 +15,9 @@ export const TableExpandCell = <T extends object>({ row }: Props<T>) => {
     <TableCell className="table-expand-cell" noPadding empty={!canExpand}>
       {canExpand && (
         <IconButton
+          className={clsx({
+            active: expanded,
+          })}
           icon="arrow-small"
           iconRotation={expanded ? 'down' : 'right'}
           onClick={() => {
