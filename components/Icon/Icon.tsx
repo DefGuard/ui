@@ -46,6 +46,7 @@ import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
+import { IconSearch } from './icons/IconSearch';
 import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
@@ -259,7 +260,7 @@ export const Icon = <T extends IconKindValue>({
       case 'qr':
         return EmptyIcon;
       case 'search':
-        return EmptyIcon;
+        return IconSearch;
       case 'servers':
         return EmptyIcon;
       case 'settings':

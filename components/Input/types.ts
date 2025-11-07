@@ -4,7 +4,7 @@ import type { FieldBoxProps, FieldSize } from '../FieldBox/types';
 export type InputProps = {
   value: string | null;
   size?: FieldSize;
-  type?: 'password' | 'text';
+  type?: 'password' | 'text' | 'search';
   ref?: Ref<HTMLInputElement>;
   error?: string;
   name?: string;

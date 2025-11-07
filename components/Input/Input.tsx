@@ -29,11 +29,18 @@ export const Input = ({
 }: InputProps) => {
   const isPassword = useMemo(() => type === 'password', [type]);
 
-  const [inputTypeInner, setInputType] = useState<HTMLInputTypeAttribute>(type);
+  const [inputTypeInner, setInputType] = useState<HTMLInputTypeAttribute>(
+    type === 'search' ? 'text' : type,
+  );
   const innerRef = useRef<HTMLInputElement>(null);
   const id = useId();
 
+  const isSearch = useMemo(() => type === 'search', [type]);
+
   const interactionIconRight = useMemo((): IconKindValue | undefined => {
+    if (isSearch && value?.length) {
+      return 'close';
+    }
     if (isPassword) {
       if (inputTypeInner === 'password') {
         return 'show';
@@ -41,7 +48,7 @@ export const Input = ({
         return 'hide';
       }
     }
-  }, [isPassword, inputTypeInner]);
+  }, [isPassword, inputTypeInner, isSearch, value?.length]);
 
   return (
     <div className="input spacer">
@@ -59,10 +66,15 @@ export const Input = ({
           onClick={() => {
             innerRef.current?.focus();
           }}
+          iconLeft={isSearch ? 'search' : undefined}
           iconRight={interactionIconRight}
           onInteractionClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
+            // clear
+            if (isSearch) {
+              onChange?.('');
+            }
             if (isPassword) {
               setInputType((s) => {
                 if (s === 'password') {
