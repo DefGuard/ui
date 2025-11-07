@@ -35,6 +35,7 @@ import { IconHide } from './icons/IconHide';
 import { IconKey } from './icons/IconKey';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
+import { IconLocation } from './icons/IconLocation';
 import { IconLockOpen } from './icons/IconLock';
 import { IconLogout } from './icons/IconLogout';
 import { IconMail } from './icons/IconMail';
@@ -222,7 +223,7 @@ export const Icon = <T extends IconKindValue>({
       case 'info-outlined':
         return EmptyIcon;
       case 'location':
-        return EmptyIcon;
+        return IconLocation;
       case 'location-preview':
         return EmptyIcon;
       case 'location-tracking':
