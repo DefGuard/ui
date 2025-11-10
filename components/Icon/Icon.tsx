@@ -30,6 +30,8 @@ import { IconEmptyPoint } from './icons/IconEmptyPoint';
 import { IconEnter } from './icons/IconEnter';
 import { IconFile } from './icons/IconFile';
 import { IconGlobe } from './icons/IconGlobe';
+import { IconGroups } from './icons/IconGroups';
+import { IconHamburger } from './icons/IconHamburger';
 import { IconHelp } from './icons/IconHelp';
 import { IconHide } from './icons/IconHide';
 import { IconKey } from './icons/IconKey';
@@ -53,6 +55,7 @@ import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconUbuntu } from './icons/IconUbuntu';
+import { IconUsers } from './icons/IconUsers';
 import { IconWarning } from './icons/IconWarning';
 import { IconWindows } from './icons/IconWindows';
 
@@ -215,9 +218,9 @@ export const Icon = <T extends IconKindValue>({
       case 'github':
         return EmptyIcon;
       case 'groups':
-        return EmptyIcon;
+        return IconGroups;
       case 'hamburger':
-        return EmptyIcon;
+        return IconHamburger;
       case 'info-filled':
         return EmptyIcon;
       case 'info-outlined':
@@ -285,7 +288,7 @@ export const Icon = <T extends IconKindValue>({
       case 'user-active':
         return EmptyIcon;
       case 'users':
-        return EmptyIcon;
+        return IconUsers;
       case 'webhooks':
         return EmptyIcon;
       case 'yubi-keys':

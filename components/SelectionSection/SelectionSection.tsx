@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import './style.scss';
 import { useDebounce } from '@uidotdev/usehooks';
 import clsx from 'clsx';
+import { orderBy } from 'lodash-es';
 import { ThemeSpacing } from '../../types';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Divider } from '../Divider/Divider';
@@ -101,7 +102,11 @@ export const SelectionSection = <T extends SelectionSectionKey>({
             rowGap: itemGap,
           }}
         >
-          {visibleOptions.map((option) => {
+          {orderBy(
+            visibleOptions,
+            (item) => item.label.toLowerCase().replaceAll(' ', ''),
+            ['asc'],
+          ).map((option) => {
             const selected = selection.has(option.id);
             return (
               <div
