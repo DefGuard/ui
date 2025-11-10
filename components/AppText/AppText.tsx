@@ -4,7 +4,7 @@ import type {
 } from '@axa-ch/react-polymorphic-types';
 import type React from 'react';
 import { createElement, type ElementType } from 'react';
-import type { TextStyleValue } from '../../types';
+import { type TextStyleValue, ThemeVariable, type ThemeVariableValue } from '../../types';
 
 type TextDefault = 'p';
 type TextAllowed =
@@ -36,6 +36,7 @@ type TextAllowed =
 
 type OwnProps<T extends TextAllowed> = React.ComponentPropsWithoutRef<T> & {
   font: TextStyleValue;
+  color?: ThemeVariableValue;
 };
 
 type TextProps<T extends TextAllowed = TextDefault> = PolymorphicProps<
@@ -51,9 +52,10 @@ export const AppText = <T extends TextAllowed = TextDefault>({
   children,
   style,
   font,
+  color = ThemeVariable.FgDefault,
   ...rest
 }: TextProps<T>) => {
   const Component = (as ?? ('p' satisfies ElementType)) as ElementType;
-  const computedStyle = { ...style, font };
+  const computedStyle = { ...style, color, font };
   return createElement(Component, { ...rest, style: computedStyle }, children);
 };
