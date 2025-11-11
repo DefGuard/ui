@@ -1,4 +1,9 @@
-import type { HTMLAttributes, HTMLInputAutoCompleteAttribute, Ref } from 'react';
+import type {
+  HTMLAttributes,
+  HTMLInputAutoCompleteAttribute,
+  MouseEventHandler,
+  Ref,
+} from 'react';
 import type { FieldBoxProps, FieldSize } from '../FieldBox/types';
 
 export type InputProps = {
@@ -30,4 +35,5 @@ export type FormInputProps = Pick<
   | 'size'
 > & {
   mapError?: (error: string) => string | undefined;
+  onDismiss?: MouseEventHandler<HTMLButtonElement>;
 };

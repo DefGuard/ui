@@ -8,6 +8,7 @@ import { SizedBox } from '../SizedBox/SizedBox';
 import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
+import { EmptyStateIconSearch } from './icons/EmptyStateIconSearch';
 import type { EmptyStateProps } from './types';
 
 const Empty = () => {
@@ -29,6 +30,8 @@ export const EmptyState = ({
   const RenderIcon = useMemo(() => {
     if (!icon) return Empty;
     switch (icon) {
+      case 'search':
+        return EmptyStateIconSearch;
       case 'apps':
         return EmptyStateIconApps;
       case 'authentication':

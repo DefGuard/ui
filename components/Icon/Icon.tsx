@@ -45,6 +45,7 @@ import { IconMenu } from './icons/IconMenu';
 import { IconMinusCircle } from './icons/IconMinusCircle';
 import { IconMobile } from './icons/IconMobile';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
+import { IconOpenId } from './icons/IconOpenId';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
@@ -250,7 +251,7 @@ export const Icon = <T extends IconKindValue>({
       case 'one-time-password':
         return IconOneTimePassword;
       case 'openid':
-        return EmptyIcon;
+        return IconOpenId;
       case 'pdf':
         return EmptyIcon;
       case 'pie-chart':
