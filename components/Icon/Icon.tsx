@@ -17,6 +17,7 @@ import { IconBiometric } from './icons/IconBiometric';
 import { IconCheck } from './icons/IconCheck';
 import { IconCheckCircle } from './icons/IconCheckCircle';
 import { IconCheckFilled } from './icons/IconCheckFilled';
+import { IconClear } from './icons/IconClear';
 import { IconClose } from './icons/IconClose';
 import { IconConfig } from './icons/IconConfig';
 import { IconCopy } from './icons/IconCopy';
@@ -188,7 +189,7 @@ export const Icon = <T extends IconKindValue>({
       case 'check':
         return IconCheck;
       case 'clear':
-        return EmptyIcon;
+        return IconClear;
       case 'code':
         return EmptyIcon;
       case 'collapse':
