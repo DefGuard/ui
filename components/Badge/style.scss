@@ -23,7 +23,7 @@
 
   &.icon {
     display: grid;
-    grid-template-columns: 20px auto;
+    grid-template-columns: auto auto;
     grid-template-rows: 1fr;
     align-items: center;
   }
@@ -33,7 +33,7 @@
     --icon-color: var(--fg-muted);
 
     &:not(.bg) {
-      --bg-color: var(--bg-muted);
+      --bg-color: var(--bg-emphasis);
     }
   }
 
@@ -70,6 +70,12 @@
 
   & > .icon > svg {
     rect {
+      fill: var(--icon-color);
+
+      @include animate(fill);
+    }
+
+    path {
       fill: var(--icon-color);
 
       @include animate(fill);

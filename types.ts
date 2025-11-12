@@ -31,6 +31,7 @@ export const ThemeVariable = {
   BgCriticalMuted: 'var(--bg-critical-muted)',
   BgSuccess: 'var(--bg-success)',
   BgWarning: 'var(--bg-warning)',
+  BgGridHover: 'var(--bg-grid-hover)',
   BorderAction: 'var(--border-action)',
   BorderActionDisabled: 'var(--border-action-disabled)',
   BorderDefault: 'var(--border-default)',

@@ -1,10 +1,15 @@
 /* stylelint-disable no-descending-specificity */
 .table-row-container {
+  --bg-color: var(--bg-default);
+
   display: grid;
   box-sizing: border-box;
+  background-color: var(--bg-color);
+
+  @include animate(background-color);
 
   &.variant-default {
-    background-color: var(--bg-default);
+    --bg-color: var(--bg-default);
 
     .table-cell {
       border-bottom: var(--border-1) solid var(--border-disabled);
@@ -12,7 +17,8 @@
   }
 
   &.variant-sub-header {
-    background-color: var(--bg-action-muted);
+    --bg-color: var(--bg-action-muted);
+
     user-select: none;
 
     .table-cell {
@@ -40,5 +46,9 @@
         border-bottom-right-radius: var(--radius-md);
       }
     }
+  }
+
+  &:not(.variant-sub-header):hover {
+    --bg-color: var(--bg-grid-hover);
   }
 }

@@ -8,9 +8,11 @@ export const Badge = ({
   className,
   testId,
   ref,
-  icon = false,
   removeBackground: background = false,
   variant = 'neutral',
+  icon = 'status-simple',
+  iconSize = 16,
+  showIcon = false,
 }: BadgeProps) => {
   return (
     <div
@@ -18,11 +20,11 @@ export const Badge = ({
       data-variant={variant}
       className={clsx('badge', className, `variant-${variant}`, {
         bg: background,
-        icon,
+        icon: showIcon,
       })}
       ref={ref}
     >
-      {icon && <Icon icon="status-simple" size={20} />}
+      {showIcon && <Icon icon={icon} size={iconSize} />}
       <span>{text}</span>
     </div>
   );

@@ -47,6 +47,7 @@ import { IconMobile } from './icons/IconMobile';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOpenId } from './icons/IconOpenId';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
+import { IconPending } from './icons/IconPending';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
@@ -297,6 +298,8 @@ export const Icon = <T extends IconKindValue>({
         return EmptyIcon;
       case 'biometric':
         return IconBiometric;
+      case 'pending':
+        return IconPending;
     }
   }, [iconKind]);
 

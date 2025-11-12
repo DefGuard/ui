@@ -16,6 +16,9 @@ export const FormCheckbox = ({ disabled, text }: Props) => {
       disabled={disabled}
       text={text}
       error={errorMessage}
+      onClick={() => {
+        field.handleChange(!field.state.value);
+      }}
     />
   );
 };

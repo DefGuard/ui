@@ -19,6 +19,7 @@ export const IconKind = {
   Plus: 'plus',
   Support: 'support',
   Menu: 'menu',
+  Pending: 'pending',
   Check: 'check',
   Date: 'date',
   CreditCard: 'credit-card',

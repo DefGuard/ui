@@ -1,4 +1,5 @@
 import type { Ref } from 'react';
+import type { IconKindValue } from '../Icon/icon-types';
 
 export const BadgeVariant = {
   Neutral: 'neutral',
@@ -16,5 +17,7 @@ export interface BadgeProps {
   className?: string;
   testId?: string;
   ref?: Ref<HTMLDivElement>;
-  icon?: boolean;
+  icon?: IconKindValue;
+  iconSize?: number;
+  showIcon?: boolean;
 }
