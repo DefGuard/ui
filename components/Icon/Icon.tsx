@@ -58,6 +58,7 @@ import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconUbuntu } from './icons/IconUbuntu';
 import { IconUsers } from './icons/IconUsers';
 import { IconWarning } from './icons/IconWarning';
+import { IconWebhooks } from './icons/IconWebhooks';
 import { IconWindows } from './icons/IconWindows';
 
 type Props<T extends IconKindValue = IconKindValue> = {
@@ -291,7 +292,7 @@ export const Icon = <T extends IconKindValue>({
       case 'users':
         return IconUsers;
       case 'webhooks':
-        return EmptyIcon;
+        return IconWebhooks;
       case 'yubi-keys':
         return EmptyIcon;
       case 'biometric':

@@ -9,6 +9,7 @@ import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
 import { EmptyStateIconSearch } from './icons/EmptyStateIconSearch';
+import { EmptyStateIconWebhook } from './icons/EmptyStateIconWebhook';
 import type { EmptyStateProps } from './types';
 
 const Empty = () => {
@@ -38,6 +39,8 @@ export const EmptyState = ({
         return EmptyStateIconAuthentication;
       case 'api-token':
         return EmptyStateIconApiToken;
+      case 'webhook':
+        return EmptyStateIconWebhook;
     }
   }, [icon]);
 
