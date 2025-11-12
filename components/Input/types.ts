@@ -7,9 +7,9 @@ import type {
 import type { FieldBoxProps, FieldSize } from '../FieldBox/types';
 
 export type InputProps = {
-  value: string | null;
+  value: string | null | number;
   size?: FieldSize;
-  type?: 'password' | 'text' | 'search';
+  type?: 'password' | 'text' | 'search' | 'number';
   ref?: Ref<HTMLInputElement>;
   error?: string;
   name?: string;
@@ -17,7 +17,7 @@ export type InputProps = {
   required?: boolean;
   disabled?: boolean;
   placeholder?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: string | number | null) => void;
   boxProps?: Partial<FieldBoxProps>;
   autocomplete?: HTMLInputAutoCompleteAttribute;
   testId?: string;
@@ -31,8 +31,8 @@ export type FormInputProps = Pick<
   | 'required'
   | 'label'
   | 'autocomplete'
-  | 'type'
   | 'size'
+  | 'type'
 > & {
   mapError?: (error: string) => string | undefined;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;

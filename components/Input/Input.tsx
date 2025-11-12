@@ -9,6 +9,24 @@ import { FieldLabel } from '../FieldLabel/FieldLabel';
 import type { IconKindValue } from '../Icon/icon-types';
 import type { InputProps } from './types';
 
+const externalValueToInput = (value: string | null | number): string | number => {
+  if (value === null) return '';
+  return value;
+};
+
+const preferredTypeToInternal = (value: InputProps['type']): HTMLInputTypeAttribute => {
+  if (!isPresent(value)) return 'text';
+
+  switch (value) {
+    case 'search':
+      return 'text';
+    case 'number':
+      return 'text';
+    default:
+      return value;
+  }
+};
+
 export const Input = ({
   value,
   error,
@@ -29,26 +47,31 @@ export const Input = ({
 }: InputProps) => {
   const isPassword = useMemo(() => type === 'password', [type]);
 
+  const preferredTypeIsSearch = useMemo(() => type === 'search', [type]);
+
   const [inputTypeInner, setInputType] = useState<HTMLInputTypeAttribute>(
-    type === 'search' ? 'text' : type,
+    preferredTypeToInternal(type),
   );
+
   const innerRef = useRef<HTMLInputElement>(null);
   const id = useId();
 
-  const isSearch = useMemo(() => type === 'search', [type]);
-
   const interactionIconRight = useMemo((): IconKindValue | undefined => {
-    if (isSearch && value?.length) {
-      return 'close';
-    }
-    if (isPassword) {
-      if (inputTypeInner === 'password') {
-        return 'show';
-      } else {
-        return 'hide';
+    if (typeof value === 'string') {
+      // allow clear action for search
+      if (value?.length && preferredTypeIsSearch) {
+        return 'clear';
+      }
+      // toggle show / hide for password
+      if (isPassword) {
+        if (inputTypeInner === 'password') {
+          return 'show';
+        } else {
+          return 'hide';
+        }
       }
     }
-  }, [isPassword, inputTypeInner, isSearch, value?.length]);
+  }, [isPassword, inputTypeInner, value, preferredTypeIsSearch]);
 
   return (
     <div className="input spacer">
@@ -66,13 +89,13 @@ export const Input = ({
           onClick={() => {
             innerRef.current?.focus();
           }}
-          iconLeft={isSearch ? 'search' : undefined}
+          iconLeft={preferredTypeIsSearch ? 'search' : undefined}
           iconRight={interactionIconRight}
           onInteractionClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             // clear
-            if (isSearch) {
+            if (preferredTypeIsSearch) {
               onChange?.('');
             }
             if (isPassword) {
@@ -91,7 +114,7 @@ export const Input = ({
             id={id}
             autoComplete={autocomplete}
             data-testid={testId}
-            value={value ?? ''}
+            value={externalValueToInput(value)}
             name={name}
             type={inputTypeInner}
             placeholder={placeholder}
@@ -99,7 +122,13 @@ export const Input = ({
             onFocus={onFocus}
             onBlur={onBlur}
             onChange={(e) => {
-              onChange?.(e.target.value);
+              if (isPresent(onChange)) {
+                let changeValue: string | null | number = e.target.value;
+                if (changeValue === '') {
+                  changeValue = null;
+                }
+                onChange(changeValue);
+              }
             }}
           />
         </FieldBox>

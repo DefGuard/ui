@@ -32,7 +32,9 @@ export const Search = ({
       placeholder={placeholder}
       value={value}
       size={size}
-      onChange={setValue}
+      onChange={(val) => {
+        setValue((val as string | null) ?? '');
+      }}
     />
   );
 };

@@ -7,7 +7,7 @@ import { Input } from '../../Input/Input';
 import type { FormInputProps, InputProps } from '../../Input/types';
 
 export const FormInput = ({ mapError, onDismiss, ...props }: FormInputProps) => {
-  const field = useFieldContext<string>();
+  const field = useFieldContext<string | number | null>();
   const form = useFormContext();
 
   const boxProps = useMemo(() => {
