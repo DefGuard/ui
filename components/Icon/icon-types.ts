@@ -1,4 +1,5 @@
 export const IconKind = {
+  AddGroup: 'add-group',
   AddToken: 'add-token',
   Key: 'key',
   Biometric: 'biometric',

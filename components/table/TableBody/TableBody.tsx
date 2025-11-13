@@ -14,10 +14,14 @@ import {
   useRef,
 } from 'react';
 import { isPresent } from '../../../utils/isPresent';
+import { tableActionColumnSize } from '../consts';
+import { TableCell } from '../TableCell/TableCell';
+import { TableExpandCell } from '../TableExpandCell/TableExpandCell';
 import { TableExpandedRowHeader } from '../TableExpandedRowHeader/TableExpandedRowHeader';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { TableHeaderCell } from '../TableHeaderCell/TableHeaderCell';
 import { TableRowContainer } from '../TableRowContainer/TableRowContainer';
+import { TableSelectionCell } from '../TableSelectionCell/TableSelectionCell';
 
 const tableHeaderHeight = 36;
 const tableRowHeight = 48;
@@ -60,18 +64,43 @@ export const TableBody = <T extends object>({
   const maxTableHeight = useTableHeight(scrollParentRef);
 
   const gridColsDef = useMemo(() => {
-    const colsLength = table.getAllFlatColumns().length;
+    let colsLength = table.getAllFlatColumns().length;
+    const canRowsExpand = table.options.enableExpanding;
+    const canRowsSelect = table.options.enableRowSelection;
+    if (canRowsExpand) {
+      colsLength++;
+    }
+    if (canRowsSelect) {
+      colsLength++;
+    }
     return range(colsLength)
       .map((index) => `var(--grid-column-${index})`)
       .join(' ');
-  }, [table.getAllFlatColumns]);
+  }, [
+    table.getAllFlatColumns,
+    table.options.enableExpanding,
+    table.options.enableRowSelection,
+  ]);
 
   // map column sizes into css variables
   const gridColsSize = useMemo(() => {
     const cols = table.getAllFlatColumns();
+    const canExpand = table.options.enableExpanding;
+    const canSelect = table.options.enableRowSelection;
     const res: Record<string, string> = {};
+    let prefixCols = 0;
+    if ((canExpand || canSelect) && !(canExpand && canSelect)) {
+      prefixCols++;
+      const key = `--grid-column-0`;
+      res[key] = `${tableActionColumnSize}px`;
+    }
+    if (canExpand && canSelect) {
+      prefixCols += 2;
+      res['--grid-column-0'] = `${tableActionColumnSize}px`;
+      res['--grid-column-1'] = `${tableActionColumnSize}px`;
+    }
     for (const col of cols) {
-      const key = `--grid-column-${col.getIndex()}`;
+      const key = `--grid-column-${col.getIndex() + prefixCols}`;
       const size = col.getSize();
       //@ts-expect-error
       if (col.columnDef.meta?.flex) {
@@ -81,7 +110,11 @@ export const TableBody = <T extends object>({
       }
     }
     return res;
-  }, [table.getAllFlatColumns]);
+  }, [
+    table.getAllFlatColumns,
+    table.options.enableExpanding,
+    table.options.enableRowSelection,
+  ]);
 
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
@@ -116,14 +149,25 @@ export const TableBody = <T extends object>({
             gridTemplateColumns: gridColsDef,
           }}
         >
+          {table.options.enableRowSelection && (
+            <TableSelectionCell
+              selected={table.getIsAllRowsSelected()}
+              onClick={() => {
+                table.toggleAllRowsSelected();
+              }}
+            />
+          )}
+          {table.options.enableExpanding && <TableCell empty />}
           {table.getHeaderGroups()[0].headers.map((header) => (
             <TableHeaderCell header={header} key={header.id} />
           ))}
         </TableHeader>
         {rowVirtualizer.getVirtualItems().map((virtualRow) => {
           const row = rows[virtualRow.index];
+          const canExpand = row.getCanExpand();
           const isExpanded = row.getIsExpanded();
-          const isLast = row.index === rows.length - 1;
+          const canSelect = row.getCanSelect();
+          const isLast = virtualRow.index === rows.length - 1;
           return (
             <div
               ref={(node) => rowVirtualizer.measureElement(node)}
@@ -146,6 +190,16 @@ export const TableBody = <T extends object>({
                   gridTemplateColumns: gridColsDef,
                 }}
               >
+                {canSelect && (
+                  <TableSelectionCell
+                    selected={row.getIsSelected()}
+                    onClick={() => {
+                      row.toggleSelected();
+                    }}
+                  />
+                )}
+                {canExpand && <TableExpandCell row={row} />}
+                {!canExpand && table.options.enableExpanding && <TableCell empty />}
                 {row.getAllCells().map((cell) => (
                   <Fragment key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -154,6 +208,8 @@ export const TableBody = <T extends object>({
               </TableRowContainer>
               {isExpanded && isPresent(expandedHeaders) && (
                 <TableExpandedRowHeader
+                  canExpand={table.options.enableExpanding as boolean}
+                  canSelect={table.options.enableRowSelection as boolean}
                   headersData={expandedHeaders}
                   style={{
                     gridTemplateColumns: gridColsDef,

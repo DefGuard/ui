@@ -30,7 +30,8 @@
   }
 
   &:not(:last-child) {
-    &.empty {
+    &.empty,
+    &.no-border {
       border-right: 0 solid transparent !important;
     }
   }
@@ -58,5 +59,10 @@
 
   & > .icon-button {
     flex: none;
+  }
+
+  & > .checkbox {
+    width: 24px;
+    height: 24px;
   }
 }

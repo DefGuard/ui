@@ -5,6 +5,7 @@ import clsx from 'clsx';
 type Props = HTMLProps<HTMLDivElement> & {
   empty?: boolean;
   noPadding?: boolean;
+  noBorder?: boolean;
   alignContent?: 'center' | 'left' | 'right';
 };
 
@@ -13,6 +14,7 @@ export const TableCell = ({
   className,
   empty,
   noPadding,
+  noBorder,
   alignContent = 'left',
   ...props
 }: Props) => {
@@ -20,6 +22,7 @@ export const TableCell = ({
     <div
       className={clsx('table-cell', className, `align-${alignContent}`, {
         'no-padding': noPadding,
+        'no-border': noBorder,
         empty,
       })}
       {...props}

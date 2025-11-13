@@ -5,6 +5,7 @@ import type { Direction } from '../../types';
 import { IconAccessSettings } from './icons/IconAccessSettings';
 import { IconActivityNotes } from './icons/IconActivityNotes';
 import { IconAddDevice } from './icons/IconAddDevice';
+import { IconAddGroup } from './icons/IconAddGroup';
 import { IconAddToken } from './icons/IconAddToken';
 import { IconAddUser } from './icons/IconAddUser';
 import { IconAndroid } from './icons/IconAndroid';
@@ -106,6 +107,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'add-group':
+        return IconAddGroup;
       case 'add-token':
         return IconAddToken;
       case 'key':
