@@ -11,6 +11,7 @@ import { Icon } from '../Icon';
 import behavior from './assets/behavior.png';
 import customSettings from './assets/custom-settings.png';
 import customization from './assets/customization.png';
+import deviceClc from './assets/device-clc.png';
 import gatewayNotifications from './assets/gateway-notifications.png';
 import integrations from './assets/integrations.png';
 import manualSetup from './assets/manual-setup.png';
@@ -21,6 +22,8 @@ import selfEnrollment from './assets/self-enrollment.png';
 import smtp from './assets/smtp.png';
 import tokenChat from './assets/token-chat.png';
 import tokenEmail from './assets/token-email.png';
+import wireguardDevice from './assets/wireguard-device.png';
+
 import type { SectionSelectImageValue } from './types';
 
 type Props = HTMLProps<HTMLDivElement> & {
@@ -74,6 +77,10 @@ export const SectionSelect = ({
         return manualUser;
       case 'token-chat':
         return tokenChat;
+      case 'device-clc':
+        return deviceClc;
+      case 'wireguard-device':
+        return wireguardDevice;
     }
   }, [image]);
 

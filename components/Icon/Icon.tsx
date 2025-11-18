@@ -37,6 +37,8 @@ import { IconGroups } from './icons/IconGroups';
 import { IconHamburger } from './icons/IconHamburger';
 import { IconHelp } from './icons/IconHelp';
 import { IconHide } from './icons/IconHide';
+import { IconInfoFilled } from './icons/IconInfoFilled';
+import { IconInfoOutlined } from './icons/IconInfoOutlined';
 import { IconKey } from './icons/IconKey';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
@@ -230,9 +232,9 @@ export const Icon = <T extends IconKindValue>({
       case 'hamburger':
         return IconHamburger;
       case 'info-filled':
-        return EmptyIcon;
+        return IconInfoFilled;
       case 'info-outlined':
-        return EmptyIcon;
+        return IconInfoOutlined;
       case 'location':
         return IconLocation;
       case 'location-preview':

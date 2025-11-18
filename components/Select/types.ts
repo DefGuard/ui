@@ -17,6 +17,7 @@ type BaseProps<T> = {
   disabled?: boolean;
   className?: string;
   label?: string;
+  required?: boolean;
 } & Pick<FieldBoxProps, 'size'>;
 
 export type SelectSingleProps<T> = BaseProps<T> & {

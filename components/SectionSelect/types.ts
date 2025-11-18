@@ -12,6 +12,8 @@ const SectionSelectImage = {
   SelfEnrollment: 'self-enrollment',
   ManualUser: 'manual-user',
   TokenChat: 'token-chat',
+  WireguardDevice: 'wireguard-device',
+  DeviceClc: 'device-clc',
 } as const;
 
 export type SectionSelectImageValue =

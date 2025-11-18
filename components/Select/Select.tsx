@@ -38,6 +38,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     testId,
     size = 'default',
     disabled = false,
+    required = false,
   } = props;
 
   const [floatingOpen, setFloatingOpen] = useState(false);
@@ -101,7 +102,9 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     <>
       <div className="select spacer">
         <div className="inner">
-          {isPresent(label) && <FieldLabel htmlFor={id} text={label} />}
+          {isPresent(label) && (
+            <FieldLabel required={required} htmlFor={id} text={label} />
+          )}
           <FieldBox
             className={className}
             disabled={disabled}
