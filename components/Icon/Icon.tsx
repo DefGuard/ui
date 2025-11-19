@@ -61,6 +61,7 @@ import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
 import { IconStatusSimple } from './icons/IconStatusSimple';
+import { IconToken } from './icons/IconToken';
 import { IconUbuntu } from './icons/IconUbuntu';
 import { IconUsers } from './icons/IconUsers';
 import { IconWarning } from './icons/IconWarning';
@@ -109,6 +110,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'token':
+        return IconToken;
       case 'add-group':
         return IconAddGroup;
       case 'add-token':

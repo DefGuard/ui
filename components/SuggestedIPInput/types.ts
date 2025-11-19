@@ -3,7 +3,7 @@ import type { AvailableLocationIP } from '../../../api/types';
 
 export interface SuggestedIPInputProps {
   ref?: Ref<HTMLInputElement>;
-  data: AvailableLocationIP;
+  data: Omit<AvailableLocationIP, 'ip'>;
   value: string | null;
   onChange: (value: string | null) => void;
   onBlur?: FocusEventHandler<HTMLInputElement>;

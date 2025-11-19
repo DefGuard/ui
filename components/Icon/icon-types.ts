@@ -98,6 +98,7 @@ export const IconKind = {
   Debian: 'debian',
   Ubuntu: 'ubuntu',
   AddDevice: 'add-device',
+  Token: 'token',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];
