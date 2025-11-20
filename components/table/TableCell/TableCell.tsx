@@ -1,13 +1,6 @@
-import type { HTMLProps } from 'react';
 import './style.scss';
 import clsx from 'clsx';
-
-type Props = HTMLProps<HTMLDivElement> & {
-  empty?: boolean;
-  noPadding?: boolean;
-  noBorder?: boolean;
-  alignContent?: 'center' | 'left' | 'right';
-};
+import type { TableCellProps } from './types';
 
 export const TableCell = ({
   children,
@@ -17,7 +10,7 @@ export const TableCell = ({
   noBorder,
   alignContent = 'left',
   ...props
-}: Props) => {
+}: TableCellProps) => {
   return (
     <div
       className={clsx('table-cell', className, `align-${alignContent}`, {
