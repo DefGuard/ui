@@ -99,6 +99,9 @@ export const IconKind = {
   Ubuntu: 'ubuntu',
   AddDevice: 'add-device',
   Token: 'token',
+  AddLocation: 'add-location',
+  InternalMFA: 'internal-mfa',
+  ExternalMFa: 'external-mfa',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

@@ -6,6 +6,7 @@ import { IconAccessSettings } from './icons/IconAccessSettings';
 import { IconActivityNotes } from './icons/IconActivityNotes';
 import { IconAddDevice } from './icons/IconAddDevice';
 import { IconAddGroup } from './icons/IconAddGroup';
+import { IconAddLocation } from './icons/IconAddLocation';
 import { IconAddToken } from './icons/IconAddToken';
 import { IconAddUser } from './icons/IconAddUser';
 import { IconAndroid } from './icons/IconAndroid';
@@ -31,6 +32,7 @@ import { IconDownload } from './icons/IconDownload';
 import { IconEdit } from './icons/IconEdit';
 import { IconEmptyPoint } from './icons/IconEmptyPoint';
 import { IconEnter } from './icons/IconEnter';
+import { IconExternalMfa } from './icons/IconExternalMFA';
 import { IconFile } from './icons/IconFile';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconGroups } from './icons/IconGroups';
@@ -39,10 +41,12 @@ import { IconHelp } from './icons/IconHelp';
 import { IconHide } from './icons/IconHide';
 import { IconInfoFilled } from './icons/IconInfoFilled';
 import { IconInfoOutlined } from './icons/IconInfoOutlined';
+import { IconInternalMfa } from './icons/IconInternalMFA';
 import { IconKey } from './icons/IconKey';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
 import { IconLocation } from './icons/IconLocation';
+import { IconLocationTracking } from './icons/IconLocationTracking';
 import { IconLockOpen } from './icons/IconLock';
 import { IconLogout } from './icons/IconLogout';
 import { IconMail } from './icons/IconMail';
@@ -60,6 +64,8 @@ import { IconSearch } from './icons/IconSearch';
 import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
+import { IconStatusAttention } from './icons/IconStatusAttention';
+import { IconStatusImportant } from './icons/IconStatusImportant';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconToken } from './icons/IconToken';
 import { IconUbuntu } from './icons/IconUbuntu';
@@ -110,8 +116,14 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'external-mfa':
+        return IconExternalMfa;
+      case 'internal-mfa':
+        return IconInternalMfa;
       case 'token':
         return IconToken;
+      case 'add-location':
+        return IconAddLocation;
       case 'add-group':
         return IconAddGroup;
       case 'add-token':
@@ -243,7 +255,7 @@ export const Icon = <T extends IconKindValue>({
       case 'location-preview':
         return EmptyIcon;
       case 'location-tracking':
-        return EmptyIcon;
+        return IconLocationTracking;
       case 'logout':
         return IconLogout;
       case 'mail':
@@ -287,11 +299,11 @@ export const Icon = <T extends IconKindValue>({
       case 'sortable':
         return IconSortable;
       case 'status-attention':
-        return EmptyIcon;
+        return IconStatusAttention;
       case 'status-available':
         return EmptyIcon;
       case 'status-important':
-        return EmptyIcon;
+        return IconStatusImportant;
       case 'support':
         return EmptyIcon;
       case 'transactions':

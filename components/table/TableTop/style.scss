@@ -21,5 +21,10 @@
     justify-content: flex-end;
     margin-left: auto;
     column-gap: var(--spacing-md);
+
+    .search {
+      width: 100%;
+      max-width: 321px;
+    }
   }
 }

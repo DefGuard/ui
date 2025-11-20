@@ -1,5 +1,6 @@
 import './style.scss';
 import clsx from 'clsx';
+import type { PropsWithChildren } from 'react';
 import { Icon } from '../Icon';
 import type { BadgeProps } from './types';
 
@@ -8,12 +9,14 @@ export const Badge = ({
   className,
   testId,
   ref,
+  children,
   removeBackground: background = false,
   variant = 'neutral',
   icon = 'status-simple',
   iconSize = 16,
   showIcon = false,
-}: BadgeProps) => {
+  ...containerProps
+}: BadgeProps & PropsWithChildren) => {
   return (
     <div
       data-testid={testId}
@@ -23,9 +26,11 @@ export const Badge = ({
         icon: showIcon,
       })}
       ref={ref}
+      {...containerProps}
     >
       {showIcon && <Icon icon={icon} size={iconSize} />}
       <span>{text}</span>
+      {children}
     </div>
   );
 };
