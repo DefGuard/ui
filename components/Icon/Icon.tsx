@@ -3,6 +3,7 @@ import type { IconKindValue } from './icon-types';
 import './style.scss';
 import type { Direction } from '../../types';
 import { IconAccessSettings } from './icons/IconAccessSettings';
+import { IconActivity } from './icons/IconActivity';
 import { IconActivityNotes } from './icons/IconActivityNotes';
 import { IconAddDevice } from './icons/IconAddDevice';
 import { IconAddGroup } from './icons/IconAddGroup';
@@ -22,11 +23,13 @@ import { IconCheckFilled } from './icons/IconCheckFilled';
 import { IconClear } from './icons/IconClear';
 import { IconClose } from './icons/IconClose';
 import { IconConfig } from './icons/IconConfig';
+import { IconConnectedDevices } from './icons/IconConnectedDevices';
 import { IconCopy } from './icons/IconCopy';
 import { IconDebian } from './icons/IconDebian';
 import { IconDelete } from './icons/IconDelete';
 import { IconDesktop } from './icons/IconDesktop';
 import { IconDevices } from './icons/IconDevices';
+import { IconDevicesActive } from './icons/IconDevicesActive';
 import { IconDisabled } from './icons/IconDisabled';
 import { IconDownload } from './icons/IconDownload';
 import { IconEdit } from './icons/IconEdit';
@@ -57,6 +60,7 @@ import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOpenId } from './icons/IconOpenId';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPending } from './icons/IconPending';
+import { IconPieChart } from './icons/IconPieChart';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
@@ -69,6 +73,8 @@ import { IconStatusImportant } from './icons/IconStatusImportant';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconToken } from './icons/IconToken';
 import { IconUbuntu } from './icons/IconUbuntu';
+import { IconUser } from './icons/IconUser';
+import { IconUserActive } from './icons/IconUserActive';
 import { IconUsers } from './icons/IconUsers';
 import { IconWarning } from './icons/IconWarning';
 import { IconWebhooks } from './icons/IconWebhooks';
@@ -116,6 +122,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'connected-devices':
+        return IconConnectedDevices;
       case 'external-mfa':
         return IconExternalMfa;
       case 'internal-mfa':
@@ -195,7 +203,7 @@ export const Icon = <T extends IconKindValue>({
       case 'access-settings':
         return IconAccessSettings;
       case 'activity':
-        return EmptyIcon;
+        return IconActivity;
       case 'activity-notes':
         return IconActivityNotes;
       case 'add-user':
@@ -225,7 +233,7 @@ export const Icon = <T extends IconKindValue>({
       case 'devices':
         return IconDevices;
       case 'devices-active':
-        return EmptyIcon;
+        return IconDevicesActive;
       case 'download':
         return IconDownload;
       case 'edit':
@@ -279,7 +287,7 @@ export const Icon = <T extends IconKindValue>({
       case 'pdf':
         return EmptyIcon;
       case 'pie-chart':
-        return EmptyIcon;
+        return IconPieChart;
       case 'plus-circle':
         return IconPlusCircle;
       case 'profile':
@@ -309,9 +317,9 @@ export const Icon = <T extends IconKindValue>({
       case 'transactions':
         return EmptyIcon;
       case 'user':
-        return EmptyIcon;
+        return IconUser;
       case 'user-active':
-        return EmptyIcon;
+        return IconUserActive;
       case 'users':
         return IconUsers;
       case 'webhooks':

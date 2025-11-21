@@ -28,6 +28,15 @@
     align-items: center;
   }
 
+  &.variant-default {
+    --color: var(--fg-white);
+    --icon-color: var(--fg-white);
+
+    &:not(.bg) {
+      --bg-color: var(--bg-dark);
+    }
+  }
+
   &.variant-neutral {
     --color: var(--fg-neutral);
     --icon-color: var(--fg-muted);

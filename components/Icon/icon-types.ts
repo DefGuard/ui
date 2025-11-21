@@ -102,6 +102,7 @@ export const IconKind = {
   AddLocation: 'add-location',
   InternalMFA: 'internal-mfa',
   ExternalMFa: 'external-mfa',
+  ConnectedDevices: 'connected-devices',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

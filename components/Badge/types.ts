@@ -6,6 +6,7 @@ export const BadgeVariant = {
   Success: 'success',
   Critical: 'critical',
   Warning: 'warning',
+  Default: 'default',
 } as const;
 
 export type BadgeVariantValue = (typeof BadgeVariant)[keyof typeof BadgeVariant];
