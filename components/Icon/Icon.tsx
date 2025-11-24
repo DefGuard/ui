@@ -1,6 +1,7 @@
 import { type CSSProperties, type Ref, useMemo } from 'react';
 import type { IconKindValue } from './icon-types';
 import './style.scss';
+import clsx from 'clsx';
 import type { Direction } from '../../types';
 import { IconAccessSettings } from './icons/IconAccessSettings';
 import { IconActivity } from './icons/IconActivity';
@@ -86,6 +87,7 @@ type Props<T extends IconKindValue = IconKindValue> = {
   rotationDirection?: Direction;
   customRotation?: number;
   ref?: Ref<HTMLDivElement>;
+  className?: string;
 };
 
 type RotationMap = Record<Direction, number>;
@@ -118,6 +120,7 @@ export const Icon = <T extends IconKindValue>({
   rotationDirection,
   customRotation,
   ref,
+  className,
   size = 20,
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
@@ -359,7 +362,12 @@ export const Icon = <T extends IconKindValue>({
   }, [iconKind, size, rotationDirection, customRotation]);
 
   return (
-    <div className="icon" ref={ref} style={getStyle} data-kind={iconKind}>
+    <div
+      className={clsx('icon', className)}
+      ref={ref}
+      style={getStyle}
+      data-kind={iconKind}
+    >
       <IconToRender />
     </div>
   );

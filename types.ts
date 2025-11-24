@@ -29,6 +29,7 @@ export const ThemeVariable = {
   BgCritical: 'var(--bg-critical)',
   BgCriticalFaded: 'var(--bg-critical-faded)',
   BgCriticalMuted: 'var(--bg-critical-muted)',
+  BgCriticalDisabled: 'var(--bg-critical-disabled)',
   BgSuccess: 'var(--bg-success)',
   BgWarning: 'var(--bg-warning)',
   BgGridHover: 'var(--bg-grid-hover)',

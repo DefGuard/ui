@@ -58,7 +58,7 @@
     --color: var(--fg-critical);
 
     &:not(.bg) {
-      --bg-color: var(--c-red-500-transparent);
+      --bg-color: var(--bg-critical-disabled);
     }
   }
 

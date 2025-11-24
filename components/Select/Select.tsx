@@ -69,9 +69,9 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     return (props as SelectSingleProps<T>).value?.label ?? null;
   }, [isMulti, props.value]);
 
-  const selectedKeys = useMemo((): Array<Key> => {
-    if (isMulti) return [];
-    return [props.value.key];
+  const selectedKeys = useMemo((): Set<Key> => {
+    if (isMulti) return new Set();
+    return new Set([props.value.key]);
   }, [isMulti, props.value]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: onChange
@@ -139,7 +139,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
             {...getFloatingProps()}
           >
             {options.map((option) => {
-              const isSelected = selectedKeys.includes(option.key);
+              const isSelected = selectedKeys.has(option.key);
               return (
                 <div
                   className={clsx('select-option', {
