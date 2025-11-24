@@ -11,6 +11,7 @@
   color: var(--color);
   user-select: none;
   height: var(--badge-height);
+  width: fit-content;
 
   @include animate(background-color);
 
