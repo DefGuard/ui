@@ -2,7 +2,8 @@ import { type CSSProperties, type Ref, useMemo } from 'react';
 import type { IconKindValue } from './icon-types';
 import './style.scss';
 import clsx from 'clsx';
-import type { Direction } from '../../types';
+import type { Direction, ThemeVariableValue } from '../../types';
+import { isPresent } from '../../utils/isPresent';
 import { IconAccessSettings } from './icons/IconAccessSettings';
 import { IconActivity } from './icons/IconActivity';
 import { IconActivityNotes } from './icons/IconActivityNotes';
@@ -83,6 +84,7 @@ import { IconWindows } from './icons/IconWindows';
 
 type Props<T extends IconKindValue = IconKindValue> = {
   icon: T;
+  staticColor?: ThemeVariableValue;
   size?: number;
   rotationDirection?: Direction;
   customRotation?: number;
@@ -121,6 +123,7 @@ export const Icon = <T extends IconKindValue>({
   customRotation,
   ref,
   className,
+  staticColor,
   size = 20,
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
@@ -338,6 +341,10 @@ export const Icon = <T extends IconKindValue>({
 
   const getStyle = useMemo((): CSSProperties => {
     const styles: CSSProperties = {};
+    if (isPresent(staticColor)) {
+      // @ts-expect-error
+      styles['--icon-color'] = staticColor;
+    }
     const transform: string[] = [];
     // kind specific configurations
     switch (iconKind) {
@@ -359,7 +366,7 @@ export const Icon = <T extends IconKindValue>({
       styles.transform = transform.join(' ');
     }
     return styles;
-  }, [iconKind, size, rotationDirection, customRotation]);
+  }, [iconKind, size, rotationDirection, customRotation, staticColor]);
 
   return (
     <div

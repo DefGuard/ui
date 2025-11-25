@@ -19,3 +19,11 @@
     }
   }
 }
+
+.icon[style*='--icon-color'] svg path {
+  fill: var(--icon-color);
+}
+
+.icon[style*='--icon-color'] svg circle {
+  stroke: var(--icon-color);
+}
