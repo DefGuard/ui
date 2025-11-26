@@ -24,6 +24,7 @@ import { IconCheckCircle } from './icons/IconCheckCircle';
 import { IconCheckFilled } from './icons/IconCheckFilled';
 import { IconClear } from './icons/IconClear';
 import { IconClose } from './icons/IconClose';
+import { IconCode } from './icons/IconCode';
 import { IconConfig } from './icons/IconConfig';
 import { IconConnectedDevices } from './icons/IconConnectedDevices';
 import { IconCopy } from './icons/IconCopy';
@@ -58,7 +59,9 @@ import { IconMail } from './icons/IconMail';
 import { IconMenu } from './icons/IconMenu';
 import { IconMinusCircle } from './icons/IconMinusCircle';
 import { IconMobile } from './icons/IconMobile';
+import { IconNetworkSettings } from './icons/IconNetworkSettings';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
+import { IconOnline } from './icons/IconOnline';
 import { IconOpenId } from './icons/IconOpenId';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPending } from './icons/IconPending';
@@ -66,11 +69,13 @@ import { IconPieChart } from './icons/IconPieChart';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
+import { IconRefresh } from './icons/IconRefresh';
 import { IconSearch } from './icons/IconSearch';
 import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
 import { IconStatusAttention } from './icons/IconStatusAttention';
+import { IconStatusAvailable } from './icons/IconStatusAvailable';
 import { IconStatusImportant } from './icons/IconStatusImportant';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconToken } from './icons/IconToken';
@@ -128,6 +133,10 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'refresh':
+        return IconRefresh;
+      case 'network-settings':
+        return IconNetworkSettings;
       case 'connected-devices':
         return IconConnectedDevices;
       case 'external-mfa':
@@ -142,6 +151,8 @@ export const Icon = <T extends IconKindValue>({
         return IconAddGroup;
       case 'add-token':
         return IconAddToken;
+      case 'online':
+        return IconOnline;
       case 'key':
         return IconKey;
       case 'add-device':
@@ -225,7 +236,7 @@ export const Icon = <T extends IconKindValue>({
       case 'clear':
         return IconClear;
       case 'code':
-        return EmptyIcon;
+        return IconCode;
       case 'collapse':
         return EmptyIcon;
       case 'credit-card':
@@ -315,7 +326,7 @@ export const Icon = <T extends IconKindValue>({
       case 'status-attention':
         return IconStatusAttention;
       case 'status-available':
-        return EmptyIcon;
+        return IconStatusAvailable;
       case 'status-important':
         return IconStatusImportant;
       case 'support':

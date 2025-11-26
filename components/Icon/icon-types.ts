@@ -1,4 +1,5 @@
 export const IconKind = {
+  NetworkSettings: 'network-settings',
   AddGroup: 'add-group',
   AddToken: 'add-token',
   Key: 'key',
@@ -103,6 +104,8 @@ export const IconKind = {
   InternalMFA: 'internal-mfa',
   ExternalMFa: 'external-mfa',
   ConnectedDevices: 'connected-devices',
+  Refresh: 'refresh',
+  Online: 'online',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];
