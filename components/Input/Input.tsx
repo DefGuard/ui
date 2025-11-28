@@ -1,6 +1,7 @@
 import { type HTMLInputTypeAttribute, useId, useMemo, useRef, useState } from 'react';
 import './style.scss';
 import clsx from 'clsx';
+import { isNumber } from 'lodash-es';
 import { isPresent } from '../../utils/isPresent';
 import { mergeRefs } from '../../utils/mergeRefs';
 import { FieldBox } from '../FieldBox/FieldBox';
@@ -21,7 +22,7 @@ const preferredTypeToInternal = (value: InputProps['type']): HTMLInputTypeAttrib
     case 'search':
       return 'text';
     case 'number':
-      return 'text';
+      return 'number';
     default:
       return value;
   }
@@ -126,6 +127,12 @@ export const Input = ({
                 let changeValue: string | null | number = e.target.value;
                 if (changeValue === '') {
                   changeValue = null;
+                } else {
+                  if (inputTypeInner === 'number') {
+                    const parsed = parseInt(changeValue, 10);
+                    if (!isNumber(parsed)) return;
+                    changeValue = parsed;
+                  }
                 }
                 onChange(changeValue);
               }

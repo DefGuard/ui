@@ -11,7 +11,7 @@ export type InputProps = {
   size?: FieldSize;
   type?: 'password' | 'text' | 'search' | 'number';
   ref?: Ref<HTMLInputElement>;
-  error?: string;
+  error?: string | null;
   name?: string;
   label?: string;
   required?: boolean;

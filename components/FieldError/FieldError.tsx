@@ -4,7 +4,7 @@ import { motionTransitionStandard } from '../../consts';
 import { isPresent } from '../../utils/isPresent';
 
 type Props = {
-  error?: string;
+  error?: string | null;
 };
 
 export const FieldError = ({ error }: Props) => {
