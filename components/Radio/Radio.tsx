@@ -34,7 +34,11 @@ export const Radio = ({ text, testId, active, disabled, error, onClick }: RadioP
     >
       <div
         ref={ref}
-        onClick={onClick}
+        onClick={() => {
+          if (!disabled) {
+            onClick?.();
+          }
+        }}
         data-testid={testId}
         data-active={active}
         data-disabled={disabled}

@@ -20,6 +20,7 @@ export const Button = ({
   type = 'button',
   disabled = false,
   loading = false,
+  className,
   ...props
 }: ButtonProps) => {
   return (
@@ -35,7 +36,7 @@ export const Button = ({
           onClick?.(e);
         }
       }}
-      className={clsx('btn', `variant-${variant}`, `size-${size}`, {
+      className={clsx('btn', `variant-${variant}`, `size-${size}`, className, {
         disabled,
         loading: !disabled && loading,
         'icon-left': isPresent(iconLeft) && !isPresent(iconRight),

@@ -12,7 +12,8 @@
     justify-content: flex-start;
     column-gap: var(--spacing-sm);
 
-    &.disabled {
+    &.disabled,
+    &[aria-disabled='true'] {
       cursor: not-allowed;
     }
 
