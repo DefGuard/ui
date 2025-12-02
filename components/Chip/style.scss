@@ -1,0 +1,34 @@
+.chip {
+  --bg: var(--bg-emphasis);
+
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: var(--radius-full);
+  color: var(--fg-faded);
+  background-color: var(--bg);
+  user-select: none;
+
+  @include animate(background-color);
+
+  &.size-sm {
+    height: var(--size-md);
+    padding: 0 var(--spacing-sm);
+  }
+
+  &.size-lg {
+    height: var(--size-xl);
+    padding: 0 var(--spacing-md);
+  }
+
+  &:hover {
+    color: var(--fg-default);
+    background-color: var(--bg-active);
+  }
+
+  & > span {
+    font: var(--t-button-label-primary);
+    color: currentColor;
+
+    @include animate(color);
+  }
+}
