@@ -28,7 +28,6 @@ export const Radio = ({ text, testId, active, disabled, error, onClick }: RadioP
   return (
     <div
       className={clsx('radio', {
-        text: isPresent(text),
         disabled,
       })}
     >
@@ -45,9 +44,14 @@ export const Radio = ({ text, testId, active, disabled, error, onClick }: RadioP
         role="button"
         aria-disabled={disabled}
         tabIndex={disabled ? -1 : 0}
-        className="inner"
+        className={clsx('inner', {
+          text: isPresent(text),
+          disabled,
+        })}
       >
-        <RenderIcon />
+        <div className="icon-track">
+          <RenderIcon />
+        </div>
         {isPresent(text) && <span>{text}</span>}
       </div>
       <FieldError error={error} />

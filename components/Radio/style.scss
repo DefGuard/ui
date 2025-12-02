@@ -5,16 +5,14 @@
 
   & > .inner {
     cursor: pointer;
-    display: flex;
-    flex: 0 1 auto;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: var(--spacing-sm);
 
-    &.disabled,
-    &[aria-disabled='true'] {
-      cursor: not-allowed;
+    &:not(.text) {
+      display: flex;
+      flex: 0 1 auto;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: var(--spacing-sm);
     }
 
     &.text {
@@ -22,10 +20,15 @@
       grid-template-columns: 24px auto;
       grid-template-rows: 1fr;
       column-gap: var(--spacing-sm);
+
+      & > span {
+        font: var(--t-body-sm-400);
+      }
     }
 
-    span {
-      font: var(--t-body-sm-400);
+    &.disabled,
+    &[aria-disabled='true'] {
+      cursor: not-allowed;
     }
   }
 }

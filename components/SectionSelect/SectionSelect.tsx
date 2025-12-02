@@ -14,11 +14,13 @@ import customization from './assets/customization.png';
 import deviceClc from './assets/device-clc.png';
 import gatewayNotifications from './assets/gateway-notifications.png';
 import integrations from './assets/integrations.png';
+import location from './assets/location.png';
 import manualSetup from './assets/manual-setup.png';
 import manualUser from './assets/manual-user.png';
 import providers from './assets/providers.png';
 import remoteActivation from './assets/remote-activation.png';
 import selfEnrollment from './assets/self-enrollment.png';
+import serviceLocation from './assets/service-location.png';
 import smtp from './assets/smtp.png';
 import tokenChat from './assets/token-chat.png';
 import tokenEmail from './assets/token-email.png';
@@ -81,6 +83,10 @@ export const SectionSelect = ({
         return deviceClc;
       case 'wireguard-device':
         return wireguardDevice;
+      case 'service-location':
+        return serviceLocation;
+      case 'location':
+        return location;
     }
   }, [image]);
 

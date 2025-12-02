@@ -14,6 +14,8 @@ const SectionSelectImage = {
   TokenChat: 'token-chat',
   WireguardDevice: 'wireguard-device',
   DeviceClc: 'device-clc',
+  Location: 'location',
+  ServiceLocation: 'service-location',
 } as const;
 
 export type SectionSelectImageValue =
