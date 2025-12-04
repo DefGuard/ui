@@ -106,6 +106,8 @@ export const IconKind = {
   ConnectedDevices: 'connected-devices',
   Refresh: 'refresh',
   Online: 'online',
+  LightTheme: 'light-theme',
+  DarkTheme: 'dark-theme',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

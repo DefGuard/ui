@@ -28,6 +28,7 @@ import { IconCode } from './icons/IconCode';
 import { IconConfig } from './icons/IconConfig';
 import { IconConnectedDevices } from './icons/IconConnectedDevices';
 import { IconCopy } from './icons/IconCopy';
+import { IconDarkTheme } from './icons/IconDarkTheme';
 import { IconDebian } from './icons/IconDebian';
 import { IconDelete } from './icons/IconDelete';
 import { IconDesktop } from './icons/IconDesktop';
@@ -49,6 +50,7 @@ import { IconInfoFilled } from './icons/IconInfoFilled';
 import { IconInfoOutlined } from './icons/IconInfoOutlined';
 import { IconInternalMfa } from './icons/IconInternalMFA';
 import { IconKey } from './icons/IconKey';
+import { IconLightTheme } from './icons/IconLightTheme';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
 import { IconLocation } from './icons/IconLocation';
@@ -133,6 +135,10 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'light-theme':
+        return IconLightTheme;
+      case 'dark-theme':
+        return IconDarkTheme;
       case 'refresh':
         return IconRefresh;
       case 'network-settings':

@@ -18,6 +18,7 @@ import location from './assets/location.png';
 import manualSetup from './assets/manual-setup.png';
 import manualUser from './assets/manual-user.png';
 import providers from './assets/providers.png';
+import proxyManagement from './assets/proxy-management.png';
 import remoteActivation from './assets/remote-activation.png';
 import selfEnrollment from './assets/self-enrollment.png';
 import serviceLocation from './assets/service-location.png';
@@ -53,6 +54,8 @@ export const SectionSelect = ({
 
   const imageSource = useMemo(() => {
     switch (image) {
+      case 'proxy-management':
+        return proxyManagement;
       case 'smtp':
         return smtp;
       case 'gateway-notifications':

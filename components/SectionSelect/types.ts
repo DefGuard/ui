@@ -16,6 +16,7 @@ const SectionSelectImage = {
   DeviceClc: 'device-clc',
   Location: 'location',
   ServiceLocation: 'service-location',
+  ProxyManagement: 'proxy-management',
 } as const;
 
 export type SectionSelectImageValue =
