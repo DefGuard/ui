@@ -8,6 +8,7 @@
   padding: var(--spacing-lg);
   background-color: var(--bg-default);
   border-radius: var(--radius-lg);
+  user-select: none;
 
   @include animate(border-color);
 
@@ -62,4 +63,8 @@
       place-self: center end;
     }
   }
+}
+
+a:has(.section-select) {
+  text-decoration: none;
 }

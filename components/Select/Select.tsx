@@ -36,6 +36,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     className,
     placeholder,
     testId,
+    error,
     size = 'default',
     disabled = false,
     required = false,
@@ -123,7 +124,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
               {isPresent(selectedLabel) && <span className="value">{selectedLabel}</span>}
             </div>
           </FieldBox>
-          <FieldError />
+          <FieldError error={error} />
         </div>
       </div>
       {floatingOpen && (
