@@ -28,6 +28,7 @@ import { IconCode } from './icons/IconCode';
 import { IconConfig } from './icons/IconConfig';
 import { IconConnectedDevices } from './icons/IconConnectedDevices';
 import { IconCopy } from './icons/IconCopy';
+import { IconCustomize } from './icons/IconCustomize';
 import { IconDarkTheme } from './icons/IconDarkTheme';
 import { IconDebian } from './icons/IconDebian';
 import { IconDelete } from './icons/IconDelete';
@@ -62,6 +63,7 @@ import { IconMenu } from './icons/IconMenu';
 import { IconMinusCircle } from './icons/IconMinusCircle';
 import { IconMobile } from './icons/IconMobile';
 import { IconNetworkSettings } from './icons/IconNetworkSettings';
+import { IconNotification } from './icons/IconNotification';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOnline } from './icons/IconOnline';
 import { IconOpenId } from './icons/IconOpenId';
@@ -135,6 +137,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'customize':
+        return IconCustomize;
       case 'light-theme':
         return IconLightTheme;
       case 'dark-theme':
@@ -302,7 +306,7 @@ export const Icon = <T extends IconKindValue>({
       case 'navigation-uncollapse':
         return EmptyIcon;
       case 'notification':
-        return EmptyIcon;
+        return IconNotification;
       case 'one-time-password':
         return IconOneTimePassword;
       case 'openid':

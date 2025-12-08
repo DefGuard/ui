@@ -1,4 +1,5 @@
 export const IconKind = {
+  Customize: 'customize',
   NetworkSettings: 'network-settings',
   AddGroup: 'add-group',
   AddToken: 'add-token',

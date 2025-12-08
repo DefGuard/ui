@@ -2,7 +2,7 @@
   --border: var(--bg-faded);
   --bg: var(--bg-faded);
   --circle: var(--fg-white);
-  --circle-x: 0;
+  --circle-x: 1px;
   --circle-shadow: 0 1px 1px 0 rgb(0 0 0 0);
 
   cursor: pointer;
@@ -23,7 +23,7 @@
     box-sizing: border-box;
     border-radius: var(--radius-full);
     background-color: var(--bg);
-    border: var(--border-2) solid var(--border);
+    border: var(--border-1) solid var(--border);
 
     @include animate(border-color, background-color);
 
@@ -50,6 +50,7 @@
 
   &.disabled {
     --circle: var(--bg-active);
+    --circle-x: 1px;
     --border: var(--bg-active);
     --bg: var(--bg-default);
 

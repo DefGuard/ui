@@ -1,0 +1,71 @@
+.interactive-block {
+  // defaults for radio variant
+  --interaction-col-size: 24px;
+  --column-gap: var(--spacing-md);
+  --title-color: var(--fg-default);
+  --content-color: var(--fg-neutral);
+
+  &.variant-toggle {
+    --interaction-col-size: 36px;
+    --column-gap: var(--spacing-xl);
+  }
+
+  &.disabled {
+    --title-color: var(--fg-muted);
+    --content-color: var(--fg-muted);
+
+    & > .interactive {
+      cursor: not-allowed;
+    }
+  }
+
+  &:not(.disabled) {
+    & > .interactive {
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: var(--interaction-col-size) 1fr;
+    grid-template-rows: 1fr;
+    column-gap: var(--column-gap);
+  }
+
+  .icon-track {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .content-track {
+    grid-column: 2 /3;
+    grid-row: 1;
+  }
+
+  .interactive-content {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: var(--spacing-xs);
+
+    .title {
+      font: var(--t-body-sm-500);
+      color: var(--title-color);
+
+      @include animate(color);
+    }
+
+    .content {
+      font: var(--t-body-sm-400);
+      color: var(--content-color);
+
+      @include animate(color);
+    }
+  }
+}
