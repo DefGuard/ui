@@ -39,6 +39,7 @@ import { IconDisabled } from './icons/IconDisabled';
 import { IconDownload } from './icons/IconDownload';
 import { IconEdit } from './icons/IconEdit';
 import { IconEmptyPoint } from './icons/IconEmptyPoint';
+import { IconEnrollment } from './icons/IconEnrollment';
 import { IconEnter } from './icons/IconEnter';
 import { IconExternalMfa } from './icons/IconExternalMFA';
 import { IconFile } from './icons/IconFile';
@@ -73,6 +74,7 @@ import { IconPieChart } from './icons/IconPieChart';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
+import { IconProtection } from './icons/IconProtection';
 import { IconRefresh } from './icons/IconRefresh';
 import { IconSearch } from './icons/IconSearch';
 import { IconSettings } from './icons/IconSettings';
@@ -81,6 +83,7 @@ import { IconSortable } from './icons/IconSortable';
 import { IconStatusAttention } from './icons/IconStatusAttention';
 import { IconStatusAvailable } from './icons/IconStatusAvailable';
 import { IconStatusImportant } from './icons/IconStatusImportant';
+import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconToken } from './icons/IconToken';
 import { IconUbuntu } from './icons/IconUbuntu';
@@ -137,6 +140,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'enrollment':
+        return IconEnrollment;
       case 'customize':
         return IconCustomize;
       case 'light-theme':
@@ -320,7 +325,7 @@ export const Icon = <T extends IconKindValue>({
       case 'profile':
         return IconProfile;
       case 'protection':
-        return EmptyIcon;
+        return IconProtection;
       case 'qr':
         return EmptyIcon;
       case 'search':
@@ -333,6 +338,8 @@ export const Icon = <T extends IconKindValue>({
         return EmptyIcon;
       case 'sortable':
         return IconSortable;
+      case 'status-premium':
+        return IconStatusPremium;
       case 'status-attention':
         return IconStatusAttention;
       case 'status-available':
