@@ -58,6 +58,7 @@ import { IconLoader } from './icons/IconLoader';
 import { IconLocation } from './icons/IconLocation';
 import { IconLocationTracking } from './icons/IconLocationTracking';
 import { IconLockOpen } from './icons/IconLock';
+import { IconLockClosed } from './icons/IconLockClosed';
 import { IconLogout } from './icons/IconLogout';
 import { IconMail } from './icons/IconMail';
 import { IconMenu } from './icons/IconMenu';
@@ -140,6 +141,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'lock-closed':
+        return IconLockClosed;
       case 'enrollment':
         return IconEnrollment;
       case 'customize':

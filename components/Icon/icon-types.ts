@@ -38,6 +38,7 @@ export const IconKind = {
   Filter: 'filter',
   User: 'user',
   LockOpen: 'lock-open',
+  LockClosed: 'lock-closed',
   Servers: 'servers',
   Protection: 'protection',
   NavigationCollapse: 'navigation-collapse',
