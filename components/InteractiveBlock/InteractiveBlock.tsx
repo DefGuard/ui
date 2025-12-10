@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Radio } from '../Radio/Radio';
 import './style.scss';
 import { isPresent } from '../../utils/isPresent';
+import { Checkbox } from '../Checkbox/Checkbox';
 import { Toggle } from '../Toggle/Toggle';
 import type { InteractiveBlockProps } from './types';
 
@@ -35,6 +36,7 @@ export const InteractiveBlock = ({
         <div className="icon-track">
           {variant === 'radio' && <Radio active={value} disabled={disabled} />}
           {variant === 'toggle' && <Toggle active={value} disabled={disabled} />}
+          {variant === 'checkbox' && <Checkbox active={value} disabled={disabled} />}
         </div>
         <div className="interactive-content content-track">
           <p className="title">{title}</p>

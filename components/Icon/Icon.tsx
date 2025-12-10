@@ -91,7 +91,8 @@ import { IconUbuntu } from './icons/IconUbuntu';
 import { IconUser } from './icons/IconUser';
 import { IconUserActive } from './icons/IconUserActive';
 import { IconUsers } from './icons/IconUsers';
-import { IconWarning } from './icons/IconWarning';
+import { IconWarningFilled } from './icons/IconWarningFilled';
+import { IconWarningOutlined } from './icons/IconWarningOutlined';
 import { IconWebhooks } from './icons/IconWebhooks';
 import { IconWindows } from './icons/IconWindows';
 
@@ -175,8 +176,10 @@ export const Icon = <T extends IconKindValue>({
         return IconKey;
       case 'add-device':
         return IconAddDevice;
-      case 'warning':
-        return IconWarning;
+      case 'warning-filled':
+        return IconWarningFilled;
+      case 'warning-outlined':
+        return IconWarningOutlined;
       case 'ubuntu':
         return IconUbuntu;
       case 'debian':

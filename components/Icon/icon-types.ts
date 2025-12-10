@@ -54,7 +54,7 @@ export const IconKind = {
   AccessSettings: 'access-settings',
   Profile: 'profile',
   Attention: 'attention',
-  Warning: 'warning',
+  WarningOutlined: 'warning-outlined',
   Download: 'download',
   Code: 'code',
   Deploy: 'deploy',
@@ -112,6 +112,7 @@ export const IconKind = {
   Online: 'online',
   LightTheme: 'light-theme',
   DarkTheme: 'dark-theme',
+  WarningFilled: 'warning-filled',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];
