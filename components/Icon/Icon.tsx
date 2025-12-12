@@ -88,6 +88,7 @@ import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconToken } from './icons/IconToken';
 import { IconUbuntu } from './icons/IconUbuntu';
+import { IconUpload } from './icons/IconUpload';
 import { IconUser } from './icons/IconUser';
 import { IconUserActive } from './icons/IconUserActive';
 import { IconUsers } from './icons/IconUsers';
@@ -142,6 +143,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'upload':
+        return IconUpload;
       case 'lock-closed':
         return IconLockClosed;
       case 'enrollment':
