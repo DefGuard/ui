@@ -8,6 +8,7 @@ import { SizedBox } from '../SizedBox/SizedBox';
 import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
+import { EmptyStateIconDashboard } from './icons/EmptyStateIconDashboard';
 import { EmptyStateIconSearch } from './icons/EmptyStateIconSearch';
 import { EmptyStateIconWebhook } from './icons/EmptyStateIconWebhook';
 import type { EmptyStateProps } from './types';
@@ -41,6 +42,8 @@ export const EmptyState = ({
         return EmptyStateIconApiToken;
       case 'webhook':
         return EmptyStateIconWebhook;
+      case 'dashboard':
+        return EmptyStateIconDashboard;
     }
   }, [icon]);
 
