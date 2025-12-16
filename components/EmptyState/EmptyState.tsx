@@ -5,6 +5,7 @@ import { ThemeSpacing } from '../../types';
 import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
 import { SizedBox } from '../SizedBox/SizedBox';
+import { EmptyStateIconAliases } from './icons/EmptyStateIconAliases';
 import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
@@ -44,6 +45,8 @@ export const EmptyState = ({
         return EmptyStateIconWebhook;
       case 'dashboard':
         return EmptyStateIconDashboard;
+      case 'aliases':
+        return EmptyStateIconAliases;
     }
   }, [icon]);
 

@@ -5,7 +5,14 @@ export type EmptyStateProps = {
   ref?: Ref<HTMLDivElement>;
   title?: string;
   subtitle?: string;
-  icon?: 'apps' | 'authentication' | 'api-token' | 'search' | 'webhook' | 'dashboard';
+  icon?:
+    | 'apps'
+    | 'authentication'
+    | 'api-token'
+    | 'search'
+    | 'webhook'
+    | 'dashboard'
+    | 'aliases';
   className?: string;
   testId?: string;
   id?: string;
