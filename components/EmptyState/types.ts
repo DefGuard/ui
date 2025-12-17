@@ -12,7 +12,8 @@ export type EmptyStateProps = {
     | 'search'
     | 'webhook'
     | 'dashboard'
-    | 'aliases';
+    | 'aliases'
+    | 'rules';
   className?: string;
   testId?: string;
   id?: string;

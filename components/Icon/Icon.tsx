@@ -11,6 +11,7 @@ import { IconAddAlias } from './icons/IconAddAlias';
 import { IconAddDevice } from './icons/IconAddDevice';
 import { IconAddGroup } from './icons/IconAddGroup';
 import { IconAddLocation } from './icons/IconAddLocation';
+import { IconAddRule } from './icons/IconAddRule';
 import { IconAddToken } from './icons/IconAddToken';
 import { IconAddUser } from './icons/IconAddUser';
 import { IconAndroid } from './icons/IconAndroid';
@@ -145,6 +146,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'add-rule':
+        return IconAddRule;
       case 'add-alias':
         return IconAddAlias;
       case 'upload':

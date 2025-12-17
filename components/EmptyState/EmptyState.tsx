@@ -10,6 +10,7 @@ import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
 import { EmptyStateIconDashboard } from './icons/EmptyStateIconDashboard';
+import { EmptyStateIconRules } from './icons/EmptyStateIconRules';
 import { EmptyStateIconSearch } from './icons/EmptyStateIconSearch';
 import { EmptyStateIconWebhook } from './icons/EmptyStateIconWebhook';
 import type { EmptyStateProps } from './types';
@@ -47,6 +48,8 @@ export const EmptyState = ({
         return EmptyStateIconDashboard;
       case 'aliases':
         return EmptyStateIconAliases;
+      case 'rules':
+        return EmptyStateIconRules;
     }
   }, [icon]);
 

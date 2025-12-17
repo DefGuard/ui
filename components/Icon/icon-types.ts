@@ -115,6 +115,7 @@ export const IconKind = {
   DarkTheme: 'dark-theme',
   WarningFilled: 'warning-filled',
   Upload: 'upload',
+  AddRule: 'add-rule',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];
