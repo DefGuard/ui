@@ -21,6 +21,7 @@ export type InputProps = {
   boxProps?: Partial<FieldBoxProps>;
   autocomplete?: HTMLInputAutoCompleteAttribute;
   testId?: string;
+  notNull?: boolean;
 } & Pick<HTMLAttributes<HTMLInputElement>, 'onBlur' | 'onFocus'>;
 
 export type FormInputProps = Pick<
@@ -33,6 +34,7 @@ export type FormInputProps = Pick<
   | 'autocomplete'
   | 'size'
   | 'type'
+  | 'notNull'
 > & {
   mapError?: (error: string) => string | undefined;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;

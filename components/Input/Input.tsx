@@ -40,6 +40,7 @@ export const Input = ({
   onChange,
   onBlur,
   onFocus,
+  notNull,
   size = 'default',
   type = 'text',
   required = false,
@@ -125,7 +126,8 @@ export const Input = ({
             onChange={(e) => {
               if (isPresent(onChange)) {
                 let changeValue: string | null | number = e.target.value;
-                if (changeValue === '') {
+                // allows nulls to be typed directly to form state
+                if (changeValue === '' && !notNull) {
                   changeValue = null;
                 } else {
                   if (inputTypeInner === 'number') {

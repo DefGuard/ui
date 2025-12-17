@@ -1,4 +1,5 @@
 export const IconKind = {
+  AddAlias: 'add-alias',
   Customize: 'customize',
   NetworkSettings: 'network-settings',
   AddGroup: 'add-group',
