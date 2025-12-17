@@ -33,6 +33,7 @@ import { IconCustomize } from './icons/IconCustomize';
 import { IconDarkTheme } from './icons/IconDarkTheme';
 import { IconDebian } from './icons/IconDebian';
 import { IconDelete } from './icons/IconDelete';
+import { IconDeploy } from './icons/IconDeploy';
 import { IconDesktop } from './icons/IconDesktop';
 import { IconDevices } from './icons/IconDevices';
 import { IconDevicesActive } from './icons/IconDevicesActive';
@@ -273,7 +274,7 @@ export const Icon = <T extends IconKindValue>({
       case 'delete':
         return IconDelete;
       case 'deploy':
-        return EmptyIcon;
+        return IconDeploy;
       case 'devices':
         return IconDevices;
       case 'devices-active':
