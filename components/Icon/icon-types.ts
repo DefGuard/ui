@@ -116,6 +116,7 @@ export const IconKind = {
   WarningFilled: 'warning-filled',
   Upload: 'upload',
   AddRule: 'add-rule',
+  Rules: 'rules',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

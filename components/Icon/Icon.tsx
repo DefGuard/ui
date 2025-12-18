@@ -80,6 +80,7 @@ import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
 import { IconProtection } from './icons/IconProtection';
 import { IconRefresh } from './icons/IconRefresh';
+import { IconRules } from './icons/IconRules';
 import { IconSearch } from './icons/IconSearch';
 import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
@@ -146,6 +147,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'rules':
+        return IconRules;
       case 'add-rule':
         return IconAddRule;
       case 'add-alias':
