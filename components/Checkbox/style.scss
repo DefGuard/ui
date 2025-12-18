@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .checkbox {
   display: inline-flex;
   flex-flow: column;
@@ -24,11 +25,103 @@
     &.disabled {
       pointer-events: none;
       cursor: not-allowed;
+
+      svg path {
+        fill: var(--bg-disabled);
+      }
     }
 
     span {
       font: var(--t-body-sm-400);
       color: var(--fg-default);
     }
+
+    &:not(.active, .disabled, .error):hover {
+      .box {
+        --border: var(--border-emphasis);
+      }
+    }
+  }
+}
+
+.checkbox .box-positioner {
+  display: grid;
+  grid-template-columns: 24px;
+  grid-template-rows: 24px;
+  place-items: center center;
+  justify-content: center;
+  overflow: hidden;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    z-index: 0;
+
+    path {
+      fill: var(--fg-white);
+
+      @include animate(fill);
+    }
+  }
+
+  .box,
+  svg {
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+}
+
+.checkbox .box {
+  --bg: var(--bg-default);
+  --border: var(--border-faded);
+  --icon: var(--fg-white);
+
+  content: ' ';
+  display: block;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg);
+  background-clip: padding-box;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: var(--border-1) solid var(--border);
+    border-radius: inherit;
+    pointer-events: none;
+    background-color: transparent;
+    background-clip: padding-box;
+  }
+
+  @include animate(border-color, background-color);
+
+  &.hover,
+  :hover {
+    --border: var(--border-emphasis);
+  }
+
+  &.error {
+    --border: var(--border-critical);
+  }
+
+  &:not(.disabled).active {
+    --bg: var(--bg-action);
+    --border: var(--bg-action);
+    --icon: var(--fg-white);
+  }
+
+  &:not(.active).disabled {
+    --border: var(--border-disabled);
+    --bg: var(--bg-disabled);
+  }
+
+  &.active.disabled {
+    --border: var(--bg-faded);
+    --bg: var(--bg-faded);
+    --icon: var(--bg-disabled);
   }
 }
