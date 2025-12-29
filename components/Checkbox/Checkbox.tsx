@@ -60,8 +60,8 @@ const CheckIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M15.5 7.47029L8.38301 14L4.5 10.4374L5.79805 8.96712L8.38301 11.3388L14.2019 6L15.5 7.47029Z"
         fill="#7E8794"
       />
