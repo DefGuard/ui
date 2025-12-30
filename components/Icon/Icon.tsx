@@ -46,6 +46,7 @@ import { IconEnrollment } from './icons/IconEnrollment';
 import { IconEnter } from './icons/IconEnter';
 import { IconExternalMfa } from './icons/IconExternalMFA';
 import { IconFile } from './icons/IconFile';
+import { IconFiltration } from './icons/IconFiltration';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconGroups } from './icons/IconGroups';
 import { IconHamburger } from './icons/IconHamburger';
@@ -147,6 +148,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'filtration':
+        return IconFiltration;
       case 'rules':
         return IconRules;
       case 'add-rule':

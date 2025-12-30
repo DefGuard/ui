@@ -93,6 +93,7 @@ export const Input = ({
           }}
           iconLeft={preferredTypeIsSearch ? 'search' : undefined}
           iconRight={interactionIconRight}
+          reserveInteraction={preferredTypeIsSearch}
           onInteractionClick={(e) => {
             e.preventDefault();
             e.stopPropagation();

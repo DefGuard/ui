@@ -13,4 +13,5 @@ export interface FieldBoxProps extends HTMLAttributes<HTMLDivElement>, PropsWith
   size?: FieldSize;
   forceFocusState?: boolean;
   onInteractionClick?: MouseEventHandler<HTMLButtonElement>;
+  reserveInteraction?: boolean;
 }

@@ -18,10 +18,11 @@ export const FieldBox = ({
   size,
   forceFocusState,
   onInteractionClick,
+  reserveInteraction = false,
   ...rest
 }: FieldBoxProps) => {
   const hasIconLeft = isPresent(iconLeft);
-  const hasIconRight = isPresent(iconRight);
+  const hasIconRight = isPresent(iconRight) || reserveInteraction;
   return (
     <div
       className={clsx('field-box', className, `size-${size}`, {
@@ -39,14 +40,19 @@ export const FieldBox = ({
       {hasIconLeft && <Icon icon={iconLeft} size={20} />}
       {children}
       {hasIconRight && (
-        <InteractionBox
-          disabled={disabled}
-          iconSize={20}
-          icon={iconRight}
-          onClick={onInteractionClick}
-          tabIndex={-1}
-          ref={interactionRef}
-        />
+        <>
+          {isPresent(iconRight) && (
+            <InteractionBox
+              disabled={disabled}
+              iconSize={20}
+              icon={iconRight}
+              onClick={onInteractionClick}
+              tabIndex={-1}
+              ref={interactionRef}
+            />
+          )}
+          {!isPresent(iconRight) && <div className="empty"></div>}
+        </>
       )}
     </div>
   );
