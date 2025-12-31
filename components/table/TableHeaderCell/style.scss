@@ -1,6 +1,29 @@
 .table .header-cell {
   column-gap: var(--spacing-sm);
 
+  &.resizable {
+    position: relative;
+  }
+
+  .resize-bar {
+    position: absolute;
+    right: -6px;
+    top: -1px;
+    z-index: 1;
+    width: 12px;
+    height: calc(100% + 2px);
+    background-color: rgb(245 40 145 / 8%);
+    cursor: col-resize;
+
+    .bar {
+      background-color: var(--fg-action);
+      content: '';
+      width: 2px;
+      height: 100%;
+      place-self: center center;
+    }
+  }
+
   .filter-btn {
     --bg: transparent;
     --icon: var(--fg-muted);

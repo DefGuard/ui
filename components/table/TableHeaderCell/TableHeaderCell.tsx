@@ -83,16 +83,35 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
 
   const { getFloatingProps, getReferenceProps } = useInteractions([click, dismiss]);
 
-  if (isEmpty) return <TableCell empty />;
+  const resizable = !isEmpty;
+
+  if (isEmpty)
+    return (
+      <TableCell
+        style={{
+          width: `calc(var(--col-${header.id}-size) * 1px)`,
+        }}
+        empty
+      />
+    );
 
   return (
     <>
       <TableCell
+        style={{
+          width: `calc(var(--col-${header.id}-size) * 1px)`,
+        }}
         className={clsx('header-cell', {
           clickable: isSortable,
           filterable: isFilterable,
+          resizable,
         })}
-        onClick={() => {
+        onClick={(e) => {
+          const target = e.target as HTMLElement;
+          const bar = target.closest('.resize-bar');
+          if (bar !== null) {
+            return;
+          }
           if (isSortable) {
             header.column.toggleSorting();
           }
@@ -121,6 +140,22 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
           >
             <Icon icon="filtration" size={16} />
           </button>
+        )}
+        {header.column.getCanResize() && (
+          <div
+            className={clsx('resize-bar', {
+              resizing: header.column.getIsResizing(),
+            })}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const handler = header.getResizeHandler();
+              handler(e);
+            }}
+            onTouchStart={header.getResizeHandler()}
+          >
+            <div className="bar"></div>
+          </div>
         )}
       </TableCell>
       {isFilterable && floatOpen && isPresent(filterOptions) && (

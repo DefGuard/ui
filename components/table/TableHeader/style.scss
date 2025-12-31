@@ -6,7 +6,8 @@
   height: 36px;
 
   .cells {
-    display: grid;
+    display: flex;
+    width: fit-content;
     grid-template-rows: 1fr;
     background-color: var(--bg-disabled);
     border-top-left-radius: var(--radius-lg);

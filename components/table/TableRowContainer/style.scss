@@ -2,7 +2,8 @@
 .table-row-container {
   --bg-color: var(--bg-default);
 
-  display: grid;
+  display: flex;
+  width: fit-content;
   box-sizing: border-box;
   background-color: var(--bg-color);
 

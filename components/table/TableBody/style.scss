@@ -1,12 +1,10 @@
 .table {
   box-sizing: border-box;
-  padding: var(--spacing-xl);
-  padding-top: 0;
+  padding: 0 var(--spacing-xl);
   width: 100%;
 }
 
 .table-virtual-body {
-  display: grid;
   width: 100%;
   max-width: 100%;
   position: relative;
