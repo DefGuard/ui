@@ -2,7 +2,6 @@ import { IconButton } from '../../IconButton/IconButton';
 import './style.scss';
 import type { Row } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { tableActionColumnSize } from '../consts';
 import { TableCell } from '../TableCell/TableCell';
 
 type Props<T extends object> = {
@@ -12,12 +11,14 @@ type Props<T extends object> = {
 export const TableExpandCell = <T extends object>({ row }: Props<T>) => {
   const expanded = row.getIsExpanded();
   const canExpand = row.getCanExpand();
+  const canSelect = row.getCanSelect();
+
   return (
     <TableCell
       className="table-expand-cell"
       noPadding
       empty={!canExpand}
-      style={{ width: tableActionColumnSize }}
+      style={{ width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)` }}
     >
       {canExpand && (
         <IconButton

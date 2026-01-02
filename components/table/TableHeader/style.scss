@@ -7,8 +7,8 @@
 
   .cells {
     display: flex;
+    min-width: 100%;
     width: fit-content;
-    grid-template-rows: 1fr;
     background-color: var(--bg-disabled);
     border-top-left-radius: var(--radius-lg);
     border-top-right-radius: var(--radius-lg);
@@ -22,10 +22,6 @@
 
       &:first-child {
         border-top-left-radius: var(--radius-lg);
-      }
-
-      &:last-child {
-        border-top-right-radius: var(--radius-lg);
       }
 
       span {

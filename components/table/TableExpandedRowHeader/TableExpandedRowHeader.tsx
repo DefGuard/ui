@@ -1,5 +1,6 @@
-import type { HTMLProps } from 'react';
+import { type HTMLProps, useCallback } from 'react';
 import { TableCell } from '../TableCell/TableCell';
+import { TableFlexCell } from '../TableFlexCell/TableFlexCell';
 import { TableRowContainer } from '../TableRowContainer/TableRowContainer';
 
 export const TableExpandedRowHeader = ({
@@ -12,20 +13,36 @@ export const TableExpandedRowHeader = ({
   canExpand: boolean;
   canSelect: boolean;
 } & HTMLProps<HTMLDivElement>) => {
+  const getColumnId = useCallback(
+    (index: number) => {
+      let res = index;
+      if (canSelect) {
+        res++;
+      }
+      if (canExpand) {
+        res++;
+      }
+      return res.toString();
+    },
+    [canExpand, canSelect],
+  );
+
   return (
     <TableRowContainer variant="sub-header" {...props}>
-      {canExpand && <TableCell empty />}
-      {canSelect && <TableCell empty />}
+      {canSelect && <TableCell empty columnId="0" />}
+      {canExpand && <TableCell empty columnId={canSelect ? '1' : '0'} />}
       {headers.map((header, index) => {
+        const columnId = getColumnId(index);
         if (header.length) {
           return (
-            <TableCell key={header}>
+            <TableCell key={header} columnId={columnId}>
               <span>{header}</span>
             </TableCell>
           );
         }
-        return <TableCell key={`empty-${index}`} empty />;
+        return <TableCell key={`empty-${index}`} empty columnId={columnId} />;
       })}
+      <TableFlexCell />
     </TableRowContainer>
   );
 };

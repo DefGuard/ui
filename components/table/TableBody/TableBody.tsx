@@ -5,7 +5,6 @@ import { useDebounce, useWindowSize } from '@uidotdev/usehooks';
 import clsx from 'clsx';
 import { range } from 'lodash-es';
 import {
-  type CSSProperties,
   Fragment,
   type HTMLProps,
   type ReactNode,
@@ -19,6 +18,7 @@ import { TableCell } from '../TableCell/TableCell';
 import { TableCellContext } from '../TableCell/TableCellContext';
 import { TableExpandCell } from '../TableExpandCell/TableExpandCell';
 import { TableExpandedRowHeader } from '../TableExpandedRowHeader/TableExpandedRowHeader';
+import { TableFlexCell } from '../TableFlexCell/TableFlexCell';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { TableHeaderCell } from '../TableHeaderCell/TableHeaderCell';
 import { TableRowContainer } from '../TableRowContainer/TableRowContainer';
@@ -46,11 +46,7 @@ const useTableHeight = (tableRef: RefObject<HTMLDivElement | null>) => {
 type Props<TData> = {
   table: Table<TData>;
   expandedHeaders?: string[];
-  renderExpandedRow?: (
-    row: Row<TData>,
-    rowStyle: CSSProperties,
-    isLast?: boolean,
-  ) => ReactNode;
+  renderExpandedRow?: (row: Row<TData>, isLast?: boolean) => ReactNode;
 } & HTMLProps<HTMLDivElement>;
 
 export const TableBody = <T extends object>({
@@ -90,9 +86,22 @@ export const TableBody = <T extends object>({
   const columnSizeVars = useMemo(() => {
     const headers = table.getFlatHeaders();
     const colSizes: { [key: string]: number } = {};
+    const canRowsExpand = table.options.enableExpanding;
+    const canRowsSelect = table.options.enableRowSelection;
+    // assign static sizing to extra columns at the start of the row
+    let iterIndex = 0;
+    if (canRowsExpand) {
+      colSizes['--col-0-size'] = tableActionColumnSize;
+      iterIndex += 1;
+    }
+    if (canRowsSelect) {
+      colSizes[`--col-${iterIndex}-size`] = tableActionColumnSize;
+      iterIndex += 1;
+    }
     for (const header of headers) {
-      // cuz we only support flat headers we only need columns
+      colSizes[`--col-${iterIndex}-size`] = header.column.getSize();
       colSizes[`--col-${header.column.id}-size`] = header.column.getSize();
+      iterIndex += 1;
     }
     return colSizes;
   }, [
@@ -110,7 +119,7 @@ export const TableBody = <T extends object>({
     if (canSelect) {
       tableSize += tableActionColumnSize;
     }
-    return tableSize;
+    return Math.max(tableSize);
   }, [canExpand, canSelect, table.getTotalSize()]);
 
   const rowVirtualizer = useVirtualizer({
@@ -138,7 +147,7 @@ export const TableBody = <T extends object>({
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
           position: 'relative',
-          width: tableWidth,
+          minWidth: tableWidth,
         }}
       >
         <TableHeader>
@@ -150,16 +159,14 @@ export const TableBody = <T extends object>({
               }}
             />
           )}
-          {table.options.enableExpanding && (
-            <TableCell style={{ width: tableActionColumnSize }} empty />
-          )}
-          {table.getHeaderGroups()[0].headers.map((header) => (
-            <TableHeaderCell header={header} key={header.id} />
-          ))}
+          {table.options.enableExpanding && <TableCell empty />}
+          {table.getHeaderGroups()[0].headers.map((header) => {
+            return <TableHeaderCell header={header} key={header.id} />;
+          })}
+          <TableFlexCell radius />
         </TableHeader>
         {rowVirtualizer.getVirtualItems().map((virtualRow) => {
           const row = rows[virtualRow.index];
-          const canExpand = row.getCanExpand();
           const isExpanded = row.getIsExpanded();
           const canSelect = row.getCanSelect();
           const isLast = virtualRow.index === rows.length - 1;
@@ -174,7 +181,8 @@ export const TableBody = <T extends object>({
               style={{
                 position: 'absolute',
                 transform: `translateY(${virtualRow.start}px)`,
-                width: tableWidth,
+                minWidth: tableWidth,
+                width: '100%',
               }}
             >
               <TableRowContainer
@@ -190,10 +198,7 @@ export const TableBody = <T extends object>({
                     }}
                   />
                 )}
-                {canExpand && <TableExpandCell row={row} />}
-                {!canExpand && table.options.enableExpanding && (
-                  <TableCell style={{ width: tableActionColumnSize }} empty />
-                )}
+                {table.options.enableExpanding && <TableExpandCell row={row} />}
                 {row.getAllCells().map((cell) => (
                   <Fragment key={cell.id}>
                     <TableCellContext value={cell}>
@@ -201,11 +206,14 @@ export const TableBody = <T extends object>({
                     </TableCellContext>
                   </Fragment>
                 ))}
+                <TableFlexCell />
               </TableRowContainer>
               {isExpanded && isPresent(expandedHeaders) && (
                 <TableExpandedRowHeader
-                  canExpand={table.options.enableExpanding as boolean}
-                  canSelect={table.options.enableRowSelection as boolean}
+                  canExpand={table.options.enableExpanding ?? false}
+                  canSelect={
+                    (table.options.enableRowSelection as boolean | undefined) ?? false
+                  }
                   headersData={expandedHeaders}
                   style={{
                     gridTemplateColumns: gridColsDef,
@@ -214,7 +222,7 @@ export const TableBody = <T extends object>({
               )}
               {isExpanded &&
                 isPresent(renderExpandedRow) &&
-                renderExpandedRow(row, { gridTemplateColumns: gridColsDef }, isLast)}
+                renderExpandedRow(row, isLast)}
             </div>
           );
         })}

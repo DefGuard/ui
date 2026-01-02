@@ -1,5 +1,4 @@
 import { Checkbox } from '../../Checkbox/Checkbox';
-import { tableActionColumnSize } from '../consts';
 import { TableCell } from '../TableCell/TableCell';
 
 type Props = {
@@ -13,7 +12,7 @@ export const TableSelectionCell = ({ selected, onClick }: Props) => {
       alignContent="center"
       noBorder
       style={{
-        width: tableActionColumnSize,
+        width: `calc(var(--col-0-size) * 1px)`,
       }}
     >
       <Checkbox active={selected} onClick={onClick} />

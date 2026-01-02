@@ -1,6 +1,8 @@
 import './style.scss';
 import clsx from 'clsx';
 import { type CSSProperties, useContext, useMemo } from 'react';
+import { isPresent } from '../../../utils/isPresent';
+import { tableActionColumnSize } from '../consts';
 import { TableCellContext } from './TableCellContext';
 import type { TableCellProps } from './types';
 
@@ -10,7 +12,10 @@ export const TableCell = ({
   empty,
   noPadding,
   noBorder,
+  columnId,
   alignContent = 'left',
+  flex = false,
+  radius = false,
   style: outsideStyle,
   ...props
 }: TableCellProps) => {
@@ -18,11 +23,21 @@ export const TableCell = ({
 
   const style = useMemo((): CSSProperties => {
     const res: CSSProperties = {};
-    if (cell) {
-      res.width = `calc(var(--col-${cell.column.id}-size) * 1px)`;
+    if (outsideStyle?.width) return res;
+    const id = columnId ?? cell?.column.id;
+    const hasId = isPresent(id);
+    if (flex) {
+      return res;
+    }
+    if (empty && !hasId) {
+      res.width = tableActionColumnSize;
+      return res;
+    }
+    if (hasId) {
+      res.width = `calc(var(--col-${id}-size) * 1px)`;
     }
     return res;
-  }, [cell]);
+  }, [columnId, empty, flex, outsideStyle?.width, cell]);
 
   return (
     <div
@@ -30,6 +45,8 @@ export const TableCell = ({
         'no-padding': noPadding,
         'no-border': noBorder,
         empty,
+        flex,
+        radius,
       })}
       style={{ ...outsideStyle, ...style }}
       {...props}

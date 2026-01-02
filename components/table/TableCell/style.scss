@@ -1,5 +1,6 @@
 .table-cell {
   display: flex;
+  flex: 0 0 auto;
   flex-flow: row;
   align-items: center;
   justify-content: flex-start;
@@ -7,13 +8,29 @@
   box-sizing: border-box;
   padding: 0 var(--spacing-md);
   min-height: 48px;
+  background-color: inherit;
+
+  @include animate(background-color);
 
   &:first-child {
     border-left: var(--border-1) solid var(--border-disabled);
+
+    &.radius {
+      border-top-left-radius: var(--radius-lg);
+    }
   }
 
   &:last-child {
     border-right: var(--border-1) solid var(--border-disabled);
+
+    &.radius {
+      border-top-right-radius: var(--radius-lg);
+    }
+  }
+
+  &.flex {
+    flex: 1 1 10px;
+    min-width: 10px;
   }
 
   &.clickable {
