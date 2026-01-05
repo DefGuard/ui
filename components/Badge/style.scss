@@ -71,6 +71,22 @@
     }
   }
 
+  &.variant-additional {
+    --color: var(--fg-action);
+
+    &:not(.bg) {
+      --bg-color: var(--bg-action-muted);
+    }
+  }
+
+  &.variant-plan {
+    --color: var(--fg-code);
+
+    &:not(.bg) {
+      --bg-color: var(--bg-additional-transparent);
+    }
+  }
+
   span {
     font: var(--t-badge);
     color: inherit;

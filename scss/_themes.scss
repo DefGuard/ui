@@ -14,6 +14,8 @@
   --bg-action-faded: var(--c-blue-300);
   --bg-action-muted: var(--c-blue-100);
 
+  --bg-additional-transparent: var(--c-violet-500-transparent);
+
   --bg-critical-emphasis: var(--c-red-600);
   --bg-critical: var(--c-red-500);
   --bg-critical-faded: var(--c-red-400);
@@ -53,6 +55,7 @@
   --fg-success: var(--c-green-500);
   --fg-success-muted: var(--c-green-100);
   --fg-code: var(--c-violet-500);
+  --fg-code-transparent: var(--c-violet-500-transparent);
   --fg-inverted: var(--c-white);
   --fg-white: var(--c-white);
   --fg-white-transparent: var(--c-white-50);
@@ -74,6 +77,8 @@
   --bg-action-emphasis: var(--c-blue-600);
   --bg-action-faded: var(--c-blue-400);
   --bg-action-muted: var(--c-blue-500-transparent);
+
+  --bg-additional-transparent: var(--c-violet-500-transparent);
 
   --bg-critical-emphasis: var(--c-red-600);
   --bg-critical: var(--c-red-500);
@@ -114,6 +119,7 @@
   --fg-success: var(--c-green-500);
   --fg-success-muted: var(--c-green-100);
   --fg-code: var(--c-violet-500);
+  --fg-code-transparent: var(--c-violet-700);
   --fg-inverted: var(--c-neutral-1400);
   --fg-white: var(--c-white);
   --fg-white-transparent: var(--c-white-50);
