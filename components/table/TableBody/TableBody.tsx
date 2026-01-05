@@ -1,5 +1,6 @@
 import { flexRender, type Row, type Table } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
+import Skeleton from 'react-loading-skeleton';
 import './style.scss';
 import { useDebounce, useWindowSize } from '@uidotdev/usehooks';
 import clsx from 'clsx';
@@ -12,6 +13,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { isPresent } from '../../../utils/isPresent';
 import { tableActionColumnSize } from '../consts';
 import { TableCell } from '../TableCell/TableCell';
@@ -45,8 +47,11 @@ const useTableHeight = (tableRef: RefObject<HTMLDivElement | null>) => {
 
 type Props<TData> = {
   table: Table<TData>;
+  hasNextPage?: boolean;
+  loadingNextPage?: boolean;
   expandedHeaders?: string[];
   renderExpandedRow?: (row: Row<TData>, isLast?: boolean) => ReactNode;
+  onNextPage?: () => void;
 } & HTMLProps<HTMLDivElement>;
 
 export const TableBody = <T extends object>({
@@ -54,8 +59,24 @@ export const TableBody = <T extends object>({
   className,
   expandedHeaders,
   renderExpandedRow,
+  hasNextPage = false,
+  loadingNextPage = false,
+  onNextPage,
   ...props
 }: Props<T>) => {
+  const { ref: loadMoreRowRef } = useInView({
+    threshold: 0.5,
+    delay: 500,
+    trackVisibility: false,
+    onChange: (inView) => {
+      console.log('in view capture');
+      if (inView && isPresent(onNextPage)) {
+        console.log({ loadingNextPage, hasNextPage });
+        onNextPage();
+      }
+    },
+  });
+
   const { rows } = table.getRowModel();
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const maxTableHeight = useTableHeight(scrollParentRef);
@@ -122,13 +143,22 @@ export const TableBody = <T extends object>({
     return Math.max(tableSize);
   }, [canExpand, canSelect, table.getTotalSize()]);
 
+  const virtualizedPaddingBottom = useMemo(() => {
+    let result: number = 20 + tableRowHeight;
+    if (hasNextPage) {
+      result += tableRowHeight;
+    }
+    console.log(hasNextPage);
+    return result;
+  }, [hasNextPage]);
+
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     estimateSize: () => 48,
     getScrollElement: () => scrollParentRef.current,
     overscan: 8,
     // paddingStart: tableHeaderHeight,
-    paddingEnd: 20 + 36,
+    paddingEnd: virtualizedPaddingBottom,
   });
 
   return (
@@ -169,7 +199,7 @@ export const TableBody = <T extends object>({
           const row = rows[virtualRow.index];
           const isExpanded = row.getIsExpanded();
           const canSelect = row.getCanSelect();
-          const isLast = virtualRow.index === rows.length - 1;
+          const isLast = virtualRow.index === rows.length - 1 && !hasNextPage;
           return (
             <div
               ref={(node) => rowVirtualizer.measureElement(node)}
@@ -226,6 +256,11 @@ export const TableBody = <T extends object>({
             </div>
           );
         })}
+        {hasNextPage && isPresent(onNextPage) && (
+          <div className="load-more-row" ref={loadMoreRowRef}>
+            <Skeleton />
+          </div>
+        )}
       </div>
     </div>
   );

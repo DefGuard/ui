@@ -22,4 +22,25 @@
       }
     }
   }
+
+  .load-more-row {
+    content: '';
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    border-left: var(--border-1) solid var(--border-disabled);
+    border-right: var(--border-1) solid var(--border-disabled);
+    border-bottom: var(--border-1) solid var(--border-disabled);
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    overflow: hidden;
+
+    .react-loading-skeleton {
+      height: 48px;
+      border-radius: 0;
+    }
+  }
 }
