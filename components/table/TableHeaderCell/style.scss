@@ -1,8 +1,15 @@
 .table .header-cell {
+  --resize-bar-visibility: 0;
+
   column-gap: var(--spacing-sm);
 
   &.resizable {
     position: relative;
+
+    &:hover,
+    .resizing {
+      --resize-bar-visibility: 1;
+    }
   }
 
   .resize-bar {
@@ -12,7 +19,6 @@
     z-index: 1;
     width: 12px;
     height: calc(100% + 2px);
-    background-color: rgb(245 40 145 / 8%);
     cursor: col-resize;
 
     .bar {
@@ -21,6 +27,9 @@
       width: 2px;
       height: 100%;
       place-self: center center;
+      opacity: var(--resize-bar-visibility);
+
+      @include animate(opacity);
     }
   }
 
