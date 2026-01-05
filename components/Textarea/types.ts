@@ -8,6 +8,8 @@ export interface TextareaProps {
   ref?: Ref<HTMLTextAreaElement>;
   notNull?: boolean;
   placeholder?: string;
+  maxHeight?: number;
+  minHeight?: number;
   onBlur?: FocusEventHandler<HTMLTextAreaElement>;
   onChange: (value: string | null) => void;
 }

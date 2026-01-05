@@ -30,6 +30,7 @@ import { IconCode } from './icons/IconCode';
 import { IconConfig } from './icons/IconConfig';
 import { IconConnectedDevices } from './icons/IconConnectedDevices';
 import { IconCopy } from './icons/IconCopy';
+import { IconCreditCard } from './icons/IconCreditCard';
 import { IconCustomize } from './icons/IconCustomize';
 import { IconDarkTheme } from './icons/IconDarkTheme';
 import { IconDebian } from './icons/IconDebian';
@@ -277,7 +278,7 @@ export const Icon = <T extends IconKindValue>({
       case 'collapse':
         return EmptyIcon;
       case 'credit-card':
-        return EmptyIcon;
+        return IconCreditCard;
       case 'date':
         return EmptyIcon;
       case 'delete':

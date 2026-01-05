@@ -1,5 +1,5 @@
 import './style.scss';
-import { useId, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import { isPresent } from '../../utils/isPresent';
 import { mergeRefs } from '../../utils/mergeRefs';
 import { FieldBox } from '../FieldBox/FieldBox';
@@ -12,6 +12,8 @@ export const Textarea = ({
   label,
   error,
   placeholder,
+  maxHeight = 80,
+  minHeight = 80,
   onChange,
   onBlur,
   ref: outerRef,
@@ -20,6 +22,23 @@ export const Textarea = ({
 }: TextareaProps) => {
   const localRef = useRef<HTMLTextAreaElement>(null);
   const areaId = useId();
+
+  useEffect(() => {
+    const resize = () => {
+      if (localRef.current) {
+        const scrollHeight = localRef.current.scrollHeight;
+        const nextHeight = Math.min(scrollHeight, maxHeight);
+        localRef.current.style.height = `${nextHeight}px`;
+        localRef.current.style.overflowY = scrollHeight > maxHeight ? 'auto' : 'hidden';
+      }
+    };
+    localRef.current?.addEventListener('input', resize);
+    resize();
+    return () => {
+      localRef.current?.removeEventListener('input', resize);
+    };
+  }, [maxHeight]);
+
   return (
     <div className="textarea spacer">
       <div className="inner">
@@ -38,6 +57,10 @@ export const Textarea = ({
           }}
         >
           <textarea
+            style={{
+              maxHeight,
+              minHeight,
+            }}
             disabled={disabled}
             id={areaId}
             ref={mergeRefs([outerRef, localRef])}
