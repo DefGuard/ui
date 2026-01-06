@@ -69,9 +69,7 @@ export const TableBody = <T extends object>({
     delay: 500,
     trackVisibility: false,
     onChange: (inView) => {
-      console.log('in view capture');
       if (inView && isPresent(onNextPage)) {
-        console.log({ loadingNextPage, hasNextPage });
         onNextPage();
       }
     },
@@ -148,7 +146,6 @@ export const TableBody = <T extends object>({
     if (hasNextPage) {
       result += tableRowHeight;
     }
-    console.log(hasNextPage);
     return result;
   }, [hasNextPage]);
 
