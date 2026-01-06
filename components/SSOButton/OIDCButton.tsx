@@ -25,7 +25,7 @@ export const OIDCButton = ({ url, text }: Props) => {
 
   return (
     <a className="oidc-button-link" href={url} target="_blank" rel="noopener noreferrer">
-      <button className="oidc-button">
+      <button className="oidc-button" type="button">
         <RenderIcon />
         <span>{text}</span>
       </button>
