@@ -5,4 +5,5 @@ export interface ToggleProps {
   disabled?: boolean;
   label?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  testId?: string;
 }

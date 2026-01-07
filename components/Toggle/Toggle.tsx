@@ -3,7 +3,13 @@ import clsx from 'clsx';
 import { isPresent } from '../../utils/isPresent';
 import type { ToggleProps } from './types';
 
-export const Toggle = ({ active, label, disabled = false, onClick }: ToggleProps) => {
+export const Toggle = ({
+  active,
+  testId,
+  label,
+  disabled = false,
+  onClick,
+}: ToggleProps) => {
   return (
     <div
       className={clsx('toggle', {
@@ -19,7 +25,7 @@ export const Toggle = ({ active, label, disabled = false, onClick }: ToggleProps
       }}
     >
       <div className="inner">
-        <div className="circle"></div>
+        <div className="circle" data-testid={testId}></div>
       </div>
       {isPresent(label) && <p>{label}</p>}
     </div>
