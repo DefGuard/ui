@@ -18,6 +18,8 @@ export const Toggle = ({
       })}
       role="button"
       aria-disabled={disabled}
+      data-testid={testId}
+      data-value={active}
       onClick={(e) => {
         if (!disabled) {
           onClick?.(e);
@@ -25,7 +27,7 @@ export const Toggle = ({
       }}
     >
       <div className="inner">
-        <div className="circle" data-testid={testId}></div>
+        <div className="circle"></div>
       </div>
       {isPresent(label) && <p>{label}</p>}
     </div>

@@ -24,7 +24,7 @@ export const EmptyStateIconWebhook = (props: SVGProps<SVGSVGElement>) => {
           stroke: ThemeVariable.BorderFaded,
         }}
       />
-      <g clip-path={`url(#${id})`}>
+      <g clipPath={`url(#${id})`}>
         <path
           d="M17.8644 24.8326C16.2582 25.0452 14.9354 26.1908 14.4984 27.7262C14.3922 28.0805 14.3449 28.4585 14.3449 28.8482C14.3449 29.238 14.3922 29.6159 14.4984 29.9702C14.9827 31.6709 16.5417 32.8992 18.3841 32.8992C20.569 32.8992 22.3524 31.1631 22.4233 28.9899H29.6041"
           stroke="#939CA9"

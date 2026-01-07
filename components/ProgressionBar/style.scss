@@ -1,0 +1,13 @@
+.progression-bar {
+  overflow: hidden;
+  width: 100%;
+  background-color: var(--bg-active);
+  border-radius: var(--radius-full);
+
+  .bar {
+    display: block;
+    content: '';
+    height: 4px;
+    background-color: var(--fg-success);
+  }
+}
