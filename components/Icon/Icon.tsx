@@ -84,6 +84,7 @@ import { IconProtection } from './icons/IconProtection';
 import { IconRefresh } from './icons/IconRefresh';
 import { IconRules } from './icons/IconRules';
 import { IconSearch } from './icons/IconSearch';
+import { IconServers } from './icons/IconServers';
 import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
@@ -354,7 +355,7 @@ export const Icon = <T extends IconKindValue>({
       case 'search':
         return IconSearch;
       case 'servers':
-        return EmptyIcon;
+        return IconServers;
       case 'settings':
         return IconSettings;
       case 'sort':

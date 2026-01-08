@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import './style.scss';
 
 type Props = {
@@ -9,7 +10,11 @@ export const ProgressionBar = ({ value, maxValue }: Props) => {
   const percentage =
     maxValue > 0 ? Math.min(100, Math.max(0, Math.ceil((value / maxValue) * 100))) : 0;
   return (
-    <div className="progression-bar">
+    <div
+      className={clsx('progression-bar', {
+        complete: percentage === 100,
+      })}
+    >
       <div
         className="bar"
         style={{
