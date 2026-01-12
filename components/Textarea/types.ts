@@ -1,4 +1,4 @@
-import type { FocusEventHandler, Ref } from 'react';
+import type { FocusEventHandler, HTMLInputAutoCompleteAttribute, Ref } from 'react';
 
 export interface TextareaProps {
   value: string | null;
@@ -10,6 +10,7 @@ export interface TextareaProps {
   placeholder?: string;
   maxHeight?: number;
   minHeight?: number;
+  autoComplete?: HTMLInputAutoCompleteAttribute;
   onBlur?: FocusEventHandler<HTMLTextAreaElement>;
   onChange: (value: string | null) => void;
 }

@@ -9,6 +9,10 @@
 
   @include animate(background-color);
 
+  &.can-click {
+    cursor: pointer;
+  }
+
   &.variant-default {
     --bg: var(--bg-dark);
   }

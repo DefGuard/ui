@@ -44,6 +44,8 @@ export const SnackbarElement = ({
     return null;
   }, [data.icon, data.variant]);
 
+  const canClick = !data.dismissible && data.variant !== SnackbarVariant.Loading;
+
   return (
     <motion.div
       transition={motionTransitionStandard}
@@ -64,9 +66,16 @@ export const SnackbarElement = ({
           onExitAnimationEnd();
         }
       }}
-      className={clsx('snackbar', `variant-${styleVariant}`)}
+      className={clsx('snackbar', `variant-${styleVariant}`, {
+        'can-click': canClick,
+      })}
       style={{
         height: elementHeight,
+      }}
+      onClick={() => {
+        if (canClick) {
+          onClose();
+        }
       }}
     >
       <div className="content-track">

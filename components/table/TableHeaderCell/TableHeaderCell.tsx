@@ -14,7 +14,7 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import clsx from 'clsx';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { SelectionOption } from '../../../../components/SelectionSection/type';
 import { isPresent } from '../../../utils/isPresent';
 import { Icon } from '../../Icon';
@@ -26,6 +26,7 @@ type Props<TData> = {
 };
 
 export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) => {
+  const isDraggingRef = useRef(false);
   const isSortable = header.column.columnDef.enableSorting;
   // @ts-expect-error
   const filterOptions = header.column.columnDef.meta?.filterOptions as
@@ -106,13 +107,8 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
           filterable: isFilterable,
           resizable,
         })}
-        onClick={(e) => {
-          const target = e.target as HTMLElement;
-          const bar = target.closest('.resize-bar');
-          if (bar !== null) {
-            return;
-          }
-          if (isSortable) {
+        onClick={() => {
+          if (isSortable && !isDraggingRef.current) {
             header.column.toggleSorting();
           }
         }}
@@ -135,7 +131,9 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setFloatOpen((s) => !s);
+              if (!isDraggingRef.current) {
+                setFloatOpen((s) => !s);
+              }
             }}
           >
             <Icon icon="filtration" size={16} />
@@ -149,10 +147,13 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
             onMouseDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              const handler = header.getResizeHandler();
-              handler(e);
+              header.getResizeHandler()(e);
+              isDraggingRef.current = true;
             }}
             onTouchStart={header.getResizeHandler()}
+            onMouseUp={() => {
+              isDraggingRef.current = false;
+            }}
           >
             <div className="bar"></div>
           </div>

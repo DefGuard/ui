@@ -19,6 +19,7 @@ export const Textarea = ({
   ref: outerRef,
   disabled = false,
   notNull = false,
+  autoComplete = 'off',
 }: TextareaProps) => {
   const localRef = useRef<HTMLTextAreaElement>(null);
   const areaId = useId();
@@ -57,6 +58,7 @@ export const Textarea = ({
           }}
         >
           <textarea
+            autoComplete={autoComplete}
             style={{
               maxHeight,
               minHeight,
