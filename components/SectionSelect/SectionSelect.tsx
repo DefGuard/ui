@@ -1,12 +1,10 @@
 import { type HTMLProps, type Ref, useMemo } from 'react';
 import './style.scss';
-import { useHover } from '@uidotdev/usehooks';
 import clsx from 'clsx';
 import { isPresent } from '../../utils/isPresent';
-import { mergeRefs } from '../../utils/mergeRefs';
 import { Badge } from '../Badge/Badge';
 import type { BadgeProps } from '../Badge/types';
-import { Checkbox } from '../Checkbox/Checkbox';
+import { CheckboxIndicator } from '../CheckboxIndicator/CheckboxIndicator';
 import { Icon } from '../Icon';
 import behavior from './assets/behavior.png';
 import customSettings from './assets/custom-settings.png';
@@ -26,7 +24,6 @@ import smtp from './assets/smtp.png';
 import tokenChat from './assets/token-chat.png';
 import tokenEmail from './assets/token-email.png';
 import wireguardDevice from './assets/wireguard-device.png';
-
 import type { SectionSelectImageValue } from './types';
 
 type Props = HTMLProps<HTMLDivElement> & {
@@ -50,8 +47,6 @@ export const SectionSelect = ({
   content,
   ...rest
 }: Props) => {
-  const [ref, hover] = useHover();
-
   const imageSource = useMemo(() => {
     switch (image) {
       case 'proxy-management':
@@ -97,9 +92,8 @@ export const SectionSelect = ({
     <div
       className={clsx('section-select', {
         selected,
-        hover,
       })}
-      ref={mergeRefs([ref, propsRef])}
+      ref={propsRef}
       {...rest}
     >
       <div className="track">
@@ -115,7 +109,7 @@ export const SectionSelect = ({
         </div>
         <div className="extra">
           {!checkbox && <Icon icon="arrow-small" rotationDirection="right" />}
-          {checkbox && <Checkbox active={selected} forceHover={hover} />}
+          {checkbox && <CheckboxIndicator active={selected ?? false} />}
         </div>
       </div>
     </div>

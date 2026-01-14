@@ -1,9 +1,12 @@
 .radio {
   user-select: none;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
 
   & > .inner {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
     cursor: pointer;
 
     &:not(.text) {
@@ -29,54 +32,6 @@
     &.disabled,
     &[aria-disabled='true'] {
       cursor: not-allowed;
-    }
-  }
-}
-
-// state colors
-.radio svg {
-  &.icon-default {
-    circle {
-      stroke: var(--border-faded);
-      fill: var(--bg-default);
-    }
-  }
-
-  &.icon-hover {
-    circle {
-      stroke: var(--border-emphasis);
-      fill: var(--bg-default);
-    }
-  }
-
-  &.icon-disabled {
-    circle {
-      fill: var(--bg-disabled);
-      stroke: var(--border-disabled);
-    }
-  }
-
-  &.icon-selected {
-    circle {
-      &:nth-child(1) {
-        fill: var(--bg-action);
-      }
-
-      &:nth-child(2) {
-        fill: var(--c-white);
-      }
-    }
-  }
-
-  &.icon-selected-disabled {
-    circle {
-      &:nth-child(1) {
-        fill: var(--bg-faded);
-      }
-
-      &:nth-child(2) {
-        fill: var(--bg-disabled);
-      }
     }
   }
 }

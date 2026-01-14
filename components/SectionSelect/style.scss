@@ -12,9 +12,15 @@
 
   @include animate(border-color);
 
-  &.hover {
+  &:hover {
     --border-color: var(--border-emphasis);
     --arrow-color: var(--fg-action);
+
+    &:not(.selected) {
+      .checkbox-indicator .box {
+        --border: var(--border-emphasis);
+      }
+    }
   }
 
   & > .track {
