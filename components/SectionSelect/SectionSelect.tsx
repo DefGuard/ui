@@ -13,6 +13,7 @@ import deviceClc from './assets/device-clc.png';
 import gatewayNotifications from './assets/gateway-notifications.png';
 import integrations from './assets/integrations.png';
 import location from './assets/location.png';
+import logstash from './assets/logstash.png';
 import manualSetup from './assets/manual-setup.png';
 import manualUser from './assets/manual-user.png';
 import providers from './assets/providers.png';
@@ -23,6 +24,7 @@ import serviceLocation from './assets/service-location.png';
 import smtp from './assets/smtp.png';
 import tokenChat from './assets/token-chat.png';
 import tokenEmail from './assets/token-email.png';
+import vector from './assets/vector.png';
 import wireguardDevice from './assets/wireguard-device.png';
 import type { SectionSelectImageValue } from './types';
 
@@ -85,6 +87,10 @@ export const SectionSelect = ({
         return serviceLocation;
       case 'location':
         return location;
+      case 'logstash':
+        return logstash;
+      case 'vector':
+        return vector;
     }
   }, [image]);
 

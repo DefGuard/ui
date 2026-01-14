@@ -103,6 +103,7 @@ import { IconWarningFilled } from './icons/IconWarningFilled';
 import { IconWarningOutlined } from './icons/IconWarningOutlined';
 import { IconWebhooks } from './icons/IconWebhooks';
 import { IconWindows } from './icons/IconWindows';
+import { IconFileAdd } from './icons/IconFileAdd';
 
 type Props<T extends IconKindValue = IconKindValue> = {
   icon: T;
@@ -252,6 +253,8 @@ export const Icon = <T extends IconKindValue>({
         return IconClose;
       case 'file':
         return IconFile;
+      case 'file-add':
+        return IconFileAdd;
       case 'globe':
         return IconGlobe;
       case 'help':
