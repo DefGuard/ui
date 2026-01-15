@@ -1,4 +1,5 @@
 export const IconKind = {
+  IpSuggest: 'ip-suggest',
   Filtration: 'filtration',
   AddAlias: 'add-alias',
   Customize: 'customize',
