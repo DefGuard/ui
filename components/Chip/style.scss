@@ -1,23 +1,51 @@
 .chip {
   --bg: var(--bg-emphasis);
 
-  display: inline-block;
   box-sizing: border-box;
   border-radius: var(--radius-full);
   color: var(--fg-faded);
   background-color: var(--bg);
+  flex-grow: 0;
+  flex-shrink: 0;
   user-select: none;
 
   @include animate(background-color);
 
+  &:not(.dismiss) {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  &.dismiss {
+    display: inline-grid;
+    grid-template-columns: 1fr 20px;
+    column-gap: var(--spacing-xs);
+    align-items: center;
+  }
+
   &.size-sm {
     height: var(--size-md);
-    padding: 0 var(--spacing-sm);
+
+    &:not(.dismiss) {
+      padding: 0 var(--spacing-sm);
+    }
+
+    &.dismiss {
+      padding: 0 var(--spacing-xs) 0 var(--spacing-sm);
+    }
   }
 
   &.size-lg {
     height: var(--size-xl);
-    padding: 0 var(--spacing-md);
+
+    &:not(.dismiss) {
+      padding: 0 var(--spacing-md);
+    }
+
+    &.dismiss {
+      padding: 0 var(--spacing-sm) 0 var(--spacing-md);
+    }
   }
 
   &:hover {
@@ -30,5 +58,23 @@
     color: currentColor;
 
     @include animate(color);
+  }
+
+  .dismiss-track {
+    height: 20px;
+    width: 20px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    --icon-color: var(--fg-disabled);
+
+    cursor: pointer;
+
+    &:hover {
+      --icon-color: var(--fg-neutral);
+    }
+
+    svg path {
+      fill: var(--icon-color);
+    }
   }
 }

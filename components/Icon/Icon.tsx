@@ -56,6 +56,7 @@ import { IconHide } from './icons/IconHide';
 import { IconInfoFilled } from './icons/IconInfoFilled';
 import { IconInfoOutlined } from './icons/IconInfoOutlined';
 import { IconInternalMfa } from './icons/IconInternalMFA';
+import { IconIpSuggest } from './icons/IconIpSuggest';
 import { IconKey } from './icons/IconKey';
 import { IconLightTheme } from './icons/IconLightTheme';
 import { IconLinux } from './icons/IconLinux';
@@ -151,6 +152,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'ip-suggest':
+        return IconIpSuggest;
       case 'filtration':
         return IconFiltration;
       case 'rules':

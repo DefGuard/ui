@@ -2,8 +2,7 @@ import type { HTMLProps, PropsWithChildren } from 'react';
 import type { IconKindValue } from '../Icon/icon-types';
 import './style.scss';
 import clsx from 'clsx';
-import { ThemeVariable } from '../../types';
-import { Icon } from '../Icon';
+import { SectionMarker } from '../SectionMarker/SectionMarker';
 
 type Props = {
   icon: IconKindValue;
@@ -18,10 +17,7 @@ export const MarkedSection = ({
 }: Props) => {
   return (
     <div className={clsx('marked-section', className)} {...containerProps}>
-      <div className="icon-wrapper">
-        <div className="bg"></div>
-        <Icon icon={icon} size={20} staticColor={ThemeVariable.FgAction} />
-      </div>
+      <SectionMarker icon={icon} />
       <div className="content">{children}</div>
     </div>
   );

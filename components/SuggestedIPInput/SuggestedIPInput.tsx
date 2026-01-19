@@ -19,6 +19,7 @@ export const SuggestedIpInput = ({
   testId,
   required = false,
 }: SuggestedIPInputProps) => {
+  const hasError = isPresent(error);
   const innerInputRef = useRef<HTMLInputElement>(null);
   const shadowRef = useRef(null);
   const shadowSize = useElementSize(shadowRef);
@@ -36,6 +37,7 @@ export const SuggestedIpInput = ({
     <div className="suggested-ip-input">
       {isPresent(label) && <FieldLabel text={label} required={required} />}
       <FieldBox
+        error={hasError}
         onClick={() => {
           innerInputRef.current?.focus();
         }}
