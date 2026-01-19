@@ -47,6 +47,7 @@ import { IconEnrollment } from './icons/IconEnrollment';
 import { IconEnter } from './icons/IconEnter';
 import { IconExternalMfa } from './icons/IconExternalMFA';
 import { IconFile } from './icons/IconFile';
+import { IconFileAdd } from './icons/IconFileAdd';
 import { IconFiltration } from './icons/IconFiltration';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconGroups } from './icons/IconGroups';
@@ -104,7 +105,6 @@ import { IconWarningFilled } from './icons/IconWarningFilled';
 import { IconWarningOutlined } from './icons/IconWarningOutlined';
 import { IconWebhooks } from './icons/IconWebhooks';
 import { IconWindows } from './icons/IconWindows';
-import { IconFileAdd } from './icons/IconFileAdd';
 
 type Props<T extends IconKindValue = IconKindValue> = {
   icon: T;
