@@ -71,6 +71,7 @@ export const IconKind = {
   AddUser: 'add-user',
   QR: 'qr',
   File: 'file',
+  FileAdd: 'file-add',
   LocationTracking: 'location-tracking',
   Config: 'config',
   Gift: 'gift',

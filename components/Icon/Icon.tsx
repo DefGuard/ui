@@ -47,6 +47,7 @@ import { IconEnrollment } from './icons/IconEnrollment';
 import { IconEnter } from './icons/IconEnter';
 import { IconExternalMfa } from './icons/IconExternalMFA';
 import { IconFile } from './icons/IconFile';
+import { IconFileAdd } from './icons/IconFileAdd';
 import { IconFiltration } from './icons/IconFiltration';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconGroups } from './icons/IconGroups';
@@ -255,6 +256,8 @@ export const Icon = <T extends IconKindValue>({
         return IconClose;
       case 'file':
         return IconFile;
+      case 'file-add':
+        return IconFileAdd;
       case 'globe':
         return IconGlobe;
       case 'help':

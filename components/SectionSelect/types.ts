@@ -17,6 +17,8 @@ const SectionSelectImage = {
   Location: 'location',
   ServiceLocation: 'service-location',
   ProxyManagement: 'proxy-management',
+  Logstash: 'logstash',
+  Vector: 'vector',
 } as const;
 
 export type SectionSelectImageValue =
