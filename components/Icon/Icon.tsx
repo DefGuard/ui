@@ -49,6 +49,7 @@ import { IconExternalMfa } from './icons/IconExternalMFA';
 import { IconFile } from './icons/IconFile';
 import { IconFileAdd } from './icons/IconFileAdd';
 import { IconFiltration } from './icons/IconFiltration';
+import { IconGateway } from './icons/IconGateway';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconGroups } from './icons/IconGroups';
 import { IconHamburger } from './icons/IconHamburger';
@@ -307,7 +308,7 @@ export const Icon = <T extends IconKindValue>({
       case 'filter':
         return EmptyIcon;
       case 'gateway':
-        return EmptyIcon;
+        return IconGateway;
       case 'gift':
         return EmptyIcon;
       case 'github':
