@@ -14,6 +14,7 @@ import { useMemo, useState } from 'react';
 import type { TooltipOptions } from './types';
 
 export function useTooltip({
+  disabled = false,
   initialOpen = false,
   placement = 'top',
   open: controlledOpen,
@@ -44,10 +45,10 @@ export function useTooltip({
 
   const hover = useHover(context, {
     move: false,
-    enabled: controlledOpen == null,
+    enabled: controlledOpen == null && !disabled,
   });
   const focus = useFocus(context, {
-    enabled: controlledOpen == null,
+    enabled: controlledOpen == null && !disabled,
   });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: 'tooltip' });

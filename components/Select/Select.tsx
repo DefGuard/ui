@@ -64,7 +64,6 @@ export function Select<T>(props: SelectProps<T, boolean>) {
 
   const isMulti = props.multiple;
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: tack only value
   const selectedLabel = useMemo(() => {
     if (isMulti) return null;
     return (props as SelectSingleProps<T>).value?.label ?? null;
