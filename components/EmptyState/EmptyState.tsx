@@ -10,6 +10,7 @@ import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
 import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
 import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
 import { EmptyStateIconDashboard } from './icons/EmptyStateIconDashboard';
+import { EmptyStateIconGateway } from './icons/EmptyStateIconGateway';
 import { EmptyStateIconLog } from './icons/EmptyStateIconLog';
 import { EmptyStateIconRules } from './icons/EmptyStateIconRules';
 import { EmptyStateIconSearch } from './icons/EmptyStateIconSearch';
@@ -35,6 +36,8 @@ export const EmptyState = ({
   const RenderIcon = useMemo(() => {
     if (!icon) return Empty;
     switch (icon) {
+      case 'gateway':
+        return EmptyStateIconGateway;
       case 'search':
         return EmptyStateIconSearch;
       case 'apps':

@@ -7,6 +7,7 @@ export interface TextareaProps {
   error?: string;
   ref?: Ref<HTMLTextAreaElement>;
   notNull?: boolean;
+  required?: boolean;
   placeholder?: string;
   maxHeight?: number;
   minHeight?: number;

@@ -17,6 +17,7 @@ export const Textarea = ({
   onChange,
   onBlur,
   ref: outerRef,
+  required = false,
   disabled = false,
   notNull = false,
   autoComplete = 'off',
@@ -43,7 +44,9 @@ export const Textarea = ({
   return (
     <div className="textarea spacer">
       <div className="inner">
-        {isPresent(label) && <FieldLabel text={label} htmlFor={areaId} />}
+        {isPresent(label) && (
+          <FieldLabel required={required} text={label} htmlFor={areaId} />
+        )}
         <FieldBox
           error={!disabled && isPresent(error)}
           disabled={disabled}

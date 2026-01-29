@@ -14,7 +14,8 @@ export type EmptyStateProps = {
     | 'dashboard'
     | 'aliases'
     | 'rules'
-    | 'log';
+    | 'log'
+    | 'gateway';
   className?: string;
   testId?: string;
   id?: string;
