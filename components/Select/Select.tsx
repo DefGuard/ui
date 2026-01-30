@@ -67,7 +67,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
   const selectedLabel = useMemo(() => {
     if (isMulti) return null;
     return (props as SelectSingleProps<T>).value?.label ?? null;
-  }, [isMulti, props.value]);
+  }, [isMulti, props.value, props]);
 
   const selectedKeys = useMemo((): Set<Key> => {
     if (isMulti) return new Set();
