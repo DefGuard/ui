@@ -43,7 +43,7 @@ export const FormCheckboxGroup = <T extends Id>({ values, getLabel }: Props<T>) 
               className={clsx('item', {
                 error: hasError,
               })}
-              data-testId={testId}
+              data-testid={testId}
               data-value={checked}
               key={value}
               onClick={() => {
