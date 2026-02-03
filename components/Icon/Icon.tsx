@@ -97,6 +97,7 @@ import { IconStatusImportant } from './icons/IconStatusImportant';
 import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconToken } from './icons/IconToken';
+import { IconTransactions } from './icons/IconTransactions';
 import { IconUbuntu } from './icons/IconUbuntu';
 import { IconUpload } from './icons/IconUpload';
 import { IconUser } from './icons/IconUser';
@@ -380,7 +381,7 @@ export const Icon = <T extends IconKindValue>({
       case 'support':
         return EmptyIcon;
       case 'transactions':
-        return EmptyIcon;
+        return IconTransactions;
       case 'user':
         return IconUser;
       case 'user-active':
