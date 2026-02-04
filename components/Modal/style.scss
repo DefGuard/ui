@@ -34,5 +34,9 @@
   & > .modal-content {
     box-sizing: border-box;
     padding: var(--spacing-xl);
+
+    .controls {
+      padding-top: var(--spacing-2xl);
+    }
   }
 }
