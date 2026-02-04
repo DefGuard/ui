@@ -28,7 +28,7 @@ export const FormCheckboxGroup = <T extends Id>({ values, getLabel }: Props<T>) 
       }
       field.handleChange(clone);
     },
-    [field.handleChange, field.store],
+    [field],
   );
 
   return (

@@ -95,11 +95,7 @@ export const TableBody = <T extends object>({
     return range(colsLength)
       .map((index) => `var(--grid-column-${index})`)
       .join(' ');
-  }, [
-    table.getAllFlatColumns,
-    table.options.enableExpanding,
-    table.options.enableRowSelection,
-  ]);
+  }, [table]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: needs to recalculate on sizing changes
   const columnSizeVars = useMemo(() => {
