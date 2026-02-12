@@ -20,6 +20,7 @@ import { IconAppStore } from './icons/IconAppstore';
 import { IconArchLinux } from './icons/IconArchLinux';
 import { IconArrowBig } from './icons/IconArrowBig';
 import { IconArrowSmall } from './icons/IconArrowSmall';
+import { IconAttentionFilled } from './icons/IconAttentionFilled';
 import { IconBiometric } from './icons/IconBiometric';
 import { IconCheck } from './icons/IconCheck';
 import { IconCheckCircle } from './icons/IconCheckCircle';
@@ -154,6 +155,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'attention-filled':
+        return IconAttentionFilled;
       case 'ip-suggest':
         return IconIpSuggest;
       case 'filtration':

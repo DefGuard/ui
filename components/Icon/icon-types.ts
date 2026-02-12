@@ -57,6 +57,7 @@ export const IconKind = {
   AccessSettings: 'access-settings',
   Profile: 'profile',
   Attention: 'attention',
+  AttentionFilled: 'attention-filled',
   WarningOutlined: 'warning-outlined',
   Download: 'download',
   Code: 'code',
