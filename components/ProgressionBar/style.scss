@@ -1,14 +1,24 @@
 .progression-bar {
+  --bar-color: var(--fg-success);
+
   overflow: hidden;
   width: 100%;
   background-color: var(--bg-active);
   border-radius: var(--radius-full);
 
+  &.warning {
+    --bar-color: var(--fg-attention);
+  }
+
+  &.critical {
+    --bar-color: var(--fg-critical);
+  }
+
   .bar {
     display: block;
     content: '';
     height: 4px;
-    background-color: var(--fg-success);
+    background-color: var(--bar-color);
 
     @include animate(background-color, width);
   }

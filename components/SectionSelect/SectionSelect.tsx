@@ -36,6 +36,7 @@ type Props = HTMLProps<HTMLDivElement> & {
   checkbox?: boolean;
   selected?: boolean;
   badgeProps?: BadgeProps;
+  disabled?: boolean;
 };
 
 export const SectionSelect = ({
@@ -47,6 +48,7 @@ export const SectionSelect = ({
   badgeProps,
   title,
   content,
+  disabled = false,
   ...rest
 }: Props) => {
   const imageSource = useMemo(() => {
@@ -114,8 +116,11 @@ export const SectionSelect = ({
           <p>{content}</p>
         </div>
         <div className="extra">
-          {!checkbox && <Icon icon="arrow-small" rotationDirection="right" />}
-          {checkbox && <CheckboxIndicator active={selected ?? false} />}
+          {disabled && <Icon icon="lock-closed" />}
+          {!checkbox && !disabled && (
+            <Icon icon="arrow-small" rotationDirection="right" />
+          )}
+          {checkbox && !disabled && <CheckboxIndicator active={selected ?? false} />}
         </div>
       </div>
     </div>

@@ -4,15 +4,21 @@ import './style.scss';
 type Props = {
   value: number;
   maxValue: number;
+  disableDynamicColor?: boolean;
 };
 
-export const ProgressionBar = ({ value, maxValue }: Props) => {
+export const ProgressionBar = ({
+  value,
+  maxValue,
+  disableDynamicColor = false,
+}: Props) => {
   const percentage =
     maxValue > 0 ? Math.min(100, Math.max(0, Math.ceil((value / maxValue) * 100))) : 0;
   return (
     <div
       className={clsx('progression-bar', {
-        complete: percentage === 100,
+        warning: !disableDynamicColor && percentage >= 50 && percentage !== 100,
+        critical: !disableDynamicColor && percentage === 100,
       })}
     >
       <div
