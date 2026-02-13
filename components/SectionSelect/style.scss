@@ -12,7 +12,7 @@
 
   @include animate(border-color);
 
-  &:hover {
+  &:not(.disabled):hover {
     --border-color: var(--border-emphasis);
     --arrow-color: var(--fg-action);
 
@@ -21,6 +21,11 @@
         --border: var(--border-emphasis);
       }
     }
+  }
+
+  &.disabled {
+    background-color: var(--bg-disabled);
+    cursor: not-allowed;
   }
 
   & > .track {
@@ -47,6 +52,10 @@
       & > p {
         font: var(--t-body-sm-400);
         color: var(--fg-muted);
+
+        &.disabled {
+          color: var(--fg-disabled);
+        }
       }
 
       & > .header {
@@ -60,6 +69,10 @@
         & > p {
           font: var(--t-body-primary-600);
           color: var(--fg-default);
+
+          &.disabled {
+            color: var(--fg-muted);
+          }
         }
       }
     }

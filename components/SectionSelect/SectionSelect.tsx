@@ -99,6 +99,7 @@ export const SectionSelect = ({
   return (
     <div
       className={clsx('section-select', {
+        disabled,
         selected,
       })}
       ref={propsRef}
@@ -110,10 +111,10 @@ export const SectionSelect = ({
         </div>
         <div className="content">
           <div className="header">
-            <p>{title}</p>
+            <p className={clsx({ disabled })}>{title}</p>
             {isPresent(badgeProps) && <Badge {...badgeProps} />}
           </div>
-          <p>{content}</p>
+          <p className={clsx({ disabled })}>{content}</p>
         </div>
         <div className="extra">
           {disabled && <Icon icon="lock-closed" />}
