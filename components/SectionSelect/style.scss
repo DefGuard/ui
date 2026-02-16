@@ -80,6 +80,10 @@
     .extra {
       grid-column: 3 / 4;
       place-self: center end;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
