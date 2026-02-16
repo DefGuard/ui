@@ -57,6 +57,8 @@
     .title {
       font: var(--t-body-sm-500);
       color: var(--title-color);
+      display: flex;
+      align-items: center;
 
       @include animate(color);
     }
