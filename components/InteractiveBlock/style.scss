@@ -54,11 +54,15 @@
     justify-content: flex-start;
     row-gap: var(--spacing-xs);
 
+    .header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
     .title {
       font: var(--t-body-sm-500);
       color: var(--title-color);
-      display: flex;
-      align-items: center;
 
       @include animate(color);
     }

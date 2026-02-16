@@ -3,7 +3,7 @@ import { Radio } from '../Radio/Radio';
 import './style.scss';
 import { isPresent } from '../../utils/isPresent';
 import { Badge } from '../Badge/Badge';
-import { Checkbox } from '../Checkbox/Checkbox';
+import { CheckboxIndicator } from '../CheckboxIndicator/CheckboxIndicator';
 import { Toggle } from '../Toggle/Toggle';
 import type { InteractiveBlockProps } from './types';
 
@@ -38,17 +38,15 @@ export const InteractiveBlock = ({
         <div className="icon-track">
           {variant === 'radio' && <Radio active={value} disabled={disabled} />}
           {variant === 'toggle' && <Toggle active={value} disabled={disabled} />}
-          {variant === 'checkbox' && <Checkbox active={value} disabled={disabled} />}
+          {variant === 'checkbox' && (
+            <CheckboxIndicator active={value} disabled={disabled} />
+          )}
         </div>
         <div className="interactive-content content-track">
-          <p className="title">
-            {title}
-            {isPresent(badge) && (
-              <span className="badge">
-                <Badge {...badge} />
-              </span>
-            )}
-          </p>
+          <div className="header">
+            <p className="title">{title}</p>
+            {isPresent(badge) && <Badge {...badge} />}
+          </div>
           {isPresent(content) && <p className="content">{content}</p>}
         </div>
       </div>
