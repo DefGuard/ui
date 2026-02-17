@@ -21,6 +21,7 @@ import { IconArchLinux } from './icons/IconArchLinux';
 import { IconArrowBig } from './icons/IconArrowBig';
 import { IconArrowSmall } from './icons/IconArrowSmall';
 import { IconAttentionFilled } from './icons/IconAttentionFilled';
+import { IconAttentionOutlined } from './icons/IconAttentionOutlined';
 import { IconBiometric } from './icons/IconBiometric';
 import { IconCheck } from './icons/IconCheck';
 import { IconCheckCircle } from './icons/IconCheckCircle';
@@ -279,8 +280,8 @@ export const Icon = <T extends IconKindValue>({
         return EmptyIcon;
       case 'archive':
         return EmptyIcon;
-      case 'attention':
-        return EmptyIcon;
+      case 'attention-outlined':
+        return IconAttentionOutlined;
       case 'check':
         return IconCheck;
       case 'clear':
