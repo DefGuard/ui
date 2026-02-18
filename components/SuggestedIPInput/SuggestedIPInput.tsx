@@ -6,6 +6,7 @@ import { FieldLabel } from '../FieldLabel/FieldLabel';
 import './style.scss';
 import { useElementSize } from '../../hooks/useSize';
 import { mergeRefs } from '../../utils/mergeRefs';
+import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 import type { SuggestedIPInputProps } from './types';
 
 export const SuggestedIpInput = ({
@@ -17,6 +18,7 @@ export const SuggestedIpInput = ({
   label,
   ref,
   testId,
+  loading,
   required = false,
 }: SuggestedIPInputProps) => {
   const hasError = isPresent(error);
@@ -42,32 +44,37 @@ export const SuggestedIpInput = ({
           innerInputRef.current?.focus();
         }}
       >
-        <span className="prefix">{data.network_part}</span>
-        <div className="input-track">
-          {/* Order here matters */}
-          <span className="input-shadow" ref={shadowRef}>
-            {value ?? ''}
-          </span>
-          <input
-            data-testid={testId}
-            style={{
-              width: inputWidth,
-            }}
-            ref={mergeRefs([ref, innerInputRef])}
-            type="text"
-            value={value ?? ''}
-            onBlur={onBlur}
-            onChange={(e) => {
-              const targetValue = e.target.value;
-              if (targetValue === '') {
-                onChange(null);
-                return;
-              }
-              onChange(targetValue);
-            }}
-          />
+        <div className="input-container">
+          <span className="prefix">{data.network_part}</span>
+          <div className="input-track">
+            {/* Order here matters */}
+            <span className="input-shadow" ref={shadowRef}>
+              {value ?? ''}
+            </span>
+            <input
+              data-testid={testId}
+              style={{
+                width: inputWidth,
+              }}
+              ref={mergeRefs([ref, innerInputRef])}
+              type="text"
+              value={value ?? ''}
+              onBlur={onBlur}
+              onChange={(e) => {
+                const targetValue = e.target.value;
+                if (targetValue === '') {
+                  onChange(null);
+                  return;
+                }
+                onChange(targetValue);
+              }}
+            />
+          </div>
+          <span className="suffix">/{data.network_prefix}</span>
         </div>
-        <span className="suffix">/{data.network_prefix}</span>
+        <div className="validation-spinner">
+          {isPresent(loading) && loading && <LoaderSpinner size={20} />}
+        </div>
       </FieldBox>
       <FieldError error={error} />
     </div>

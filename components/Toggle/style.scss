@@ -8,7 +8,7 @@
   cursor: pointer;
   display: inline-flex;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   column-gap: var(--spacing-md);
 
@@ -24,6 +24,8 @@
     border-radius: var(--radius-full);
     background-color: var(--bg);
     border: var(--border-1) solid var(--border);
+    min-width: 36px;
+    flex-shrink: 0;
 
     @include animate(border-color, background-color);
 
@@ -49,15 +51,15 @@
   }
 
   &.disabled {
-    --circle: var(--bg-active);
+    --circle: var(--bg-faded);
     --circle-x: 1px;
     --border: var(--bg-active);
-    --bg: var(--bg-default);
+    --bg: var(--bg-muted);
 
     cursor: not-allowed;
 
     p {
-      color: var(--fg-muted);
+      color: var(--fg-disabled);
     }
   }
 
