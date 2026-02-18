@@ -18,7 +18,7 @@ export const SuggestedIpInput = ({
   label,
   ref,
   testId,
-  loading = false,
+  loading,
   required = false,
 }: SuggestedIPInputProps) => {
   const hasError = isPresent(error);
@@ -72,7 +72,9 @@ export const SuggestedIpInput = ({
           </div>
           <span className="suffix">/{data.network_prefix}</span>
         </div>
-        <div className="validation-spinner">{loading && <LoaderSpinner size={20} />}</div>
+        <div className="validation-spinner">
+          {isPresent(loading) && loading && <LoaderSpinner size={20} />}
+        </div>
       </FieldBox>
       <FieldError error={error} />
     </div>

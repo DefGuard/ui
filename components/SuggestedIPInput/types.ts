@@ -11,5 +11,5 @@ export interface SuggestedIPInputProps {
   label?: string;
   required?: boolean;
   testId?: string;
-  loading: boolean;
+  loading?: boolean;
 }
