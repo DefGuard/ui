@@ -16,13 +16,17 @@ $geist:
 $source-code-pro:
   'Source Code Pro',
   #{$font-fallback};
+$jetbrains:
+  'JetBrains Mono',
+  #{$font-fallback};
 /* stylelint-disable value-keyword-case */
 :root {
   // font settings
   --font-family-title: #{$geist};
   --font-family-body: #{$geist};
-  --font-family-component: #{geist};
+  --font-family-component: #{$geist};
   --font-family-code: #{$source-code-pro};
+  --font-family-jetbrains: #{$jetbrains};
 
   --t-body-xxs-600: normal 600 11px/14px #{$geist};
   --t-body-xxs-500: normal 500 11px/14px #{$geist};

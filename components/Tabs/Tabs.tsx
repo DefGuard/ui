@@ -5,18 +5,18 @@ import './style.scss';
 import { Tab } from './Tab';
 import type { TabsProps } from './types';
 
-export const Tabs = ({ items }: TabsProps) => {
+export const Tabs = ({ items, disablePadding = false }: TabsProps) => {
   const visibleItems = useMemo(() => items.filter((item) => !item.hidden), [items]);
 
   return (
     <div className="tabs">
       <div className="track">
         <div className="line" />
-        <SizedBox height={1} width={ThemeSpacing.Xl2} />
+        {!disablePadding && <SizedBox height={1} width={ThemeSpacing.Xl2} />}
         {visibleItems.map((item) => (
           <Tab key={item.title} {...item} />
         ))}
-        <SizedBox height={1} width={ThemeSpacing.Xl2} />
+        {!disablePadding && <SizedBox height={1} width={ThemeSpacing.Xl2} />}
       </div>
     </div>
   );

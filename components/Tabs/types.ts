@@ -9,4 +9,5 @@ export interface TabsItem {
 
 export interface TabsProps {
   items: TabsItem[];
+  disablePadding?: boolean;
 }
