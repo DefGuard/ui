@@ -85,12 +85,10 @@
       align-items: center;
       justify-content: center;
     }
-  }
-
-  & > .section-children {
-    padding-top: var(--spacing-lg);
-    padding-left: calc(90px + var(--spacing-2xl));
-    padding-right: calc(var(--spacing-4xl) + 20px);
+    .section-children {
+      padding-top: var(--spacing-lg);
+      grid-column: 2 / 3;
+    }
   }
 }
 
