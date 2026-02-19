@@ -26,6 +26,7 @@ export const IconKind = {
   Plus: 'plus',
   Support: 'support',
   Menu: 'menu',
+  Sync: 'sync',
   Pending: 'pending',
   Check: 'check',
   Date: 'date',

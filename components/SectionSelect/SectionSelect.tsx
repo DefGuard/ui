@@ -11,8 +11,10 @@ import behavior from './assets/behavior.png';
 import customSettings from './assets/custom-settings.png';
 import customization from './assets/customization.png';
 import deviceClc from './assets/device-clc.png';
+import externalId from './assets/external-id.png';
 import gatewayNotifications from './assets/gateway-notifications.png';
 import integrations from './assets/integrations.png';
+import ldap from './assets/ldap.png';
 import location from './assets/location.png';
 import logstash from './assets/logstash.png';
 import manualSetup from './assets/manual-setup.png';
@@ -58,6 +60,8 @@ export const SectionSelect = ({
 }: Props) => {
   const imageSource = useMemo(() => {
     switch (image) {
+      case 'ldap':
+        return ldap;
       case 'proxy-management':
         return proxyManagement;
       case 'smtp':
@@ -98,6 +102,8 @@ export const SectionSelect = ({
         return logstash;
       case 'vector':
         return vector;
+      case 'external-id':
+        return externalId;
     }
   }, [image]);
 

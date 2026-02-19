@@ -98,6 +98,7 @@ import { IconStatusAvailable } from './icons/IconStatusAvailable';
 import { IconStatusImportant } from './icons/IconStatusImportant';
 import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
+import { IconSync } from './icons/IconSync';
 import { IconToken } from './icons/IconToken';
 import { IconTransactions } from './icons/IconTransactions';
 import { IconUbuntu } from './icons/IconUbuntu';
@@ -156,6 +157,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'sync':
+        return IconSync;
       case 'attention-filled':
         return IconAttentionFilled;
       case 'ip-suggest':

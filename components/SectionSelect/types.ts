@@ -19,6 +19,8 @@ const SectionSelectImage = {
   ProxyManagement: 'proxy-management',
   Logstash: 'logstash',
   Vector: 'vector',
+  LDAP: 'ldap',
+  ExternalId: 'external-id',
 } as const;
 
 export type SectionSelectImageValue =
