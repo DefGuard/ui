@@ -1,4 +1,4 @@
-import { type HTMLProps, type Ref, useMemo } from 'react';
+import { type HTMLProps, type ReactNode, type Ref, useMemo } from 'react';
 import './style.scss';
 import clsx from 'clsx';
 import { isPresent } from '../../utils/isPresent';
@@ -6,6 +6,7 @@ import { Badge } from '../Badge/Badge';
 import type { BadgeProps } from '../Badge/types';
 import { CheckboxIndicator } from '../CheckboxIndicator/CheckboxIndicator';
 import { Icon } from '../Icon';
+import { RadioIndicator } from '../RadioIndicator/RadioIndicator';
 import behavior from './assets/behavior.png';
 import customSettings from './assets/custom-settings.png';
 import customization from './assets/customization.png';
@@ -34,9 +35,11 @@ type Props = HTMLProps<HTMLDivElement> & {
   image: SectionSelectImageValue;
   ref?: Ref<HTMLDivElement>;
   checkbox?: boolean;
+  radio?: boolean;
   selected?: boolean;
   badgeProps?: BadgeProps;
   disabled?: boolean;
+  children?: ReactNode;
 };
 
 export const SectionSelect = ({
@@ -44,11 +47,13 @@ export const SectionSelect = ({
   ref: propsRef,
   className,
   checkbox,
+  radio,
   selected,
   badgeProps,
   title,
   content,
   disabled = false,
+  children,
   ...rest
 }: Props) => {
   const imageSource = useMemo(() => {
@@ -115,13 +120,15 @@ export const SectionSelect = ({
             {isPresent(badgeProps) && <Badge {...badgeProps} />}
           </div>
           <p className={clsx({ disabled })}>{content}</p>
+          {children}
         </div>
         <div className="extra">
           {disabled && <Icon icon="lock-closed" />}
-          {!checkbox && !disabled && (
+          {!checkbox && !radio && !disabled && (
             <Icon icon="arrow-small" rotationDirection="right" />
           )}
           {checkbox && !disabled && <CheckboxIndicator active={selected ?? false} />}
+          {radio && !disabled && <RadioIndicator active={selected ?? false} />}
         </div>
       </div>
     </div>
