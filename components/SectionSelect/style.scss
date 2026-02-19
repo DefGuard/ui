@@ -79,16 +79,11 @@
 
     .extra {
       grid-column: 3 / 4;
-      grid-row: 1 / 3;
       place-self: center end;
       display: flex;
       flex-flow: column;
       align-items: center;
       justify-content: center;
-    }
-
-    & > .fold {
-      grid-column: 2 / 3;
     }
   }
 }

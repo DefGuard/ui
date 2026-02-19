@@ -120,6 +120,7 @@ export const SectionSelect = ({
             {isPresent(badgeProps) && <Badge {...badgeProps} />}
           </div>
           <p className={clsx({ disabled })}>{content}</p>
+          {children}
         </div>
         <div className="extra">
           {disabled && <Icon icon="lock-closed" />}
@@ -129,7 +130,6 @@ export const SectionSelect = ({
           {checkbox && !disabled && <CheckboxIndicator active={selected ?? false} />}
           {radio && !disabled && <RadioIndicator active={selected ?? false} />}
         </div>
-        {children}
       </div>
     </div>
   );
