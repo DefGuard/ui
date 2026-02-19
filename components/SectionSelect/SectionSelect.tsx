@@ -129,7 +129,7 @@ export const SectionSelect = ({
           {checkbox && !disabled && <CheckboxIndicator active={selected ?? false} />}
           {radio && !disabled && <RadioIndicator active={selected ?? false} />}
         </div>
-        {isPresent(children) && <div className="section-children">{children}</div>}
+        {children}
       </div>
     </div>
   );

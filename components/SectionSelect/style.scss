@@ -87,8 +87,7 @@
       justify-content: center;
     }
 
-    .section-children {
-      padding-top: var(--spacing-lg);
+    & > .fold {
       grid-column: 2 / 3;
     }
   }
