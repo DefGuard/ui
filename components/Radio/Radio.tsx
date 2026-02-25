@@ -7,7 +7,15 @@ import { FieldError } from '../FieldError/FieldError';
 import { RadioIndicator } from '../RadioIndicator/RadioIndicator';
 import type { RadioProps } from './types';
 
-export const Radio = ({ text, testId, active, disabled, error, onClick, badgeProps }: RadioProps) => {
+export const Radio = ({
+  text,
+  testId,
+  active,
+  disabled,
+  error,
+  onClick,
+  badgeProps,
+}: RadioProps) => {
   const [ref, hover] = useHover();
 
   return (
