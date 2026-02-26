@@ -27,19 +27,11 @@
       & > span {
         font: var(--t-body-sm-400);
       }
-
-      & > .badge {
-        grid-column: 3;
-      }
     }
 
     &.disabled,
     &[aria-disabled='true'] {
       cursor: not-allowed;
-
-      & > span {
-        color: var(--fg-disabled);
-      }
     }
   }
 }
