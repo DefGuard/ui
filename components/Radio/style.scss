@@ -19,13 +19,17 @@
     }
 
     &.text {
-      display: flex;
-      grid-template-columns: 24px auto;
+      display: grid;
+      grid-template-columns: 24px max-content;
       grid-template-rows: 1fr;
       column-gap: var(--spacing-sm);
 
       & > span {
         font: var(--t-body-sm-400);
+      }
+
+      & > .badge {
+        grid-column: 3;
       }
     }
 
