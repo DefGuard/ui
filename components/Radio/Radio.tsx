@@ -2,20 +2,11 @@ import './style.scss';
 import { useHover } from '@uidotdev/usehooks';
 import clsx from 'clsx';
 import { isPresent } from '../../utils/isPresent';
-import { Badge } from '../Badge/Badge';
 import { FieldError } from '../FieldError/FieldError';
 import { RadioIndicator } from '../RadioIndicator/RadioIndicator';
 import type { RadioProps } from './types';
 
-export const Radio = ({
-  text,
-  testId,
-  active,
-  disabled,
-  error,
-  onClick,
-  badgeProps,
-}: RadioProps) => {
+export const Radio = ({ text, testId, active, disabled, error, onClick }: RadioProps) => {
   const [ref, hover] = useHover();
 
   return (
@@ -44,7 +35,6 @@ export const Radio = ({
       >
         <RadioIndicator hover={hover} active={active} disabled={disabled} />
         {isPresent(text) && <span>{text}</span>}
-        {isPresent(badgeProps) && <Badge {...badgeProps} />}
       </div>
       <FieldError error={error} />
     </div>
