@@ -10,5 +10,6 @@
   a {
     font: var(--t-tooltip);
     color: var(--fg-white);
+    white-space: pre-line;
   }
 }
