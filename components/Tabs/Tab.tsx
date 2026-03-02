@@ -12,10 +12,10 @@ export const Tab = ({ onClick, title, active, icon }: TabProps) => {
       onClick={onClick}
     >
       <div className="line"></div>
-      <p className="title">
-        {icon && <Icon icon={icon} size={18} staticColor={ThemeVariable.FgAttention} />}
+      <div className="title">
+        {icon && <Icon icon={icon} size={16} staticColor={ThemeVariable.FgAttention} />}
         {title}
-      </p>
+      </div>
     </div>
   );
 };
