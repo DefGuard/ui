@@ -9,13 +9,10 @@
   pointer-events: none;
   box-sizing: border-box;
   padding: 0 var(--spacing-xs);
-  min-width: 20px;
+  min-width: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-flow: row;
-  flex: none;
-  height: auto;
 
   &.variant-neutral {
     --color: var(--fg-neutral);
@@ -39,7 +36,10 @@
   }
 
   span {
-    font: var(--t-body-xxs-600);
+    font-size: var(--body-micro-11, 11px);
+    font-style: normal;
+    font-weight: var(--font-weight-medium-500, 500);
+    line-height: var(--line-height-sm-14, 14px);
     color: inherit;
     text-align: center;
   }
