@@ -98,6 +98,7 @@ import { IconStatusAvailable } from './icons/IconStatusAvailable';
 import { IconStatusImportant } from './icons/IconStatusImportant';
 import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
+import { IconSupport } from './icons/IconSupport';
 import { IconSync } from './icons/IconSync';
 import { IconToken } from './icons/IconToken';
 import { IconTransactions } from './icons/IconTransactions';
@@ -386,7 +387,7 @@ export const Icon = <T extends IconKindValue>({
       case 'status-important':
         return IconStatusImportant;
       case 'support':
-        return EmptyIcon;
+        return IconSupport;
       case 'transactions':
         return IconTransactions;
       case 'user':
