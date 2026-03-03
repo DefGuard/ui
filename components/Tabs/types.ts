@@ -1,3 +1,5 @@
+import type { IconKindValue } from '../Icon';
+
 export type TabProps = TabsItem;
 
 export interface TabsItem {
@@ -5,6 +7,7 @@ export interface TabsItem {
   active?: boolean;
   hidden?: boolean;
   onClick: () => void;
+  icon?: IconKindValue;
 }
 
 export interface TabsProps {
