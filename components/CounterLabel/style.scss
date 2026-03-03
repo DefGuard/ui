@@ -36,10 +36,7 @@
   }
 
   span {
-    font-size: var(--body-micro-11, 11px);
-    font-style: normal;
-    font-weight: var(--font-weight-medium-500, 500);
-    line-height: var(--line-height-sm-14, 14px);
+    font: var(--t-body-xs-500);
     color: inherit;
     text-align: center;
   }

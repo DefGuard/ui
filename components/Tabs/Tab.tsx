@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { ThemeVariable } from '../../types';
+import { isPresent } from '../../utils/isPresent';
 import { Icon } from '../Icon';
 import type { TabProps } from './types';
 
@@ -13,8 +14,10 @@ export const Tab = ({ onClick, title, active, icon }: TabProps) => {
     >
       <div className="line"></div>
       <div className="title">
-        {icon && <Icon icon={icon} size={16} staticColor={ThemeVariable.FgAttention} />}
-        {title}
+        {isPresent(icon) && (
+          <Icon icon={icon} size={16} staticColor={ThemeVariable.FgAttention} />
+        )}
+        <span>{title}</span>
       </div>
     </div>
   );

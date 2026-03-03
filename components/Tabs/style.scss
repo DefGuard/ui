@@ -50,8 +50,9 @@
     color: var(--color);
     text-align: center;
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     column-gap: var(--spacing-xs);
 
     @include animate(color);
