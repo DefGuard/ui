@@ -23,7 +23,7 @@ export const FormTextarea = <T extends FieldValues>({
   } = useController(controller);
 
   const errorMessage = useMemo(() => {
-    if ((error && (isDirty || isTouched)) || (!error && isSubmitted)) {
+    if ((error && (isDirty || isTouched)) || (error && isSubmitted)) {
       return error?.message;
     }
     return undefined;
