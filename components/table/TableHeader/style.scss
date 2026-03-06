@@ -24,6 +24,10 @@
         border-top-left-radius: var(--radius-lg);
       }
 
+      &:last-child {
+        border-top-right-radius: var(--radius-lg);
+      }
+
       span {
         font: var(--t-body-xs-600);
         color: var(--fg-default);

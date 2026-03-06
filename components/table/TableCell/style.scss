@@ -21,7 +21,9 @@
   }
 
   &:last-child {
+    flex: 1 1 10px;
     border-right: var(--border-1) solid var(--border-disabled);
+    min-width: 60px;
 
     &.radius {
       border-top-right-radius: var(--radius-lg);

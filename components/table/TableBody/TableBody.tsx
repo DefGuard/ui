@@ -20,7 +20,6 @@ import { TableCell } from '../TableCell/TableCell';
 import { TableCellContext } from '../TableCell/TableCellContext';
 import { TableExpandCell } from '../TableExpandCell/TableExpandCell';
 import { TableExpandedRowHeader } from '../TableExpandedRowHeader/TableExpandedRowHeader';
-import { TableFlexCell } from '../TableFlexCell/TableFlexCell';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { TableHeaderCell } from '../TableHeaderCell/TableHeaderCell';
 import { TableRowContainer } from '../TableRowContainer/TableRowContainer';
@@ -186,11 +185,10 @@ export const TableBody = <T extends object>({
           {table.getHeaderGroups()[0].headers.map((header) => {
             return <TableHeaderCell header={header} key={header.id} />;
           })}
-          <TableFlexCell radius />
         </TableHeader>
         {rowVirtualizer.getVirtualItems().map((virtualRow) => {
           const row = rows[virtualRow.index];
-          const isExpanded = row.getIsExpanded();
+          const isExpanded = row.getIsExpanded() && row.getCanExpand();
           const canSelect = row.getCanSelect();
           const isLast = virtualRow.index === rows.length - 1 && !hasNextPage;
           return (
@@ -229,7 +227,6 @@ export const TableBody = <T extends object>({
                     </TableCellContext>
                   </Fragment>
                 ))}
-                <TableFlexCell />
               </TableRowContainer>
               {isExpanded && isPresent(expandedHeaders) && (
                 <TableExpandedRowHeader
