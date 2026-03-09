@@ -4,6 +4,9 @@ import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
 import type { ModalControlsProps } from './types';
 
+/**
+ * @deprecated Replaced by Controls
+ */
 export const ModalControls = ({
   submitProps,
   cancelProps,
