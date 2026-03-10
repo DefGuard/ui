@@ -2,10 +2,15 @@ import { IconButtonMenu } from '../../IconButtonMenu/IconButtonMenu';
 import type { MenuItemsGroup } from '../../Menu/types';
 import { TableCell } from '../TableCell/TableCell';
 
-export const TableEditCell = (props: { menuItems: MenuItemsGroup[] }) => {
+type Props = {
+  menuItems: MenuItemsGroup[];
+  disabled?: boolean;
+};
+
+export const TableEditCell = ({ menuItems, disabled }: Props) => {
   return (
     <TableCell flex alignContent="right">
-      <IconButtonMenu icon="menu" menuItems={props.menuItems} />
+      <IconButtonMenu icon="menu" menuItems={menuItems} disabled={disabled} />
     </TableCell>
   );
 };
