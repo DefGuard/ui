@@ -1,9 +1,9 @@
 import './style.scss';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { downloadText } from '../../utils/download';
-import { ThemeVariable } from '../../types';
 import { useClipboard } from '../../hooks/useClipboard';
+import { ThemeVariable } from '../../types';
+import { downloadText } from '../../utils/download';
 import { Icon } from '../Icon';
 import { IconButton } from '../IconButton/IconButton';
 import type { CodeCardProps } from './types';
