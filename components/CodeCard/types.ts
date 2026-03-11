@@ -1,6 +1,6 @@
 export interface CodeCardProps {
   value: string;
   title: string;
-  onCopy?: () => void;
-  onDownload?: () => void;
+  copy?: boolean;
+  download?: boolean;
 }
