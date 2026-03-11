@@ -29,6 +29,10 @@
         flex-flow: row nowrap;
         column-gap: var(--spacing-md);
         margin-left: auto;
+
+        .icon-button.copied {
+          --icon-color: var(--fg-success);
+        }
       }
     }
   }
