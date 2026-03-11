@@ -1,14 +1,24 @@
 import './style.scss';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
+import { downloadText } from '../../utils/download';
 import { ThemeVariable } from '../../types';
 import { useClipboard } from '../../hooks/useClipboard';
-import { isPresent } from '../../utils/isPresent';
 import { Icon } from '../Icon';
 import { IconButton } from '../IconButton/IconButton';
 import type { CodeCardProps } from './types';
 
-export const CodeCard = ({ title, value, copy, onDownload }: CodeCardProps) => {
+const sanitizeFilename = (title: string) => {
+  const sanitized = title
+    .trim()
+    .replace(/[<>:"/\\|?*]/g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\.+$/g, '');
+
+  return sanitized.length > 0 ? sanitized : 'code-card';
+};
+
+export const CodeCard = ({ title, value, copy, download }: CodeCardProps) => {
   const [copied, setCopied] = useState(false);
   const { writeToClipboard } = useClipboard();
 
@@ -41,7 +51,14 @@ export const CodeCard = ({ title, value, copy, onDownload }: CodeCardProps) => {
                 className={clsx({ copied })}
               />
             )}
-            {isPresent(onDownload) && <IconButton onClick={onDownload} icon="download" />}
+            {download && (
+              <IconButton
+                onClick={() => {
+                  downloadText(value, sanitizeFilename(title));
+                }}
+                icon="download"
+              />
+            )}
           </div>
         </div>
       </div>
