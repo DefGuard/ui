@@ -11,6 +11,7 @@ import behavior from './assets/behavior.png';
 import customSettings from './assets/custom-settings.png';
 import customization from './assets/customization.png';
 import deviceClc from './assets/device-clc.png';
+import enrollment from './assets/enrollment.png';
 import externalId from './assets/external-id.png';
 import gatewayNotifications from './assets/gateway-notifications.png';
 import integrations from './assets/integrations.png';
@@ -70,6 +71,8 @@ export const SectionSelect = ({
         return gatewayNotifications;
       case 'remote-activation':
         return remoteActivation;
+      case 'enrollment':
+        return enrollment;
       case 'manual-setup':
         return manualSetup;
       case 'token-email':

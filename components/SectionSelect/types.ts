@@ -20,6 +20,7 @@ const SectionSelectImage = {
   Logstash: 'logstash',
   Vector: 'vector',
   LDAP: 'ldap',
+  Enrollment: 'enrollment',
   ExternalId: 'external-id',
 } as const;
 
