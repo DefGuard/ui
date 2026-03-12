@@ -17,6 +17,7 @@ export const Textarea = ({
   label,
   placeholder,
   disabled = false,
+  ...props
 }: TextareaProps) => {
   const [height, setHeight] = useState(defaultHeight);
   const bindDrag = useDrag(
@@ -45,6 +46,7 @@ export const Textarea = ({
           })}
         >
           <textarea
+            {...props}
             style={{ height: height }}
             value={value}
             placeholder={placeholder}
