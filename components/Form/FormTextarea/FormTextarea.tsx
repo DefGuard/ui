@@ -31,7 +31,7 @@ export const FormTextarea = <T extends FieldValues>({
 
   return (
     <Textarea
-      data-testid={`textarea-${controller.name}`}
+      data-testid={`field-${controller.name}`}
       {...textareaProps}
       onChange={(value) => {
         onChange(value);
