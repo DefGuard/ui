@@ -10,6 +10,7 @@ import {
   type HTMLProps,
   type ReactNode,
   type RefObject,
+  useEffect,
   useMemo,
   useRef,
 } from 'react';
@@ -76,6 +77,8 @@ export const TableBody = <T extends object>({
 
   const { rows } = table.getRowModel();
   const scrollParentRef = useRef<HTMLDivElement>(null);
+  const tableVirtualBodyRef = useRef<HTMLDivElement>(null);
+  const hasAppliedInitialFlexSizing = useRef(false);
   const maxTableHeight = useTableHeight(scrollParentRef);
 
   const canExpand = table.options.enableExpanding;
@@ -153,6 +156,79 @@ export const TableBody = <T extends object>({
     paddingEnd: virtualizedPaddingBottom,
   });
 
+  useEffect(() => {
+    if (hasAppliedInitialFlexSizing.current) return;
+    let mounted = true;
+    let frame = 0;
+    let attempts = 0;
+
+    const applyInitialFlexSizing = () => {
+      if (!mounted) return;
+      const width = tableVirtualBodyRef.current?.clientWidth ?? 0;
+      if (!width) {
+        if (attempts < 10 && mounted) {
+          attempts += 1;
+          frame = requestAnimationFrame(applyInitialFlexSizing);
+        }
+        return;
+      }
+
+      const columns = table.getVisibleLeafColumns();
+      const flexColumns = columns.filter((column) => column.columnDef.meta?.flex);
+
+      hasAppliedInitialFlexSizing.current = true;
+      if (!flexColumns.length) return;
+
+      const actionColumnsWidth =
+        (table.options.enableExpanding ? tableActionColumnSize : 0) +
+        (table.options.enableRowSelection ? tableActionColumnSize : 0);
+
+      let fixedColumnsWidth = 0;
+      let flexBaseWidth = 0;
+      for (const column of columns) {
+        if (column.columnDef.meta?.flex) {
+          flexBaseWidth += column.getSize();
+        } else {
+          fixedColumnsWidth += column.getSize();
+        }
+      }
+
+      const availableFlexWidth = width - actionColumnsWidth - fixedColumnsWidth;
+      if (availableFlexWidth <= flexBaseWidth) return;
+
+      const totalFlexBase = flexBaseWidth || flexColumns.length;
+      if (!mounted) return;
+      table.setColumnSizing((prev) => {
+        const next = { ...prev };
+        let changed = false;
+
+        for (const column of flexColumns) {
+          const baseSize = flexBaseWidth ? column.getSize() : 1;
+          const nextSize = Math.round((baseSize / totalFlexBase) * availableFlexWidth);
+          const minSize = column.columnDef.minSize ?? 20;
+          const maxSize = column.columnDef.maxSize;
+          const clampedSize = Math.max(
+            minSize,
+            isPresent(maxSize) ? Math.min(maxSize, nextSize) : nextSize,
+          );
+
+          if (next[column.id] !== clampedSize) {
+            next[column.id] = clampedSize;
+            changed = true;
+          }
+        }
+
+        return changed ? next : prev;
+      });
+    };
+
+    frame = requestAnimationFrame(applyInitialFlexSizing);
+    return () => {
+      mounted = false;
+      cancelAnimationFrame(frame);
+    };
+  }, [table]);
+
   return (
     <div
       className={clsx('table', className)}
@@ -166,6 +242,7 @@ export const TableBody = <T extends object>({
     >
       <div
         className="table-virtual-body"
+        ref={tableVirtualBodyRef}
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
           position: 'relative',

@@ -27,8 +27,8 @@ type Props<TData> = {
 
 export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) => {
   const isDraggingRef = useRef(false);
+  const suppressSortOnNextClickRef = useRef(false);
   const isSortable = header.column.columnDef.enableSorting;
-  // @ts-expect-error
   const filterOptions = header.column.columnDef.meta?.filterOptions as
     | SelectionOption<string | number>[]
     | undefined;
@@ -108,6 +108,10 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
           resizable,
         })}
         onClick={() => {
+          if (suppressSortOnNextClickRef.current) {
+            suppressSortOnNextClickRef.current = false;
+            return;
+          }
           if (isSortable && !isDraggingRef.current) {
             header.column.toggleSorting();
           }
@@ -147,12 +151,27 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
             onMouseDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              suppressSortOnNextClickRef.current = true;
               header.getResizeHandler()(e);
               isDraggingRef.current = true;
+
+              const clearDragging = () => {
+                isDraggingRef.current = false;
+              };
+
+              window.addEventListener('mouseup', clearDragging, { once: true });
             }}
-            onTouchStart={header.getResizeHandler()}
-            onMouseUp={() => {
-              isDraggingRef.current = false;
+            onTouchStart={(e) => {
+              suppressSortOnNextClickRef.current = true;
+              header.getResizeHandler()(e);
+              isDraggingRef.current = true;
+
+              const clearDragging = () => {
+                isDraggingRef.current = false;
+              };
+
+              window.addEventListener('touchend', clearDragging, { once: true });
+              window.addEventListener('touchcancel', clearDragging, { once: true });
             }}
           >
             <div className="bar"></div>

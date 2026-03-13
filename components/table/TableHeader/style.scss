@@ -25,6 +25,7 @@
       }
 
       &:last-child {
+        flex: 1 1 10px;
         border-top-right-radius: var(--radius-lg);
       }
 
