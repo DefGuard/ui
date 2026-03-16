@@ -122,6 +122,7 @@ export const IconKind = {
   Upload: 'upload',
   AddRule: 'add-rule',
   Rules: 'rules',
+  DisableMfa: 'disable-mfa',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

@@ -42,6 +42,7 @@ import { IconDesktop } from './icons/IconDesktop';
 import { IconDevices } from './icons/IconDevices';
 import { IconDevicesActive } from './icons/IconDevicesActive';
 import { IconDisabled } from './icons/IconDisabled';
+import { IconDisableMfa } from './icons/IconDisableMfa';
 import { IconDownload } from './icons/IconDownload';
 import { IconEdit } from './icons/IconEdit';
 import { IconEmptyPoint } from './icons/IconEmptyPoint';
@@ -220,6 +221,8 @@ export const Icon = <T extends IconKindValue>({
         return IconArchLinux;
       case 'disabled':
         return IconDisabled;
+      case 'disable-mfa':
+        return IconDisableMfa;
       case 'show':
         return IconShow;
       case 'hide':
