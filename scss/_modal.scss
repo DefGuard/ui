@@ -21,8 +21,8 @@
       z-index: 4;
       display: flex;
       flex-flow: column;
-      align-items: center;
-      justify-content: center;
+      align-items: safe center;
+      justify-content: safe center;
       box-sizing: border-box;
       padding: var(--spacing-xl);
     }
