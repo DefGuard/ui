@@ -23,7 +23,7 @@ export const Textarea = ({
   autoComplete = 'off',
 }: TextareaProps) => {
   const localRef = useRef<HTMLTextAreaElement>(null);
-  const areaId = useId();
+  const labelId = useId();
 
   useEffect(() => {
     const resize = () => {
@@ -45,7 +45,14 @@ export const Textarea = ({
     <div className="textarea spacer">
       <div className="inner">
         {isPresent(label) && (
-          <FieldLabel required={required} text={label} htmlFor={areaId} />
+          <FieldLabel
+            required={required}
+            text={label}
+            id={labelId}
+            onClick={() => {
+              localRef.current?.focus();
+            }}
+          />
         )}
         <FieldBox
           error={!disabled && isPresent(error)}
@@ -61,16 +68,16 @@ export const Textarea = ({
           }}
         >
           <textarea
+            aria-labelledby={labelId}
             autoComplete={autoComplete}
+            disabled={disabled}
+            ref={mergeRefs([outerRef, localRef])}
+            value={value ?? ''}
+            placeholder={placeholder}
             style={{
               maxHeight,
               minHeight,
             }}
-            disabled={disabled}
-            id={areaId}
-            ref={mergeRefs([outerRef, localRef])}
-            value={value ?? ''}
-            placeholder={placeholder}
             onBlur={onBlur}
             onChange={(e) => {
               const targetValue = e.target.value;

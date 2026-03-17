@@ -28,7 +28,7 @@ export function Select<T>(props: SelectSingleProps<T>): JSX.Element;
 export function Select<T>(props: SelectMultiProps<T>): JSX.Element;
 
 export function Select<T>(props: SelectProps<T, boolean>) {
-  const id = useId();
+  const labelId = useId();
 
   const {
     label,
@@ -103,7 +103,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
       <div className="select spacer">
         <div className="inner">
           {isPresent(label) && (
-            <FieldLabel required={required} htmlFor={id} text={label} />
+            <FieldLabel required={required} id={labelId} text={label} />
           )}
           <FieldBox
             className={className}
@@ -112,8 +112,8 @@ export function Select<T>(props: SelectProps<T, boolean>) {
             boxRef={refs.setReference}
             data-testid={testId}
             iconRight="arrow-small"
-            id={id}
             forceFocusState={floatingOpen}
+            aria-labelledby={labelId}
             {...getReferenceProps()}
           >
             <div className="box-track">

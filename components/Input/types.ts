@@ -14,6 +14,7 @@ export type InputProps = {
   error?: string | null;
   name?: string;
   label?: string;
+  helper?: string;
   required?: boolean;
   disabled?: boolean;
   placeholder?: string;
@@ -35,6 +36,7 @@ export type FormInputProps = Pick<
   | 'size'
   | 'type'
   | 'notNull'
+  | 'helper'
 > & {
   mapError?: (error: string) => string | undefined;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;

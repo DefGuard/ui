@@ -10,14 +10,21 @@ import { Icon, IconKind } from '../Icon';
 interface Props {
   children: ReactNode;
   tooltipProps?: HTMLProps<HTMLDivElement>;
+  size?: number;
 }
 
-export const Helper = ({ children, tooltipProps }: Props) => {
+export const Helper = ({ children, tooltipProps, size = 20 }: Props) => {
   return (
     <TooltipProvider>
       <TooltipTrigger>
-        <div className="helper">
-          <Icon icon={IconKind.Help} size={20} staticColor={ThemeVariable.FgMuted} />
+        <div
+          className="helper"
+          style={{
+            width: size,
+            height: size,
+          }}
+        >
+          <Icon icon={IconKind.Help} size={size} staticColor={ThemeVariable.FgMuted} />
         </div>
       </TooltipTrigger>
       <TooltipContent {...tooltipProps}>

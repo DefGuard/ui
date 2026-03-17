@@ -1,23 +1,28 @@
 import './style.scss';
 
 import clsx from 'clsx';
-import type { Ref } from 'react';
+import type { MouseEventHandler, Ref } from 'react';
+import { isPresent } from '../../utils/isPresent';
+import { Helper } from '../Helper/Helper';
 
 type Props = {
-  ref?: Ref<HTMLLabelElement>;
-  htmlFor?: string;
   text: string;
+  id?: string;
+  ref?: Ref<HTMLDivElement>;
   required?: boolean;
+  helper?: string;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 };
 
-export const FieldLabel = ({ text, htmlFor, ref, required }: Props) => {
+export const FieldLabel = ({ text, ref, required, helper, id, onClick }: Props) => {
   return (
-    <label
+    <div
       className={clsx('field-label', {
         required,
       })}
-      htmlFor={htmlFor}
       ref={ref}
+      id={id}
+      onClick={onClick}
     >
       {required && (
         <svg
@@ -26,6 +31,7 @@ export const FieldLabel = ({ text, htmlFor, ref, required }: Props) => {
           height="5"
           viewBox="0 0 5 5"
           fill="none"
+          className="required-icon"
         >
           <path
             d="M1.332 4.128L0.6 3.684L1.368 2.52H0V1.608L1.368 1.62L0.6 0.456L1.332 0L2.064 1.224L2.808 0L3.528 0.456L2.76 1.62L4.128 1.608V2.52H2.76L3.528 3.684L2.808 4.128L2.064 2.916L1.332 4.128Z"
@@ -33,7 +39,12 @@ export const FieldLabel = ({ text, htmlFor, ref, required }: Props) => {
           />
         </svg>
       )}
-      {text}
-    </label>
+      <span>{text}</span>
+      {isPresent(helper) && (
+        <Helper size={16}>
+          <p>{helper}</p>
+        </Helper>
+      )}
+    </div>
   );
 };

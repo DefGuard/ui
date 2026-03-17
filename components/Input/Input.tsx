@@ -32,6 +32,7 @@ export const Input = ({
   value,
   error,
   label,
+  helper,
   ref,
   name,
   placeholder,
@@ -82,7 +83,17 @@ export const Input = ({
           disabled,
         })}
       >
-        {isPresent(label) && <FieldLabel required={required} text={label} htmlFor={id} />}
+        {isPresent(label) && (
+          <FieldLabel
+            id={id}
+            required={required}
+            text={label}
+            helper={helper}
+            onClick={() => {
+              innerRef.current?.focus();
+            }}
+          />
+        )}
         <FieldBox
           className="input-track"
           error={!disabled && isPresent(error)}
@@ -113,8 +124,8 @@ export const Input = ({
           {...boxProps}
         >
           <input
+            aria-labelledby={id}
             ref={mergeRefs([ref, innerRef])}
-            id={id}
             autoComplete={autocomplete}
             data-testid={testId}
             value={externalValueToInput(value)}
