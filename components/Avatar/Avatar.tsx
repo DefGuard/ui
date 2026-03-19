@@ -10,6 +10,7 @@ type Props = {
   variant?: 'empty' | 'initials';
   firstName?: string;
   lastName?: string;
+  online?: boolean;
 } & HtmlHTMLAttributes<HTMLDivElement>;
 
 export const Avatar = ({
@@ -18,6 +19,7 @@ export const Avatar = ({
   variant = 'empty',
   firstName,
   lastName,
+  online = false,
   className,
   ...divProps
 }: Props) => {
@@ -43,6 +45,7 @@ export const Avatar = ({
           </div>
         )}
       </div>
+      {online && <span className="online-indicator" aria-hidden="true" />}
     </div>
   );
 };

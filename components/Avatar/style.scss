@@ -1,10 +1,17 @@
 .avatar {
   user-select: none;
+  position: relative;
+  display: inline-flex;
 
   &.size-small {
     .inner {
       width: 16px;
       height: 16px;
+    }
+
+    .online-indicator {
+      width: 6px;
+      height: 6px;
     }
   }
 
@@ -13,6 +20,11 @@
       width: 24px;
       height: 24px;
     }
+
+    .online-indicator {
+      width: 8px;
+      height: 8px;
+    }
   }
 
   &.size-big {
@@ -20,6 +32,21 @@
       width: 40px;
       height: 40px;
     }
+
+    .online-indicator {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .online-indicator {
+    position: absolute;
+    bottom: -2px;
+    right: -4px;
+    border-radius: var(--radius-full);
+    background-color: var(--fg-success);
+    border: 2px solid var(--bg-default, #fff);
+    box-sizing: content-box;
   }
 
   .initials {
