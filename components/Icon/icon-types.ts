@@ -123,6 +123,10 @@ export const IconKind = {
   AddRule: 'add-rule',
   Rules: 'rules',
   DisableMfa: 'disable-mfa',
+  Bug: 'bug',
+  Chat: 'chat',
+  Request: 'request',
+  Calendar: 'calendar',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

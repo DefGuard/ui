@@ -23,6 +23,9 @@ import { IconArrowSmall } from './icons/IconArrowSmall';
 import { IconAttentionFilled } from './icons/IconAttentionFilled';
 import { IconAttentionOutlined } from './icons/IconAttentionOutlined';
 import { IconBiometric } from './icons/IconBiometric';
+import { IconBug } from './icons/IconBug';
+import { IconCalendar } from './icons/IconCalendar';
+import { IconChat } from './icons/IconChat';
 import { IconCheck } from './icons/IconCheck';
 import { IconCheckCircle } from './icons/IconCheckCircle';
 import { IconCheckFilled } from './icons/IconCheckFilled';
@@ -53,6 +56,7 @@ import { IconFile } from './icons/IconFile';
 import { IconFileAdd } from './icons/IconFileAdd';
 import { IconFiltration } from './icons/IconFiltration';
 import { IconGateway } from './icons/IconGateway';
+import { IconGithub } from './icons/IconGithub';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconGroups } from './icons/IconGroups';
 import { IconHamburger } from './icons/IconHamburger';
@@ -88,6 +92,7 @@ import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
 import { IconProtection } from './icons/IconProtection';
 import { IconRefresh } from './icons/IconRefresh';
+import { IconRequest } from './icons/IconRequest';
 import { IconRules } from './icons/IconRules';
 import { IconSearch } from './icons/IconSearch';
 import { IconServers } from './icons/IconServers';
@@ -324,7 +329,7 @@ export const Icon = <T extends IconKindValue>({
       case 'gift':
         return EmptyIcon;
       case 'github':
-        return EmptyIcon;
+        return IconGithub;
       case 'groups':
         return IconGroups;
       case 'hamburger':
@@ -407,6 +412,14 @@ export const Icon = <T extends IconKindValue>({
         return IconBiometric;
       case 'pending':
         return IconPending;
+      case 'bug':
+        return IconBug;
+      case 'chat':
+        return IconChat;
+      case 'request':
+        return IconRequest;
+      case 'calendar':
+        return IconCalendar;
     }
   }, [iconKind]);
 
