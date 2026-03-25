@@ -18,7 +18,14 @@ export const RenderMarkdown = ({
       {...containerProps}
       className={clsx('markdown-render', containerCustomClassName)}
     >
-      <ReactMarkdown rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
+      <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          a: (props) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
     </div>
   );
 };
