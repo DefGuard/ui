@@ -1,7 +1,7 @@
 import type { HTMLProps } from 'react';
 import type { BadgeProps } from '../Badge/types';
 
-type VariantOption = 'radio' | 'checkbox' | 'toggle' | 'static';
+type VariantOption = 'radio' | 'checkbox' | 'toggle' | 'empty';
 
 export interface InteractiveBlockProps extends Omit<HTMLProps<HTMLDivElement>, 'value'> {
   title: string;

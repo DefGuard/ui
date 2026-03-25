@@ -12,7 +12,7 @@ export const FormInteractiveBlock = ({ value, children, ...props }: Props) => {
   const field = useFieldContext<number | string | boolean>();
 
   const valueState = useMemo(() => {
-    if (props.variant === 'static') {
+    if (props.variant === 'empty') {
       return false;
     }
     if (props.variant === 'radio') {
@@ -25,7 +25,7 @@ export const FormInteractiveBlock = ({ value, children, ...props }: Props) => {
     <InteractiveBlock
       value={valueState}
       onClick={() => {
-        if (props.variant === 'static') {
+        if (props.variant === 'empty') {
           return;
         }
         if (props.variant === 'radio' && isPresent(value)) {

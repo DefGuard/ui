@@ -30,7 +30,7 @@ export const InteractiveBlock = ({
       <div
         className="interactive grid"
         onClick={(e) => {
-          if (!disabled && variant !== 'static') {
+          if (!disabled && variant !== 'empty') {
             onClick?.(e);
           }
         }}

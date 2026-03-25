@@ -10,7 +10,7 @@
     --column-gap: var(--spacing-xl);
   }
 
-  &.variant-static {
+  &.variant-empty {
     --interaction-col-size: 36px;
     --column-gap: var(--spacing-xl);
   }
@@ -31,7 +31,7 @@
     }
   }
 
-  &.variant-static:not(.disabled) {
+  &.variant-empty:not(.disabled) {
     & > .interactive {
       cursor: default;
     }
