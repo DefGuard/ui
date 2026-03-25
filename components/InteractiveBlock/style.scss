@@ -10,6 +10,11 @@
     --column-gap: var(--spacing-xl);
   }
 
+  &.variant-static {
+    --interaction-col-size: 36px;
+    --column-gap: var(--spacing-xl);
+  }
+
   &.disabled {
     --title-color: var(--fg-muted);
     --content-color: var(--fg-muted);
@@ -23,6 +28,12 @@
     & > .interactive {
       user-select: none;
       cursor: pointer;
+    }
+  }
+
+  &.variant-static:not(.disabled) {
+    & > .interactive {
+      cursor: default;
     }
   }
 
