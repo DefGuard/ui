@@ -7,6 +7,7 @@ import { type ActionableSectionProps, ActionableSectionVariant } from './types';
 
 export const ActionableSection = ({
   imageSrc,
+  imageAlt,
   subtitle,
   title,
   children,
@@ -16,7 +17,7 @@ export const ActionableSection = ({
     <div className={clsx('actionable-section', `variant-${variant}`)}>
       <div className="inner-track">
         <div className="image-track">
-          <img src={imageSrc} alt="section image" />
+          <img src={imageSrc} alt={imageAlt ?? ''} />
         </div>
         <div className="content-track">
           <div className="default">

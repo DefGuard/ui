@@ -32,12 +32,15 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
   const filterOptions = header.column.columnDef.meta?.filterOptions as
     | SelectionOption<string | number>[]
     | undefined;
+  const filterMessages = header.getContext().table.options.meta?.filterMessages;
   const selectedFilters = () => {
     const values = header.column.getFilterValue() as Array<number | string>;
     return new Set(values);
   };
   const isFilterable =
-    header.column.columnDef.enableColumnFilter && isPresent(filterOptions);
+    header.column.columnDef.enableColumnFilter &&
+    isPresent(filterOptions) &&
+    isPresent(filterMessages);
 
   const headerSorting = header.column.getIsSorted();
 
@@ -178,10 +181,11 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
           </div>
         )}
       </TableCell>
-      {isFilterable && floatOpen && isPresent(filterOptions) && (
+      {isFilterable && floatOpen && isPresent(filterOptions) && isPresent(filterMessages) && (
         <FloatingPortal>
           <TableHeaderFilterFloating
             options={filterOptions}
+            messages={filterMessages}
             title={header.column.columnDef.header as string}
             ref={refs.setFloating}
             selected={selectedFilters()}

@@ -1,7 +1,6 @@
 import { type HTMLProps, type Ref, useMemo, useState } from 'react';
 import './style.scss';
 import clsx from 'clsx';
-import { m } from '../../../../../paraglide/messages';
 import type { SelectionOption } from '../../../../components/SelectionSection/type';
 import { ThemeSpacing } from '../../../types';
 import { Button } from '../../Button/Button';
@@ -9,6 +8,7 @@ import { Checkbox } from '../../Checkbox/Checkbox';
 import { Divider } from '../../Divider/Divider';
 import { Search } from '../../Search/Search';
 import { SizedBox } from '../../SizedBox/SizedBox';
+import type { TableFilterMessages } from '../types';
 
 type Props<T> = {
   title: string;
@@ -16,6 +16,7 @@ type Props<T> = {
   boxProps?: HTMLProps<HTMLDivElement>;
   selected?: Set<T>;
   options: SelectionOption<T>[];
+  messages: TableFilterMessages;
   onChange: (value: Array<T>) => void;
 };
 
@@ -24,6 +25,7 @@ export const TableHeaderFilterFloating = <T extends string | number>({
   ref,
   boxProps,
   options,
+  messages,
   onChange,
   selected: initialSelection,
 }: Props<T>) => {
@@ -61,13 +63,13 @@ export const TableHeaderFilterFloating = <T extends string | number>({
               setSearch('');
             }}
           >
-            {'Clear'}
+            {messages.clearButton}
           </button>
         )}
       </div>
       <Divider spacing={ThemeSpacing.Lg} />
       <Search
-        placeholder={m.controls_search()}
+        placeholder={messages.searchPlaceholder}
         initialValue={search}
         onChange={setSearch}
         value={search}
@@ -100,7 +102,7 @@ export const TableHeaderFilterFloating = <T extends string | number>({
           </div>
           <SizedBox height={ThemeSpacing.Xl} />
           <Button
-            text="Apply"
+            text={messages.applyButton}
             variant="primary"
             onClick={() => {
               const converted = Array.from(selected);
@@ -109,7 +111,7 @@ export const TableHeaderFilterFloating = <T extends string | number>({
           />
         </>
       )}
-      {visibleOptions.length === 0 && <p className="empty">Nothing is found</p>}
+      {visibleOptions.length === 0 && <p className="empty">{messages.emptyState}</p>}
     </div>
   );
 };

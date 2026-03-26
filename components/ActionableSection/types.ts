@@ -12,5 +12,6 @@ export interface ActionableSectionProps extends PropsWithChildren {
   title: string;
   subtitle: string;
   imageSrc: string;
+  imageAlt?: string;
   variant?: ActionableSectionVariantValue;
 }
