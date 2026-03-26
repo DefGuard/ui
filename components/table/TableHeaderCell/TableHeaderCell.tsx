@@ -181,26 +181,29 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
           </div>
         )}
       </TableCell>
-      {isFilterable && floatOpen && isPresent(filterOptions) && isPresent(filterMessages) && (
-        <FloatingPortal>
-          <TableHeaderFilterFloating
-            options={filterOptions}
-            messages={filterMessages}
-            title={header.column.columnDef.header as string}
-            ref={refs.setFloating}
-            selected={selectedFilters()}
-            boxProps={{
-              ...getFloatingProps({
-                style: floatingStyles,
-              }),
-            }}
-            onChange={(newSelection) => {
-              header.column.setFilterValue(newSelection);
-              setFloatOpen(false);
-            }}
-          />
-        </FloatingPortal>
-      )}
+      {isFilterable &&
+        floatOpen &&
+        isPresent(filterOptions) &&
+        isPresent(filterMessages) && (
+          <FloatingPortal>
+            <TableHeaderFilterFloating
+              options={filterOptions}
+              messages={filterMessages}
+              title={header.column.columnDef.header as string}
+              ref={refs.setFloating}
+              selected={selectedFilters()}
+              boxProps={{
+                ...getFloatingProps({
+                  style: floatingStyles,
+                }),
+              }}
+              onChange={(newSelection) => {
+                header.column.setFilterValue(newSelection);
+                setFloatOpen(false);
+              }}
+            />
+          </FloatingPortal>
+        )}
     </>
   );
 };
