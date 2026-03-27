@@ -81,6 +81,7 @@ import { IconMinusCircle } from './icons/IconMinusCircle';
 import { IconMobile } from './icons/IconMobile';
 import { IconNetworkSettings } from './icons/IconNetworkSettings';
 import { IconNotification } from './icons/IconNotification';
+import { IconLightBulb } from './icons/IconLightBulb';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOnline } from './icons/IconOnline';
 import { IconOpenId } from './icons/IconOpenId';
@@ -420,6 +421,8 @@ export const Icon = <T extends IconKindValue>({
         return IconRequest;
       case 'calendar':
         return IconCalendar;
+      case 'light-bulb':
+        return IconLightBulb;
     }
   }, [iconKind]);
 

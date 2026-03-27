@@ -127,6 +127,7 @@ export const IconKind = {
   Chat: 'chat',
   Request: 'request',
   Calendar: 'calendar',
+  LightBulb: 'light-bulb',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];
