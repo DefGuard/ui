@@ -67,6 +67,7 @@ import { IconInfoOutlined } from './icons/IconInfoOutlined';
 import { IconInternalMfa } from './icons/IconInternalMFA';
 import { IconIpSuggest } from './icons/IconIpSuggest';
 import { IconKey } from './icons/IconKey';
+import { IconLightBulb } from './icons/IconLightBulb';
 import { IconLightTheme } from './icons/IconLightTheme';
 import { IconLinux } from './icons/IconLinux';
 import { IconLoader } from './icons/IconLoader';
@@ -420,6 +421,8 @@ export const Icon = <T extends IconKindValue>({
         return IconRequest;
       case 'calendar':
         return IconCalendar;
+      case 'light-bulb':
+        return IconLightBulb;
     }
   }, [iconKind]);
 
