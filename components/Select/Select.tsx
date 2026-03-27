@@ -32,6 +32,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
 
   const {
     label,
+    helper,
     options,
     className,
     placeholder,
@@ -103,7 +104,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
       <div className="select spacer">
         <div className="inner">
           {isPresent(label) && (
-            <FieldLabel required={required} id={labelId} text={label} />
+            <FieldLabel required={required} id={labelId} text={label} helper={helper} />
           )}
           <FieldBox
             className={className}

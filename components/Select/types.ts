@@ -17,6 +17,7 @@ type BaseProps<T> = {
   disabled?: boolean;
   className?: string;
   label?: string;
+  helper?: string;
   required?: boolean;
   error?: string;
 } & Pick<FieldBoxProps, 'size'>;

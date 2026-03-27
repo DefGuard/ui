@@ -3,6 +3,7 @@ import type { FocusEventHandler, HTMLInputAutoCompleteAttribute, Ref } from 'rea
 export interface TextareaProps {
   value: string | null;
   label?: string;
+  helper?: string;
   disabled?: boolean;
   error?: string;
   ref?: Ref<HTMLTextAreaElement>;
