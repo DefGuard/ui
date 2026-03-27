@@ -128,6 +128,7 @@ export const IconKind = {
   Request: 'request',
   Calendar: 'calendar',
   LightBulb: 'light-bulb',
+  Tutorial: 'tutorial',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

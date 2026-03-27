@@ -109,6 +109,7 @@ import { IconSupport } from './icons/IconSupport';
 import { IconSync } from './icons/IconSync';
 import { IconToken } from './icons/IconToken';
 import { IconTransactions } from './icons/IconTransactions';
+import { IconTutorial } from './icons/IconTutorial';
 import { IconUbuntu } from './icons/IconUbuntu';
 import { IconUpload } from './icons/IconUpload';
 import { IconUser } from './icons/IconUser';
@@ -423,6 +424,8 @@ export const Icon = <T extends IconKindValue>({
         return IconCalendar;
       case 'light-bulb':
         return IconLightBulb;
+      case 'tutorial':
+        return IconTutorial;
     }
   }, [iconKind]);
 
