@@ -1,4 +1,7 @@
+import type { TranslationKey } from '../../types';
 import type { FieldBoxProps } from '../FieldBox/types';
+
+type TranslationParams = Record<string, unknown>;
 
 export type SelectOption<T> = {
   key: string | number;
@@ -16,7 +19,8 @@ type BaseProps<T> = {
   placeholder?: string;
   disabled?: boolean;
   className?: string;
-  label?: string;
+  label?: TranslationKey;
+  labelArgs?: TranslationParams;
   required?: boolean;
   error?: string;
 } & Pick<FieldBoxProps, 'size'>;

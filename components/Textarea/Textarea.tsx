@@ -10,6 +10,7 @@ import type { TextareaProps } from './types';
 export const Textarea = ({
   value,
   label,
+  labelArgs,
   error,
   placeholder,
   maxHeight = 80,
@@ -47,7 +48,8 @@ export const Textarea = ({
         {isPresent(label) && (
           <FieldLabel
             required={required}
-            text={label}
+            label={label}
+            labelArgs={labelArgs}
             id={labelId}
             onClick={() => {
               localRef.current?.focus();

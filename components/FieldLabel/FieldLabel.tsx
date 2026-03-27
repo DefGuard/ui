@@ -1,20 +1,60 @@
 import './style.scss';
 
 import clsx from 'clsx';
-import type { MouseEventHandler, Ref } from 'react';
+import { type MouseEventHandler, type Ref, useMemo } from 'react';
+import { m } from '../../../../paraglide/messages';
+import type { TranslationKey } from '../../types';
 import { isPresent } from '../../utils/isPresent';
 import { Helper } from '../Helper/Helper';
 
+type TranslationParams = Record<string, unknown>;
+type MessageFn = (...args: unknown[]) => string;
+
+const getMessage = (key: string, params?: TranslationParams): string | null => {
+  const maybeMessage = (m as Record<string, unknown>)[key];
+
+  if (typeof maybeMessage !== 'function') {
+    return null;
+  }
+
+  const message = maybeMessage as MessageFn;
+  if (isPresent(params)) {
+    return message(params);
+  }
+
+  return message();
+};
+
+function getHelper<K extends TranslationKey>(key: K) {
+  const helperKey = `${String(key)}_helper`;
+  return getMessage(helperKey);
+}
+
 type Props = {
-  text: string;
+  label: TranslationKey;
+  labelArgs?: TranslationParams;
   id?: string;
   ref?: Ref<HTMLDivElement>;
   required?: boolean;
-  helper?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
 };
 
-export const FieldLabel = ({ text, ref, required, helper, id, onClick }: Props) => {
+export const FieldLabel = ({ label, labelArgs, ref, required, id, onClick }: Props) => {
+  const labelText = useMemo((): string => {
+    const resolvedLabel = getMessage(String(label), labelArgs);
+    if (isPresent(resolvedLabel)) {
+      return resolvedLabel;
+    }
+    return String(label);
+  }, [label, labelArgs]);
+
+  const helperText = useMemo((): string | null => getHelper(label), [label]);
+
+  const shouldRenderHelper = useMemo(
+    () => isPresent(helperText) && helperText.trim().length > 0,
+    [helperText],
+  );
+
   return (
     <div
       className={clsx('field-label', {
@@ -39,10 +79,10 @@ export const FieldLabel = ({ text, ref, required, helper, id, onClick }: Props) 
           />
         </svg>
       )}
-      <span>{text}</span>
-      {isPresent(helper) && (
+      <span>{labelText}</span>
+      {shouldRenderHelper && (
         <Helper size={16}>
-          <p>{helper}</p>
+          <p>{helperText}</p>
         </Helper>
       )}
     </div>

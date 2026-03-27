@@ -6,6 +6,9 @@ import type {
 } from 'react';
 import type { FieldBoxProps, FieldSize } from '../FieldBox/types';
 
+type TranslationKey = keyof typeof import('../../../../paraglide/messages').m;
+type TranslationParams = Record<string, unknown>;
+
 export type InputProps = {
   value: string | null | number;
   size?: FieldSize;
@@ -13,8 +16,8 @@ export type InputProps = {
   ref?: Ref<HTMLInputElement>;
   error?: string | null;
   name?: string;
-  label?: string;
-  helper?: string;
+  label?: TranslationKey;
+  labelArgs?: TranslationParams;
   required?: boolean;
   disabled?: boolean;
   placeholder?: string;
@@ -32,11 +35,11 @@ export type FormInputProps = Pick<
   | 'disabled'
   | 'required'
   | 'label'
+  | 'labelArgs'
   | 'autocomplete'
   | 'size'
   | 'type'
   | 'notNull'
-  | 'helper'
 > & {
   mapError?: (error: string) => string | undefined;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;

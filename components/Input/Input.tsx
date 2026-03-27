@@ -32,7 +32,7 @@ export const Input = ({
   value,
   error,
   label,
-  helper,
+  labelArgs,
   ref,
   name,
   placeholder,
@@ -87,8 +87,8 @@ export const Input = ({
           <FieldLabel
             id={id}
             required={required}
-            text={label}
-            helper={helper}
+            label={label}
+            labelArgs={labelArgs}
             onClick={() => {
               innerRef.current?.focus();
             }}

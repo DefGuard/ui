@@ -16,6 +16,7 @@ export const SuggestedIpInput = ({
   value,
   error,
   label,
+  labelArgs,
   ref,
   testId,
   loading,
@@ -37,7 +38,9 @@ export const SuggestedIpInput = ({
 
   return (
     <div className="suggested-ip-input">
-      {isPresent(label) && <FieldLabel text={label} required={required} />}
+      {isPresent(label) && (
+        <FieldLabel label={label} labelArgs={labelArgs} required={required} />
+      )}
       <FieldBox
         error={hasError}
         onClick={() => {

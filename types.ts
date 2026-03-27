@@ -1,4 +1,5 @@
 import type { SVGProps } from 'react';
+import type { m } from '../../paraglide/messages';
 
 export const Direction = {
   UP: 'up',
@@ -6,6 +7,8 @@ export const Direction = {
   LEFT: 'left',
   RIGHT: 'right',
 } as const;
+
+export type TranslationKey = keyof typeof m;
 
 export type Direction = (typeof Direction)[keyof typeof Direction];
 
