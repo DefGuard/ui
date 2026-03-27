@@ -40,7 +40,7 @@ export const FieldLabel = ({ text, ref, required, helper, id, onClick }: Props) 
         </svg>
       )}
       <span>{text}</span>
-      {isPresent(helper) && (
+      {isPresent(helper) && helper.length > 0 && (
         <Helper size={16}>
           <p>{helper}</p>
         </Helper>

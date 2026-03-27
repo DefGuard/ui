@@ -9,6 +9,7 @@ export interface SuggestedIPInputProps {
   onBlur?: FocusEventHandler<HTMLInputElement>;
   error?: string;
   label?: string;
+  helper?: string;
   required?: boolean;
   testId?: string;
   loading?: boolean;

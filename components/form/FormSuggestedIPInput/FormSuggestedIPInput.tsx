@@ -5,7 +5,7 @@ import type { SuggestedIPInputProps } from '../../SuggestedIPInput/types';
 
 type Props = Omit<SuggestedIPInputProps, 'onChange' | 'value' | 'ref' | 'error'>;
 
-export const FormSuggestedIPInput = ({ data, label, required }: Props) => {
+export const FormSuggestedIPInput = ({ data, label, helper, required }: Props) => {
   const field = useFieldContext<string | null>();
   const errorMessage = useFormFieldError();
 
@@ -13,6 +13,7 @@ export const FormSuggestedIPInput = ({ data, label, required }: Props) => {
     <SuggestedIpInput
       data={data}
       label={label}
+      helper={helper}
       required={required}
       value={field.state.value}
       testId={`field-${field.name}`}

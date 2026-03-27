@@ -6,9 +6,12 @@ import type { SelectSingleProps, SelectSingleValue } from '../../Select/types';
 
 type AllowedValues = number | string;
 
-type Props = Pick<SelectSingleProps<AllowedValues>, 'label' | 'required' | 'options'>;
+type Props = Pick<
+  SelectSingleProps<AllowedValues>,
+  'label' | 'helper' | 'required' | 'options'
+>;
 
-export const FormSelect = ({ options, label, required }: Props) => {
+export const FormSelect = ({ options, label, helper, required }: Props) => {
   const field = useFieldContext<number | string>();
   const errorMessage = useFormFieldError();
 
@@ -24,6 +27,7 @@ export const FormSelect = ({ options, label, required }: Props) => {
       options={options}
       required={required}
       label={label}
+      helper={helper}
       value={selectedOption as SelectSingleValue<AllowedValues>}
       onChange={(option) => {
         field.handleChange(option.value);
