@@ -139,7 +139,7 @@ export const Input = ({
               if (isPresent(onChange)) {
                 let changeValue: string | null | number = e.target.value;
                 // allows nulls to be typed directly to form state
-                if (changeValue === '' && !notNull) {
+                if (changeValue === '' && !notNull && !required) {
                   changeValue = null;
                 } else {
                   if (inputTypeInner === 'number') {
