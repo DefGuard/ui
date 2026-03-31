@@ -110,6 +110,7 @@ import { IconSync } from './icons/IconSync';
 import { IconToken } from './icons/IconToken';
 import { IconTransactions } from './icons/IconTransactions';
 import { IconTutorial } from './icons/IconTutorial';
+import { IconTutorialNotAvailable } from './icons/IconTutorialNotAvailable';
 import { IconUbuntu } from './icons/IconUbuntu';
 import { IconUpload } from './icons/IconUpload';
 import { IconUser } from './icons/IconUser';
@@ -426,6 +427,8 @@ export const Icon = <T extends IconKindValue>({
         return IconLightBulb;
       case 'tutorial':
         return IconTutorial;
+      case 'tutorial-not-available':
+        return IconTutorialNotAvailable;
     }
   }, [iconKind]);
 

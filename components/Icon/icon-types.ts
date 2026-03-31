@@ -129,6 +129,7 @@ export const IconKind = {
   Calendar: 'calendar',
   LightBulb: 'light-bulb',
   Tutorial: 'tutorial',
+  TutorialNotAvailable: 'tutorial-not-available',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];
