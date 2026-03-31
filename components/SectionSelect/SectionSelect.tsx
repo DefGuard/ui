@@ -8,9 +8,11 @@ import { CheckboxIndicator } from '../CheckboxIndicator/CheckboxIndicator';
 import { Icon } from '../Icon';
 import { RadioIndicator } from '../RadioIndicator/RadioIndicator';
 import behavior from './assets/behavior.png';
+import certificateAuthority from './assets/certificate-authority.png';
 import customSettings from './assets/custom-settings.png';
 import customization from './assets/customization.png';
 import deviceClc from './assets/device-clc.png';
+import certificates from './assets/certificates.png';
 import enrollment from './assets/enrollment.png';
 import externalId from './assets/external-id.png';
 import gatewayNotifications from './assets/gateway-notifications.png';
@@ -61,6 +63,8 @@ export const SectionSelect = ({
 }: Props) => {
   const imageSource = useMemo(() => {
     switch (image) {
+      case 'certificate-authority':
+        return certificateAuthority;
       case 'ldap':
         return ldap;
       case 'proxy-management':
@@ -73,6 +77,8 @@ export const SectionSelect = ({
         return remoteActivation;
       case 'enrollment':
         return enrollment;
+      case 'certificates':
+        return certificates;
       case 'manual-setup':
         return manualSetup;
       case 'token-email':

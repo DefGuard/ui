@@ -1,4 +1,5 @@
 const SectionSelectImage = {
+  CertificateAuthority: 'certificate-authority',
   Smtp: 'smtp',
   GatewayNotifications: 'gateway-notifications',
   RemoteActivation: 'remote-activation',
@@ -21,6 +22,7 @@ const SectionSelectImage = {
   Vector: 'vector',
   LDAP: 'ldap',
   Enrollment: 'enrollment',
+  Certificates: 'certificates',
   ExternalId: 'external-id',
 } as const;
 
