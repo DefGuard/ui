@@ -131,6 +131,7 @@ export const IconKind = {
   LightBulb: 'light-bulb',
   Tutorial: 'tutorial',
   TutorialNotAvailable: 'tutorial-not-available',
+  AuthorisedApp: 'authorised-app',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

@@ -23,6 +23,7 @@ import { IconArrowBig } from './icons/IconArrowBig';
 import { IconArrowSmall } from './icons/IconArrowSmall';
 import { IconAttentionFilled } from './icons/IconAttentionFilled';
 import { IconAttentionOutlined } from './icons/IconAttentionOutlined';
+import { IconAuthorisedApp } from './icons/IconAuthorisedApp';
 import { IconBiometric } from './icons/IconBiometric';
 import { IconBug } from './icons/IconBug';
 import { IconCalendar } from './icons/IconCalendar';
@@ -432,6 +433,8 @@ export const Icon = <T extends IconKindValue>({
         return IconTutorial;
       case 'tutorial-not-available':
         return IconTutorialNotAvailable;
+      case 'authorised-app':
+        return IconAuthorisedApp;
     }
   }, [iconKind]);
 
