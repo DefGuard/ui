@@ -8,6 +8,7 @@ import { IconAccessSettings } from './icons/IconAccessSettings';
 import { IconActivity } from './icons/IconActivity';
 import { IconActivityNotes } from './icons/IconActivityNotes';
 import { IconAddAlias } from './icons/IconAddAlias';
+import { IconAliases } from './icons/IconAliases';
 import { IconAddDevice } from './icons/IconAddDevice';
 import { IconAddGroup } from './icons/IconAddGroup';
 import { IconAddLocation } from './icons/IconAddLocation';
@@ -181,6 +182,8 @@ export const Icon = <T extends IconKindValue>({
         return IconAddRule;
       case 'add-alias':
         return IconAddAlias;
+      case 'aliases':
+        return IconAliases;
       case 'upload':
         return IconUpload;
       case 'lock-closed':

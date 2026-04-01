@@ -2,6 +2,7 @@ export const IconKind = {
   IpSuggest: 'ip-suggest',
   Filtration: 'filtration',
   AddAlias: 'add-alias',
+  Aliases: 'aliases',
   Customize: 'customize',
   NetworkSettings: 'network-settings',
   AddGroup: 'add-group',
