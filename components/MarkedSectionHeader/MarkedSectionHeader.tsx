@@ -5,7 +5,7 @@ import { SizedBox } from '../SizedBox/SizedBox';
 
 type Props = {
   title: string;
-  description: string;
+  description?: string;
   warning?: string;
 };
 
@@ -15,6 +15,14 @@ export const MarkedSectionHeader = ({ description, title, warning }: Props) => {
       <AppText font={TextStyle.TBodyPrimary600} color={ThemeVariable.FgDefault}>
         {title}
       </AppText>
+      {description && (
+        <>
+          <SizedBox height={ThemeSpacing.Xl} />
+          <AppText font={TextStyle.TBodySm400} color={ThemeVariable.FgMuted}>
+            {description}
+          </AppText>
+        </>
+      )}
       <SizedBox height={ThemeSpacing.Xl} />
       {warning && (
         <>

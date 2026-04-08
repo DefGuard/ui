@@ -2,6 +2,7 @@ export const IconKind = {
   IpSuggest: 'ip-suggest',
   Filtration: 'filtration',
   AddAlias: 'add-alias',
+  Aliases: 'aliases',
   Customize: 'customize',
   NetworkSettings: 'network-settings',
   AddGroup: 'add-group',
@@ -130,6 +131,7 @@ export const IconKind = {
   LightBulb: 'light-bulb',
   Tutorial: 'tutorial',
   TutorialNotAvailable: 'tutorial-not-available',
+  AuthorisedApp: 'authorised-app',
   Play: 'play',
   PlayFilled: 'play-filled',
 } as const;

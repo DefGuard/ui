@@ -14,6 +14,7 @@ import { IconAddLocation } from './icons/IconAddLocation';
 import { IconAddRule } from './icons/IconAddRule';
 import { IconAddToken } from './icons/IconAddToken';
 import { IconAddUser } from './icons/IconAddUser';
+import { IconAliases } from './icons/IconAliases';
 import { IconAndroid } from './icons/IconAndroid';
 import { IconApple } from './icons/IconApple';
 import { IconAppStore } from './icons/IconAppstore';
@@ -22,6 +23,7 @@ import { IconArrowBig } from './icons/IconArrowBig';
 import { IconArrowSmall } from './icons/IconArrowSmall';
 import { IconAttentionFilled } from './icons/IconAttentionFilled';
 import { IconAttentionOutlined } from './icons/IconAttentionOutlined';
+import { IconAuthorisedApp } from './icons/IconAuthorisedApp';
 import { IconBiometric } from './icons/IconBiometric';
 import { IconBug } from './icons/IconBug';
 import { IconCalendar } from './icons/IconCalendar';
@@ -183,6 +185,8 @@ export const Icon = <T extends IconKindValue>({
         return IconAddRule;
       case 'add-alias':
         return IconAddAlias;
+      case 'aliases':
+        return IconAliases;
       case 'upload':
         return IconUpload;
       case 'lock-closed':
@@ -431,6 +435,8 @@ export const Icon = <T extends IconKindValue>({
         return IconTutorial;
       case 'tutorial-not-available':
         return IconTutorialNotAvailable;
+      case 'authorised-app':
+        return IconAuthorisedApp;
       case 'play':
         return IconPlay;
       case 'play-filled':
