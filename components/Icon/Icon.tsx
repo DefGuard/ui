@@ -90,6 +90,8 @@ import { IconOpenId } from './icons/IconOpenId';
 import { IconOpenInNewWindow } from './icons/IconOpenInNewWindow';
 import { IconPending } from './icons/IconPending';
 import { IconPieChart } from './icons/IconPieChart';
+import { IconPlay } from './icons/IconPlay';
+import { IconPlayFilled } from './icons/IconPlayFilled';
 import { IconPlus } from './icons/IconPlus';
 import { IconPlusCircle } from './icons/IconPlusCircle';
 import { IconProfile } from './icons/IconProfile';
@@ -435,6 +437,10 @@ export const Icon = <T extends IconKindValue>({
         return IconTutorialNotAvailable;
       case 'authorised-app':
         return IconAuthorisedApp;
+      case 'play':
+        return IconPlay;
+      case 'play-filled':
+        return IconPlayFilled;
     }
   }, [iconKind]);
 

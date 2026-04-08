@@ -132,6 +132,8 @@ export const IconKind = {
   Tutorial: 'tutorial',
   TutorialNotAvailable: 'tutorial-not-available',
   AuthorisedApp: 'authorised-app',
+  Play: 'play',
+  PlayFilled: 'play-filled',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];
