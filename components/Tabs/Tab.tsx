@@ -4,7 +4,7 @@ import { isPresent } from '../../utils/isPresent';
 import { Icon } from '../Icon';
 import type { TabProps } from './types';
 
-export const Tab = ({ onClick, title, active, icon }: TabProps) => {
+export const Tab = ({ onClick, title, active, icon, iconColor }: TabProps) => {
   return (
     <div
       className={clsx('tab', {
@@ -15,7 +15,11 @@ export const Tab = ({ onClick, title, active, icon }: TabProps) => {
       <div className="line"></div>
       <div className="title">
         {isPresent(icon) && (
-          <Icon icon={icon} size={16} staticColor={ThemeVariable.FgAttention} />
+          <Icon
+            icon={icon}
+            size={16}
+            staticColor={iconColor ?? ThemeVariable.FgAttention}
+          />
         )}
         <span>{title}</span>
       </div>
