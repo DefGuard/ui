@@ -30,10 +30,6 @@ export const MarkedSectionHeader = ({ description, title, warning }: Props) => {
           <SizedBox height={ThemeSpacing.Xl} />
         </>
       )}
-      <AppText font={TextStyle.TBodySm400} color={ThemeVariable.FgMuted}>
-        {description}
-      </AppText>
-      <SizedBox height={ThemeSpacing.Xl} />
     </>
   );
 };
