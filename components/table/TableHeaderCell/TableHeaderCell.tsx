@@ -94,8 +94,13 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
   if (isEmpty)
     return (
       <TableCell
+        columnId={header.column.id}
+        sticky={isSticky}
+        className={clsx('header-cell', {
+          sticky: isSticky,
+        })}
         style={{
-          width: `calc(var(--col-${header.id}-size) * 1px)`,
+          width: `calc(var(--col-${header.column.id}-size) * 1px)`,
         }}
         empty
       />
@@ -104,8 +109,10 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
   return (
     <>
       <TableCell
+        columnId={header.column.id}
+        sticky={isSticky}
         style={{
-          width: `calc(var(--col-${header.id}-size) * 1px)`,
+          width: `calc(var(--col-${header.column.id}-size) * 1px)`,
         }}
         className={clsx('header-cell', {
           clickable: isSortable,

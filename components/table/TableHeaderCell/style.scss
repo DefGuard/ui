@@ -1,10 +1,14 @@
 .table .header-cell {
   --resize-bar-visibility: 0;
 
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: var(--bg-disabled);
   column-gap: var(--spacing-sm);
 
   &.resizable {
-    position: relative;
+    position: sticky;
 
     &:hover,
     .resizing {
@@ -13,9 +17,7 @@
   }
 
   &.sticky {
-    position: sticky;
     z-index: 3;
-    background-color: var(--bg-disabled);
   }
 
   .resize-bar {

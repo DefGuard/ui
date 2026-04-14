@@ -27,23 +27,26 @@ export const TableCell = ({
 
   const style = useMemo((): CSSProperties => {
     const res: CSSProperties = {};
-    if (outsideStyle?.width) return res;
     const id = columnId ?? cell?.column.id;
     const hasId = isPresent(id);
-    if (flex) {
-      return res;
-    }
-    if (empty && !hasId) {
-      res.width = tableActionColumnSize;
-      return res;
-    }
-    if (hasId) {
-      res.width = `calc(var(--col-${id}-size) * 1px)`;
-      // Set sticky offset if this is a sticky column
-      if (isSticky) {
-        res.left = `calc(var(--col-${id}-sticky-left-offset) * 1px)`;
+
+    if (!outsideStyle?.width) {
+      if (flex) {
+        return res;
+      }
+      if (empty && !hasId) {
+        res.width = tableActionColumnSize;
+        return res;
+      }
+      if (hasId) {
+        res.width = `calc(var(--col-${id}-size) * 1px)`;
       }
     }
+
+    if (hasId && isSticky) {
+      res.left = `calc(var(--col-${id}-sticky-left-offset) * 1px)`;
+    }
+
     return res;
   }, [columnId, empty, flex, outsideStyle?.width, cell, isSticky]);
 

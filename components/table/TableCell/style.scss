@@ -68,7 +68,7 @@
   &.sticky {
     position: sticky;
     z-index: 1;
-    background-color: inherit;
+    background-color: var(--bg-color);
   }
 
   & > span {

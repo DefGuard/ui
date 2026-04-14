@@ -6,12 +6,15 @@ import { TableCell } from '../TableCell/TableCell';
 
 type Props<T extends object> = {
   row: Row<T>;
+  hasSelectionColumn: boolean;
 };
 
-export const TableExpandCell = <T extends object>({ row }: Props<T>) => {
+export const TableExpandCell = <T extends object>({
+  row,
+  hasSelectionColumn,
+}: Props<T>) => {
   const expanded = row.getIsExpanded();
   const canExpand = row.getCanExpand();
-  const canSelect = row.getCanSelect();
 
   return (
     <TableCell
@@ -20,7 +23,7 @@ export const TableExpandCell = <T extends object>({ row }: Props<T>) => {
       noPadding
       empty={!canExpand}
       style={{
-        width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)`,
+        width: `calc(var(--col-${hasSelectionColumn ? 1 : 0}-size) * 1px)`,
         left: 'calc(var(--expand-sticky-offset) * 1px)',
       }}
     >

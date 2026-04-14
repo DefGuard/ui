@@ -16,6 +16,7 @@ import {
 } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { isPresent } from '../../../utils/isPresent';
+import { Checkbox } from '../../Checkbox/Checkbox';
 import { tableActionColumnSize } from '../consts';
 import { TableCell } from '../TableCell/TableCell';
 import { TableCellContext } from '../TableCell/TableCellContext';
@@ -106,18 +107,17 @@ export const TableBody = <T extends object>({
     const canRowsExpand = table.options.enableExpanding;
     const canRowsSelect = table.options.enableRowSelection;
     // assign static sizing to extra columns at the start of the row
+    // in the same order as they are rendered: selection -> expand -> data columns
     let iterIndex = 0;
     let cumulativeStickyOffset = 0;
-    // Expand column (always at position 0 if present)
-    if (canRowsExpand) {
-      colSizes['--expand-sticky-offset'] = 0; // Always at left edge
-      colSizes['--col-0-size'] = tableActionColumnSize;
+    if (canRowsSelect) {
+      colSizes['--selection-sticky-offset'] = cumulativeStickyOffset;
+      colSizes[`--col-${iterIndex}-size`] = tableActionColumnSize;
       cumulativeStickyOffset += tableActionColumnSize;
       iterIndex += 1;
     }
-    // Selection column (at position 0 or 1 depending on expand)
-    if (canRowsSelect) {
-      colSizes['--selection-sticky-offset'] = cumulativeStickyOffset;
+    if (canRowsExpand) {
+      colSizes['--expand-sticky-offset'] = cumulativeStickyOffset;
       colSizes[`--col-${iterIndex}-size`] = tableActionColumnSize;
       cumulativeStickyOffset += tableActionColumnSize;
       iterIndex += 1;
@@ -265,14 +265,36 @@ export const TableBody = <T extends object>({
       >
         <TableHeader>
           {table.options.enableRowSelection && (
-            <TableSelectionCell
-              selected={table.getIsAllRowsSelected()}
-              onClick={() => {
-                table.toggleAllRowsSelected();
+            <TableCell
+              sticky
+              className="header-cell"
+              alignContent="center"
+              noBorder
+              style={{
+                width: 'calc(var(--col-0-size) * 1px)',
+                left: 'calc(var(--selection-sticky-offset) * 1px)',
+              }}
+            >
+              <Checkbox
+                active={table.getIsAllRowsSelected()}
+                onClick={() => {
+                  table.toggleAllRowsSelected();
+                }}
+              />
+            </TableCell>
+          )}
+          {table.options.enableExpanding && (
+            <TableCell
+              sticky
+              className="header-cell table-expand-cell"
+              noPadding
+              empty
+              style={{
+                width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)`,
+                left: 'calc(var(--expand-sticky-offset) * 1px)',
               }}
             />
           )}
-          {table.options.enableExpanding && <TableCell empty />}
           {table.getHeaderGroups()[0].headers.map((header) => {
             return <TableHeaderCell header={header} key={header.id} />;
           })}
@@ -310,7 +332,9 @@ export const TableBody = <T extends object>({
                     }}
                   />
                 )}
-                {table.options.enableExpanding && <TableExpandCell row={row} />}
+                {table.options.enableExpanding && (
+                  <TableExpandCell row={row} hasSelectionColumn={canSelect} />
+                )}
                 {row.getAllCells().map((cell) => (
                   <Fragment key={cell.id}>
                     <TableCellContext value={cell}>
