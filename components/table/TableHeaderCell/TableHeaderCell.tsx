@@ -42,6 +42,8 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
     isPresent(filterOptions) &&
     isPresent(filterMessages);
 
+  const isSticky = header.column.columnDef.meta?.sticky ?? false;
+
   const headerSorting = header.column.getIsSorted();
 
   const isEmpty =
@@ -109,6 +111,7 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
           clickable: isSortable,
           filterable: isFilterable,
           resizable,
+          sticky: isSticky,
         })}
         onClick={() => {
           if (suppressSortOnNextClickRef.current) {

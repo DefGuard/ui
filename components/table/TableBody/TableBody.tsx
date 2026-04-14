@@ -107,17 +107,26 @@ export const TableBody = <T extends object>({
     const canRowsSelect = table.options.enableRowSelection;
     // assign static sizing to extra columns at the start of the row
     let iterIndex = 0;
+    let cumulativeStickyOffset = 0;
     if (canRowsExpand) {
       colSizes['--col-0-size'] = tableActionColumnSize;
+      cumulativeStickyOffset += tableActionColumnSize;
       iterIndex += 1;
     }
     if (canRowsSelect) {
       colSizes[`--col-${iterIndex}-size`] = tableActionColumnSize;
+      cumulativeStickyOffset += tableActionColumnSize;
       iterIndex += 1;
     }
     for (const header of headers) {
+      const isSticky = header.column.columnDef.meta?.sticky ?? false;
       colSizes[`--col-${iterIndex}-size`] = header.column.getSize();
       colSizes[`--col-${header.column.id}-size`] = header.column.getSize();
+      // Calculate sticky offset for this column
+      if (isSticky) {
+        colSizes[`--col-${header.column.id}-sticky-left-offset`] = cumulativeStickyOffset;
+        cumulativeStickyOffset += header.column.getSize();
+      }
       iterIndex += 1;
     }
     return colSizes;

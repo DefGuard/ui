@@ -65,6 +65,12 @@
     justify-content: center;
   }
 
+  &.sticky {
+    position: sticky;
+    z-index: 1;
+    background-color: inherit;
+  }
+
   & > span {
     font: var(--t-body-sm-400);
     color: var(--fg-default);
