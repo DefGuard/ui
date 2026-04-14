@@ -4,6 +4,7 @@ import { type CSSProperties, useContext, useMemo } from 'react';
 import { isPresent } from '../../../utils/isPresent';
 import { tableActionColumnSize } from '../consts';
 import { TableCellContext } from './TableCellContext';
+import { TableStickyColumnsContext } from './TableStickyColumnsContext';
 import type { TableCellProps } from './types';
 
 export const TableCell = ({
@@ -21,6 +22,7 @@ export const TableCell = ({
   ...props
 }: TableCellProps) => {
   const cell = useContext(TableCellContext);
+  const stickyColumns = useContext(TableStickyColumnsContext);
 
   const isStickyFromMeta = cell?.column.columnDef.meta?.sticky ?? false;
   const isSticky = sticky || isStickyFromMeta;
@@ -44,11 +46,17 @@ export const TableCell = ({
     }
 
     if (hasId && isSticky) {
-      res.left = `calc(var(--col-${id}-sticky-left-offset) * 1px - var(--table-inline-padding))`;
+      const stickySide = stickyColumns[id];
+      if (stickySide === 'left') {
+        res.left = `calc(var(--col-${id}-sticky-left-offset) * 1px - var(--table-inline-padding))`;
+      }
+      if (stickySide === 'right') {
+        res.right = `calc(var(--col-${id}-sticky-right-offset) * 1px - var(--table-inline-padding))`;
+      }
     }
 
     return res;
-  }, [columnId, empty, flex, outsideStyle?.width, cell, isSticky]);
+  }, [columnId, empty, flex, outsideStyle?.width, cell, isSticky, stickyColumns]);
 
   return (
     <div

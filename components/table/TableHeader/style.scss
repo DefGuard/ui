@@ -23,8 +23,11 @@
         border-top-left-radius: var(--radius-lg);
       }
 
-      &:last-child {
+      &:last-child:not(.sticky) {
         flex: 1 1 10px;
+      }
+
+      &:last-child {
         border-top-right-radius: var(--radius-lg);
       }
 

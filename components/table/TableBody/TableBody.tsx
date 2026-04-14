@@ -20,6 +20,7 @@ import { Checkbox } from '../../Checkbox/Checkbox';
 import { tableActionColumnSize } from '../consts';
 import { TableCell } from '../TableCell/TableCell';
 import { TableCellContext } from '../TableCell/TableCellContext';
+import { TableStickyColumnsContext } from '../TableCell/TableStickyColumnsContext';
 import { TableExpandCell } from '../TableExpandCell/TableExpandCell';
 import { TableExpandedRowHeader } from '../TableExpandedRowHeader/TableExpandedRowHeader';
 import { TableHeader } from '../TableHeader/TableHeader';
@@ -100,6 +101,28 @@ export const TableBody = <T extends object>({
       .join(' ');
   }, [table]);
 
+  const stickyColumnSides = useMemo(() => {
+    const headers = table.getFlatHeaders();
+    const stickySides: Record<string, 'left' | 'right'> = {};
+
+    let leftIndex = 0;
+    while (
+      leftIndex < headers.length &&
+      headers[leftIndex].column.columnDef.meta?.sticky
+    ) {
+      stickySides[headers[leftIndex].column.id] = 'left';
+      leftIndex += 1;
+    }
+
+    let rightIndex = headers.length - 1;
+    while (rightIndex >= leftIndex && headers[rightIndex].column.columnDef.meta?.sticky) {
+      stickySides[headers[rightIndex].column.id] = 'right';
+      rightIndex -= 1;
+    }
+
+    return stickySides;
+  }, [table.getFlatHeaders]);
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: needs to recalculate on sizing changes
   const columnSizeVars = useMemo(() => {
     const headers = table.getFlatHeaders();
@@ -124,20 +147,30 @@ export const TableBody = <T extends object>({
     }
     // Data columns - sticky ones use the cumulative offset
     for (const header of headers) {
-      const isSticky = header.column.columnDef.meta?.sticky ?? false;
       colSizes[`--col-${iterIndex}-size`] = header.column.getSize();
       colSizes[`--col-${header.column.id}-size`] = header.column.getSize();
-      // Calculate sticky offset for this column
-      if (isSticky) {
+      if (stickyColumnSides[header.column.id] === 'left') {
         colSizes[`--col-${header.column.id}-sticky-left-offset`] = cumulativeStickyOffset;
         cumulativeStickyOffset += header.column.getSize();
       }
       iterIndex += 1;
     }
+
+    let cumulativeStickyRightOffset = 0;
+    for (let index = headers.length - 1; index >= 0; index -= 1) {
+      const header = headers[index];
+      if (stickyColumnSides[header.column.id] === 'right') {
+        colSizes[`--col-${header.column.id}-sticky-right-offset`] =
+          cumulativeStickyRightOffset;
+        cumulativeStickyRightOffset += header.column.getSize();
+      }
+    }
+
     return colSizes;
   }, [
     table.getState().columnSizingInfo,
     table.getState().columnSizing,
+    stickyColumnSides,
     table.getFlatHeaders,
   ]);
 
@@ -244,129 +277,131 @@ export const TableBody = <T extends object>({
   }, [table]);
 
   return (
-    <div
-      className={clsx('table', className)}
-      style={{
-        ...columnSizeVars,
-        maxHeight: maxTableHeight ?? undefined,
-        overflow: 'auto',
-      }}
-      ref={scrollParentRef}
-      {...props}
-    >
+    <TableStickyColumnsContext value={stickyColumnSides}>
       <div
-        className="table-virtual-body"
-        ref={tableVirtualBodyRef}
+        className={clsx('table', className)}
         style={{
-          height: `${rowVirtualizer.getTotalSize()}px`,
-          position: 'relative',
-          minWidth: tableWidth,
+          ...columnSizeVars,
+          maxHeight: maxTableHeight ?? undefined,
+          overflow: 'auto',
         }}
+        ref={scrollParentRef}
+        {...props}
       >
-        <TableHeader>
-          {table.options.enableRowSelection && (
-            <TableCell
-              sticky
-              className="header-cell"
-              alignContent="center"
-              noBorder
-              style={{
-                width: 'calc(var(--col-0-size) * 1px)',
-                left: 'calc(var(--selection-sticky-offset) * 1px - var(--table-inline-padding))',
-              }}
-            >
-              <Checkbox
-                active={table.getIsAllRowsSelected()}
-                onClick={() => {
-                  table.toggleAllRowsSelected();
+        <div
+          className="table-virtual-body"
+          ref={tableVirtualBodyRef}
+          style={{
+            height: `${rowVirtualizer.getTotalSize()}px`,
+            position: 'relative',
+            minWidth: tableWidth,
+          }}
+        >
+          <TableHeader>
+            {table.options.enableRowSelection && (
+              <TableCell
+                sticky
+                className="header-cell"
+                alignContent="center"
+                noBorder
+                style={{
+                  width: 'calc(var(--col-0-size) * 1px)',
+                  left: 'calc(var(--selection-sticky-offset) * 1px - var(--table-inline-padding))',
+                }}
+              >
+                <Checkbox
+                  active={table.getIsAllRowsSelected()}
+                  onClick={() => {
+                    table.toggleAllRowsSelected();
+                  }}
+                />
+              </TableCell>
+            )}
+            {table.options.enableExpanding && (
+              <TableCell
+                sticky
+                className="header-cell table-expand-cell"
+                noPadding
+                empty
+                style={{
+                  width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)`,
+                  left: 'calc(var(--expand-sticky-offset) * 1px - var(--table-inline-padding))',
                 }}
               />
-            </TableCell>
-          )}
-          {table.options.enableExpanding && (
-            <TableCell
-              sticky
-              className="header-cell table-expand-cell"
-              noPadding
-              empty
-              style={{
-                width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)`,
-                left: 'calc(var(--expand-sticky-offset) * 1px - var(--table-inline-padding))',
-              }}
-            />
-          )}
-          {table.getHeaderGroups()[0].headers.map((header) => {
-            return <TableHeaderCell header={header} key={header.id} />;
-          })}
-        </TableHeader>
-        {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-          const row = rows[virtualRow.index];
-          const isExpanded = row.getIsExpanded() && row.getCanExpand();
-          const canSelect = row.getCanSelect();
-          const isLast = virtualRow.index === rows.length - 1 && !hasNextPage;
-          return (
-            <div
-              ref={(node) => rowVirtualizer.measureElement(node)}
-              data-index={virtualRow.index}
-              className={clsx('virtual-row', {
-                expanded: isExpanded && !isLast,
-              })}
-              key={row.id}
-              style={{
-                position: 'absolute',
-                transform: `translateY(${virtualRow.start}px)`,
-                minWidth: tableWidth,
-                width: '100%',
-              }}
-            >
-              <TableRowContainer
-                className={clsx({
-                  last: isLast && !isExpanded,
+            )}
+            {table.getHeaderGroups()[0].headers.map((header) => {
+              return <TableHeaderCell header={header} key={header.id} />;
+            })}
+          </TableHeader>
+          {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+            const row = rows[virtualRow.index];
+            const isExpanded = row.getIsExpanded() && row.getCanExpand();
+            const canSelect = row.getCanSelect();
+            const isLast = virtualRow.index === rows.length - 1 && !hasNextPage;
+            return (
+              <div
+                ref={(node) => rowVirtualizer.measureElement(node)}
+                data-index={virtualRow.index}
+                className={clsx('virtual-row', {
+                  expanded: isExpanded && !isLast,
                 })}
+                key={row.id}
+                style={{
+                  position: 'absolute',
+                  transform: `translateY(${virtualRow.start}px)`,
+                  minWidth: tableWidth,
+                  width: '100%',
+                }}
               >
-                {canSelect && (
-                  <TableSelectionCell
-                    selected={row.getIsSelected()}
-                    onClick={() => {
-                      row.toggleSelected();
+                <TableRowContainer
+                  className={clsx({
+                    last: isLast && !isExpanded,
+                  })}
+                >
+                  {canSelect && (
+                    <TableSelectionCell
+                      selected={row.getIsSelected()}
+                      onClick={() => {
+                        row.toggleSelected();
+                      }}
+                    />
+                  )}
+                  {table.options.enableExpanding && (
+                    <TableExpandCell row={row} hasSelectionColumn={canSelect} />
+                  )}
+                  {row.getAllCells().map((cell) => (
+                    <Fragment key={cell.id}>
+                      <TableCellContext value={cell}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCellContext>
+                    </Fragment>
+                  ))}
+                </TableRowContainer>
+                {isExpanded && isPresent(expandedHeaders) && (
+                  <TableExpandedRowHeader
+                    canExpand={table.options.enableExpanding ?? false}
+                    canSelect={
+                      (table.options.enableRowSelection as boolean | undefined) ?? false
+                    }
+                    headersData={expandedHeaders}
+                    style={{
+                      gridTemplateColumns: gridColsDef,
                     }}
                   />
                 )}
-                {table.options.enableExpanding && (
-                  <TableExpandCell row={row} hasSelectionColumn={canSelect} />
-                )}
-                {row.getAllCells().map((cell) => (
-                  <Fragment key={cell.id}>
-                    <TableCellContext value={cell}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCellContext>
-                  </Fragment>
-                ))}
-              </TableRowContainer>
-              {isExpanded && isPresent(expandedHeaders) && (
-                <TableExpandedRowHeader
-                  canExpand={table.options.enableExpanding ?? false}
-                  canSelect={
-                    (table.options.enableRowSelection as boolean | undefined) ?? false
-                  }
-                  headersData={expandedHeaders}
-                  style={{
-                    gridTemplateColumns: gridColsDef,
-                  }}
-                />
-              )}
-              {isExpanded &&
-                isPresent(renderExpandedRow) &&
-                renderExpandedRow(row, isLast)}
+                {isExpanded &&
+                  isPresent(renderExpandedRow) &&
+                  renderExpandedRow(row, isLast)}
+              </div>
+            );
+          })}
+          {hasNextPage && isPresent(onNextPage) && (
+            <div className="load-more-row" ref={loadMoreRowRef}>
+              <Skeleton />
             </div>
-          );
-        })}
-        {hasNextPage && isPresent(onNextPage) && (
-          <div className="load-more-row" ref={loadMoreRowRef}>
-            <Skeleton />
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </TableStickyColumnsContext>
   );
 };
