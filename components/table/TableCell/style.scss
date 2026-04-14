@@ -8,6 +8,7 @@
   box-sizing: border-box;
   padding: 0 var(--spacing-md);
   min-height: 48px;
+  min-width: 0;
   background-color: inherit;
 
   @include animate(background-color);
@@ -72,6 +73,7 @@
   }
 
   & > span {
+    min-width: 0;
     font: var(--t-body-sm-400);
     color: var(--fg-default);
     overflow: hidden;

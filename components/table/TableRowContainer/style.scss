@@ -13,6 +13,7 @@
     --bg-color: var(--bg-default);
 
     .table-cell {
+      overflow: hidden;
       border-bottom: var(--border-1) solid var(--border-disabled);
     }
   }
@@ -23,6 +24,7 @@
     user-select: none;
 
     .table-cell {
+      overflow: hidden;
       min-height: 36px;
 
       span {
@@ -37,6 +39,7 @@
     border-bottom-right-radius: var(--radius-md);
 
     .table-cell {
+      overflow: hidden;
       border-bottom: var(--border-1) solid var(--border-disabled);
 
       &:first-child {

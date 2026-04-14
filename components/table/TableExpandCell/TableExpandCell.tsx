@@ -24,7 +24,7 @@ export const TableExpandCell = <T extends object>({
       empty={!canExpand}
       style={{
         width: `calc(var(--col-${hasSelectionColumn ? 1 : 0}-size) * 1px)`,
-        left: 'calc(var(--expand-sticky-offset) * 1px)',
+        left: 'calc(var(--expand-sticky-offset) * 1px - var(--table-inline-padding))',
       }}
     >
       {canExpand && (

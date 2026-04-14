@@ -44,7 +44,7 @@ export const TableCell = ({
     }
 
     if (hasId && isSticky) {
-      res.left = `calc(var(--col-${id}-sticky-left-offset) * 1px)`;
+      res.left = `calc(var(--col-${id}-sticky-left-offset) * 1px - var(--table-inline-padding))`;
     }
 
     return res;

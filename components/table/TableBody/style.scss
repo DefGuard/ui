@@ -1,6 +1,8 @@
 .table {
+  --table-inline-padding: var(--spacing-xl);
+
   box-sizing: border-box;
-  padding: 0 var(--spacing-xl);
+  padding: 0 var(--table-inline-padding);
   width: 100%;
 }
 

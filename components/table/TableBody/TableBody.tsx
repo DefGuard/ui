@@ -272,7 +272,7 @@ export const TableBody = <T extends object>({
               noBorder
               style={{
                 width: 'calc(var(--col-0-size) * 1px)',
-                left: 'calc(var(--selection-sticky-offset) * 1px)',
+                left: 'calc(var(--selection-sticky-offset) * 1px - var(--table-inline-padding))',
               }}
             >
               <Checkbox
@@ -291,7 +291,7 @@ export const TableBody = <T extends object>({
               empty
               style={{
                 width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)`,
-                left: 'calc(var(--expand-sticky-offset) * 1px)',
+                left: 'calc(var(--expand-sticky-offset) * 1px - var(--table-inline-padding))',
               }}
             />
           )}
