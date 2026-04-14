@@ -9,10 +9,12 @@ type Props = {
 export const TableSelectionCell = ({ selected, onClick }: Props) => {
   return (
     <TableCell
+      sticky
       alignContent="center"
       noBorder
       style={{
         width: `calc(var(--col-0-size) * 1px)`,
+        left: 'calc(var(--selection-sticky-offset) * 1px)',
       }}
     >
       <Checkbox active={selected} onClick={onClick} />

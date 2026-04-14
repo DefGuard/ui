@@ -15,10 +15,14 @@ export const TableExpandCell = <T extends object>({ row }: Props<T>) => {
 
   return (
     <TableCell
+      sticky
       className="table-expand-cell"
       noPadding
       empty={!canExpand}
-      style={{ width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)` }}
+      style={{
+        width: `calc(var(--col-${canSelect ? 1 : 0}-size) * 1px)`,
+        left: 'calc(var(--expand-sticky-offset) * 1px)',
+      }}
     >
       {canExpand && (
         <IconButton

@@ -16,12 +16,14 @@ export const TableCell = ({
   alignContent = 'left',
   flex = false,
   radius = false,
+  sticky = false,
   style: outsideStyle,
   ...props
 }: TableCellProps) => {
   const cell = useContext(TableCellContext);
 
-  const isSticky = cell?.column.columnDef.meta?.sticky ?? false;
+  const isStickyFromMeta = cell?.column.columnDef.meta?.sticky ?? false;
+  const isSticky = sticky || isStickyFromMeta;
 
   const style = useMemo((): CSSProperties => {
     const res: CSSProperties = {};

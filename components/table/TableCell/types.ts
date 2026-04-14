@@ -9,4 +9,5 @@ export interface TableCellProps extends HTMLProps<HTMLDivElement> {
   columnId?: string;
   ignoreStyleAssign?: boolean;
   alignContent?: 'center' | 'left' | 'right';
+  sticky?: boolean;
 }

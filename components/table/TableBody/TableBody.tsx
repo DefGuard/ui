@@ -108,16 +108,21 @@ export const TableBody = <T extends object>({
     // assign static sizing to extra columns at the start of the row
     let iterIndex = 0;
     let cumulativeStickyOffset = 0;
+    // Expand column (always at position 0 if present)
     if (canRowsExpand) {
+      colSizes['--expand-sticky-offset'] = 0; // Always at left edge
       colSizes['--col-0-size'] = tableActionColumnSize;
       cumulativeStickyOffset += tableActionColumnSize;
       iterIndex += 1;
     }
+    // Selection column (at position 0 or 1 depending on expand)
     if (canRowsSelect) {
+      colSizes['--selection-sticky-offset'] = cumulativeStickyOffset;
       colSizes[`--col-${iterIndex}-size`] = tableActionColumnSize;
       cumulativeStickyOffset += tableActionColumnSize;
       iterIndex += 1;
     }
+    // Data columns - sticky ones use the cumulative offset
     for (const header of headers) {
       const isSticky = header.column.columnDef.meta?.sticky ?? false;
       colSizes[`--col-${iterIndex}-size`] = header.column.getSize();
