@@ -235,99 +235,102 @@ export const TableBody = <T extends object>({
       style={{
         ...columnSizeVars,
         maxHeight: maxTableHeight ?? undefined,
-        overflow: 'auto',
+        overflowY: 'auto',
+        overflowX: 'hidden',
       }}
       ref={scrollParentRef}
       {...props}
     >
-      <div
-        className="table-virtual-body"
-        ref={tableVirtualBodyRef}
-        style={{
-          height: `${rowVirtualizer.getTotalSize()}px`,
-          position: 'relative',
-          minWidth: tableWidth,
-        }}
-      >
-        <TableHeader>
-          {table.options.enableRowSelection && (
-            <TableSelectionCell
-              selected={table.getIsAllRowsSelected()}
-              onClick={() => {
-                table.toggleAllRowsSelected();
-              }}
-            />
-          )}
-          {table.options.enableExpanding && <TableCell empty />}
-          {table.getHeaderGroups()[0].headers.map((header) => {
-            return <TableHeaderCell header={header} key={header.id} />;
-          })}
-        </TableHeader>
-        {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-          const row = rows[virtualRow.index];
-          const isExpanded = row.getIsExpanded() && row.getCanExpand();
-          const canSelect = row.getCanSelect();
-          const isLast = virtualRow.index === rows.length - 1 && !hasNextPage;
-          return (
-            <div
-              ref={(node) => rowVirtualizer.measureElement(node)}
-              data-index={virtualRow.index}
-              className={clsx('virtual-row', {
-                expanded: isExpanded && !isLast,
-              })}
-              key={row.id}
-              style={{
-                position: 'absolute',
-                transform: `translateY(${virtualRow.start}px)`,
-                minWidth: tableWidth,
-                width: '100%',
-              }}
-            >
-              <TableRowContainer
-                className={clsx({
-                  last: isLast && !isExpanded,
+      <div className="table-scroll-x" style={{ overflowY: 'hidden', overflowX: 'auto' }}>
+        <div
+          className="table-virtual-body"
+          ref={tableVirtualBodyRef}
+          style={{
+            height: `${rowVirtualizer.getTotalSize()}px`,
+            position: 'relative',
+            minWidth: tableWidth,
+          }}
+        >
+          <TableHeader>
+            {table.options.enableRowSelection && (
+              <TableSelectionCell
+                selected={table.getIsAllRowsSelected()}
+                onClick={() => {
+                  table.toggleAllRowsSelected();
+                }}
+              />
+            )}
+            {table.options.enableExpanding && <TableCell empty />}
+            {table.getHeaderGroups()[0].headers.map((header) => {
+              return <TableHeaderCell header={header} key={header.id} />;
+            })}
+          </TableHeader>
+          {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+            const row = rows[virtualRow.index];
+            const isExpanded = row.getIsExpanded() && row.getCanExpand();
+            const canSelect = row.getCanSelect();
+            const isLast = virtualRow.index === rows.length - 1 && !hasNextPage;
+            return (
+              <div
+                ref={(node) => rowVirtualizer.measureElement(node)}
+                data-index={virtualRow.index}
+                className={clsx('virtual-row', {
+                  expanded: isExpanded && !isLast,
                 })}
+                key={row.id}
+                style={{
+                  position: 'absolute',
+                  transform: `translateY(${virtualRow.start}px)`,
+                  minWidth: tableWidth,
+                  width: '100%',
+                }}
               >
-                {canSelect && (
-                  <TableSelectionCell
-                    selected={row.getIsSelected()}
-                    onClick={() => {
-                      row.toggleSelected();
+                <TableRowContainer
+                  className={clsx({
+                    last: isLast && !isExpanded,
+                  })}
+                >
+                  {canSelect && (
+                    <TableSelectionCell
+                      selected={row.getIsSelected()}
+                      onClick={() => {
+                        row.toggleSelected();
+                      }}
+                    />
+                  )}
+                  {table.options.enableExpanding && <TableExpandCell row={row} />}
+                  {row.getAllCells().map((cell) => (
+                    <Fragment key={cell.id}>
+                      <TableCellContext value={cell}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCellContext>
+                    </Fragment>
+                  ))}
+                </TableRowContainer>
+                {isExpanded && isPresent(expandedHeaders) && (
+                  <TableExpandedRowHeader
+                    canExpand={table.options.enableExpanding ?? false}
+                    canSelect={
+                      (table.options.enableRowSelection as boolean | undefined) ?? false
+                    }
+                    headersData={expandedHeaders}
+                    style={{
+                      gridTemplateColumns: gridColsDef,
                     }}
                   />
                 )}
-                {table.options.enableExpanding && <TableExpandCell row={row} />}
-                {row.getAllCells().map((cell) => (
-                  <Fragment key={cell.id}>
-                    <TableCellContext value={cell}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCellContext>
-                  </Fragment>
-                ))}
-              </TableRowContainer>
-              {isExpanded && isPresent(expandedHeaders) && (
-                <TableExpandedRowHeader
-                  canExpand={table.options.enableExpanding ?? false}
-                  canSelect={
-                    (table.options.enableRowSelection as boolean | undefined) ?? false
-                  }
-                  headersData={expandedHeaders}
-                  style={{
-                    gridTemplateColumns: gridColsDef,
-                  }}
-                />
-              )}
-              {isExpanded &&
-                isPresent(renderExpandedRow) &&
-                renderExpandedRow(row, isLast)}
+                {isExpanded &&
+                  isPresent(renderExpandedRow) &&
+                  renderExpandedRow(row, isLast)}
+              </div>
+            );
+          })}
+          {hasNextPage && isPresent(onNextPage) && (
+            <div className="load-more-row" ref={loadMoreRowRef}>
+              <Skeleton />
             </div>
-          );
-        })}
-        {hasNextPage && isPresent(onNextPage) && (
-          <div className="load-more-row" ref={loadMoreRowRef}>
-            <Skeleton />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

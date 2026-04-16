@@ -15,7 +15,7 @@ export const TableEditCell = ({ menuItems, disabled }: Props) => {
       flex
       alignContent="right"
       className="edit-cell"
-      style={{ minWidth: tableEditColumnSize }}
+      style={{ minWidth: tableEditColumnSize - 2 }}
     >
       <IconButtonMenu icon="menu" menuItems={menuItems} disabled={disabled} />
     </TableCell>
