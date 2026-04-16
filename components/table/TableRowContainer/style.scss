@@ -6,15 +6,13 @@
   width: 100%;
   box-sizing: border-box;
   background-color: var(--bg-color);
+  border: 1px solid var(--border-disabled);
+  border-top: 0;
 
   @include animate(background-color);
 
   &.variant-default {
     --bg-color: var(--bg-default);
-
-    .table-cell {
-      border-bottom: var(--border-1) solid var(--border-disabled);
-    }
   }
 
   &.variant-sub-header {
@@ -37,8 +35,6 @@
     border-bottom-right-radius: var(--radius-md);
 
     .table-cell {
-      border-bottom: var(--border-1) solid var(--border-disabled);
-
       &:first-child {
         border-bottom-left-radius: var(--radius-md);
       }

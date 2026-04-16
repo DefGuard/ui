@@ -13,16 +13,12 @@
   @include animate(background-color);
 
   &:first-child {
-    border-left: var(--border-1) solid var(--border-disabled);
-
     &.radius {
       border-top-left-radius: var(--radius-lg);
     }
   }
 
   &:last-child {
-    border-right: var(--border-1) solid var(--border-disabled);
-
     &.radius {
       border-top-right-radius: var(--radius-lg);
     }
@@ -44,13 +40,6 @@
 
   &.no-padding {
     padding: 0;
-  }
-
-  &:not(:last-child) {
-    &.empty,
-    &.no-border {
-      border-right: 0 solid transparent !important;
-    }
   }
 
   &.align-left {
