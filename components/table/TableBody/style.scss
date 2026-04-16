@@ -17,9 +17,7 @@
 
   .virtual-row.expanded {
     & > .table-row-container:last-child {
-      & > .table-cell {
-        border-bottom: var(--border-1) solid var(--border-emphasis);
-      }
+      border-bottom: var(--border-1) solid var(--border-emphasis);
     }
   }
 
