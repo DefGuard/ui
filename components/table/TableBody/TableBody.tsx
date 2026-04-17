@@ -140,7 +140,7 @@ export const TableBody = <T extends object>({
   }, [canExpand, canSelect, table.getTotalSize()]);
 
   const virtualizedPaddingBottom = useMemo(() => {
-    let result: number = 20 + tableRowHeight;
+    let result: number = 55 + tableRowHeight;
     if (hasNextPage) {
       result += tableRowHeight;
     }
@@ -234,14 +234,18 @@ export const TableBody = <T extends object>({
       className={clsx('table', className)}
       style={{
         ...columnSizeVars,
-        maxHeight: maxTableHeight ?? undefined,
-        overflowY: 'auto',
-        overflowX: 'hidden',
       }}
-      ref={scrollParentRef}
       {...props}
     >
-      <div className="table-scroll-x" style={{ overflowY: 'hidden', overflowX: 'auto' }}>
+      <div
+        className="table-scroll"
+        ref={scrollParentRef}
+        style={{
+          maxHeight: maxTableHeight ?? undefined,
+          overflowY: 'auto',
+          overflowX: 'auto',
+        }}
+      >
         <div
           className="table-virtual-body"
           ref={tableVirtualBodyRef}
