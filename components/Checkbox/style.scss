@@ -4,6 +4,10 @@
   flex-flow: column;
   user-select: none;
 
+  &.disabled {
+    cursor: not-allowed;
+  }
+
   & > .track {
     &:not(.text) {
       display: inline-block;

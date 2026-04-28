@@ -17,7 +17,11 @@ export const Checkbox = ({
   const hasError = isPresent(error);
 
   return (
-    <div className="checkbox">
+    <div
+      className={clsx('checkbox', {
+        disabled,
+      })}
+    >
       <div
         className={clsx('track', {
           text: isPresent(text),
