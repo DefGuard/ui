@@ -1,4 +1,6 @@
 .interaction-box {
+  --interaction-size: 36px;
+
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -11,8 +13,8 @@
     display: block;
     position: absolute;
     content: ' ';
-    width: 36px;
-    height: 36px;
+    width: var(--interaction-size);
+    height: var(--interaction-size);
     background-color: transparent;
     border: none;
     cursor: pointer;

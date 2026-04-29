@@ -4,25 +4,46 @@
   --icon-color: var(--color);
 
   border-radius: var(--badge-border-radius);
-  display: grid;
-  grid-template-columns: 20px auto;
-  grid-template-rows: 1fr;
-  align-items: center;
   box-sizing: border-box;
-  padding: calc(var(--badge-spacing) / 2) var(--badge-spacing);
+  padding: 0 var(--badge-spacing);
   column-gap: var(--badge-gap);
   background-color: var(--bg-color);
   color: var(--color);
   user-select: none;
+  height: var(--badge-height);
+  width: fit-content;
 
   @include animate(background-color);
+
+  &:not(.icon) {
+    display: inline-flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.icon {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+  }
+
+  &.variant-default {
+    --color: var(--fg-white);
+    --icon-color: var(--fg-white);
+
+    &:not(.bg) {
+      --bg-color: var(--bg-dark);
+    }
+  }
 
   &.variant-neutral {
     --color: var(--fg-neutral);
     --icon-color: var(--fg-muted);
 
     &:not(.bg) {
-      --bg-color: var(--bg-muted);
+      --bg-color: var(--bg-emphasis);
     }
   }
 
@@ -38,7 +59,7 @@
     --color: var(--fg-critical);
 
     &:not(.bg) {
-      --bg-color: var(--c-red-500-transparent);
+      --bg-color: var(--bg-critical-disabled);
     }
   }
 
@@ -50,16 +71,41 @@
     }
   }
 
+  &.variant-additional {
+    --color: var(--fg-action);
+
+    &:not(.bg) {
+      --bg-color: var(--bg-action-muted);
+    }
+  }
+
+  &.variant-plan {
+    --color: var(--fg-code);
+
+    &:not(.bg) {
+      --bg-color: var(--bg-additional-transparent);
+    }
+  }
+
   span {
     font: var(--t-badge);
-    letter-spacing: var(--t-badge-spacing);
     color: inherit;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
     @include animate(color);
   }
 
   & > .icon > svg {
     rect {
+      fill: var(--icon-color);
+
+      @include animate(fill);
+    }
+
+    path {
       fill: var(--icon-color);
 
       @include animate(fill);

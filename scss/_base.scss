@@ -1,3 +1,4 @@
+/* stylelint-disable property-no-vendor-prefix */
 /* stylelint-disable font-family-name-quotes */
 html,
 body,
@@ -23,6 +24,18 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 h1 {
@@ -51,7 +64,6 @@ h5 {
   max-height: 100dvh;
   width: 100%;
   overflow: hidden auto;
-  scrollbar-gutter: stable both-edges;
 }
 
 #root,
@@ -96,4 +108,12 @@ h6 {
 
 *:-moz-focus-inner {
   border: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 8553600s;
+  -webkit-text-fill-color: #fff !important;
 }

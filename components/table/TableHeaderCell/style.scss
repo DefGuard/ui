@@ -1,0 +1,71 @@
+.table .header-cell {
+  --resize-bar-visibility: 0;
+
+  column-gap: var(--spacing-sm);
+
+  &.resizable {
+    position: relative;
+
+    &:hover,
+    .resizing {
+      --resize-bar-visibility: 1;
+    }
+  }
+
+  .resize-bar {
+    position: absolute;
+    right: -6px;
+    top: -1px;
+    z-index: 1;
+    width: 12px;
+    height: calc(100% + 2px);
+    cursor: col-resize;
+
+    .bar {
+      background-color: var(--fg-action);
+      content: '';
+      width: 2px;
+      height: 100%;
+      place-self: center center;
+      opacity: var(--resize-bar-visibility);
+
+      @include animate(opacity);
+    }
+  }
+
+  .filter-btn {
+    --bg: transparent;
+    --icon: var(--fg-muted);
+
+    display: flex;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    margin-left: auto;
+    padding: 0;
+    background-color: var(--bg);
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+
+    @include animate(background-color);
+
+    &:hover,
+    &.hover {
+      --bg: var(--bg-emphasis);
+      --icon: var(--fg-default);
+    }
+
+    &.active {
+      --bg: var(--fg-neutral);
+      --icon: var(--fg-white);
+    }
+
+    .icon svg path {
+      fill: var(--icon);
+
+      @include animate(fill);
+    }
+  }
+}

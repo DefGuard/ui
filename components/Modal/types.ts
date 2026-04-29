@@ -1,14 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ModalBase } from '../ModalFoundation/types';
 
-export interface ModalProps {
+export interface ModalProps extends ModalBase {
   title: string;
-  children: ReactNode;
-  isOpen: boolean;
-  hideBackdrop?: boolean;
   size?: 'small' | 'primary';
-  onClose?: () => void;
-  afterClose?: () => void;
-  id?: string;
-  positionerClassName?: string;
-  contentClassName?: string;
 }

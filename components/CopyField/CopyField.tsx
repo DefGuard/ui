@@ -2,13 +2,14 @@ import './style.scss';
 import { autoUpdate, FloatingPortal, offset, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 import { type HTMLAttributes, type Ref, useEffect, useState } from 'react';
-import { useClipboard } from '../../../hooks/useClipboard';
+import { useClipboard } from '../../hooks/useClipboard';
+import { isPresent } from '../../utils/isPresent';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip/Tooltip';
 
 type Props = {
   text: string;
-  label: string;
+  label?: string;
   copyTooltip: string;
   ref?: Ref<HTMLDivElement>;
 } & HTMLAttributes<HTMLDivElement>;
@@ -47,9 +48,11 @@ export const CopyField = ({
     <>
       <div className="copy-field spacer">
         <div className="inner">
-          <div className="label-track">
-            <p>{label}</p>
-          </div>
+          {isPresent(label) && (
+            <div className="label-track">
+              <p>{label}</p>
+            </div>
+          )}
           <div className={clsx('track', className)} {...props} ref={ref}>
             <p>{text}</p>
             <button

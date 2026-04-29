@@ -1,11 +1,15 @@
 .field-label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: var(--spacing-sm);
   position: relative;
   padding-bottom: var(--input-spacing-xs);
-  display: block;
   font: var(--t-input-title);
   color: var(--fg-neutral);
 
-  svg {
+  .required-icon {
     position: absolute;
     left: 0;
     top: 3.5px;

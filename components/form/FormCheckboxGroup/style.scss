@@ -1,0 +1,33 @@
+.form-checkbox-group {
+  & > .values-tack {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-md) var(--spacing-2xl);
+
+    & > .item {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: var(--spacing-sm);
+      min-width: 0;
+      flex-grow: 0;
+      flex-shrink: 0;
+      cursor: pointer;
+
+      &:not(.error):hover {
+        .box {
+          --border: var(--border-emphasis);
+        }
+      }
+
+      & > p {
+        user-select: none;
+        font: var(--t-body-sm-400);
+        color: var(--fg-default);
+      }
+    }
+  }
+}

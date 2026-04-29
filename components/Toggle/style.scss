@@ -1,0 +1,73 @@
+.toggle {
+  --border: var(--bg-faded);
+  --bg: var(--bg-faded);
+  --circle: var(--fg-white);
+  --circle-x: 1px;
+  --circle-shadow: 0 1px 1px 0 rgb(0 0 0 0);
+
+  cursor: pointer;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  column-gap: var(--spacing-md);
+
+  .inner {
+    user-select: none;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 36px;
+    height: 20px;
+    box-sizing: border-box;
+    border-radius: var(--radius-full);
+    background-color: var(--bg);
+    border: var(--border-1) solid var(--border);
+    min-width: 36px;
+    flex-shrink: 0;
+
+    @include animate(border-color, background-color);
+
+    .circle {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-color: var(--circle);
+      margin-left: var(--circle-x);
+      border-radius: var(--radius-full);
+      box-shadow: var(--circle-shadow);
+
+      @include animate(background-color, margin-left, box-shadow);
+    }
+  }
+
+  & > p {
+    user-select: none;
+    font: var(--t-body-sm-400);
+    color: var(--fg-default);
+
+    @include animate(color);
+  }
+
+  &.disabled {
+    --circle: var(--bg-faded);
+    --circle-x: 1px;
+    --border: var(--bg-active);
+    --bg: var(--bg-muted);
+
+    cursor: not-allowed;
+
+    p {
+      color: var(--fg-disabled);
+    }
+  }
+
+  &:not(.disabled).active {
+    --circle-x: 16px;
+    --circle: var(--fg-white);
+    --bg: var(--bg-success);
+    --border: var(--bg-success);
+    --circle-shadow: 0 1px 1px 0 rgb(0 0 0 0.15);
+  }
+}

@@ -1,14 +1,27 @@
 import { useStore } from '@tanstack/react-form';
 import { useMemo } from 'react';
 import type { z } from 'zod';
-import { useFieldContext, useFormContext } from '../../../form';
+import { useFieldContext, useFormContext } from '../../../../form';
 import { isPresent } from '../../../utils/isPresent';
 import { Input } from '../../Input/Input';
-import type { FormInputProps } from '../../Input/types';
+import type { FormInputProps, InputProps } from '../../Input/types';
 
-export const FormInput = ({ mapError, ...props }: FormInputProps) => {
-  const field = useFieldContext<string>();
+export const FormInput = ({ mapError, onDismiss, ...props }: FormInputProps) => {
+  const field = useFieldContext<string | number | null>();
   const form = useFormContext();
+
+  const boxProps = useMemo(() => {
+    if (isPresent(onDismiss) && (props.type === 'text' || !props.type)) {
+      const boxProps: InputProps['boxProps'] = {
+        iconRight: 'delete',
+        onInteractionClick: (e) => {
+          onDismiss(e);
+        },
+      };
+      return boxProps;
+    }
+    return undefined;
+  }, [onDismiss, props.type]);
 
   // allows field to show error even if isPristine is true, this is needed in cases as input required or checkbox checked but user just clicked submit
   const wasSubmittedWithFailure = useStore(
@@ -53,6 +66,7 @@ export const FormInput = ({ mapError, ...props }: FormInputProps) => {
       onChange={field.handleChange}
       value={field.state.value}
       error={errorMessage}
+      boxProps={boxProps}
       {...props}
     />
   );

@@ -1,14 +1,16 @@
 .tooltip {
   box-sizing: border-box;
   padding: var(--tooltip-spacing);
-  z-index: 3;
+  z-index: 5;
   border-radius: var(--radius-md);
   background-color: var(--bg-dark);
+  max-width: 250px;
 
   span,
   p,
   a {
     font: var(--t-tooltip);
     color: var(--fg-white);
+    white-space: pre-line;
   }
 }

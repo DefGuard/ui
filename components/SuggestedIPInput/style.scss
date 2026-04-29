@@ -1,0 +1,59 @@
+.suggested-ip-input {
+  .field-box {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0;
+
+    .validation-spinner {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+
+      & > span {
+        font: var(--t-input-text-primary);
+        color: var(--fg-muted);
+      }
+
+      .input-track {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        align-self: center;
+        position: relative;
+        min-height: 100%;
+
+        // Overlay actual input over span, this avoids using absolute positioning
+        & > * {
+          grid-row: 1;
+          grid-column: 1 / 2;
+        }
+
+        & > span {
+          color: transparent;
+          user-select: none;
+          pointer-events: none;
+          display: block;
+          width: fit-content;
+          font: var(--t-input-text-primary);
+        }
+
+        input {
+          background-color: transparent;
+          border: 0;
+          font: var(--t-input-text-primary);
+          color: var(--fg-default);
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

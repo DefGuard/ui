@@ -48,6 +48,8 @@
     }
 
     & > .content {
+      place-self: center start;
+
       p {
         max-width: 100%;
         overflow: hidden;

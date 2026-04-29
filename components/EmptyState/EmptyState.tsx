@@ -1,28 +1,28 @@
-import type { Ref } from 'react';
+import { useMemo } from 'react';
 import './style.scss';
 import clsx from 'clsx';
 import { ThemeSpacing } from '../../types';
 import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
-import type { ButtonProps } from '../Button/types';
-import { Icon } from '../Icon';
-import type { IconKindValue } from '../Icon/icon-types';
 import { SizedBox } from '../SizedBox/SizedBox';
+import { EmptyStateIconAliases } from './icons/EmptyStateIconAliases';
+import { EmptyStateIconApiToken } from './icons/EmptyStateIconApiToken';
+import { EmptyStateIconApps } from './icons/EmptyStateIconApps';
+import { EmptyStateIconAuthentication } from './icons/EmptyStateIconAuthentication';
+import { EmptyStateIconDashboard } from './icons/EmptyStateIconDashboard';
+import { EmptyStateIconDevices } from './icons/EmptyStateIconDevices';
+import { EmptyStateIconGateway } from './icons/EmptyStateIconGateway';
+import { EmptyStateIconLog } from './icons/EmptyStateIconLog';
+import { EmptyStateIconOpenId } from './icons/EmptyStateIconOpenId';
+import { EmptyStateIconRules } from './icons/EmptyStateIconRules';
+import { EmptyStateIconSearch } from './icons/EmptyStateIconSearch';
+import { EmptyStateIconWebhook } from './icons/EmptyStateIconWebhook';
+import type { EmptyStateProps } from './types';
 
-type Props = {
-  ref?: Ref<HTMLDivElement>;
-  title?: string;
-  subtitle?: string;
-  icon?: IconKindValue;
-  className?: string;
-  testId?: string;
-  id?: string;
-  primaryAction?: ButtonProps;
-  secondaryAction?: () => void;
-  secondaryActionText?: string;
+const Empty = () => {
+  return null;
 };
 
-//TODO: icon is incompatible, remove it when this will be needed
 export const EmptyState = ({
   ref,
   icon,
@@ -34,7 +34,37 @@ export const EmptyState = ({
   className,
   id,
   testId,
-}: Props) => {
+}: EmptyStateProps) => {
+  const RenderIcon = useMemo(() => {
+    if (!icon) return Empty;
+    switch (icon) {
+      case 'gateway':
+        return EmptyStateIconGateway;
+      case 'search':
+        return EmptyStateIconSearch;
+      case 'apps':
+        return EmptyStateIconApps;
+      case 'authentication':
+        return EmptyStateIconAuthentication;
+      case 'api-token':
+        return EmptyStateIconApiToken;
+      case 'webhook':
+        return EmptyStateIconWebhook;
+      case 'dashboard':
+        return EmptyStateIconDashboard;
+      case 'aliases':
+        return EmptyStateIconAliases;
+      case 'rules':
+        return EmptyStateIconRules;
+      case 'log':
+        return EmptyStateIconLog;
+      case 'devices':
+        return EmptyStateIconDevices;
+      case 'openid':
+        return EmptyStateIconOpenId;
+    }
+  }, [icon]);
+
   return (
     <div
       ref={ref}
@@ -44,9 +74,7 @@ export const EmptyState = ({
     >
       {isPresent(icon) && (
         <>
-          <div className="empty-icon">
-            <Icon icon={icon} size={24} />
-          </div>
+          <RenderIcon />
           <SizedBox height={ThemeSpacing.Lg} />
         </>
       )}

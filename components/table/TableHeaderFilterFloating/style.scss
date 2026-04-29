@@ -1,0 +1,57 @@
+.table-header-filter-floating {
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-default);
+  border: var(--border-1) solid var(--border-disabled);
+  box-sizing: border-box;
+  padding: var(--spacing-md);
+  box-shadow: var(--menu-shadow);
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+
+  & > .top {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    user-select: none;
+
+    & > .title {
+      font: var(--t-body-sm-600);
+      color: var(--fg-default);
+    }
+
+    & > button {
+      border: 0;
+      padding: 0;
+      margin-left: auto;
+      background-color: transparent;
+      font: var(--t-body-sm-400);
+      color: var(--fg-action);
+      cursor: pointer;
+    }
+  }
+
+  .options {
+    display: flex;
+    flex-flow: column;
+    row-gap: var(--spacing-sm);
+    padding-bottom: var(--spacing-xl);
+    overflow: hidden auto;
+    min-height: 0;
+
+    & > .checkbox {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+  }
+
+  & > .empty {
+    font: var(--t-body-sm-400);
+    color: var(--fg-muted);
+    user-select: none;
+  }
+}

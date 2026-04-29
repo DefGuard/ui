@@ -1,0 +1,52 @@
+.actionable-section {
+  --bg: var(--bg-action-muted);
+
+  background-color: var(--bg);
+  box-sizing: border-box;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+
+  @include animate(background-color);
+
+  &.variant-primary {
+    --bg: var(--bg-action-muted);
+  }
+
+  &.variant-secondary {
+    --bg: var(--bg-disabled);
+  }
+
+  & > .inner-track {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    grid-template-rows: 1fr;
+    align-items: start;
+    justify-content: start;
+    column-gap: var(--spacing-3xl);
+
+    .image-track {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .content-track {
+      & > .default {
+        .title {
+          font: var(--t-body-primary-600);
+          color: var(--fg-default);
+        }
+
+        .subtitle {
+          font: var(--t-body-sm-400);
+          color: var(--fg-faded);
+        }
+      }
+    }
+  }
+}

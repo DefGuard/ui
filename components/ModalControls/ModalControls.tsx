@@ -1,18 +1,17 @@
 import './style.scss';
 import clsx from 'clsx';
-import type { ReactNode } from 'react';
-import { m } from '../../../../paraglide/messages';
 import { isPresent } from '../../utils/isPresent';
 import { Button } from '../Button/Button';
-import type { ButtonProps } from '../Button/types';
+import type { ModalControlsProps } from './types';
 
-type Props = {
-  submitProps?: ButtonProps;
-  cancelProps?: ButtonProps;
-  children?: ReactNode;
-};
-
-export const ModalControls = ({ submitProps, cancelProps, children }: Props) => {
+/**
+ * @deprecated Replaced by Controls
+ */
+export const ModalControls = ({
+  submitProps,
+  cancelProps,
+  children,
+}: ModalControlsProps) => {
   return (
     <div
       className={clsx('modal-controls', {
@@ -25,14 +24,14 @@ export const ModalControls = ({ submitProps, cancelProps, children }: Props) => 
           <Button
             {...cancelProps}
             variant={cancelProps?.variant ?? 'secondary'}
-            text={cancelProps?.text ?? m.controls_cancel()}
+            text={cancelProps?.text}
           />
         )}
         {isPresent(submitProps) && (
           <Button
             {...submitProps}
             variant={submitProps?.variant ?? 'primary'}
-            text={submitProps?.text ?? m.controls_submit()}
+            text={submitProps?.text}
           />
         )}
       </div>

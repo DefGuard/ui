@@ -42,7 +42,7 @@
   .icon {
     svg {
       path {
-        fill: var(--loader-part);
+        fill: var(--text-color);
 
         @include animate(fill);
       }

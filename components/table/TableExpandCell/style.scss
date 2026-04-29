@@ -1,0 +1,10 @@
+.table .table-expand-cell {
+  align-items: center;
+  justify-content: center;
+
+  .icon[data-kind='arrow-small'] {
+    path {
+      fill: var(--fg-action);
+    }
+  }
+}

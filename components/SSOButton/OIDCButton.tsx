@@ -12,7 +12,15 @@ type Props = {
 
 export const OIDCButton = ({ url, text }: Props) => {
   const RenderIcon = useMemo(() => {
-    const { hostname } = new URL(url);
+    let hostname = '';
+
+    try {
+      const parsedUrl = new URL(url);
+      hostname = parsedUrl.hostname;
+    } catch (_) {
+      return IconDefault;
+    }
+
     if (hostname === 'accounts.google.com') {
       return IconGoogle;
     }
@@ -25,7 +33,7 @@ export const OIDCButton = ({ url, text }: Props) => {
 
   return (
     <a className="oidc-button-link" href={url} target="_self" rel="noopener noreferrer">
-      <button className="oidc-button">
+      <button className="oidc-button" type="button">
         <RenderIcon />
         <span>{text}</span>
       </button>

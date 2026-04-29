@@ -1,0 +1,74 @@
+.table-cell {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: var(--spacing-md);
+  box-sizing: border-box;
+  padding: 0 var(--spacing-md);
+  min-height: 48px;
+  background-color: inherit;
+
+  @include animate(background-color);
+
+  &:first-child {
+    &.radius {
+      border-top-left-radius: var(--radius-lg);
+    }
+  }
+
+  &:last-child {
+    &.radius {
+      border-top-right-radius: var(--radius-lg);
+    }
+  }
+
+  &.flex {
+    flex: 1 1 10px;
+    min-width: 10px;
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
+
+  &.empty {
+    content: ' ';
+    padding: 0;
+  }
+
+  &.no-padding {
+    padding: 0;
+  }
+
+  &.align-left {
+    justify-content: flex-start;
+  }
+
+  &.align-right {
+    justify-content: flex-end;
+  }
+
+  &.align-center {
+    justify-content: center;
+  }
+
+  & > span {
+    font: var(--t-body-sm-400);
+    color: var(--fg-default);
+    overflow: hidden;
+    text-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  & > .icon-button {
+    flex: none;
+  }
+
+  & > .checkbox {
+    width: 24px;
+    height: 24px;
+  }
+}

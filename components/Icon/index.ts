@@ -1,2 +1,3 @@
 export { Icon } from './Icon';
-export type { IconKind } from './icon-types';
+export type { IconKindValue } from './icon-types';
+export { IconKind } from './icon-types';

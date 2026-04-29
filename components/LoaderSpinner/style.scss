@@ -2,8 +2,32 @@
   display: inline-block;
   user-select: none;
 
+  &.variant-primary {
+    --spinner-track: var(--c-blue-200);
+    --spinner-indicator: var(--c-blue-500);
+  }
+
   & > .icon {
     animation: spin 1s ease-in-out infinite;
+  }
+
+  &[class*='variant-'] {
+    & > .icon {
+      svg {
+        & > path {
+          stroke: var(--spinner-indicator);
+          fill: none;
+
+          @include animate(stroke);
+        }
+
+        & > circle {
+          stroke: var(--spinner-track);
+
+          @include animate(stroke);
+        }
+      }
+    }
   }
 }
 

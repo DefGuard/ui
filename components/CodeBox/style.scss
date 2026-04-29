@@ -1,0 +1,13 @@
+.code-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--spacing-md);
+  background-color: var(--bg-default);
+  border: var(--border-1) solid var(--border-default);
+  border-radius: var(--radius-md);
+
+  p {
+    color: var(--fg-default);
+    font: var(--t-input-text-primary);
+  }
+}

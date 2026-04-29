@@ -1,6 +1,7 @@
 import {
   autoUpdate,
   FloatingPortal,
+  flip,
   offset,
   shift,
   size,
@@ -9,6 +10,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
+import clsx from 'clsx';
 import { useState } from 'react';
 import { mergeRefs } from '../../utils/mergeRefs';
 import { IconButton } from '../IconButton/IconButton';
@@ -19,6 +21,7 @@ import type { MenuItemsGroup } from '../Menu/types';
 export const IconButtonMenu = ({
   menuItems,
   ref,
+  className,
   ...buttonProps
 }: IconButtonProps & {
   menuItems: MenuItemsGroup[];
@@ -32,6 +35,7 @@ export const IconButtonMenu = ({
     middleware: [
       offset(4),
       shift(),
+      flip(),
       size({
         apply({ rects, elements, availableHeight }) {
           const refWidth = `${rects.reference.width}px`;
@@ -58,6 +62,9 @@ export const IconButtonMenu = ({
       <IconButton
         {...buttonProps}
         {...getReferenceProps()}
+        className={clsx(className, {
+          active: isOpen,
+        })}
         ref={mergeRefs([ref, refs.setReference])}
       />
       {isOpen && (

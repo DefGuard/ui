@@ -16,15 +16,20 @@ $geist:
 $source-code-pro:
   'Source Code Pro',
   #{$font-fallback};
+$jetbrains:
+  'JetBrains Mono',
+  #{$font-fallback};
 /* stylelint-disable value-keyword-case */
 :root {
   // font settings
   --font-family-title: #{$geist};
   --font-family-body: #{$geist};
-  --font-family-component: #{geist};
+  --font-family-component: #{$geist};
   --font-family-code: #{$source-code-pro};
+  --font-family-jetbrains: #{$jetbrains};
 
   --t-body-xxs-600: normal 600 11px/14px #{$geist};
+  --t-body-xxs-500: normal 500 11px/14px #{$geist};
   --t-body-xxs-400: normal 400 11px/14px #{$geist};
 
   --t-body-xs-600: normal 600 12px/16px #{$geist};
@@ -134,7 +139,9 @@ $source-code-pro:
   --c-violet-300: rgb(172 151 207);
   --c-violet-200: rgb(196 181 221);
   --c-violet-100: rgb(241 237 247);
+  --c-violet-500-transparent: rgb(102 55 178 / 10%);
 
+  --c-blue-800: rgb(22 27 39);
   --c-blue-700: rgb(38 57 115);
   --c-blue-600: rgb(51 77 156);
   --c-blue-500: rgb(57 97 219);
@@ -142,8 +149,10 @@ $source-code-pro:
   --c-blue-300: rgb(140 161 222);
   --c-blue-200: rgb(180 196 242);
   --c-blue-100: rgb(237 241 252);
+  --c-blue-50: rgb(249 250 254);
   --c-blue-500-transparent: rgb(50 92 219 / 8%);
 
+  --c-red-800: rgb(35 24 26);
   --c-red-700: rgb(124 37 37);
   --c-red-600: rgb(143 42 42);
   --c-red-500: rgb(204 60 60);
@@ -195,8 +204,8 @@ $source-code-pro:
   --badge-border-radius: var(--radius-md);
   --badge-spacing: var(--spacing-sm);
   --badge-gap: var(--spacing-xs);
-  --t-badge: normal 500 12px / 16px #{$geist};
-  --t-badge-spacing: 0.3px;
+  --t-badge: var(--t-body-xs-500);
+  --badge-height: 24px;
 
   // Inputs
   --t-input-title: normal 500 12px / 16px #{$geist};
@@ -213,7 +222,7 @@ $source-code-pro:
   // Tooltip
   --t-tooltip: normal 400 12px / 16px #{$geist};
   --tooltip-letter-spacing: 0.3;
-  --tooltip-spacing: var(--spacing-md);
+  --tooltip-spacing: var(--spacing-sm) var(--spacing-md);
 
   // custom
 
@@ -222,4 +231,9 @@ $source-code-pro:
 
   // how much space error should gap from main container
   --form-field-error-gap: 8px;
+
+  // navigation
+  --nav-width: 270px;
+
+  --menu-shadow: 0 4px 12px 0 rgb(0 0 0 / 7%);
 }

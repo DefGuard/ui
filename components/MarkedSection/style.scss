@@ -1,0 +1,16 @@
+.marked-section {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 32px 1fr;
+  column-gap: var(--spacing-2xl);
+
+  & > .section-marker {
+    grid-row: 1;
+    grid-column: 1 / 2;
+  }
+
+  & > .content {
+    grid-row: 1;
+    grid-column: 2 / 3;
+  }
+}

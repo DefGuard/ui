@@ -9,7 +9,7 @@
   background-color: var(--bg-default);
   box-shadow: 0 4px 12px 0 rgb(0 0 0 / 7%);
   overflow: hidden auto;
-  z-index: 3;
+  z-index: 5;
 
   .menu-spacer {
     user-select: none;
@@ -70,6 +70,7 @@
     height: 36px;
     color: var(--color);
     position: relative;
+    min-width: 115px;
 
     @include animate(background-color);
 

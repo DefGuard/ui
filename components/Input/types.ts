@@ -1,26 +1,43 @@
-import type { HTMLAttributes, HTMLInputAutoCompleteAttribute, Ref } from 'react';
+import type {
+  HTMLAttributes,
+  HTMLInputAutoCompleteAttribute,
+  MouseEventHandler,
+  Ref,
+} from 'react';
 import type { FieldBoxProps, FieldSize } from '../FieldBox/types';
 
 export type InputProps = {
-  value: string | null;
+  value: string | null | number;
   size?: FieldSize;
-  type?: 'password' | 'text';
+  type?: 'password' | 'text' | 'search' | 'number';
   ref?: Ref<HTMLInputElement>;
-  error?: string;
+  error?: string | null;
   name?: string;
   label?: string;
+  helper?: string;
   required?: boolean;
   disabled?: boolean;
   placeholder?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: string | number | null) => void;
   boxProps?: Partial<FieldBoxProps>;
   autocomplete?: HTMLInputAutoCompleteAttribute;
   testId?: string;
+  notNull?: boolean;
 } & Pick<HTMLAttributes<HTMLInputElement>, 'onBlur' | 'onFocus'>;
 
 export type FormInputProps = Pick<
   InputProps,
-  'name' | 'placeholder' | 'disabled' | 'required' | 'label' | 'autocomplete' | 'type'
+  | 'name'
+  | 'placeholder'
+  | 'disabled'
+  | 'required'
+  | 'label'
+  | 'autocomplete'
+  | 'size'
+  | 'type'
+  | 'notNull'
+  | 'helper'
 > & {
   mapError?: (error: string) => string | undefined;
+  onDismiss?: MouseEventHandler<HTMLButtonElement>;
 };

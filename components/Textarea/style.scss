@@ -1,0 +1,16 @@
+.textarea textarea {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  overflow: hidden auto;
+  min-height: 80px;
+  max-height: 300px;
+  font: var(--t-input-text-primary);
+  color: var(--fg-default);
+
+  &::placeholder {
+    color: var(--fg-muted);
+  }
+}

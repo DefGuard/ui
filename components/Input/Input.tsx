@@ -1,6 +1,7 @@
 import { type HTMLInputTypeAttribute, useId, useMemo, useRef, useState } from 'react';
 import './style.scss';
 import clsx from 'clsx';
+import { isNumber } from 'lodash-es';
 import { isPresent } from '../../utils/isPresent';
 import { mergeRefs } from '../../utils/mergeRefs';
 import { FieldBox } from '../FieldBox/FieldBox';
@@ -9,10 +10,29 @@ import { FieldLabel } from '../FieldLabel/FieldLabel';
 import type { IconKindValue } from '../Icon/icon-types';
 import type { InputProps } from './types';
 
+const externalValueToInput = (value: string | null | number): string | number => {
+  if (value === null) return '';
+  return value;
+};
+
+const preferredTypeToInternal = (value: InputProps['type']): HTMLInputTypeAttribute => {
+  if (!isPresent(value)) return 'text';
+
+  switch (value) {
+    case 'search':
+      return 'text';
+    case 'number':
+      return 'number';
+    default:
+      return value;
+  }
+};
+
 export const Input = ({
   value,
   error,
   label,
+  helper,
   ref,
   name,
   placeholder,
@@ -21,6 +41,7 @@ export const Input = ({
   onChange,
   onBlur,
   onFocus,
+  notNull,
   size = 'default',
   type = 'text',
   required = false,
@@ -29,19 +50,31 @@ export const Input = ({
 }: InputProps) => {
   const isPassword = useMemo(() => type === 'password', [type]);
 
-  const [inputTypeInner, setInputType] = useState<HTMLInputTypeAttribute>(type);
+  const preferredTypeIsSearch = useMemo(() => type === 'search', [type]);
+
+  const [inputTypeInner, setInputType] = useState<HTMLInputTypeAttribute>(
+    preferredTypeToInternal(type),
+  );
+
   const innerRef = useRef<HTMLInputElement>(null);
   const id = useId();
 
   const interactionIconRight = useMemo((): IconKindValue | undefined => {
-    if (isPassword) {
-      if (inputTypeInner === 'password') {
-        return 'show';
-      } else {
-        return 'hide';
+    if (typeof value === 'string') {
+      // allow clear action for search
+      if (value?.length && preferredTypeIsSearch) {
+        return 'clear';
+      }
+      // toggle show / hide for password
+      if (isPassword) {
+        if (inputTypeInner === 'password') {
+          return 'show';
+        } else {
+          return 'hide';
+        }
       }
     }
-  }, [isPassword, inputTypeInner]);
+  }, [isPassword, inputTypeInner, value, preferredTypeIsSearch]);
 
   return (
     <div className="input spacer">
@@ -50,7 +83,17 @@ export const Input = ({
           disabled,
         })}
       >
-        {isPresent(label) && <FieldLabel required={required} text={label} htmlFor={id} />}
+        {isPresent(label) && (
+          <FieldLabel
+            id={id}
+            required={required}
+            text={label}
+            helper={helper}
+            onClick={() => {
+              innerRef.current?.focus();
+            }}
+          />
+        )}
         <FieldBox
           className="input-track"
           error={!disabled && isPresent(error)}
@@ -59,10 +102,16 @@ export const Input = ({
           onClick={() => {
             innerRef.current?.focus();
           }}
+          iconLeft={preferredTypeIsSearch ? 'search' : undefined}
           iconRight={interactionIconRight}
+          reserveInteraction={preferredTypeIsSearch}
           onInteractionClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
+            // clear
+            if (preferredTypeIsSearch) {
+              onChange?.('');
+            }
             if (isPassword) {
               setInputType((s) => {
                 if (s === 'password') {
@@ -75,11 +124,11 @@ export const Input = ({
           {...boxProps}
         >
           <input
+            aria-labelledby={id}
             ref={mergeRefs([ref, innerRef])}
-            id={id}
             autoComplete={autocomplete}
             data-testid={testId}
-            value={value ?? ''}
+            value={externalValueToInput(value)}
             name={name}
             type={inputTypeInner}
             placeholder={placeholder}
@@ -87,7 +136,20 @@ export const Input = ({
             onFocus={onFocus}
             onBlur={onBlur}
             onChange={(e) => {
-              onChange?.(e.target.value);
+              if (isPresent(onChange)) {
+                let changeValue: string | null | number = e.target.value;
+                // allows nulls to be typed directly to form state
+                if (changeValue === '' && !notNull && !required) {
+                  changeValue = null;
+                } else {
+                  if (inputTypeInner === 'number') {
+                    const parsed = parseInt(changeValue, 10);
+                    if (!isNumber(parsed)) return;
+                    changeValue = parsed;
+                  }
+                }
+                onChange(changeValue);
+              }
             }}
           />
         </FieldBox>

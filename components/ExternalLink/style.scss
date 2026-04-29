@@ -1,0 +1,26 @@
+.external-link {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  flex: none;
+  column-gap: var(--spacing-sm);
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  justify-content: flex-start;
+
+  span {
+    font: var(--t-body-sm-400);
+    color: var(--fg-action);
+  }
+
+  svg path {
+    fill: var(--fg-action);
+  }
+
+  &:hover {
+    span {
+      text-decoration: underline;
+      text-decoration-color: var(--fg-action);
+    }
+  }
+}
