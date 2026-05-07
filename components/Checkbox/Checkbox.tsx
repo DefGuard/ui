@@ -9,10 +9,11 @@ export const Checkbox = ({
   text,
   error,
   testId,
-  active = false,
-  disabled = false,
   children,
   onClick,
+  helperBlock,
+  active = false,
+  disabled = false,
 }: CheckboxProps) => {
   const hasError = isPresent(error);
 
@@ -24,7 +25,6 @@ export const Checkbox = ({
     >
       <div
         className={clsx('track', {
-          text: isPresent(text),
           disabled: disabled,
           active: active,
           error: hasError,
@@ -38,6 +38,7 @@ export const Checkbox = ({
         <CheckboxIndicator disabled={disabled} error={hasError} active={active} />
         {isPresent(text) && <span>{text}</span>}
         {isPresent(children) && <div className="custom-label">{children}</div>}
+        {isPresent(helperBlock) && <div className="help">{helperBlock}</div>}
       </div>
       {isPresent(error) && error.length > 0 && <FieldError error={error} />}
     </div>

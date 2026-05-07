@@ -15,6 +15,7 @@ export const InteractiveBlock = ({
   className,
   children,
   badge,
+  helperBlock,
   variant = 'radio',
   disabled = false,
   ...containerProps
@@ -46,6 +47,7 @@ export const InteractiveBlock = ({
           <div className="header">
             <p className="title">{title}</p>
             {isPresent(badge) && <Badge {...badge} />}
+            {isPresent(helperBlock) && <div className="help">{helperBlock}</div>}
           </div>
           {isPresent(content) && <p className="content">{content}</p>}
         </div>

@@ -9,16 +9,18 @@
   }
 
   & > .track {
-    &:not(.text) {
-      display: inline-block;
-    }
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
 
-    &.text {
-      display: grid;
-      grid-template-columns: 24px auto;
-      grid-template-rows: 1fr;
-      column-gap: var(--spacing-sm);
+    .help {
+      display: flex;
+      flex-flow: column;
       align-items: center;
+      justify-content: baseline;
+      margin-left: auto;
+      padding-left: var(--spacing-md);
     }
 
     &:not(.disabled) {
@@ -41,6 +43,7 @@
     span {
       font: var(--t-body-sm-400);
       color: var(--fg-default);
+      padding-left: var(--spacing-md);
     }
 
     &:not(.active, .disabled, .error):hover {

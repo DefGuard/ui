@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
 
 export interface CheckboxProps extends PropsWithChildren {
   testId?: string;
@@ -7,4 +7,5 @@ export interface CheckboxProps extends PropsWithChildren {
   disabled?: boolean;
   text?: string;
   onClick?: () => void;
+  helperBlock?: ReactNode;
 }

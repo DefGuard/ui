@@ -106,6 +106,7 @@ import { IconShow } from './icons/IconShow';
 import { IconSortable } from './icons/IconSortable';
 import { IconStatusAttention } from './icons/IconStatusAttention';
 import { IconStatusAvailable } from './icons/IconStatusAvailable';
+import { IconStatusCheck } from './icons/IconStatusCheck';
 import { IconStatusImportant } from './icons/IconStatusImportant';
 import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
@@ -171,6 +172,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'status-check':
+        return IconStatusCheck;
       case 'sync':
         return IconSync;
       case 'attention-filled':

@@ -105,6 +105,7 @@ export const IconKind = {
   StatusAvailable: 'status-available',
   StatusImportant: 'status-important',
   StatusPremium: 'status-premium',
+  StatusCheck: 'status-check',
   Disabled: 'disabled',
   ArchLinux: 'arch-linux',
   Debian: 'debian',

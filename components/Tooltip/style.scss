@@ -1,16 +1,36 @@
 .tooltip {
+  --background: var(--bg-dark);
+  --border: 1px solid var(--background);
+
   box-sizing: border-box;
   padding: var(--tooltip-spacing);
   z-index: 5;
   border-radius: var(--radius-md);
-  background-color: var(--bg-dark);
+  background-color: var(--background);
   max-width: 250px;
+  box-shadow: var(--menu-shadow);
+  border: var(--border);
 
-  span,
-  p,
-  a {
-    font: var(--t-tooltip);
-    color: var(--fg-white);
-    white-space: pre-line;
+  &:not(.variant-light) {
+    span,
+    p,
+    a {
+      font: var(--t-tooltip);
+      color: var(--fg-white);
+      white-space: pre-line;
+    }
+  }
+
+  &.variant-light {
+    --background: var(--bg-white);
+    --border: 1px solid var(--border-default);
+
+    border-radius: var(--radius-lg);
+
+    span,
+    p,
+    a {
+      font: var(--t-body-xs-400);
+    }
   }
 }

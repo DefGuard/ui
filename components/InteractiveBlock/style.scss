@@ -65,10 +65,17 @@
     justify-content: flex-start;
     row-gap: var(--spacing-xs);
 
-    .header {
+    > .header {
       display: flex;
       align-items: center;
       gap: var(--spacing-md);
+      width: 100%;
+
+      > .help {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+      }
     }
 
     .title {
@@ -78,7 +85,7 @@
       @include animate(color);
     }
 
-    .content {
+    > .content {
       font: var(--t-body-sm-400);
       color: var(--content-color);
 
