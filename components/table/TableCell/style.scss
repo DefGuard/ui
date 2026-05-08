@@ -9,6 +9,7 @@
   padding: 0 var(--spacing-md);
   min-height: 48px;
   background-color: inherit;
+  overflow: hidden;
 
   @include animate(background-color);
 
