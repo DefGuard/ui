@@ -49,6 +49,7 @@ import { IconDevicesActive } from './icons/IconDevicesActive';
 import { IconDisabled } from './icons/IconDisabled';
 import { IconDisableMfa } from './icons/IconDisableMfa';
 import { IconDownload } from './icons/IconDownload';
+import { IconDuplicate } from './icons/IconDuplicate';
 import { IconEdit } from './icons/IconEdit';
 import { IconEmptyPoint } from './icons/IconEmptyPoint';
 import { IconEnrollment } from './icons/IconEnrollment';
@@ -328,6 +329,8 @@ export const Icon = <T extends IconKindValue>({
         return IconDevicesActive;
       case 'download':
         return IconDownload;
+      case 'duplicate':
+        return IconDuplicate;
       case 'edit':
         return IconEdit;
       case 'enter':

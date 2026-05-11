@@ -19,6 +19,7 @@ export const IconKind = {
   Analytics: 'analytics',
   Search: 'search',
   Delete: 'delete',
+  Duplicate: 'duplicate',
   Transactions: 'transactions',
   Enrollment: 'enrollment',
   Copy: 'copy',

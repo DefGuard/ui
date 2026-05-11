@@ -17,6 +17,7 @@ export type EmptyStateProps = {
     | 'log'
     | 'gateway'
     | 'devices'
+    | 'posture-checks'
     | 'openid';
   className?: string;
   testId?: string;
