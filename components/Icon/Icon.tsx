@@ -41,6 +41,7 @@ import { IconCreditCard } from './icons/IconCreditCard';
 import { IconCustomize } from './icons/IconCustomize';
 import { IconDarkTheme } from './icons/IconDarkTheme';
 import { IconDebian } from './icons/IconDebian';
+import { IconDefguard } from './icons/IconDefguard';
 import { IconDelete } from './icons/IconDelete';
 import { IconDeploy } from './icons/IconDeploy';
 import { IconDesktop } from './icons/IconDesktop';
@@ -271,6 +272,8 @@ export const Icon = <T extends IconKindValue>({
         return IconEmptyPoint;
       case 'desktop':
         return IconDesktop;
+      case 'defguard':
+        return IconDefguard;
       case 'mobile':
         return IconMobile;
       case 'windows':
