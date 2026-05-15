@@ -43,7 +43,7 @@ export const FormInput = <T extends FieldValues>({
   }, [error, isDirty, isSubmitted, isTouched, disabled]);
 
   const floatingErrorsData = useMemo((): InputFloatingErrors | undefined => {
-    if (floatingErrors?.title && error && error.types && isInvalid) {
+    if (floatingErrors?.title && error?.types && isInvalid) {
       let errors: string[] = [];
       for (const val of Object.values(error.types)) {
         if (typeof val === 'string') {

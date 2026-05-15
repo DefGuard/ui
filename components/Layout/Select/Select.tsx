@@ -261,7 +261,7 @@ export const Select = <T,>({
   const floatingOptions = useMemo((): SelectFloatingOption<T>[] => {
     let availableOptions: SelectOption<T>[] = options;
 
-    if (searchable && searchValue && searchValue.length) {
+    if (searchable && searchValue?.length) {
       if (!searchFilter) {
         throw Error('Select needs to be supplied with searchFilter when searchable');
       }
