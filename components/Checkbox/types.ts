@@ -1,4 +1,4 @@
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { MouseEventHandler, PropsWithChildren, ReactNode } from 'react';
 
 export interface CheckboxProps extends PropsWithChildren {
   testId?: string;
@@ -6,6 +6,6 @@ export interface CheckboxProps extends PropsWithChildren {
   error?: string;
   disabled?: boolean;
   text?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement>;
   helperBlock?: ReactNode;
 }
