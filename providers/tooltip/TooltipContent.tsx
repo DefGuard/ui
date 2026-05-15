@@ -1,14 +1,11 @@
 import { FloatingPortal, useMergeRefs } from '@floating-ui/react';
 import clsx from 'clsx';
 import { AnimatePresence } from 'motion/react';
-import type { HTMLProps, Ref } from 'react';
 import { Tooltip } from '../../components/Tooltip/Tooltip';
 import { useTooltipContext } from './TooltipContext';
+import type { ToolTipContentProps } from './types';
 
-type Props = HTMLProps<HTMLDivElement> & {
-  ref?: Ref<HTMLDivElement>;
-  variant?: 'default' | 'light';
-};
+type Props = ToolTipContentProps;
 
 export const TooltipContent = ({
   style,
