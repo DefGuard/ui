@@ -103,7 +103,7 @@
         cursor: not-allowed;
       }
 
-      &:placeholder {
+      &::placeholder {
         color: var(--text-body-tertiary);
       }
 
