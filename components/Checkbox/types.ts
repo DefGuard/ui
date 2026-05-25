@@ -6,6 +6,7 @@ export interface CheckboxProps extends PropsWithChildren {
   error?: string;
   disabled?: boolean;
   text?: string;
+  helper?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
   helperBlock?: ReactNode;
 }

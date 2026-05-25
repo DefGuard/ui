@@ -3,11 +3,13 @@ import './style.scss';
 import { isPresent } from '../../utils/isPresent';
 import { CheckboxIndicator } from '../CheckboxIndicator/CheckboxIndicator';
 import { FieldError } from '../FieldError/FieldError';
+import { Helper } from '../Helper/Helper';
 import type { CheckboxProps } from './types';
 
 export const Checkbox = ({
   text,
   error,
+  helper,
   testId,
   children,
   onClick,
@@ -37,6 +39,11 @@ export const Checkbox = ({
       >
         <CheckboxIndicator disabled={disabled} error={hasError} active={active} />
         {isPresent(text) && <span>{text}</span>}
+        {isPresent(helper) && helper.length > 0 && (
+          <Helper size={16}>
+            <p>{helper}</p>
+          </Helper>
+        )}
         {isPresent(children) && <div className="custom-label">{children}</div>}
         {isPresent(helperBlock) && <div className="help">{helperBlock}</div>}
       </div>
