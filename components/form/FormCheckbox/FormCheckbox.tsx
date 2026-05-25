@@ -6,6 +6,7 @@ import { Checkbox } from '../../Checkbox/Checkbox';
 import type { CheckboxProps } from '../../Checkbox/types';
 
 type Props = Pick<CheckboxProps, 'text' | 'disabled' | 'helper'> & {
+  // required if form field is a set
   value?: number | string;
 };
 
