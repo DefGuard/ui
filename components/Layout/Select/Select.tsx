@@ -98,9 +98,10 @@ export const Select = <T,>({
       offset(5),
       flip(),
       size({
-        apply: ({ rects, elements }) => {
+        apply: ({ availableHeight, rects, elements }) => {
           Object.assign(elements.floating.style, {
             width: `${rects.reference.width}px`,
+            maxHeight: `${availableHeight}px`,
           });
         },
       }),
