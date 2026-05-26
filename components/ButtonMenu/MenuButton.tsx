@@ -2,6 +2,7 @@ import {
   autoUpdate,
   FloatingPortal,
   offset,
+  type Placement,
   shift,
   size,
   useClick,
@@ -17,13 +18,20 @@ import type { MenuItemsGroup } from '../Menu/types';
 
 export const ButtonMenu = ({
   menuItems,
+  rotateIconOnOpen = false,
+  placement = 'bottom-start',
   ...props
 }: Omit<ButtonProps, 'ref'> & {
   menuItems: MenuItemsGroup[];
+  placement?: Placement;
+  rotateIconOnOpen?: boolean;
 }) => {
   const [isOpen, setOpen] = useState(false);
+  const effectiveIconRotation = rotateIconOnOpen
+    ? { iconRightRotation: isOpen ? ('down' as const) : ('right' as const) }
+    : undefined;
   const { refs, context, floatingStyles } = useFloating({
-    placement: 'bottom-start',
+    placement,
     whileElementsMounted: autoUpdate,
     onOpenChange: setOpen,
     open: isOpen,
@@ -54,7 +62,12 @@ export const ButtonMenu = ({
 
   return (
     <>
-      <Button ref={refs.setReference} {...props} {...getReferenceProps()} />
+      <Button
+        ref={refs.setReference}
+        {...props}
+        {...effectiveIconRotation}
+        {...getReferenceProps()}
+      />
       {isOpen && (
         <FloatingPortal>
           <Menu
