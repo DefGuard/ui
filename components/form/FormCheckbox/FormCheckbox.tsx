@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { type ReactNode, useMemo } from 'react';
 import { useFieldContext } from '../../../../form';
 import { useFormFieldError } from '../../../hooks/useFormFieldError';
 import { isPresent } from '../../../utils/isPresent';
@@ -8,9 +8,10 @@ import type { CheckboxProps } from '../../Checkbox/types';
 type Props = Pick<CheckboxProps, 'text' | 'disabled'> & {
   // required if form field is a set
   value?: number | string;
+  helperBlock?: ReactNode;
 };
 
-export const FormCheckbox = ({ disabled, text, value }: Props) => {
+export const FormCheckbox = ({ disabled, text, value, helperBlock }: Props) => {
   const field = useFieldContext<boolean | Set<number | string>>();
   const errorMessage = useFormFieldError();
 
@@ -34,6 +35,7 @@ export const FormCheckbox = ({ disabled, text, value }: Props) => {
       active={active}
       disabled={disabled}
       text={text}
+      helperBlock={helperBlock}
       error={errorMessage}
       onClick={() => {
         if (typeof fieldValue === 'boolean') {
