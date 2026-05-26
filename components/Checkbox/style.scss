@@ -46,10 +46,6 @@
       padding-left: var(--spacing-md);
     }
 
-    .helper {
-      margin-left: var(--spacing-sm);
-    }
-
     &:not(.active, .disabled, .error):hover {
       .box {
         --border: var(--border-emphasis);
