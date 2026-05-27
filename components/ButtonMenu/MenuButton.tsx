@@ -2,6 +2,7 @@ import {
   autoUpdate,
   FloatingPortal,
   offset,
+  type Placement,
   shift,
   size,
   useClick,
@@ -17,13 +18,15 @@ import type { MenuItemsGroup } from '../Menu/types';
 
 export const ButtonMenu = ({
   menuItems,
+  placement = 'bottom-start',
   ...props
 }: Omit<ButtonProps, 'ref'> & {
   menuItems: MenuItemsGroup[];
+  placement?: Placement;
 }) => {
   const [isOpen, setOpen] = useState(false);
   const { refs, context, floatingStyles } = useFloating({
-    placement: 'bottom-start',
+    placement,
     whileElementsMounted: autoUpdate,
     onOpenChange: setOpen,
     open: isOpen,

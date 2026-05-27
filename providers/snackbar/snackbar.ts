@@ -39,6 +39,12 @@ export const Snackbar = {
       variant: SnackbarVariant.Success,
     });
   },
+  warning: (text: string) => {
+    useSnackbarStore.getState().snackSubject.next({
+      text,
+      variant: SnackbarVariant.Warning,
+    });
+  },
   error: (text: string) => {
     useSnackbarStore.getState().snackSubject.next({
       text,
