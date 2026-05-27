@@ -57,11 +57,7 @@ export const ButtonMenu = ({
 
   return (
     <>
-      <Button
-        ref={refs.setReference}
-        {...props}
-        {...getReferenceProps()}
-      />
+      <Button ref={refs.setReference} {...props} {...getReferenceProps()} />
       {isOpen && (
         <FloatingPortal>
           <Menu
