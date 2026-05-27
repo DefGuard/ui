@@ -18,18 +18,13 @@ import type { MenuItemsGroup } from '../Menu/types';
 
 export const ButtonMenu = ({
   menuItems,
-  rotateIconOnOpen = false,
   placement = 'bottom-start',
   ...props
 }: Omit<ButtonProps, 'ref'> & {
   menuItems: MenuItemsGroup[];
   placement?: Placement;
-  rotateIconOnOpen?: boolean;
 }) => {
   const [isOpen, setOpen] = useState(false);
-  const effectiveIconRotation = rotateIconOnOpen
-    ? { iconRightRotation: isOpen ? ('down' as const) : ('right' as const) }
-    : undefined;
   const { refs, context, floatingStyles } = useFloating({
     placement,
     whileElementsMounted: autoUpdate,
@@ -65,7 +60,6 @@ export const ButtonMenu = ({
       <Button
         ref={refs.setReference}
         {...props}
-        {...effectiveIconRotation}
         {...getReferenceProps()}
       />
       {isOpen && (
