@@ -107,7 +107,9 @@ export function Select<T>(props: SelectProps<T, boolean>) {
             <FieldLabel required={required} id={labelId} text={label} helper={helper} />
           )}
           <FieldBox
-            className={className}
+            className={clsx(className, {
+              open: floatingOpen,
+            })}
             disabled={disabled}
             size={size}
             boxRef={refs.setReference}

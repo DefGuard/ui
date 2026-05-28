@@ -28,10 +28,10 @@
         }
       }
     }
-  }
 
-  .icon {
-    transform: rotate(90deg);
+    .icon[data-kind='arrow-small'] {
+      transform: rotate(90deg);
+    }
   }
 }
 
