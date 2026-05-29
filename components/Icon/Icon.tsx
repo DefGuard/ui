@@ -49,6 +49,7 @@ import { IconDevices } from './icons/IconDevices';
 import { IconDevicesActive } from './icons/IconDevicesActive';
 import { IconDisabled } from './icons/IconDisabled';
 import { IconDisableMfa } from './icons/IconDisableMfa';
+import { IconDnd } from './icons/IconDnd';
 import { IconDownload } from './icons/IconDownload';
 import { IconDuplicate } from './icons/IconDuplicate';
 import { IconEdit } from './icons/IconEdit';
@@ -174,6 +175,8 @@ export const Icon = <T extends IconKindValue>({
 }: Props<T>) => {
   const IconToRender = useMemo(() => {
     switch (iconKind) {
+      case 'dnd':
+        return IconDnd;
       case 'status-check':
         return IconStatusCheck;
       case 'sync':

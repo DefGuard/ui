@@ -1,4 +1,6 @@
 .icon {
+  --icon-color: var(--fg-muted);
+
   display: inline-block;
   overflow: hidden;
   user-select: none;
@@ -11,10 +13,14 @@
     @include animate;
 
     path {
+      fill: var(--icon-color);
+
       @include animate(fill);
     }
 
     circle {
+      stroke: var(--icon-color);
+
       @include animate(stroke);
     }
   }
