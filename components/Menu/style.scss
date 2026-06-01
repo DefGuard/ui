@@ -75,10 +75,14 @@
     @include animate(background-color);
 
     &.disabled {
+      --icon-fill: var(--fg-disabled);
+      --color: var(--fg-disabled);
+
       cursor: not-allowed;
     }
 
-    &.nested {
+    &.nested,
+    &.grid-full {
       // account for positioned icon on the right side
       padding: 0 calc(var(--spacing-sm) + var(--spacing-md) + 20px) 0 var(--spacing-sm);
     }
@@ -99,10 +103,6 @@
       color: inherit;
     }
 
-    & > .icon svg path {
-      fill: var(--icon-fill);
-    }
-
     & > .suffix {
       position: absolute;
       height: 20px;
@@ -111,8 +111,8 @@
       right: var(--spacing-sm);
       transform: translateY(-50%);
 
-      svg path {
-        fill: var(--fg-muted);
+      .icon {
+        --icon-color: var(--icon-fill);
       }
     }
   }

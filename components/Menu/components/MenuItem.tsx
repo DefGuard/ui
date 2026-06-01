@@ -1,10 +1,12 @@
 import clsx from 'clsx';
 import { isPresent } from '../../../utils/isPresent';
+import { Helper } from '../../Helper/Helper';
 import { Icon } from '../../Icon';
 import type { MenuItemProps } from '../types';
 
 export const MenuItem = ({
   disabled,
+  disabledHelper,
   text,
   icon,
   items,
@@ -23,8 +25,9 @@ export const MenuItem = ({
         'grid-default': !hasItems && !hasIcon,
         'grid-group': hasItems && !hasIcon,
         'grid-icon': !hasItems && hasIcon,
-        'grid-full': hasIcon && hasItems,
-        nested: hasItems,
+        'grid-full':
+          (hasIcon && hasItems) || (hasIcon && disabled && isPresent(disabledHelper)),
+        nested: hasItems || (disabled && isPresent(disabledHelper)),
       })}
       data-testid={testId}
       onClick={() => {
@@ -38,7 +41,14 @@ export const MenuItem = ({
     >
       {isPresent(icon) && <Icon icon={icon} size={20} />}
       <p>{text}</p>
-      {hasItems && (
+      {disabled && isPresent(disabledHelper) && (
+        <div className="suffix">
+          <Helper icon="lock-closed" color={null}>
+            <p>{disabledHelper}</p>
+          </Helper>
+        </div>
+      )}
+      {hasItems && !disabled && (
         <div className="suffix">
           <Icon icon="arrow-small" size={20} />
         </div>

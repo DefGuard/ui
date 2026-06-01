@@ -5,16 +5,24 @@ import { TooltipContent } from '../../providers/tooltip/TooltipContent';
 import { TooltipProvider } from '../../providers/tooltip/TooltipContext';
 import { TooltipTrigger } from '../../providers/tooltip/TooltipTrigger';
 import type { ToolTipContentProps } from '../../providers/tooltip/types';
-import { ThemeVariable } from '../../types';
-import { Icon, IconKind } from '../Icon';
+import { ThemeVariable, type ThemeVariableValue } from '../../types';
+import { Icon, IconKind, type IconKindValue } from '../Icon';
 
 interface Props {
   children: ReactNode;
   tooltipProps?: ToolTipContentProps;
   size?: number;
+  icon?: IconKindValue;
+  color?: ThemeVariableValue | null;
 }
 
-export const Helper = ({ children, tooltipProps, size = 20 }: Props) => {
+export const Helper = ({
+  children,
+  tooltipProps,
+  icon = IconKind.Help,
+  size = 20,
+  color = ThemeVariable.FgMuted,
+}: Props) => {
   return (
     <TooltipProvider>
       <TooltipTrigger>
@@ -25,7 +33,7 @@ export const Helper = ({ children, tooltipProps, size = 20 }: Props) => {
             height: size,
           }}
         >
-          <Icon icon={IconKind.Help} size={size} staticColor={ThemeVariable.FgMuted} />
+          <Icon icon={icon} size={size} staticColor={color ? color : undefined} />
         </div>
       </TooltipTrigger>
       <TooltipContent {...tooltipProps}>
