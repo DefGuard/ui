@@ -198,7 +198,9 @@ export const TableHeaderCell = <TData extends object>({ header }: Props<TData>) 
                 }),
               }}
               onChange={(newSelection) => {
-                header.column.setFilterValue(newSelection);
+                header.column.setFilterValue(
+                  newSelection.length > 0 ? newSelection : undefined,
+                );
                 setFloatOpen(false);
               }}
             />
