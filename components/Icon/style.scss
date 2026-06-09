@@ -1,6 +1,4 @@
 .icon {
-  --icon-color: var(--fg-muted);
-
   display: inline-block;
   overflow: hidden;
   user-select: none;
@@ -13,13 +11,13 @@
     @include animate;
 
     path {
-      fill: var(--icon-color);
+      fill: var(--icon-color, var(--fg-muted));
 
       @include animate(fill);
     }
 
     circle {
-      stroke: var(--icon-color);
+      stroke: var(--icon-color, var(--fg-muted));
 
       @include animate(stroke);
     }
@@ -27,9 +25,9 @@
 }
 
 .icon[style*='--icon-color'] svg path {
-  fill: var(--icon-color);
+  fill: var(--icon-color, var(--fg-muted));
 }
 
 .icon[style*='--icon-color'] svg circle {
-  stroke: var(--icon-color);
+  stroke: var(--icon-color, var(--fg-muted));
 }
