@@ -61,6 +61,10 @@
     p {
       color: var(--fg-disabled);
     }
+
+    &.active {
+      --circle-x: 16px;
+    }
   }
 
   &:not(.disabled).active {
