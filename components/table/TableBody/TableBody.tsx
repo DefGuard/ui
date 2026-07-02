@@ -16,7 +16,7 @@ import {
 } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { isPresent } from '../../../utils/isPresent';
-import { tableActionColumnSize } from '../consts';
+import { tableActionColumnSize, tableRowBorderWidth } from '../consts';
 import { TableCell } from '../TableCell/TableCell';
 import { TableCellContext } from '../TableCell/TableCellContext';
 import { TableExpandCell } from '../TableExpandCell/TableExpandCell';
@@ -52,6 +52,9 @@ type Props<TData> = {
   expandedHeaders?: string[];
   renderExpandedRow?: (row: Row<TData>, isLast?: boolean) => ReactNode;
   onNextPage?: () => void;
+  // Size to the rows, but shrink and scroll when a height-constrained parent
+  // (e.g. a modal) cannot fit them.
+  shrink?: boolean;
 } & HTMLProps<HTMLDivElement>;
 
 export const TableBody = <T extends object>({
@@ -62,6 +65,7 @@ export const TableBody = <T extends object>({
   hasNextPage = false,
   loadingNextPage = false,
   onNextPage,
+  shrink = false,
   ...props
 }: Props<T>) => {
   const { ref: loadMoreRowRef } = useInView({
@@ -140,12 +144,13 @@ export const TableBody = <T extends object>({
   }, [canExpand, canSelect, table.getTotalSize()]);
 
   const virtualizedPaddingBottom = useMemo(() => {
+    if (shrink) return tableHeaderHeight;
     let result: number = 55 + tableRowHeight;
     if (hasNextPage) {
       result += tableRowHeight;
     }
     return result;
-  }, [hasNextPage]);
+  }, [hasNextPage, shrink]);
 
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
@@ -193,7 +198,8 @@ export const TableBody = <T extends object>({
         }
       }
 
-      const availableFlexWidth = width - actionColumnsWidth - fixedColumnsWidth;
+      const availableFlexWidth =
+        width - actionColumnsWidth - fixedColumnsWidth - tableRowBorderWidth;
       if (availableFlexWidth <= flexBaseWidth) return;
 
       const totalFlexBase = flexBaseWidth || flexColumns.length;
@@ -231,7 +237,7 @@ export const TableBody = <T extends object>({
 
   return (
     <div
-      className={clsx('table', className)}
+      className={clsx('table', className, { shrink })}
       style={{
         ...columnSizeVars,
       }}
@@ -241,7 +247,7 @@ export const TableBody = <T extends object>({
         className="table-scroll"
         ref={scrollParentRef}
         style={{
-          maxHeight: maxTableHeight ?? undefined,
+          maxHeight: shrink ? undefined : (maxTableHeight ?? undefined),
           overflowY: 'auto',
           overflowX: 'auto',
         }}
