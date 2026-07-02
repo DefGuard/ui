@@ -16,7 +16,7 @@ import {
 } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { isPresent } from '../../../utils/isPresent';
-import { tableActionColumnSize, tableRowBorderWidth } from '../consts';
+import { tableActionColumnSize } from '../consts';
 import { TableCell } from '../TableCell/TableCell';
 import { TableCellContext } from '../TableCell/TableCellContext';
 import { TableExpandCell } from '../TableExpandCell/TableExpandCell';
@@ -150,6 +150,13 @@ export const TableBody = <T extends object>({
     return result;
   }, [hasNextPage, maxVisibleRows]);
 
+  const scrollMaxHeight = useMemo(() => {
+    if (isPresent(maxVisibleRows)) {
+      return tableHeaderHeight + maxVisibleRows * tableRowHeight;
+    }
+    return maxTableHeight ?? undefined;
+  }, [maxVisibleRows, maxTableHeight]);
+
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     estimateSize: () => 48,
@@ -196,8 +203,7 @@ export const TableBody = <T extends object>({
         }
       }
 
-      const availableFlexWidth =
-        width - actionColumnsWidth - fixedColumnsWidth - tableRowBorderWidth;
+      const availableFlexWidth = width - actionColumnsWidth - fixedColumnsWidth;
       if (availableFlexWidth <= flexBaseWidth) return;
 
       const totalFlexBase = flexBaseWidth || flexColumns.length;
@@ -245,9 +251,7 @@ export const TableBody = <T extends object>({
         className="table-scroll"
         ref={scrollParentRef}
         style={{
-          maxHeight: isPresent(maxVisibleRows)
-            ? tableHeaderHeight + maxVisibleRows * tableRowHeight
-            : (maxTableHeight ?? undefined),
+          maxHeight: scrollMaxHeight,
           overflowY: 'auto',
           overflowX: 'auto',
         }}
