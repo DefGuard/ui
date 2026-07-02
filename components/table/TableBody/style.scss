@@ -2,16 +2,6 @@
   box-sizing: border-box;
   padding: 0 var(--spacing-xl);
   width: 100%;
-
-  &.shrink {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-
-    .table-scroll {
-      min-height: 0;
-    }
-  }
 }
 
 .table-virtual-body {
