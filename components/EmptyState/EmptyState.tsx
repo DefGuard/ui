@@ -17,6 +17,7 @@ import { EmptyStateIconOpenId } from './icons/EmptyStateIconOpenId';
 import { EmptyStateIconPostureChecks } from './icons/EmptyStateIconPostureChecks';
 import { EmptyStateIconRules } from './icons/EmptyStateIconRules';
 import { EmptyStateIconSearch } from './icons/EmptyStateIconSearch';
+import { EmptyStateIconUsers } from './icons/EmptyStateIconUsers';
 import { EmptyStateIconWebhook } from './icons/EmptyStateIconWebhook';
 import type { EmptyStateProps } from './types';
 
@@ -65,6 +66,8 @@ export const EmptyState = ({
         return EmptyStateIconPostureChecks;
       case 'openid':
         return EmptyStateIconOpenId;
+      case 'users':
+        return EmptyStateIconUsers;
     }
   }, [icon]);
 

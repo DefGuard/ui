@@ -52,6 +52,7 @@ type Props<TData> = {
   expandedHeaders?: string[];
   renderExpandedRow?: (row: Row<TData>, isLast?: boolean) => ReactNode;
   onNextPage?: () => void;
+  maxVisibleRows?: number;
 } & HTMLProps<HTMLDivElement>;
 
 export const TableBody = <T extends object>({
@@ -62,6 +63,7 @@ export const TableBody = <T extends object>({
   hasNextPage = false,
   loadingNextPage = false,
   onNextPage,
+  maxVisibleRows,
   ...props
 }: Props<T>) => {
   const { ref: loadMoreRowRef } = useInView({
@@ -140,12 +142,20 @@ export const TableBody = <T extends object>({
   }, [canExpand, canSelect, table.getTotalSize()]);
 
   const virtualizedPaddingBottom = useMemo(() => {
+    if (isPresent(maxVisibleRows)) return tableHeaderHeight;
     let result: number = 55 + tableRowHeight;
     if (hasNextPage) {
       result += tableRowHeight;
     }
     return result;
-  }, [hasNextPage]);
+  }, [hasNextPage, maxVisibleRows]);
+
+  const scrollMaxHeight = useMemo(() => {
+    if (isPresent(maxVisibleRows)) {
+      return tableHeaderHeight + maxVisibleRows * tableRowHeight;
+    }
+    return maxTableHeight ?? undefined;
+  }, [maxVisibleRows, maxTableHeight]);
 
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
@@ -241,7 +251,7 @@ export const TableBody = <T extends object>({
         className="table-scroll"
         ref={scrollParentRef}
         style={{
-          maxHeight: maxTableHeight ?? undefined,
+          maxHeight: scrollMaxHeight,
           overflowY: 'auto',
           overflowX: 'auto',
         }}

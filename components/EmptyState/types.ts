@@ -18,7 +18,8 @@ export type EmptyStateProps = {
     | 'gateway'
     | 'devices'
     | 'posture-checks'
-    | 'openid';
+    | 'openid'
+    | 'users';
   className?: string;
   testId?: string;
   id?: string;
