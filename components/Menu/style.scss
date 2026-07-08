@@ -103,6 +103,10 @@
       color: inherit;
     }
 
+    > .icon {
+      --icon-color: var(--icon-fill);
+    }
+
     & > .suffix {
       position: absolute;
       height: 20px;

@@ -25,6 +25,9 @@ export const ModalFoundation = ({
     } else {
       rootElement.style.overflowY = 'auto';
     }
+    return () => {
+      rootElement.style.overflowY = 'auto';
+    };
   }, [isOpen]);
 
   return createPortal(
