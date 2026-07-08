@@ -8,3 +8,10 @@ export const createZodIssue = (
   message,
   path,
 });
+
+export const zodIssueMessage = (
+  error: z.core.$ZodIssue | string | undefined,
+): string | undefined => {
+  if (error === undefined) return undefined;
+  return typeof error === 'string' ? error : error.message;
+};
