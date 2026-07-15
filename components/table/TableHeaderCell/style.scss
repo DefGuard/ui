@@ -58,8 +58,8 @@
     }
 
     &.active {
-      --bg: var(--fg-neutral);
-      --icon: var(--fg-white);
+      --bg: var(--fg-default);
+      --icon: var(--fg-inverted);
     }
 
     .icon svg path {
