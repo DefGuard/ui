@@ -161,6 +161,7 @@ export const TableBody = <T extends object>({
     count: rows.length,
     estimateSize: () => 48,
     getScrollElement: () => scrollParentRef.current,
+    getItemKey: (index) => rows[index]?.id ?? index,
     overscan: 8,
     // paddingStart: tableHeaderHeight,
     paddingEnd: virtualizedPaddingBottom,
