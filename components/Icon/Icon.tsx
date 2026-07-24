@@ -40,6 +40,7 @@ import { IconCopy } from './icons/IconCopy';
 import { IconCreditCard } from './icons/IconCreditCard';
 import { IconCustomize } from './icons/IconCustomize';
 import { IconDarkTheme } from './icons/IconDarkTheme';
+import { IconDate } from './icons/IconDate';
 import { IconDebian } from './icons/IconDebian';
 import { IconDefguard } from './icons/IconDefguard';
 import { IconDelete } from './icons/IconDelete';
@@ -324,7 +325,7 @@ export const Icon = <T extends IconKindValue>({
       case 'credit-card':
         return IconCreditCard;
       case 'date':
-        return EmptyIcon;
+        return IconDate;
       case 'delete':
         return IconDelete;
       case 'deploy':
