@@ -38,6 +38,7 @@ export const IconKind = {
   PieChart: 'pie-chart',
   Notification: 'notification',
   Globe: 'globe',
+  GlobeDenied: 'globe-denied',
   Groups: 'groups',
   OpenInNewWindow: 'open-in-new-window',
   Users: 'users',
