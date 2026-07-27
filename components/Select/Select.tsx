@@ -56,7 +56,10 @@ export function Select<T>(props: SelectProps<T, boolean>) {
         apply({ rects, elements, availableHeight }) {
           const refWidth = `${rects.reference.width}px`;
           elements.floating.style.minWidth = refWidth;
-          elements.floating.style.maxHeight = `${availableHeight - 10}px`;
+          elements.floating.style.setProperty(
+            '--available-height',
+            `${availableHeight - 10}px`,
+          );
         },
       }),
     ],
