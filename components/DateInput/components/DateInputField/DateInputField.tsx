@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { isPresent } from '../../../../utils/isPresent';
 import { FieldBox } from '../../../FieldBox/FieldBox';
+import { FieldError } from '../../../FieldError/FieldError';
 import type { DateInputFieldProps } from '../../types';
 
 const labelFormat = 'DD/MM/YYYY • HH:mm';
@@ -20,6 +21,7 @@ export const DateInputField = ({
   placeholder,
   className,
   testId,
+  error,
   boxRef,
   size = 'default',
   disabled = false,
@@ -34,6 +36,7 @@ export const DateInputField = ({
           className={clsx(className, {
             open,
           })}
+          error={!disabled && isPresent(error)}
           disabled={disabled}
           size={size}
           boxRef={boxRef}
@@ -68,6 +71,7 @@ export const DateInputField = ({
             )}
           </div>
         </FieldBox>
+        <FieldError error={disabled ? undefined : error} />
       </div>
     </div>
   );

@@ -46,6 +46,7 @@ export type DateInputProps = {
   className?: string;
   testId?: string;
   size?: FieldSize;
+  error?: string;
 };
 
 export type DateInputFieldProps = HTMLAttributes<HTMLDivElement> & {
@@ -55,6 +56,7 @@ export type DateInputFieldProps = HTMLAttributes<HTMLDivElement> & {
   disabled?: boolean;
   testId?: string;
   size?: FieldSize;
+  error?: string;
   open?: boolean;
   boxRef?: Ref<HTMLDivElement>;
 };

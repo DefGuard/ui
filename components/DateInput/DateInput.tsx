@@ -23,6 +23,7 @@ export const DateInput = ({
   placeholder,
   className,
   testId,
+  error,
   size = 'default',
   disabled = false,
 }: DateInputProps) => {
@@ -78,6 +79,7 @@ export const DateInput = ({
         placeholder={placeholder}
         className={className}
         testId={testId}
+        error={error}
         size={size}
         disabled={disabled}
         open={floatingOpen}
