@@ -1,14 +1,13 @@
 import dayjs, { type Dayjs } from 'dayjs';
 import type { SelectOption } from '../Select/types';
-
-const daysInWeek = 7;
-const weeksInGrid = 6;
-const yearSpan = 10;
-const hoursInDay = 24;
-const dateFormat = 'YYYY-MM-DD';
-
-export const timeFormat = 'HH:mm';
-export const dayStartTime = '00:00';
+import {
+  dateFormat,
+  daysInWeek,
+  hoursInDay,
+  timeFormat,
+  weeksInGrid,
+  yearSpan,
+} from './config';
 
 export const calendarWeekdays = (): string[] => {
   const weekStart = dayjs().startOf('isoWeek');

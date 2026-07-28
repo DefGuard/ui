@@ -3,6 +3,7 @@ import type { Dayjs } from 'dayjs';
 import { useMemo } from 'react';
 import { isPresent } from '../../../../utils/isPresent';
 import { Select } from '../../../Select/Select';
+import { daysInWeek } from '../../config';
 import {
   buildMonthGrid,
   calendarWeekdays,
@@ -11,6 +12,10 @@ import {
 } from '../../helpers';
 import type { DayButtonVariant, MonthCalendarProps } from '../../types';
 import { DayButton } from '../DayButton/DayButton';
+
+const gridVars: Record<string, number> = {
+  '--days-in-week': daysInWeek,
+};
 
 export const MonthCalendar = ({
   month,
@@ -44,7 +49,12 @@ export const MonthCalendar = ({
   };
 
   return (
-    <div className="calendar">
+    <div
+      className="calendar"
+      style={{
+        ...gridVars,
+      }}
+    >
       <div className="calendar-header">
         <Select
           options={monthOptions}

@@ -28,7 +28,7 @@
 
     .weekdays {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(var(--days-in-week), 1fr);
 
       .weekday {
         font: var(--t-body-xxs-600);
@@ -41,7 +41,7 @@
 
     .days {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(var(--days-in-week), 1fr);
       row-gap: var(--spacing-xs);
     }
   }

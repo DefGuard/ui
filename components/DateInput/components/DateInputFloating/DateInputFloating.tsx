@@ -6,11 +6,10 @@ import { isPresent } from '../../../../utils/isPresent';
 import { Button } from '../../../Button/Button';
 import { Divider } from '../../../Divider/Divider';
 import { Select } from '../../../Select/Select';
+import { dayStartTime, timeFormat } from '../../config';
 import {
   applyTime,
-  dayStartTime,
   monthSelectOptions,
-  timeFormat,
   timeSelectOptions,
   timeToOption,
   yearSelectOptions,
