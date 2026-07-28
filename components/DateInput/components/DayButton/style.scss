@@ -16,10 +16,7 @@
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      right: var(--band-end);
-      bottom: 0;
-      left: var(--band-start);
+      inset: 0 var(--band-end) 0 var(--band-start);
       background-color: var(--bg-emphasis);
     }
   }
