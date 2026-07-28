@@ -38,6 +38,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     placeholder,
     testId,
     error,
+    visibleOptions,
     size = 'default',
     disabled = false,
     required = false,
@@ -56,7 +57,10 @@ export function Select<T>(props: SelectProps<T, boolean>) {
         apply({ rects, elements, availableHeight }) {
           const refWidth = `${rects.reference.width}px`;
           elements.floating.style.minWidth = refWidth;
-          elements.floating.style.maxHeight = `${availableHeight - 10}px`;
+          elements.floating.style.setProperty(
+            '--available-height',
+            `${availableHeight - 10}px`,
+          );
         },
       }),
     ],
@@ -74,6 +78,14 @@ export function Select<T>(props: SelectProps<T, boolean>) {
     if (isMulti) return new Set();
     return new Set([props.value.key]);
   }, [isMulti, props.value]);
+
+  const floatingVars = useMemo(() => {
+    const res: Record<string, number> = {};
+    if (isPresent(visibleOptions)) {
+      res['--visible-options'] = visibleOptions;
+    }
+    return res;
+  }, [visibleOptions]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: onChange
   const handleChange = useCallback(
@@ -138,6 +150,7 @@ export function Select<T>(props: SelectProps<T, boolean>) {
             style={{
               position: 'absolute',
               ...floatingStyles,
+              ...floatingVars,
             }}
             {...getFloatingProps()}
           >

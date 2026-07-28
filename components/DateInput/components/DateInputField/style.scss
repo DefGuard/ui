@@ -1,0 +1,49 @@
+.date-input {
+  width: 347px;
+  max-width: 100%;
+
+  > .inner {
+    .field-box {
+      .range-track {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        column-gap: var(--spacing-xs);
+        overflow: hidden;
+
+        .placeholder,
+        .segment,
+        .separator {
+          user-select: none;
+        }
+
+        .placeholder {
+          color: var(--fg-muted);
+        }
+
+        .segment {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          min-width: 139px;
+          padding: 0 var(--spacing-xs);
+          border-radius: var(--radius-sm);
+          color: var(--fg-default);
+          font-variant-numeric: tabular-nums;
+
+          @include animate(background-color, color);
+
+          &.empty {
+            color: var(--fg-muted);
+          }
+
+          &.active {
+            background-color: var(--bg-action-muted);
+            color: var(--fg-action);
+          }
+        }
+      }
+    }
+  }
+}

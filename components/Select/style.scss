@@ -36,6 +36,14 @@
 }
 
 .select-floating {
+  --visible-options: 8;
+  --options-content-height: calc(
+    var(--visible-options) * (var(--menu-height) + var(--spacing-xs)) - var(--spacing-xs)
+  );
+  --options-max-height: calc(
+    var(--options-content-height) + 2 * (var(--menu-padding-sides) + var(--border-1))
+  );
+
   z-index: 5;
   position: absolute;
   display: flex;
@@ -43,6 +51,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   box-sizing: border-box;
+  max-height: min(var(--available-height, 100vh), var(--options-max-height));
+  overflow-y: auto;
   padding: var(--menu-padding-sides);
   border: var(--border-1) solid var(--border-disabled);
   border-radius: var(--menu-border-radius-group);
@@ -56,6 +66,7 @@
 
     display: flex;
     flex-flow: row nowrap;
+    flex-shrink: 0;
     box-sizing: border-box;
     padding: 0 var(--spacing-sm);
     user-select: none;
