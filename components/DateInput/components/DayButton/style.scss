@@ -1,0 +1,102 @@
+.day {
+  --day-size: 28px;
+  --day-gutter: calc((100% - var(--day-size)) / 2);
+  --band-start: 0;
+  --band-end: 0;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--day-size);
+
+  &.variant-in-range,
+  &.variant-range-start,
+  &.variant-range-end {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: var(--band-end);
+      bottom: 0;
+      left: var(--band-start);
+      background-color: var(--bg-emphasis);
+    }
+  }
+
+  &:nth-child(7n + 1) {
+    --band-start: var(--day-gutter);
+
+    &::before {
+      border-top-left-radius: var(--radius-sm);
+      border-bottom-left-radius: var(--radius-sm);
+    }
+  }
+
+  &:nth-child(7n) {
+    --band-end: var(--day-gutter);
+
+    &::before {
+      border-top-right-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+    }
+  }
+
+  &.variant-range-start {
+    --band-start: 50%;
+  }
+
+  &.variant-range-end {
+    --band-end: 50%;
+  }
+
+  .day-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: var(--day-size);
+    height: var(--day-size);
+    margin: 0;
+    padding: 0;
+    border: var(--border-1) solid transparent;
+    border-radius: var(--radius-sm);
+    background: none;
+    cursor: pointer;
+
+    @include animate(background-color, border-color);
+
+    span {
+      font: var(--t-body-sm-400);
+      color: var(--fg-default);
+      user-select: none;
+    }
+  }
+
+  &.outside .day-button span {
+    color: var(--fg-faded);
+  }
+
+  &.today .day-button {
+    border-color: var(--border-emphasis);
+  }
+
+  &.variant-default .day-button:hover,
+  &.variant-in-range .day-button:hover {
+    background-color: var(--bg-muted);
+  }
+
+  &.variant-selected,
+  &.variant-range-start,
+  &.variant-range-end {
+    .day-button {
+      border-color: transparent;
+      background-color: var(--bg-action);
+
+      span {
+        color: var(--fg-inverted);
+      }
+    }
+  }
+}

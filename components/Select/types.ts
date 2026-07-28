@@ -20,6 +20,7 @@ type BaseProps<T> = {
   helper?: string;
   required?: boolean;
   error?: string;
+  visibleOptions?: number;
 } & Pick<FieldBoxProps, 'size'>;
 
 export type SelectSingleProps<T> = BaseProps<T> & {

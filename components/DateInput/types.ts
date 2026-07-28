@@ -1,4 +1,5 @@
 import type { Dayjs } from 'dayjs';
+import type { HTMLAttributes, HTMLProps, Ref } from 'react';
 import type { FieldSize } from '../FieldBox/types';
 import type { SelectOption } from '../Select/types';
 
@@ -47,9 +48,22 @@ export type DateInputProps = {
   size?: FieldSize;
 };
 
-export type DateInputPanelProps = {
+export type DateInputFieldProps = HTMLAttributes<HTMLDivElement> & {
+  displayed: DateRangeDisplay | null;
+  labels: DateInputLabels;
+  placeholder?: string;
+  disabled?: boolean;
+  testId?: string;
+  size?: FieldSize;
+  open?: boolean;
+  boxRef?: Ref<HTMLDivElement>;
+};
+
+export type DateInputFloatingProps = {
   value: DateRange | null;
   labels: DateInputLabels;
+  ref?: Ref<HTMLDivElement>;
+  boxProps?: HTMLProps<HTMLDivElement>;
   onPreviewChange: (preview: DateRangePreview) => void;
   onApply: (value: DateRange | null) => void;
   onCancel: () => void;

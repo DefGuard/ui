@@ -1,15 +1,16 @@
+import './style.scss';
 import type { Dayjs } from 'dayjs';
 import { useMemo } from 'react';
-import { isPresent } from '../../../utils/isPresent';
-import { Select } from '../../Select/Select';
+import { isPresent } from '../../../../utils/isPresent';
+import { Select } from '../../../Select/Select';
 import {
   buildMonthGrid,
   calendarWeekdays,
   monthToOption,
   yearToOption,
-} from '../helpers';
-import type { DayButtonVariant, MonthCalendarProps } from '../types';
-import { DayButton } from './DayButton';
+} from '../../helpers';
+import type { DayButtonVariant, MonthCalendarProps } from '../../types';
+import { DayButton } from '../DayButton/DayButton';
 
 export const MonthCalendar = ({
   month,

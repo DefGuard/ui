@@ -1,4 +1,3 @@
-import './style.scss';
 import {
   autoUpdate,
   FloatingPortal,
@@ -11,22 +10,11 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
-import clsx from 'clsx';
-import dayjs from 'dayjs';
 import { useMemo, useState } from 'react';
 import { isPresent } from '../../utils/isPresent';
-import { FieldBox } from '../FieldBox/FieldBox';
-import { DateInputPanel } from './components/DateInputPanel';
+import { DateInputField } from './components/DateInputField/DateInputField';
+import { DateInputFloating } from './components/DateInputFloating/DateInputFloating';
 import type { DateInputProps, DateRangeDisplay, DateRangePreview } from './types';
-
-const labelFormat = 'DD/MM/YYYY • HH:mm';
-
-const segmentLabel = (date: Date | null, fallback: string): string => {
-  if (!isPresent(date)) {
-    return fallback;
-  }
-  return dayjs(date).format(labelFormat);
-};
 
 export const DateInput = ({
   value,
@@ -83,70 +71,38 @@ export const DateInput = ({
 
   return (
     <>
-      <div className="date-input spacer">
-        <div className="inner">
-          <FieldBox
-            className={clsx(className, {
-              open: floatingOpen,
-            })}
-            disabled={disabled}
-            size={size}
-            boxRef={refs.setReference}
-            data-testid={testId}
-            iconRight="date"
-            forceFocusState={floatingOpen}
-            {...getReferenceProps()}
-          >
-            <div className="range-track">
-              {!isPresent(displayed) && isPresent(placeholder) && (
-                <span className="placeholder">{placeholder}</span>
-              )}
-              {isPresent(displayed) && (
-                <>
-                  <span
-                    className={clsx('segment', {
-                      active: displayed.active === 'start',
-                      empty: !isPresent(displayed.start),
-                    })}
-                  >
-                    {segmentLabel(displayed.start, labels.start)}
-                  </span>
-                  <span className="separator">-</span>
-                  <span
-                    className={clsx('segment', {
-                      active: displayed.active === 'end',
-                      empty: !isPresent(displayed.end),
-                    })}
-                  >
-                    {segmentLabel(displayed.end, labels.end)}
-                  </span>
-                </>
-              )}
-            </div>
-          </FieldBox>
-        </div>
-      </div>
+      <DateInputField
+        {...getReferenceProps()}
+        displayed={displayed}
+        labels={labels}
+        placeholder={placeholder}
+        className={className}
+        testId={testId}
+        size={size}
+        disabled={disabled}
+        open={floatingOpen}
+        boxRef={refs.setReference}
+      />
       {floatingOpen && (
         <FloatingPortal>
-          <div
-            className="date-input-floating"
+          <DateInputFloating
+            value={value}
+            labels={labels}
             ref={refs.setFloating}
-            style={floatingStyles}
-            {...getFloatingProps()}
-          >
-            <DateInputPanel
-              value={value}
-              labels={labels}
-              onPreviewChange={setPreview}
-              onApply={(range) => {
-                onChange(range);
-                setFloatingOpen(false);
-              }}
-              onCancel={() => {
-                setFloatingOpen(false);
-              }}
-            />
-          </div>
+            boxProps={{
+              ...getFloatingProps({
+                style: floatingStyles,
+              }),
+            }}
+            onPreviewChange={setPreview}
+            onApply={(range) => {
+              onChange(range);
+              setFloatingOpen(false);
+            }}
+            onCancel={() => {
+              setFloatingOpen(false);
+            }}
+          />
         </FloatingPortal>
       )}
     </>

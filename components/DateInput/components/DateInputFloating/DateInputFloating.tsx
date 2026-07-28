@@ -1,9 +1,11 @@
+import './style.scss';
+import clsx from 'clsx';
 import dayjs, { type Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
-import { isPresent } from '../../../utils/isPresent';
-import { Button } from '../../Button/Button';
-import { Divider } from '../../Divider/Divider';
-import { Select } from '../../Select/Select';
+import { isPresent } from '../../../../utils/isPresent';
+import { Button } from '../../../Button/Button';
+import { Divider } from '../../../Divider/Divider';
+import { Select } from '../../../Select/Select';
 import {
   applyTime,
   dayStartTime,
@@ -12,9 +14,9 @@ import {
   timeSelectOptions,
   timeToOption,
   yearSelectOptions,
-} from '../helpers';
-import type { DateInputPanelProps, DateRange, DateRangeSegment } from '../types';
-import { MonthCalendar } from './MonthCalendar';
+} from '../../helpers';
+import type { DateInputFloatingProps, DateRange, DateRangeSegment } from '../../types';
+import { MonthCalendar } from '../MonthCalendar/MonthCalendar';
 
 type Draft = {
   start: Dayjs | null;
@@ -74,13 +76,15 @@ const deriveMonths = (value: DateRange | null): Months => {
   return { left: start, right: end };
 };
 
-export const DateInputPanel = ({
+export const DateInputFloating = ({
   value,
   labels,
+  ref,
+  boxProps,
   onPreviewChange,
   onApply,
   onCancel,
-}: DateInputPanelProps) => {
+}: DateInputFloatingProps) => {
   const monthOptions = useMemo(() => monthSelectOptions(), []);
   const yearOptions = useMemo(() => yearSelectOptions(), []);
   const timeOptions = useMemo(() => timeSelectOptions(), []);
@@ -130,7 +134,11 @@ export const DateInputPanel = ({
   };
 
   return (
-    <>
+    <div
+      {...boxProps}
+      ref={ref}
+      className={clsx('date-input-floating', boxProps?.className)}
+    >
       <div className="calendars">
         <div className="calendar-column">
           <MonthCalendar
@@ -188,6 +196,6 @@ export const DateInputPanel = ({
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };

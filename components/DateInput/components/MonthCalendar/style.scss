@@ -1,0 +1,48 @@
+.calendar {
+  display: flex;
+  flex-flow: column;
+  row-gap: var(--spacing-xl);
+
+  .calendar-header {
+    display: flex;
+    flex-flow: row nowrap;
+    column-gap: var(--spacing-md);
+
+    .select {
+      min-width: 0;
+
+      &:first-child {
+        flex: 1 1 auto;
+      }
+
+      &:last-child {
+        flex: 0 0 95px;
+      }
+    }
+  }
+
+  .week {
+    display: flex;
+    flex-flow: column;
+    row-gap: var(--spacing-md);
+
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+
+      .weekday {
+        font: var(--t-body-xxs-600);
+        color: var(--fg-muted);
+        text-align: center;
+        text-transform: uppercase;
+        user-select: none;
+      }
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      row-gap: var(--spacing-xs);
+    }
+  }
+}

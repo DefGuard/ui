@@ -1,5 +1,6 @@
+import './style.scss';
 import clsx from 'clsx';
-import type { DayButtonProps } from '../types';
+import type { DayButtonProps } from '../../types';
 
 export const DayButton = ({
   day,
