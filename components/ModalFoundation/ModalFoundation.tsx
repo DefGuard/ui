@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motionTransitionStandard } from '../../consts';
+import { lockRootScroll, unlockRootScroll } from '../../utils/scrollLock';
 import type { ModalBase } from './types';
 
 const portalTarget = document.getElementById('modals-root') as HTMLElement;
-const rootElement = document.getElementById('root') as HTMLElement;
 
 export const ModalFoundation = ({
   children,
@@ -21,12 +21,12 @@ export const ModalFoundation = ({
 
   useEffect(() => {
     if (isOpen) {
-      rootElement.style.overflowY = 'hidden';
+      lockRootScroll();
     } else {
-      rootElement.style.overflowY = 'auto';
+      unlockRootScroll();
     }
     return () => {
-      rootElement.style.overflowY = 'auto';
+      unlockRootScroll();
     };
   }, [isOpen]);
 

@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motionTransitionStandard } from '../../consts';
+import { lockRootScroll, unlockRootScroll } from '../../utils/scrollLock';
 import type { ModalBase } from '../ModalFoundation/types';
 
 const portalTarget = document.getElementById('modals-root') as HTMLElement;
-const rootElement = document.getElementById('root') as HTMLElement;
 
 export const DrawerFoundation = ({
   children,
@@ -21,10 +21,13 @@ export const DrawerFoundation = ({
 
   useEffect(() => {
     if (isOpen) {
-      rootElement.style.overflowY = 'hidden';
+      lockRootScroll();
     } else {
-      rootElement.style.overflowY = 'auto';
+      unlockRootScroll();
     }
+    return () => {
+      unlockRootScroll();
+    };
   }, [isOpen]);
 
   return createPortal(
