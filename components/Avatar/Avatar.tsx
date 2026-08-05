@@ -45,7 +45,9 @@ export const Avatar = ({
           </div>
         )}
       </div>
-      {online && size !== 'small' && <span className="online-indicator" aria-hidden="true" />}
+      {online && size !== 'small' && (
+        <span className="online-indicator" aria-hidden="true" />
+      )}
     </div>
   );
 };
