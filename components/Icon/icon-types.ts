@@ -94,6 +94,7 @@ export const IconKind = {
   Desktop: 'desktop',
   Defguard: 'defguard',
   Mobile: 'mobile',
+  MobileLock: 'mobile-lock',
   Android: 'android',
   Pdf: 'pdf',
   Linux: 'linux',

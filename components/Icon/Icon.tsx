@@ -87,6 +87,7 @@ import { IconMail } from './icons/IconMail';
 import { IconMenu } from './icons/IconMenu';
 import { IconMinusCircle } from './icons/IconMinusCircle';
 import { IconMobile } from './icons/IconMobile';
+import { IconMobileLock } from './icons/IconMobileLock';
 import { IconNetworkSettings } from './icons/IconNetworkSettings';
 import { IconNotification } from './icons/IconNotification';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
@@ -281,6 +282,8 @@ export const Icon = <T extends IconKindValue>({
         return IconDefguard;
       case 'mobile':
         return IconMobile;
+      case 'mobile-lock':
+        return IconMobileLock;
       case 'windows':
         return IconWindows;
       case 'linux':
