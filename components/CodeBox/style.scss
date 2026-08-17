@@ -1,6 +1,7 @@
 .code-box {
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
   padding: var(--spacing-md);
   background-color: var(--bg-default);
   border: var(--border-1) solid var(--border-default);
@@ -9,5 +10,9 @@
   p {
     color: var(--fg-default);
     font: var(--t-input-text-primary);
+
+    // Content can contain long unbreakable runs, e.g. a comma-joined AllowedIPs
+    // list, which would otherwise overflow the box.
+    overflow-wrap: anywhere;
   }
 }
