@@ -8,7 +8,7 @@ import { RenderMarkdown } from '../RenderMarkdown/RenderMarkdown';
 type Props = {
   icon: IconKindValue;
   text: string | string[];
-  variant?: 'info' | 'warning';
+  variant?: 'action' | 'info' | 'warning';
   markdown?: boolean;
 };
 
