@@ -26,6 +26,12 @@
       --icon-color: var(--fg-muted);
     }
 
+    &.variant-action {
+      --bg-color: var(--bg-action-muted);
+      --color: var(--fg-action);
+      --icon-color: var(--fg-action);
+    }
+
     &.variant-warning {
       --bg-color: var(--bg-warning-transparent);
       --color: var(--fg-attention);
