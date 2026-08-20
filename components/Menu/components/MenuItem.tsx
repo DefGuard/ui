@@ -6,7 +6,7 @@ import type { MenuItemProps } from '../types';
 
 export const MenuItem = ({
   disabled,
-  disabledHelper,
+  helper,
   text,
   icon,
   items,
@@ -17,6 +17,7 @@ export const MenuItem = ({
 }: MenuItemProps) => {
   const hasItems = isPresent(items) && items.length > 0;
   const hasIcon = isPresent(icon);
+  const hasHelper = isPresent(helper);
 
   return (
     <div
@@ -25,9 +26,8 @@ export const MenuItem = ({
         'grid-default': !hasItems && !hasIcon,
         'grid-group': hasItems && !hasIcon,
         'grid-icon': !hasItems && hasIcon,
-        'grid-full':
-          (hasIcon && hasItems) || (hasIcon && disabled && isPresent(disabledHelper)),
-        nested: hasItems || (disabled && isPresent(disabledHelper)),
+        'grid-full': hasIcon && (hasItems || hasHelper),
+        nested: hasItems || hasHelper,
       })}
       data-testid={testId}
       onClick={() => {
@@ -41,10 +41,10 @@ export const MenuItem = ({
     >
       {isPresent(icon) && <Icon icon={icon} size={20} />}
       <p>{text}</p>
-      {disabled && isPresent(disabledHelper) && (
+      {hasHelper && (
         <div className="suffix">
-          <Helper icon="lock-closed" color={null}>
-            <p>{disabledHelper}</p>
+          <Helper icon={helper.icon} color={null}>
+            <p>{helper.text}</p>
           </Helper>
         </div>
       )}

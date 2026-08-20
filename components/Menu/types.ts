@@ -17,7 +17,10 @@ export interface MenuItemProps {
   text: string;
   variant?: 'default' | 'danger';
   disabled?: boolean;
-  disabledHelper?: string;
+  helper?: {
+    text: string;
+    icon: IconKindValue;
+  };
   icon?: IconKindValue;
   items?: MenuItemProps[];
   testId?: string;
