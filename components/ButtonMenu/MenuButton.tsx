@@ -1,6 +1,7 @@
 import {
   autoUpdate,
   FloatingPortal,
+  flip,
   offset,
   type Placement,
   shift,
@@ -32,6 +33,7 @@ export const ButtonMenu = ({
     open: isOpen,
     middleware: [
       offset(4),
+      flip(),
       shift(),
       size({
         apply({ rects, elements, availableHeight }) {
