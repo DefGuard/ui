@@ -1,5 +1,6 @@
 :root[data-theme='light'] {
   --bg-default: var(--c-white);
+  --bg-faint: var(--c-neutral-25);
   --bg-dark: var(--c-neutral-1300);
   --bg-white: var(--c-white);
   --bg-faded: var(--c-neutral-300);
@@ -64,6 +65,7 @@
 
 :root[data-theme='dark'] {
   --bg-default: var(--c-neutral-1400);
+  --bg-faint: var(--c-neutral-1300);
   --bg-dark: var(--c-neutral-1100);
   --bg-white: var(--c-white);
   --bg-faded: var(--c-neutral-900);
