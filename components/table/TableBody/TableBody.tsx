@@ -1,4 +1,4 @@
-import { flexRender, type Row, type Table } from '@tanstack/react-table';
+import { type Column, flexRender, type Row, type Table } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import Skeleton from 'react-loading-skeleton';
 import './style.scss';
@@ -30,6 +30,9 @@ const tableHeaderHeight = 36;
 const tableRowHeight = 48;
 
 const minimalTableHeight = tableHeaderHeight + tableRowHeight * 8;
+
+const getFlexColumnBaseSize = <TData,>({ columnDef }: Column<TData, unknown>) =>
+  Math.max(columnDef.size ?? 150, columnDef.minSize ?? 20);
 
 const useTableHeight = (tableRef: RefObject<HTMLDivElement | null>) => {
   const windowSizing = useWindowSize();
@@ -79,8 +82,6 @@ export const TableBody = <T extends object>({
 
   const { rows } = table.getRowModel();
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const tableVirtualBodyRef = useRef<HTMLDivElement>(null);
-  const hasAppliedInitialFlexSizing = useRef(false);
   const maxTableHeight = useTableHeight(scrollParentRef);
 
   const canExpand = table.options.enableExpanding;
@@ -168,26 +169,16 @@ export const TableBody = <T extends object>({
   });
 
   useEffect(() => {
-    if (hasAppliedInitialFlexSizing.current) return;
-    let mounted = true;
-    let frame = 0;
-    let attempts = 0;
+    const scrollParent = scrollParentRef.current;
+    if (!scrollParent) return;
 
-    const applyInitialFlexSizing = () => {
-      if (!mounted) return;
-      const width = tableVirtualBodyRef.current?.clientWidth ?? 0;
-      if (!width) {
-        if (attempts < 10 && mounted) {
-          attempts += 1;
-          frame = requestAnimationFrame(applyInitialFlexSizing);
-        }
-        return;
-      }
+    const applyFlexSizing = () => {
+      const width = scrollParent.clientWidth;
+      if (!width) return;
 
       const columns = table.getVisibleLeafColumns();
       const flexColumns = columns.filter((column) => column.columnDef.meta?.flex);
 
-      hasAppliedInitialFlexSizing.current = true;
       if (!flexColumns.length) return;
 
       const actionColumnsWidth =
@@ -198,23 +189,24 @@ export const TableBody = <T extends object>({
       let flexBaseWidth = 0;
       for (const column of columns) {
         if (column.columnDef.meta?.flex) {
-          flexBaseWidth += column.getSize();
+          flexBaseWidth += getFlexColumnBaseSize(column);
         } else {
           fixedColumnsWidth += column.getSize();
         }
       }
 
-      const availableFlexWidth = width - actionColumnsWidth - fixedColumnsWidth;
-      if (availableFlexWidth <= flexBaseWidth) return;
+      const availableFlexWidth = Math.max(
+        flexBaseWidth,
+        width - actionColumnsWidth - fixedColumnsWidth,
+      );
 
       const totalFlexBase = flexBaseWidth || flexColumns.length;
-      if (!mounted) return;
       table.setColumnSizing((prev) => {
         const next = { ...prev };
         let changed = false;
 
         for (const column of flexColumns) {
-          const baseSize = flexBaseWidth ? column.getSize() : 1;
+          const baseSize = flexBaseWidth ? getFlexColumnBaseSize(column) : 1;
           const nextSize = Math.round((baseSize / totalFlexBase) * availableFlexWidth);
           const minSize = column.columnDef.minSize ?? 20;
           const maxSize = column.columnDef.maxSize;
@@ -233,11 +225,10 @@ export const TableBody = <T extends object>({
       });
     };
 
-    frame = requestAnimationFrame(applyInitialFlexSizing);
-    return () => {
-      mounted = false;
-      cancelAnimationFrame(frame);
-    };
+    const observer = new ResizeObserver(applyFlexSizing);
+    observer.observe(scrollParent);
+    applyFlexSizing();
+    return () => observer.disconnect();
   }, [table]);
 
   return (
@@ -259,7 +250,6 @@ export const TableBody = <T extends object>({
       >
         <div
           className="table-virtual-body"
-          ref={tableVirtualBodyRef}
           style={{
             height: `${rowVirtualizer.getTotalSize()}px`,
             position: 'relative',
