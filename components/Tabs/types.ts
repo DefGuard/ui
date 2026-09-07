@@ -10,6 +10,7 @@ export interface TabsItem {
   onClick: () => void;
   icon?: IconKindValue;
   iconColor?: ThemeVariableValue;
+  testId?: string;
 }
 
 export interface TabsProps {

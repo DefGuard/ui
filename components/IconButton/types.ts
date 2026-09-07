@@ -8,5 +8,6 @@ export type IconButtonProps = {
   disabled?: boolean;
   ref?: Ref<HTMLDivElement>;
   className?: string;
+  testId?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
 };

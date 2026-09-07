@@ -4,12 +4,13 @@ import { isPresent } from '../../utils/isPresent';
 import { Icon } from '../Icon';
 import type { TabProps } from './types';
 
-export const Tab = ({ onClick, title, active, icon, iconColor }: TabProps) => {
+export const Tab = ({ onClick, title, active, icon, iconColor, testId }: TabProps) => {
   return (
     <div
       className={clsx('tab', {
         active,
       })}
+      data-testid={testId}
       onClick={onClick}
     >
       <div className="line"></div>
