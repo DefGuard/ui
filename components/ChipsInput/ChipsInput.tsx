@@ -17,6 +17,7 @@ export const ChipsInput = ({
   helper,
   testId,
   validate,
+  onInputErrorChange,
 }: ChipsInputProps) => {
   const [inputValue, setInputValue] = useState('');
   const [inputError, setInputError] = useState<string>();
@@ -34,6 +35,7 @@ export const ChipsInput = ({
     const chipError = validate?.(chip);
     if (isPresent(chipError)) {
       setInputError(chipError);
+      onInputErrorChange?.(chipError);
       return;
     }
 
@@ -84,7 +86,10 @@ export const ChipsInput = ({
             }}
             onChange={(event) => {
               setInputValue(event.target.value);
-              setInputError(undefined);
+              if (isPresent(inputError)) {
+                setInputError(undefined);
+                onInputErrorChange?.(undefined);
+              }
             }}
             onKeyDown={(event) => {
               switch (event.key) {

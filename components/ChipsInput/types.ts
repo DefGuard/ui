@@ -9,4 +9,5 @@ export interface ChipsInputProps {
   helper?: string;
   testId?: string;
   validate?: (value: string) => string | undefined;
+  onInputErrorChange?: (error?: string) => void;
 }

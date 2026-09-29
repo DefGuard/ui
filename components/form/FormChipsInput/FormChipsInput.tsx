@@ -16,6 +16,9 @@ export const FormChipsInput = (props: Props) => {
       value={field.state.value}
       onChange={field.handleChange}
       onBlur={field.handleBlur}
+      onInputErrorChange={(inputError) => {
+        field.setErrorMap({ onBlur: inputError });
+      }}
       error={error}
     />
   );
