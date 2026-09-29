@@ -1,0 +1,28 @@
+.chips-input {
+  .field-box {
+    &.has-chips {
+      padding: var(--spacing-md) var(--spacing-sm);
+    }
+
+    .chips-container {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      gap: var(--spacing-sm);
+
+      input {
+        background-color: transparent;
+        border: 0;
+        font: var(--t-input-text-primary);
+        color: var(--fg-default);
+        padding: 0;
+        margin: 0;
+
+        &:last-child {
+          flex: 1;
+          min-width: 80px;
+        }
+      }
+    }
+  }
+}
