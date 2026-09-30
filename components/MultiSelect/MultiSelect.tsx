@@ -24,17 +24,15 @@ export const MultiSelect = ({
   label,
   helper,
   testId,
-  validate,
-  onInputErrorChange,
+  validateValue,
+  onInputChange,
 }: MultiSelectProps) => {
   const [inputValue, setInputValue] = useState('');
-  const [inputError, setInputError] = useState<string>();
   const [cursor, setCursor] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const cursorPosition = Math.min(cursor ?? value.length, value.length);
   const isInputEmpty = inputValue.length === 0;
-  const errorMessage = inputError ?? error;
 
   const inputWidth = useMemo(() => {
     if (!inputRef.current) return 2;
@@ -48,12 +46,7 @@ export const MultiSelect = ({
     const chip = inputValue.trim();
     if (!chip.length) return;
 
-    const chipError = validate?.(chip);
-    if (isPresent(chipError)) {
-      setInputError(chipError);
-      onInputErrorChange?.(chipError);
-      return;
-    }
+    if (isPresent(validateValue) && !validateValue(chip)) return;
 
     onChange([...value.slice(0, cursorPosition), chip, ...value.slice(cursorPosition)]);
     setCursor(cursorPosition + 1);
@@ -69,10 +62,7 @@ export const MultiSelect = ({
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
-    if (isPresent(inputError)) {
-      setInputError(undefined);
-      onInputErrorChange?.(undefined);
-    }
+    onInputChange?.(event.target.value);
   };
 
   const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -124,7 +114,7 @@ export const MultiSelect = ({
         className={clsx({
           'has-chips': value.length > 0,
         })}
-        error={isPresent(errorMessage)}
+        error={isPresent(error)}
         onClick={() => {
           inputRef.current?.focus();
         }}
@@ -148,7 +138,7 @@ export const MultiSelect = ({
             .map((chip, index) => renderChip(chip, cursorPosition + index))}
         </div>
       </FieldBox>
-      <FieldError error={errorMessage} />
+      <FieldError error={error} />
     </div>
   );
 };
