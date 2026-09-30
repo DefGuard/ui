@@ -1,6 +1,6 @@
 import type { FocusEventHandler } from 'react';
 
-export interface ChipsInputProps {
+export interface MultiSelectProps {
   value: string[];
   onChange: (value: string[]) => void;
   onBlur?: FocusEventHandler<HTMLInputElement>;

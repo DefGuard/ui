@@ -1,14 +1,20 @@
 import './style.scss';
 import clsx from 'clsx';
-import { useRef, useState } from 'react';
+import {
+  type ChangeEvent,
+  type FocusEvent,
+  type KeyboardEvent,
+  useRef,
+  useState,
+} from 'react';
 import { isPresent } from '../../utils/isPresent';
 import { Chip } from '../Chip/Chip';
 import { FieldBox } from '../FieldBox/FieldBox';
 import { FieldError } from '../FieldError/FieldError';
 import { FieldLabel } from '../FieldLabel/FieldLabel';
-import type { ChipsInputProps } from './types';
+import type { MultiSelectProps } from './types';
 
-export const ChipsInput = ({
+export const MultiSelect = ({
   value,
   onChange,
   onBlur,
@@ -18,7 +24,7 @@ export const ChipsInput = ({
   testId,
   validate,
   onInputErrorChange,
-}: ChipsInputProps) => {
+}: MultiSelectProps) => {
   const [inputValue, setInputValue] = useState('');
   const [inputError, setInputError] = useState<string>();
   const [cursor, setCursor] = useState<number | null>(null);
@@ -51,6 +57,45 @@ export const ChipsInput = ({
     }
   };
 
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+    if (isPresent(inputError)) {
+      setInputError(undefined);
+      onInputErrorChange?.(undefined);
+    }
+  };
+
+  const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    switch (event.key) {
+      case ' ':
+      case 'Enter':
+        event.preventDefault();
+        addChip();
+        break;
+      case 'Backspace':
+        if (isInputEmpty && cursorPosition > 0) {
+          removeChip(cursorPosition - 1);
+        }
+        break;
+      case 'ArrowLeft':
+        if (isInputEmpty && cursorPosition > 0) {
+          setCursor(cursorPosition - 1);
+        }
+        break;
+      case 'ArrowRight':
+        if (isInputEmpty && cursorPosition < value.length) {
+          setCursor(cursorPosition + 1);
+        }
+        break;
+    }
+  };
+
+  const handleInputBlur = (event: FocusEvent<HTMLInputElement>) => {
+    addChip();
+    setCursor(null);
+    onBlur?.(event);
+  };
+
   const renderChip = (chip: string, index: number) => (
     <Chip
       key={index}
@@ -63,7 +108,7 @@ export const ChipsInput = ({
   );
 
   return (
-    <div className="chips-input">
+    <div className="multi-select">
       {isPresent(label) && <FieldLabel text={label} helper={helper} />}
       <FieldBox
         className={clsx({
@@ -84,42 +129,9 @@ export const ChipsInput = ({
             style={{
               width: `${inputValue.length + 1}ch`,
             }}
-            onChange={(event) => {
-              setInputValue(event.target.value);
-              if (isPresent(inputError)) {
-                setInputError(undefined);
-                onInputErrorChange?.(undefined);
-              }
-            }}
-            onKeyDown={(event) => {
-              switch (event.key) {
-                case ' ':
-                case 'Enter':
-                  event.preventDefault();
-                  addChip();
-                  break;
-                case 'Backspace':
-                  if (isInputEmpty && cursorPosition > 0) {
-                    removeChip(cursorPosition - 1);
-                  }
-                  break;
-                case 'ArrowLeft':
-                  if (isInputEmpty && cursorPosition > 0) {
-                    setCursor(cursorPosition - 1);
-                  }
-                  break;
-                case 'ArrowRight':
-                  if (isInputEmpty && cursorPosition < value.length) {
-                    setCursor(cursorPosition + 1);
-                  }
-                  break;
-              }
-            }}
-            onBlur={(event) => {
-              addChip();
-              setCursor(null);
-              onBlur?.(event);
-            }}
+            onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
+            onBlur={handleInputBlur}
           />
           {value
             .slice(cursorPosition)

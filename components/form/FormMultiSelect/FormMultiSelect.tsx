@@ -1,16 +1,16 @@
 import { useFieldContext } from '../../../../form';
 import { useFormFieldError } from '../../../hooks/useFormFieldError';
-import { ChipsInput } from '../../ChipsInput/ChipsInput';
-import type { ChipsInputProps } from '../../ChipsInput/types';
+import { MultiSelect } from '../../MultiSelect/MultiSelect';
+import type { MultiSelectProps } from '../../MultiSelect/types';
 
-type Props = Omit<ChipsInputProps, 'value' | 'onChange' | 'error'>;
+type Props = Omit<MultiSelectProps, 'value' | 'onChange' | 'error'>;
 
-export const FormChipsInput = (props: Props) => {
+export const FormMultiSelect = (props: Props) => {
   const field = useFieldContext<string[]>();
   const error = useFormFieldError();
 
   return (
-    <ChipsInput
+    <MultiSelect
       testId={`field-${field.name}`}
       {...props}
       value={field.state.value}
