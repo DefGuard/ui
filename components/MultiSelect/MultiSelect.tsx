@@ -1,9 +1,11 @@
 import './style.scss';
+import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext';
 import clsx from 'clsx';
 import {
   type ChangeEvent,
   type FocusEvent,
   type KeyboardEvent,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -33,6 +35,14 @@ export const MultiSelect = ({
   const cursorPosition = Math.min(cursor ?? value.length, value.length);
   const isInputEmpty = inputValue.length === 0;
   const errorMessage = inputError ?? error;
+
+  const inputWidth = useMemo(() => {
+    if (!inputRef.current) return 2;
+    const { fontWeight, fontSize, fontFamily } = getComputedStyle(inputRef.current);
+    const font = `${fontWeight} ${fontSize} ${fontFamily}`;
+    const textWidth = measureNaturalWidth(prepareWithSegments(inputValue, font));
+    return Math.ceil(Math.max(textWidth + 4, 2));
+  }, [inputValue]);
 
   const addChip = () => {
     const chip = inputValue.trim();
@@ -127,7 +137,7 @@ export const MultiSelect = ({
             type="text"
             value={inputValue}
             style={{
-              width: `${inputValue.length + 1}ch`,
+              width: `${inputWidth}px`,
             }}
             onChange={handleInputChange}
             onKeyDown={handleInputKeyDown}
