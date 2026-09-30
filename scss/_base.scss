@@ -116,5 +116,5 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 8553600s;
-  -webkit-text-fill-color: #fff !important;
+  -webkit-text-fill-color: var(--fg-default) !important;
 }
