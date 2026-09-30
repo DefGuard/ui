@@ -1,8 +1,5 @@
-import {
-  isStandardSchemaValidator,
-  standardSchemaValidators,
-  useStore,
-} from '@tanstack/react-form';
+import { useStore } from '@tanstack/react-form';
+import z from 'zod';
 import { useFieldContext, useFormContext } from '../../../../form';
 import { useFormFieldError } from '../../../hooks/useFormFieldError';
 import { isPresent } from '../../../utils/isPresent';
@@ -21,17 +18,14 @@ export const FormMultiSelect = (props: Props) => {
   );
 
   const validateValue = (value: string) => {
-    const schema = form.options.validators?.onSubmit;
-    if (!isStandardSchemaValidator(schema)) return true;
+    const formSchema = form.options.validators?.onChange;
+    if (!(formSchema instanceof z.ZodObject)) return true;
 
-    const errors = standardSchemaValidators.validate(
-      {
-        value: { ...form.state.values, [field.name]: [...field.state.value, value] },
-        validationSource: 'form',
-      },
-      schema,
-    );
-    const message = errors?.fields[field.name]?.[0]?.message;
+    const fieldSchema = formSchema.shape[field.name];
+    if (!isPresent(fieldSchema)) return true;
+
+    const result = fieldSchema.safeParse([...field.state.value, value]);
+    const message = result.error?.issues[0]?.message;
     field.setErrorMap({ onBlur: message });
     return !isPresent(message);
   };
