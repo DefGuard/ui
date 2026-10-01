@@ -1,6 +1,4 @@
 import type { ButtonHTMLAttributes, HTMLAttributes, Ref } from 'react';
-import type { Direction } from '../../types';
-import type { IconKindValue } from '../Icon/icon-types';
 
 type DefaultButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -13,9 +11,7 @@ export type ExternalProviderButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   type?: DefaultButtonProps['type'];
-  provider?: 'microsoft' | 'google' | 'okta' | 'jumpcloud' | 'custom';
-  iconRight?: IconKindValue;
-  iconRightRotation?: Direction;
+  provider: 'microsoft' | 'google' | 'okta' | 'jumpcloud' | 'custom';
   testId?: string;
   disabled?: boolean;
   loading?: boolean;
