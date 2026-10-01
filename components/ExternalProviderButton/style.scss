@@ -1,6 +1,5 @@
 .external-provider-button {
   --btn-font: var(--t-button-label-primary);
-  --btn-size: var(--button-size-primary);
   --border-color: transparent;
   --bg-color: transparent;
   --text-color: var(--fg-default);
@@ -8,7 +7,7 @@
   --loader-track: transparent;
   --loader-part: transparent;
 
-  height: var(--btn-size);
+  height: var(--button-size-primary);
   border: none;
   box-sizing: border-box;
   border-radius: var(--button-border-radius-primary);
@@ -46,15 +45,6 @@
     @include animate(color);
   }
 
-  &.size-primary {
-    --btn-size: var(--button-size-primary);
-  }
-
-  &.size-big {
-    --btn-font: var(--t-button-label-lg);
-    --btn-size: var(--button-size-lg);
-  }
-
   &.variant-primary {
     --bg-color: var(--fg-action);
     --border-color: var(--fg-action);
@@ -66,62 +56,6 @@
     &:hover {
       --bg-color: var(--bg-action-emphasis);
       --border-color: var(--bg-color);
-    }
-
-    &.disabled {
-      --bg-color: var(--fg-blue-transparent-2);
-      --border-color: var(--bg-color);
-      --text-color: var(--fg-action-muted);
-    }
-  }
-
-  &.variant-secondary {
-    --bg-color: var(--bg-emphasis);
-    --border-color: var(--bg-color);
-    --text-color: var(--fg-default);
-    --loader-track: var(--c-neutral-400);
-    --loader-part: var(--c-neutral-800);
-    --loader-bg: var(--bg-active);
-
-    &:hover {
-      --bg-color: var(--bg-active);
-    }
-
-    &.disabled {
-      --bg-color: var(--bg-disabled);
-      --text-color: var(--fg-disabled);
-    }
-  }
-
-  &.variant-critical {
-    --bg-color: var(--bg-critical);
-    --border-color: var(--bg-color);
-    --text-color: var(--fg-white);
-    --loader-track: var(--c-white-50);
-    --loader-part: var(--c-white);
-    --loader-bg: var(--bg-critical-faded);
-
-    &:hover {
-      --bg-color: var(--bg-critical-faded);
-    }
-
-    &.disabled {
-      --bg-color: var(--bg-critical-muted);
-      --text-color: var(--fg-white-transparent);
-    }
-  }
-
-  &.variant-outlined {
-    --bg-color: transparent;
-    --border-color: var(--border-action);
-    --loader-track: var(--c-blue-200);
-    --loader-part: var(--c-blue-500);
-    --loader-bg: var(--bg-action-muted);
-    --text-color: var(--fg-action);
-
-    &:hover {
-      --bg-color: var(--bg-action-muted);
-      --border-color: var(--border-action);
     }
 
     &.disabled {

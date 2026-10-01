@@ -17,7 +17,6 @@ export const ExternalProviderButton = ({
   provider,
   onClick,
   ref,
-  size = 'primary',
   variant = 'primary',
   type = 'button',
   disabled = false,
@@ -56,7 +55,6 @@ export const ExternalProviderButton = ({
       className={clsx(
         'external-provider-button',
         `variant-${variant}`,
-        `size-${size}`,
         className,
         {
           disabled,
