@@ -2,14 +2,11 @@ import type { ButtonHTMLAttributes, HTMLAttributes, Ref } from 'react';
 
 type DefaultButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-type ButtonVariant = 'primary' | 'secondary' | 'critical' | 'outlined';
-
-type ButtonSize = 'primary' | 'big';
+type ExternalProviderButtonVariant = 'primary' | 'default';
 
 export type ExternalProviderButtonProps = {
   text: string;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
+  variant?: ExternalProviderButtonVariant;
   type?: DefaultButtonProps['type'];
   provider: 'microsoft' | 'google' | 'okta' | 'jumpcloud' | 'custom';
   testId?: string;

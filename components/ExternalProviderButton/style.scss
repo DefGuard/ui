@@ -1,6 +1,5 @@
 .external-provider-button {
   --btn-font: var(--t-button-label-primary);
-  --btn-size: var(--button-size-primary);
   --border-color: transparent;
   --bg-color: transparent;
   --text-color: var(--fg-default);
@@ -8,7 +7,7 @@
   --loader-track: transparent;
   --loader-part: transparent;
 
-  height: var(--btn-size);
+  height: var(--button-size-primary);
   border: none;
   box-sizing: border-box;
   border-radius: var(--button-border-radius-primary);
@@ -46,15 +45,6 @@
     @include animate(color);
   }
 
-  &.size-primary {
-    --btn-size: var(--button-size-primary);
-  }
-
-  &.size-big {
-    --btn-font: var(--t-button-label-lg);
-    --btn-size: var(--button-size-lg);
-  }
-
   &.variant-primary {
     --bg-color: var(--fg-action);
     --border-color: var(--fg-action);
@@ -75,59 +65,28 @@
     }
   }
 
-  &.variant-secondary {
-    --bg-color: var(--bg-emphasis);
-    --border-color: var(--bg-color);
+  &.variant-default {
+    --btn-font: var(--t-body-sm-500);
+    --bg-color: var(--bg-default);
+    --border-color: var(--border-default);
     --text-color: var(--fg-default);
     --loader-track: var(--c-neutral-400);
     --loader-part: var(--c-neutral-800);
-    --loader-bg: var(--bg-active);
+    --loader-bg: var(--bg-muted);
+
+    height: auto;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
 
     &:hover {
-      --bg-color: var(--bg-active);
+      --bg-color: var(--bg-muted);
+      --border-color: var(--border-emphasis);
     }
 
     &.disabled {
       --bg-color: var(--bg-disabled);
+      --border-color: var(--border-disabled);
       --text-color: var(--fg-disabled);
-    }
-  }
-
-  &.variant-critical {
-    --bg-color: var(--bg-critical);
-    --border-color: var(--bg-color);
-    --text-color: var(--fg-white);
-    --loader-track: var(--c-white-50);
-    --loader-part: var(--c-white);
-    --loader-bg: var(--bg-critical-faded);
-
-    &:hover {
-      --bg-color: var(--bg-critical-faded);
-    }
-
-    &.disabled {
-      --bg-color: var(--bg-critical-muted);
-      --text-color: var(--fg-white-transparent);
-    }
-  }
-
-  &.variant-outlined {
-    --bg-color: transparent;
-    --border-color: var(--border-action);
-    --loader-track: var(--c-blue-200);
-    --loader-part: var(--c-blue-500);
-    --loader-bg: var(--bg-action-muted);
-    --text-color: var(--fg-action);
-
-    &:hover {
-      --bg-color: var(--bg-action-muted);
-      --border-color: var(--border-action);
-    }
-
-    &.disabled {
-      --bg-color: var(--fg-blue-transparent-2);
-      --border-color: var(--bg-color);
-      --text-color: var(--fg-action-muted);
     }
   }
 
