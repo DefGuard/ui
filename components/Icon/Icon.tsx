@@ -65,6 +65,7 @@ import { IconGateway } from './icons/IconGateway';
 import { IconGithub } from './icons/IconGithub';
 import { IconGlobe } from './icons/IconGlobe';
 import { IconGlobeDenied } from './icons/IconGlobeDenied';
+import { IconGoogle } from './icons/IconGoogle';
 import { IconGroups } from './icons/IconGroups';
 import { IconHamburger } from './icons/IconHamburger';
 import { IconHelp } from './icons/IconHelp';
@@ -73,6 +74,7 @@ import { IconInfoFilled } from './icons/IconInfoFilled';
 import { IconInfoOutlined } from './icons/IconInfoOutlined';
 import { IconInternalMfa } from './icons/IconInternalMFA';
 import { IconIpSuggest } from './icons/IconIpSuggest';
+import { IconJumpCloud } from './icons/IconJumpCloud';
 import { IconKey } from './icons/IconKey';
 import { IconLightBulb } from './icons/IconLightBulb';
 import { IconLightTheme } from './icons/IconLightTheme';
@@ -85,11 +87,13 @@ import { IconLockClosed } from './icons/IconLockClosed';
 import { IconLogout } from './icons/IconLogout';
 import { IconMail } from './icons/IconMail';
 import { IconMenu } from './icons/IconMenu';
+import { IconMicrosoft } from './icons/IconMicrosoft';
 import { IconMinusCircle } from './icons/IconMinusCircle';
 import { IconMobile } from './icons/IconMobile';
 import { IconMobileLock } from './icons/IconMobileLock';
 import { IconNetworkSettings } from './icons/IconNetworkSettings';
 import { IconNotification } from './icons/IconNotification';
+import { IconOkta } from './icons/IconOkta';
 import { IconOneTimePassword } from './icons/IconOneTimePassword';
 import { IconOnline } from './icons/IconOnline';
 import { IconOpenId } from './icons/IconOpenId';
@@ -392,6 +396,14 @@ export const Icon = <T extends IconKindValue>({
         return IconOneTimePassword;
       case 'openid':
         return IconOpenId;
+      case 'microsoft':
+        return IconMicrosoft;
+      case 'google':
+        return IconGoogle;
+      case 'okta':
+        return IconOkta;
+      case 'jump-cloud':
+        return IconJumpCloud;
       case 'pdf':
         return EmptyIcon;
       case 'pie-chart':
