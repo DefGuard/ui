@@ -131,6 +131,31 @@
     }
   }
 
+  &.variant-default {
+    --btn-font: var(--t-body-sm-500);
+    --bg-color: var(--bg-default);
+    --border-color: var(--border-default);
+    --text-color: var(--fg-default);
+    --loader-track: var(--c-neutral-400);
+    --loader-part: var(--c-neutral-800);
+    --loader-bg: var(--bg-muted);
+
+    height: auto;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+
+    &:hover {
+      --bg-color: var(--bg-muted);
+      --border-color: var(--border-emphasis);
+    }
+
+    &.disabled {
+      --bg-color: var(--bg-disabled);
+      --border-color: var(--border-disabled);
+      --text-color: var(--fg-disabled);
+    }
+  }
+
   // since box-shadow adds on top of element it's needed to be set with loader overlay
   &:not(.disabled).loading {
     --border-color: var(--loader-bg);

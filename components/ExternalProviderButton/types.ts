@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, HTMLAttributes, Ref } from 'react';
 
 type DefaultButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-type ButtonVariant = 'primary' | 'secondary' | 'critical' | 'outlined';
+type ButtonVariant = 'primary' | 'secondary' | 'critical' | 'outlined' | 'default';
 
 type ButtonSize = 'primary' | 'big';
 

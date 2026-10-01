@@ -35,7 +35,7 @@ export const ExternalProviderButton = ({
         return oktaImage;
       case 'jumpcloud':
         return jumpcloudImage;
-      case 'custom':
+      default:
         return customImage;
     }
   }, [provider]);
