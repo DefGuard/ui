@@ -52,15 +52,10 @@ export const ExternalProviderButton = ({
           onClick?.(e);
         }
       }}
-      className={clsx(
-        'external-provider-button',
-        `variant-${variant}`,
-        className,
-        {
-          disabled,
-          loading: !disabled && loading,
-        },
-      )}
+      className={clsx('external-provider-button', `variant-${variant}`, className, {
+        disabled,
+        loading: !disabled && loading,
+      })}
     >
       <img src={providerImage} width={20} height={20} loading="eager" />
       <span className="text">{text}</span>
