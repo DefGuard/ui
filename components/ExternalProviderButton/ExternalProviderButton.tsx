@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useMemo } from 'react';
 import { motionTransitionStandard } from '../../consts';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
-import customImage from './assets/custom.png';
+import customImage from './assets/custom.svg';
 import googleImage from './assets/google.svg';
 import jumpcloudImage from './assets/jumpcloud.svg';
 import microsoftImage from './assets/microsoft.svg';
