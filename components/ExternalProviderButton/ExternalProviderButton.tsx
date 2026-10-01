@@ -6,16 +6,12 @@ import { motionTransitionStandard } from '../../consts';
 import { isPresent } from '../../utils/isPresent';
 import { Icon } from '../Icon';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
-import { ExternalProviderButtonIconCustom } from './icons/ExternalProviderButtonIconCustom';
-import { ExternalProviderButtonIconGoogle } from './icons/ExternalProviderButtonIconGoogle';
-import { ExternalProviderButtonIconJumpCloud } from './icons/ExternalProviderButtonIconJumpCloud';
-import { ExternalProviderButtonIconMicrosoft } from './icons/ExternalProviderButtonIconMicrosoft';
-import { ExternalProviderButtonIconOkta } from './icons/ExternalProviderButtonIconOkta';
+import customImage from './assets/custom.png';
+import googleImage from './assets/google.svg';
+import jumpcloudImage from './assets/jumpcloud.svg';
+import microsoftImage from './assets/microsoft.svg';
+import oktaImage from './assets/okta.svg';
 import type { ExternalProviderButtonProps } from './types';
-
-const Empty = () => {
-  return null;
-};
 
 export const ExternalProviderButton = ({
   text,
@@ -33,19 +29,18 @@ export const ExternalProviderButton = ({
   className,
   ...props
 }: ExternalProviderButtonProps) => {
-  const RenderProviderIcon = useMemo(() => {
-    if (!provider) return Empty;
+  const providerImage = useMemo(() => {
     switch (provider) {
       case 'microsoft':
-        return ExternalProviderButtonIconMicrosoft;
+        return microsoftImage;
       case 'google':
-        return ExternalProviderButtonIconGoogle;
+        return googleImage;
       case 'okta':
-        return ExternalProviderButtonIconOkta;
+        return oktaImage;
       case 'jumpcloud':
-        return ExternalProviderButtonIconJumpCloud;
+        return jumpcloudImage;
       case 'custom':
-        return ExternalProviderButtonIconCustom;
+        return customImage;
     }
   }, [provider]);
 
@@ -76,7 +71,9 @@ export const ExternalProviderButton = ({
         },
       )}
     >
-      <RenderProviderIcon />
+      {isPresent(providerImage) && (
+        <img src={providerImage} width={20} height={20} loading="lazy" />
+      )}
       <span className="text">{text}</span>
       {isPresent(iconRight) && (
         <Icon icon={iconRight} size={20} rotationDirection={iconRightRotation} />
