@@ -64,7 +64,7 @@ export const ExternalProviderButton = ({
         },
       )}
     >
-      <img src={providerImage} width={20} height={20} loading="lazy" />
+      <img src={providerImage} width={20} height={20} loading="eager" />
       <span className="text">{text}</span>
       <AnimatePresence mode="wait">
         {loading && !disabled && (
