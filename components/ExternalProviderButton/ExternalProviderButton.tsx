@@ -34,24 +34,13 @@ export const ExternalProviderButton = ({
       case 'google':
         return googleImage;
       case 'okta':
-        return oktaImage;
+        return theme === 'dark' ? oktaWhiteImage : oktaImage;
       case 'jumpcloud':
-        return jumpcloudImage;
+        return theme === 'dark' ? jumpcloudWhiteImage : jumpcloudImage;
       default:
         return customImage;
     }
-  }, [provider]);
-
-  const providerDarkImage = useMemo(() => {
-    switch (provider) {
-      case 'okta':
-        return oktaWhiteImage;
-      case 'jumpcloud':
-        return jumpcloudWhiteImage;
-      default:
-        return providerImage;
-    }
-  }, [provider, providerImage]);
+  }, [provider, theme]);
 
   return (
     <button
@@ -71,12 +60,7 @@ export const ExternalProviderButton = ({
         loading: !disabled && loading,
       })}
     >
-      <img
-        src={theme === 'dark' ? providerDarkImage : providerImage}
-        width={20}
-        height={20}
-        loading="eager"
-      />
+      <img src={providerImage} width={20} height={20} loading="eager" />
       <span className="text">{text}</span>
       <AnimatePresence mode="wait">
         {loading && !disabled && (
