@@ -7,14 +7,17 @@ import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 import customImage from './assets/custom.svg';
 import googleImage from './assets/google.svg';
 import jumpcloudImage from './assets/jumpcloud.svg';
+import jumpcloudWhiteImage from './assets/jumpcloud-white.svg';
 import microsoftImage from './assets/microsoft.svg';
 import oktaImage from './assets/okta.svg';
+import oktaWhiteImage from './assets/okta-white.svg';
 import type { ExternalProviderButtonProps } from './types';
 
 export const ExternalProviderButton = ({
   text,
   testId,
   provider,
+  theme,
   onClick,
   ref,
   variant = 'primary',
@@ -39,6 +42,17 @@ export const ExternalProviderButton = ({
     }
   }, [provider]);
 
+  const providerDarkImage = useMemo(() => {
+    switch (provider) {
+      case 'okta':
+        return oktaWhiteImage;
+      case 'jumpcloud':
+        return jumpcloudWhiteImage;
+      default:
+        return providerImage;
+    }
+  }, [provider, providerImage]);
+
   return (
     <button
       {...props}
@@ -57,7 +71,12 @@ export const ExternalProviderButton = ({
         loading: !disabled && loading,
       })}
     >
-      <img src={providerImage} width={20} height={20} loading="eager" />
+      <img
+        src={theme === 'dark' ? providerDarkImage : providerImage}
+        width={20}
+        height={20}
+        loading="eager"
+      />
       <span className="text">{text}</span>
       <AnimatePresence mode="wait">
         {loading && !disabled && (
