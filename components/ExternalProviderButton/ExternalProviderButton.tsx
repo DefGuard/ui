@@ -7,14 +7,17 @@ import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 import customImage from './assets/custom.svg';
 import googleImage from './assets/google.svg';
 import jumpcloudImage from './assets/jumpcloud.svg';
+import jumpcloudWhiteImage from './assets/jumpcloud-white.svg';
 import microsoftImage from './assets/microsoft.svg';
 import oktaImage from './assets/okta.svg';
+import oktaWhiteImage from './assets/okta-white.svg';
 import type { ExternalProviderButtonProps } from './types';
 
 export const ExternalProviderButton = ({
   text,
   testId,
   provider,
+  theme,
   onClick,
   ref,
   variant = 'primary',
@@ -31,13 +34,13 @@ export const ExternalProviderButton = ({
       case 'google':
         return googleImage;
       case 'okta':
-        return oktaImage;
+        return theme === 'dark' ? oktaWhiteImage : oktaImage;
       case 'jumpcloud':
-        return jumpcloudImage;
+        return theme === 'dark' ? jumpcloudWhiteImage : jumpcloudImage;
       default:
         return customImage;
     }
-  }, [provider]);
+  }, [provider, theme]);
 
   return (
     <button

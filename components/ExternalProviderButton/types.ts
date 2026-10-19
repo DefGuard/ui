@@ -9,6 +9,7 @@ export type ExternalProviderButtonProps = {
   variant?: ExternalProviderButtonVariant;
   type?: DefaultButtonProps['type'];
   provider: 'microsoft' | 'google' | 'okta' | 'jumpcloud' | 'custom';
+  theme?: 'light' | 'dark';
   testId?: string;
   disabled?: boolean;
   loading?: boolean;
