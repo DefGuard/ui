@@ -12,6 +12,7 @@ export const Badge = ({
   children,
   removeBackground: background = false,
   variant = 'neutral',
+  size = 'primary',
   icon = 'status-simple',
   iconSize = 16,
   showIcon = false,
@@ -21,7 +22,7 @@ export const Badge = ({
     <div
       data-testid={testId}
       data-variant={variant}
-      className={clsx('badge', className, `variant-${variant}`, {
+      className={clsx('badge', className, `variant-${variant}`, `size-${size}`, {
         bg: background,
         icon: showIcon,
       })}

@@ -15,6 +15,15 @@
 
   @include animate(background-color);
 
+  &.size-compact {
+    --badge-border-radius: var(--radius-sm);
+    --t-badge: var(--t-body-xxs-500);
+
+    height: auto;
+    min-height: 16px;
+    padding: 1px var(--spacing-xs);
+  }
+
   &:not(.icon) {
     display: inline-flex;
     flex-flow: row;
@@ -85,6 +94,14 @@
     &:not(.bg) {
       --bg-color: var(--bg-additional-transparent);
     }
+  }
+
+  &.variant-outlined {
+    --bg-color: transparent;
+    --color: var(--fg-neutral);
+    --icon-color: var(--fg-muted);
+
+    border: 1px solid var(--border-disabled);
   }
 
   span {
