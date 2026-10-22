@@ -27,6 +27,7 @@ import { IconAuthorisedApp } from './icons/IconAuthorisedApp';
 import { IconBiometric } from './icons/IconBiometric';
 import { IconBug } from './icons/IconBug';
 import { IconCalendar } from './icons/IconCalendar';
+import { IconCancel } from './icons/IconCancel';
 import { IconChat } from './icons/IconChat';
 import { IconCheck } from './icons/IconCheck';
 import { IconCheckCircle } from './icons/IconCheckCircle';
@@ -460,6 +461,8 @@ export const Icon = <T extends IconKindValue>({
         return IconPlay;
       case 'play-filled':
         return IconPlayFilled;
+      case 'cancel':
+        return IconCancel;
     }
   }, [iconKind]);
 
