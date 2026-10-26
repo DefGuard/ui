@@ -110,6 +110,7 @@ import { IconSearch } from './icons/IconSearch';
 import { IconServers } from './icons/IconServers';
 import { IconSettings } from './icons/IconSettings';
 import { IconShow } from './icons/IconShow';
+import { IconSoftwareKey } from './icons/IconSoftwareKey';
 import { IconSortable } from './icons/IconSortable';
 import { IconStatusAttention } from './icons/IconStatusAttention';
 import { IconStatusAvailable } from './icons/IconStatusAvailable';
@@ -463,6 +464,8 @@ export const Icon = <T extends IconKindValue>({
         return IconPlayFilled;
       case 'cancel':
         return IconCancel;
+      case 'software-key':
+        return IconSoftwareKey;
     }
   }, [iconKind]);
 
