@@ -54,6 +54,7 @@ export const ThemeVariable = {
   FgNeutral: 'var(--fg-neutral)',
   FgMuted: 'var(--fg-muted)',
   FgDisabled: 'var(--fg-disabled)',
+  FgDisabledLight: 'var(--fg-disabled-light)',
   FgSuccess: 'var(--fg-success)',
   FgSuccessMuted: 'var(--fg-success-muted)',
   FgCode: 'var(--fg-code)',
