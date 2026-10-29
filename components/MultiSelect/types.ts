@@ -6,6 +6,7 @@ export interface MultiSelectProps {
   onBlur?: FocusEventHandler<HTMLInputElement>;
   error?: string;
   label?: string;
+  required?: boolean;
   helper?: string;
   testId?: string;
   validateValue?: (value: string) => boolean;

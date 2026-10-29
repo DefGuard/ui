@@ -22,6 +22,7 @@ export const MultiSelect = ({
   onBlur,
   error,
   label,
+  required,
   helper,
   testId,
   validateValue,
@@ -109,7 +110,9 @@ export const MultiSelect = ({
 
   return (
     <div className="multi-select">
-      {isPresent(label) && <FieldLabel text={label} helper={helper} />}
+      {isPresent(label) && (
+        <FieldLabel text={label} required={required} helper={helper} />
+      )}
       <FieldBox
         className={clsx({
           'has-chips': value.length > 0,
