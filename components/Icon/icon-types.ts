@@ -142,6 +142,7 @@ export const IconKind = {
   PlayFilled: 'play-filled',
   Cancel: 'cancel',
   SoftwareKey: 'software-key',
+  DeviceAttestation: 'device-attestation',
 } as const;
 
 export type IconKindValue = (typeof IconKind)[keyof typeof IconKind];

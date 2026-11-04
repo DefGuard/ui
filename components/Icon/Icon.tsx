@@ -47,6 +47,7 @@ import { IconDefguard } from './icons/IconDefguard';
 import { IconDelete } from './icons/IconDelete';
 import { IconDeploy } from './icons/IconDeploy';
 import { IconDesktop } from './icons/IconDesktop';
+import { IconDeviceAttestation } from './icons/IconDeviceAttestation';
 import { IconDevices } from './icons/IconDevices';
 import { IconDevicesActive } from './icons/IconDevicesActive';
 import { IconDisabled } from './icons/IconDisabled';
@@ -466,6 +467,8 @@ export const Icon = <T extends IconKindValue>({
         return IconCancel;
       case 'software-key':
         return IconSoftwareKey;
+      case 'device-attestation':
+        return IconDeviceAttestation;
     }
   }, [iconKind]);
 
