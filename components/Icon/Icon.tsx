@@ -48,6 +48,7 @@ import { IconDelete } from './icons/IconDelete';
 import { IconDeploy } from './icons/IconDeploy';
 import { IconDesktop } from './icons/IconDesktop';
 import { IconDeviceAttestation } from './icons/IconDeviceAttestation';
+import { IconDeviceIP } from './icons/IconDeviceIP';
 import { IconDevices } from './icons/IconDevices';
 import { IconDevicesActive } from './icons/IconDevicesActive';
 import { IconDisabled } from './icons/IconDisabled';
@@ -341,6 +342,8 @@ export const Icon = <T extends IconKindValue>({
         return IconDeploy;
       case 'devices':
         return IconDevices;
+      case 'device-ip':
+        return IconDeviceIP;
       case 'devices-active':
         return IconDevicesActive;
       case 'download':
