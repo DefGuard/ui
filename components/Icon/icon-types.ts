@@ -109,6 +109,8 @@ export const IconKind = {
   StatusAttention: 'status-attention',
   StatusAvailable: 'status-available',
   StatusImportant: 'status-important',
+  StatusLocked: 'status-locked',
+  StatusPending: 'status-pending',
   StatusPremium: 'status-premium',
   StatusCheck: 'status-check',
   Disabled: 'disabled',

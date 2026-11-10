@@ -117,6 +117,8 @@ import { IconStatusAttention } from './icons/IconStatusAttention';
 import { IconStatusAvailable } from './icons/IconStatusAvailable';
 import { IconStatusCheck } from './icons/IconStatusCheck';
 import { IconStatusImportant } from './icons/IconStatusImportant';
+import { IconStatusLocked } from './icons/IconStatusLocked';
+import { IconStatusPending } from './icons/IconStatusPending';
 import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconSupport } from './icons/IconSupport';
@@ -425,6 +427,10 @@ export const Icon = <T extends IconKindValue>({
         return IconStatusAvailable;
       case 'status-important':
         return IconStatusImportant;
+      case 'status-locked':
+        return IconStatusLocked;
+      case 'status-pending':
+        return IconStatusPending;
       case 'support':
         return IconSupport;
       case 'transactions':
