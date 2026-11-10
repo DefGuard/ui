@@ -52,6 +52,7 @@ export const IconKind = {
   NavigationCollapse: 'navigation-collapse',
   NavigationUncollapse: 'navigation-uncollapse',
   Devices: 'devices',
+  DeviceIp: 'device-ip',
   Logout: 'logout',
   YubiKeys: 'yubi-keys',
   OpenId: 'openid',
