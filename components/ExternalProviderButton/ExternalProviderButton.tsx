@@ -8,6 +8,8 @@ import customImage from './assets/custom.svg';
 import googleImage from './assets/google.svg';
 import jumpcloudImage from './assets/jumpcloud.svg';
 import jumpcloudWhiteImage from './assets/jumpcloud-white.svg';
+import keycloakImage from './assets/keycloak.svg';
+import keycloakWhiteImage from './assets/keycloak-white.svg';
 import microsoftImage from './assets/microsoft.svg';
 import oktaImage from './assets/okta.svg';
 import oktaWhiteImage from './assets/okta-white.svg';
@@ -37,6 +39,8 @@ export const ExternalProviderButton = ({
         return theme === 'dark' ? oktaWhiteImage : oktaImage;
       case 'jumpcloud':
         return theme === 'dark' ? jumpcloudWhiteImage : jumpcloudImage;
+      case 'keycloak':
+        return theme === 'dark' ? keycloakWhiteImage : keycloakImage;
       default:
         return customImage;
     }
