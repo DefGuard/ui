@@ -124,6 +124,7 @@ import { IconStatusPremium } from './icons/IconStatusPremium';
 import { IconStatusSimple } from './icons/IconStatusSimple';
 import { IconSupport } from './icons/IconSupport';
 import { IconSync } from './icons/IconSync';
+import { IconSystemTheme } from './icons/IconSystemTheme';
 import { IconToken } from './icons/IconToken';
 import { IconTransactions } from './icons/IconTransactions';
 import { IconTutorial } from './icons/IconTutorial';
@@ -216,6 +217,8 @@ export const Icon = <T extends IconKindValue>({
         return IconLightTheme;
       case 'dark-theme':
         return IconDarkTheme;
+      case 'system-theme':
+        return IconSystemTheme;
       case 'refresh':
         return IconRefresh;
       case 'network-settings':

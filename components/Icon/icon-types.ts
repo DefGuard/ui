@@ -128,6 +128,7 @@ export const IconKind = {
   Online: 'online',
   LightTheme: 'light-theme',
   DarkTheme: 'dark-theme',
+  SystemTheme: 'system-theme',
   WarningFilled: 'warning-filled',
   Upload: 'upload',
   AddRule: 'add-rule',
