@@ -72,7 +72,11 @@ export const MultiSelect = ({
     event.preventDefault();
     if (isPresent(validateValue) && !validateValue(chips)) return;
 
-    onChange([...value.slice(0, cursorPosition), ...chips, ...value.slice(cursorPosition)]);
+    onChange([
+      ...value.slice(0, cursorPosition),
+      ...chips,
+      ...value.slice(cursorPosition),
+    ]);
     setCursor(cursorPosition + chips.length);
     setInputValue('');
   };
