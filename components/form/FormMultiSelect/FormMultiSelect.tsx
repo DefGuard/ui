@@ -17,14 +17,14 @@ export const FormMultiSelect = (props: Props) => {
     (state) => state.meta.errorMap.onBlur as string | undefined,
   );
 
-  const validateValue = (value: string) => {
+  const validateValue = (values: string[]) => {
     const formSchema = form.options.validators?.onChange;
     if (!(formSchema instanceof z.ZodObject)) return true;
 
     const fieldSchema = formSchema.shape[field.name];
     if (!isPresent(fieldSchema)) return true;
 
-    const result = fieldSchema.safeParse([...field.state.value, value]);
+    const result = fieldSchema.safeParse([...field.state.value, ...values]);
     const message = result.error?.issues[0]?.message;
     field.setErrorMap({ onBlur: message });
     return !isPresent(message);

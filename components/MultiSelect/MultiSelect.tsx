@@ -3,6 +3,7 @@ import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext';
 import clsx from 'clsx';
 import {
   type ChangeEvent,
+  type ClipboardEvent,
   type FocusEvent,
   type KeyboardEvent,
   useMemo,
@@ -47,10 +48,32 @@ export const MultiSelect = ({
     const chip = inputValue.trim();
     if (!chip.length) return;
 
-    if (isPresent(validateValue) && !validateValue(chip)) return;
+    if (isPresent(validateValue) && !validateValue([chip])) return;
 
     onChange([...value.slice(0, cursorPosition), chip, ...value.slice(cursorPosition)]);
     setCursor(cursorPosition + 1);
+    setInputValue('');
+  };
+
+  const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
+    const input = event.currentTarget;
+    const selectionStart = input.selectionStart ?? inputValue.length;
+    const selectionEnd = input.selectionEnd ?? inputValue.length;
+    const text =
+      inputValue.slice(0, selectionStart) +
+      event.clipboardData.getData('text') +
+      inputValue.slice(selectionEnd);
+    const chips = text
+      .split(',')
+      .map((chip) => chip.trim())
+      .filter((chip) => chip.length > 0);
+    if (chips.length < 2) return;
+
+    event.preventDefault();
+    if (isPresent(validateValue) && !validateValue(chips)) return;
+
+    onChange([...value.slice(0, cursorPosition), ...chips, ...value.slice(cursorPosition)]);
+    setCursor(cursorPosition + chips.length);
     setInputValue('');
   };
 
@@ -134,6 +157,7 @@ export const MultiSelect = ({
             }}
             onChange={handleInputChange}
             onKeyDown={handleInputKeyDown}
+            onPaste={handlePaste}
             onBlur={handleInputBlur}
           />
           {value
