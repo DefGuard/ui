@@ -9,6 +9,6 @@ export interface MultiSelectProps {
   required?: boolean;
   helper?: string;
   testId?: string;
-  validateValue?: (value: string) => boolean;
+  validateValue?: (values: string[]) => boolean;
   onInputChange?: (value: string) => void;
 }
