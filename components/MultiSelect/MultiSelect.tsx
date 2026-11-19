@@ -56,8 +56,14 @@ export const MultiSelect = ({
   };
 
   const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
-    const chips = event.clipboardData
-      .getData('text')
+    const input = event.currentTarget;
+    const selectionStart = input.selectionStart ?? inputValue.length;
+    const selectionEnd = input.selectionEnd ?? inputValue.length;
+    const text =
+      inputValue.slice(0, selectionStart) +
+      event.clipboardData.getData('text') +
+      inputValue.slice(selectionEnd);
+    const chips = text
       .split(',')
       .map((chip) => chip.trim())
       .filter((chip) => chip.length > 0);
@@ -68,6 +74,7 @@ export const MultiSelect = ({
 
     onChange([...value.slice(0, cursorPosition), ...chips, ...value.slice(cursorPosition)]);
     setCursor(cursorPosition + chips.length);
+    setInputValue('');
   };
 
   const removeChip = (index: number) => {
